@@ -52,13 +52,17 @@ function App() {
     setTweak("lang", l);
   };
 
+  const featuredPlugin = window.PLUGINS.find((p) => p.featured);
+  const indexPlugins = window.PLUGINS.filter((p) => !p.featured);
+
   return (
     <>
       <Header lang={lang} setLang={updateLang} />
       <main>
         <Hero lang={lang} />
-        <IndexList lang={lang} plugins={window.PLUGINS} onSelect={onSelect} />
-        <CatalogDetail lang={lang} plugins={window.PLUGINS} />
+        <FeaturedAmbience lang={lang} plugin={featuredPlugin} />
+        <IndexList lang={lang} plugins={indexPlugins} onSelect={onSelect} />
+        <CatalogDetail lang={lang} plugins={indexPlugins} />
         <Features lang={lang} />
         <About lang={lang} />
       </main>

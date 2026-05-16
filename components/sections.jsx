@@ -430,4 +430,91 @@ function Footer({ lang }) {
 
 }
 
-Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer });
+function FeaturedAmbience({ lang, plugin }) {
+  if (!plugin) return null;
+  return (
+    <section id="featured" className="section featured-section">
+      <div className="featured-grid">
+        <div className="featured-media">
+          <Reveal>
+            <div className="featured-shot" style={{ "--accent": plugin.accent }}>
+              <img src={plugin.screenshot} alt="Ambience UI" />
+              <div className="featured-shot-overlay">
+                <span className="fs-tag">UI · NORMAL MODE</span>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="featured-video">
+              <div className="fv-placeholder">
+                <div className="fv-icon">▶</div>
+                <div className="fv-meta">
+                  <div className="fv-meta-k">DEMO VIDEO</div>
+                  <div className="fv-meta-v">{lang === "jp" ? "近日公開" : "Coming Soon"}</div>
+                </div>
+              </div>
+              {/* When YouTube URL is ready, replace fv-placeholder with:
+                  <iframe src="https://www.youtube.com/embed/VIDEO_ID" ... /> */}
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="featured-info">
+          <Reveal>
+            <div className="featured-flag">
+              <span className="ff-dot" style={{ background: plugin.accent }} />
+              <span>{lang === "jp" ? "新作 · 近日公開" : "New · Coming Soon"}</span>
+              <span className="ff-sep">/</span>
+              <span>{plugin.name.toUpperCase()}</span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="featured-title">
+              {lang === "jp" ? (
+                <>
+                  <span className="ft-line">最強の</span>
+                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>アルゴリズム Reverb</span> を</span>
+                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>無料</span>で。</span>
+                </>
+              ) : (
+                <>
+                  <span className="ft-line">The strongest</span>
+                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>algorithmic reverb</span></span>
+                  <span className="ft-line">for <span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>free</span>.</span>
+                </>
+              )}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="featured-sub">
+              {lang === "jp"
+                ? "──有料のものと、違いが分かりますか？"
+                : "──Can you tell it apart from the paid ones?"}
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <ul className="featured-bullets">
+              <li><span className="fb-k">16ch</span> <span>Feedback Delay Network</span></li>
+              <li><span className="fb-k">21</span> <span>{lang === "jp" ? "世界の名空間プリセット" : "world-class hall presets"}</span></li>
+              <li><span className="fb-k">7</span> <span>{lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms"}</span></li>
+              <li><span className="fb-k">∞</span> <span>{lang === "jp" ? "完全無料 ・ オープンソース" : "free & open-source"}</span></li>
+            </ul>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <div className="featured-actions">
+              <a href={plugin.featureUrl} className="btn-primary featured-cta">
+                {lang === "jp" ? "内容を知る" : "Read the story"} <span className="arrow">→</span>
+              </a>
+              <span className="featured-status">
+                <span className="fs-dot" />
+                {lang === "jp" ? "リリース準備中" : "Release in preparation"}
+              </span>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, FeaturedAmbience });

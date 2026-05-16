@@ -2,6 +2,42 @@
 // All plugins: Windows / VST3 only. Ableton Live verified. Other DAWs unverified.
 window.PLUGINS = [
   {
+    id: "ambience",
+    num: "00",
+    name: "Ambience",
+    category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0.1",
+    status: "Coming Soon",
+    comingSoon: true,
+    featured: true,
+    featureUrl: "ambience.html",
+    screenshot: "assets/ambience-screenshot-1.jpg",
+    screenshotPro: "assets/ambience-screenshot-2.jpg",
+    tagline: {
+      en: "World-class halls in 16 channels of FDN. Free.",
+      jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
+    },
+    description: {
+      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 21 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall and more — at zero cost.",
+      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall など 21 種の名空間プリセットを、無料で。"
+    },
+    features: [
+      { en: "16-channel FDN with FWHT feedback matrix", jp: "FWHT 帰還行列の 16ch FDN" },
+      { en: "7 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL", jp: "7 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL" },
+      { en: "21 factory presets (Abbey Road, Musikverein, Carnegie etc.)", jp: "21 ファクトリプリセット (Abbey Road、Musikverein、Carnegie 他)" },
+      { en: "10-band Välimäki-Liski GEQ absorption per channel", jp: "チャンネルごとの 10 バンド Välimäki-Liski GEQ 吸収" },
+      { en: "ISM-based Early Reflections w/ per-algorithm tuning", jp: "ISM ベース Early Reflections (アルゴリズムごとに最適化)" },
+      { en: "ADAA Saturator — Warm / Tape / Tube / Hard", jp: "ADAA サチュレータ — Warm／Tape／Tube／Hard" },
+      { en: "Real-time D50 / C50 / C80 / EDT readouts", jp: "リアルタイム D50 ／ C50 ／ C80 ／ EDT 計測表示" },
+      { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
+      { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
+    ],
+    repo: "#",
+    accent: "#ff8a3c"
+  },
+  {
     id: "basssynth",
     num: "01",
     name: "BassSynth",
