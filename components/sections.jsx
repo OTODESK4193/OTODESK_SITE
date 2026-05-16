@@ -216,12 +216,24 @@ function PluginCard({ plugin, lang, index }) {
         </Reveal>
 
         <Reveal delay={0.4} className="pc-actions">
-          <a href={plugin.repo} target="_blank" rel="noreferrer" className="btn-primary">
+          <a
+            href={plugin.repo + "/releases"}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary"
+            onClick={() => {
+              try {
+                counterUp(`dl-${plugin.id}`);
+                window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));
+              } catch(e){}
+            }}
+          >
             {lang === "jp" ? "ダウンロード" : "Download"} <span className="arrow">↓</span>
           </a>
           <a href={plugin.repo} target="_blank" rel="noreferrer" className="btn-ghost">
             {lang === "jp" ? "ソースコード" : "Source"} <span className="arrow">↗</span>
           </a>
+          <DownloadChip pluginId={plugin.id} lang={lang} />
         </Reveal>
       </div>
     </article>);
@@ -334,6 +346,7 @@ function About({ lang }) {
 }
 
 function Footer({ lang }) {
+  const visits = useVisitorCount();
   return (
     <footer className="site-footer" style={{ backgroundColor: "rgba(113, 255, 176, 0.275)" }}>
       <div className="ft-top">
@@ -366,6 +379,25 @@ function Footer({ lang }) {
       <div className="ft-bottom">
         <span>© 2026 OTODESK</span>
         <span>VST3 is a trademark of Steinberg Media Technologies GmbH</span>
+      </div>
+
+      <div className="visitor-wrap">
+        <div className="visitor-card">
+          <div className="vc-grid">
+            <div className="vc-label">
+              <span className="vc-dot" />
+              <span>{lang === "jp" ? "訪問回数" : "Total visits"}</span>
+            </div>
+            <div className="vc-divider" />
+            <div className="vc-number">
+              <CountNumber value={visits} pad={6} />
+            </div>
+          </div>
+          <div className="vc-foot">
+            <span>{lang === "jp" ? "訪問ありがとうございます。" : "Thanks for stopping by."}</span>
+            <span className="vc-tick">● LIVE</span>
+          </div>
+        </div>
       </div>
     </footer>);
 
