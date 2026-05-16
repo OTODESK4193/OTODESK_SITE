@@ -269,6 +269,70 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/CHIMERA_Filter",
     accent: "#00d4ff"
+  },
+  {
+    id: "chordmatrix",
+    num: "10",
+    name: "ChordMatrix",
+    category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
+    type: "MIDI",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Viterbi-optimized voice leading. 90 presets. 55 scales.",
+      jp: "Viterbi 最適化ボイスリーディング、90 プリセット、55 スケール。"
+    },
+    description: {
+      en: "An advanced algorithmic MIDI chord sequencer driven by Music Set Theory. Treats harmony not as static blocks but as a continuous topological space, modeling pro keyboard performance via a global Viterbi algorithm — automating voice leading, avoiding avoid-notes, and creating smooth modulation lines across 90 presets and 55 musical scales.",
+      jp: "Music Set Theory に基づく高度なアルゴリズム MIDI コード・シーケンサ。和声を静的なブロックではなく連続的な位相空間として扱い、Viterbi アルゴリズムでプロのキーボード演奏をモデル化。90 プリセット ／ 55 スケールにわたるボイスリーディング自動化と滑らかな転調を実現します。"
+    },
+    features: [
+      { en: "Global Viterbi voice-leading optimization", jp: "Viterbi アルゴリズムによるグローバル・ボイスリーディング最適化" },
+      { en: "5 OPTIMIZE personas — Balance / Melody / Bass / Cluster / Alt", jp: "5 種 OPTIMIZE ペルソナ — Balance／Melody／Bass／Cluster／Alt" },
+      { en: "Context-aware modulation engine — Pivot / SubV7 / vii°7", jp: "コンテキスト認識転調エンジン — Pivot／SubV7／vii°7" },
+      { en: "Neo-Riemannian transforms (P, L, R)", jp: "Neo-Riemannian 変換 (P, L, R)" },
+      { en: "Target-aware AI combo suggestions (ii°-V7♭9 etc.)", jp: "ターゲット認識 AI コンボ提案 (ii°-V7♭9 等)" },
+      { en: "Self-evolving tension (♭9 / ♭13 auto-selection)", jp: "自己進化テンション生成 (♭9 ／ ♭13 自動選択)" },
+      { en: "90 presets · 55 scales (Diatonic / Bebop / Symmetrical / World)", jp: "90 プリセット ・ 55 スケール (教会旋法／Bebop／対称／世界の音階)" },
+      { en: "Lock-free double-buffered DSP, zero heap alloc", jp: "Lock-Free ダブルバッファ DSP、ヒープアロケーションゼロ" },
+      { en: "VBlank-driven UI sync, AVX2 SIMD", jp: "VBlank 駆動 UI 同期、AVX2 SIMD" },
+      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/ChordMatrix",
+    accent: "#b76cff"
+  },
+  {
+    id: "basslinematrix",
+    num: "11",
+    name: "BassLineMatrix",
+    category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
+    type: "MIDI",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "23 genres of DNA. Drop a chord, get a bassline.",
+      jp: "23 ジャンルの DNA。コードを置けば、ベースラインが生まれる。"
+    },
+    description: {
+      en: "An open-source algorithmic MIDI sequencer with a built-in synthesizer. Instantly conjure everything from hypnotic Melodic Techno rolling basses and aggressive Drum & Bass neuro-lines to soulful Neo-Soul walks and deeply syncopated Amapiano log-drums — all based on deeply researched genre DNA.",
+      jp: "オープンソースのアルゴリズム MIDI シーケンサ＆内蔵シンセ。Melodic Techno のローリングベース、Drum & Bass のニューロライン、Neo-Soul のウォーキング、Amapiano のログドラムまで、徹底的にリサーチされたジャンル DNA から瞬時に生成します。"
+    },
+    features: [
+      { en: "23 genre DNA algorithms — Techno / DnB / Trap / Amapiano / Neo-Soul …", jp: "23 ジャンル DNA — Techno／DnB／Trap／Amapiano／Neo-Soul 他" },
+      { en: "Per-genre velocity / swing / note-length / glide profiles", jp: "ジャンルごとのベロシティ／スウィング／ノート長／グライドプロファイル" },
+      { en: "4 independent slots — seamless A/B/C/D switching", jp: "4 独立スロット — シームレス A／B／C／D 切替" },
+      { en: "Time-sig / bars (up to 8) / Complexity / Entropy / Auto-Glide", jp: "拍子／小節数 (最大 8) ／ Complexity ／ Entropy ／ Auto-Glide" },
+      { en: "40 scales + Chord Mode (15 qualities w/ inversions)", jp: "40 スケール ＋ Chord モード (15 種コード＆転回)" },
+      { en: "Built-in TPT / ZDF synthesizer — analog-like, phase-warp free", jp: "内蔵 TPT／ZDF シンセ — アナログ風、位相ワープなし" },
+      { en: "Mono truncation + variable glide + staccato gating", jp: "Mono トランケート ＋ 可変グライド ＋ スタッカートゲート" },
+      { en: "MIDI drag & drop — Bass + Chord sequences to DAW timeline", jp: "MIDI ドラッグ＆ドロップ — Bass ＋ Chord シーケンスを DAW へ直接" },
+      { en: "Lock-free double-buffered DSP, AVX2-optimized", jp: "Lock-Free ダブルバッファ DSP、AVX2 最適化" },
+      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/BassLineMatrix",
+    accent: "#ffb347"
   }
 ];
 

@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 09</span>
+            <span>WORKS — 11</span>
           </div>
         </div>
 
@@ -113,11 +113,11 @@ function IndexList({ lang, plugins, onSelect }) {
     <section id="index" className="section index-section">
       <div className="section-head">
         <Reveal>
-          <div className="eyebrow">— {C.sections.index[lang]} / 09</div>
+          <div className="eyebrow">— {C.sections.index[lang]} / 11</div>
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="section-title">
-            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>9</span>つの<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Nine plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>11</span>つの<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Eleven plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </Reveal>
       </div>
@@ -313,21 +313,45 @@ function About({ lang }) {
           </h2>
         </Reveal>
         <Reveal delay={0.2} className="about-text">
-          <p>
-            {lang === "jp" ?
-            "OTODESK は、ひとりのプロデューサーが自分の制作のためにつくっている DSP プロジェクトです。" :
-            "OTODESK is a one-person DSP project — a producer building tools for their own productions."}
-          </p>
-          <p>
-            {lang === "jp" ?
-            "公開しているプラグインはすべて、実際の楽曲制作で使うことを念頭に設計し、テストしています。" :
-            "Every released plugin has been designed and tested against real production work — not as a tech demo, but as a tool I actually reach for."}
-          </p>
-          <p>
-            {lang === "jp" ?
-            "気になるバグや要望があれば、GitHub の Issues か X(Twitter) で気軽にどうぞ。" :
-            "Bugs and feature requests are welcome on GitHub Issues or X (Twitter)."}
-          </p>
+          {lang === "jp" ? (
+            <>
+              <p>
+                <span className="about-lead">OTODESK</span> は、一人の音楽プロデューサーが、自身の制作のためだけに立ち上げた DSP プロジェクトです。公開しているすべてのプラグインは、デモやコンセプトではなく、実際の楽曲制作の現場で「足りない」と感じた瞬間から逆算して設計され、繰り返し使い倒した上でリリースしています。
+              </p>
+              <p>
+                開発者は音響工学の専門教育を受けたエンジニアではありません。サラリーマンとして働き、家庭では子の良き父であり、ただ音楽が好きな一個人です。<span className="about-em">耳を頼りに、AI を壁打ち相手に</span>、Gemini や Claude と対話を重ねながら、JUCE のドキュメント、DSP の論文、プロエンジニアのブログを読み込み、難解な専門用語を一つずつ自分の言葉に翻訳して、設計と実装を進めてきました。
+              </p>
+              <p>
+                ビルドエラーは、もはや数えていません。それでも諦めなかったのは、頭の中で鳴っている音を、誰かが作ってくれるのを待っていられなかったから。<span className="about-em">執念だけは、誰にも負けない自信があります。</span>
+              </p>
+              <p>
+                バグの報告や機能のリクエスト、感想は、GitHub Issues か X (旧 Twitter) までお気軽にどうぞ。ご連絡いただけると、開発者は素直に喜びます。
+              </p>
+              <p className="about-aside">
+                <span className="about-aside-mark">＊</span>
+                誰にも再生されていない自作曲を、YouTube で公開しています。再生やコメントをいただけると、犬のように「ワンっ」と吠えて喜びます。
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                <span className="about-lead">OTODESK</span> is a solo DSP project — a one-person studio building tools for one person's productions. Every released plugin is reverse-engineered from real moments of "this isn't quite enough" in real sessions. Nothing ships as a concept demo; every plugin has been used in actual production work before it goes public.
+              </p>
+              <p>
+                The developer isn't an audio-engineering graduate. He's a salaryman by day, a dad at home, and a music lover at heart. <span className="about-em">Working by ear, sparring with AI</span> — Gemini and Claude as conversation partners — he reads JUCE docs, DSP papers, and pro-engineer blogs, translating the jargon into his own words and turning it into code, one stubborn build error at a time.
+              </p>
+              <p>
+                He stopped counting the build failures a long time ago. What he hasn't run out of is patience: <span className="about-em">if no one's going to build the sound in his head, he'll just keep at it until he builds it himself.</span>
+              </p>
+              <p>
+                Bug reports, feature requests, and just-saying-hi messages are welcome via GitHub Issues or X (formerly Twitter). The developer will read every single one.
+              </p>
+              <p className="about-aside">
+                <span className="about-aside-mark">*</span>
+                He also uploads original tracks that nobody plays to YouTube. A view or a comment makes him bark like a happy dog.
+              </p>
+            </>
+          )}
           <div className="about-links">
             <a href="https://github.com/OTODESK4193" target="_blank" rel="noreferrer">
               github.com/OTODESK4193 <span className="arrow">↗</span>
@@ -337,6 +361,9 @@ function About({ lang }) {
             </a>
             <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">
               note.com/pain_modulation <span className="arrow">↗</span>
+            </a>
+            <a href="https://youtube.com/playlist?list=PLaG0gX-K8LJMSJC8AxC4TmWKgA3-KHZze" target="_blank" rel="noreferrer">
+              YouTube — {lang === "jp" ? "自作曲プレイリスト" : "Original tracks"} <span className="arrow">↗</span>
             </a>
           </div>
         </Reveal>
