@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, initial-scale=1" />
+<title>Ambience — Before / After (YouTube 1920×1080)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+    --sans: "Geist", "Söhne", -apple-system, system-ui, sans-serif;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: var(--sans);
+    color: #f0eee8;
+  }
+
+  /* Fixed-size canvas 1920x1080 with letterboxing scale */
+  .stage {
+    width: 1920px; height: 1080px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform-origin: center;
+    transform: translate(-50%, -50%) scale(var(--scale, 1));
+    overflow: hidden;
+    background: #000;
+  }
+
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+  }
+  .screen.is-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: opacity 0.6s ease, visibility 0s linear 0s;
+  }
+
+  /* ===== BEFORE SCREEN ===== */
+  .screen-before {
+    background: #0a0a0a;
+  }
+  .screen-before .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .screen-before .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(180,180,200,0.08), transparent 60%);
+  }
+  .screen-before .content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 22px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #6a6a6a;
+    margin-bottom: 60px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .label-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .screen-before .label-dot {
+    background: #888;
+    box-shadow: 0 0 10px #888;
+  }
+  .big-word {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 360px;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin-bottom: 60px;
+  }
+  .screen-before .big-word {
+    color: #cfcfcf;
+  }
+  .sub-jp {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 56px;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    color: #b0b0b0;
+    margin-bottom: 24px;
+  }
+  .sub-en {
+    font-family: var(--mono);
+    font-size: 22px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  /* Waveform — flat dry */
+  .wave-row {
+    position: absolute;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    pointer-events: none;
+  }
+  .wave-row.top { top: 140px; }
+  .wave-row.bottom { bottom: 140px; }
+  .wave-bar {
+    width: 6px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+  .screen-before .wave-bar { color: #4a4a4a; }
+  .screen-before .wave-row .wave-bar { opacity: 0.6; }
+
+  /* ===== AFTER SCREEN ===== */
+  .screen-after {
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(255,138,60,0.16), transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(61,139,191,0.12), transparent 50%),
+      #0a0a0c;
+  }
+  .screen-after .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,138,60,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,138,60,0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 85%);
+  }
+  .screen-after .content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .screen-after .label {
+    color: #ff8a3c;
+  }
+  .screen-after .label-dot {
+    background: #ff8a3c;
+    box-shadow: 0 0 18px #ff8a3c;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .screen-after .big-word {
+    color: #f5f1e8;
+    background: linear-gradient(135deg, #fff 0%, #ffb88c 60%, #ff8a3c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .screen-after .sub-jp { color: #ddd8cc; }
+  .screen-after .sub-en { color: #ff8a3c; }
+
+  /* Waveform — rich with tail */
+  .screen-after .wave-bar { color: #ff8a3c; }
+  .screen-after .wave-row .wave-bar:nth-child(odd) { color: #3d8bbf; }
+
+  /* Brand stamp */
+  .brand-stamp {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #555;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-stamp .mark {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .screen-after .brand-stamp { color: #888; }
+  .screen-after .brand-stamp .mark { background: #ff8a3c; box-shadow: 0 0 8px #ff8a3c; }
+
+  /* Corner meta */
+  .meta-corner {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .meta-tl { top: 50px; left: 50px; }
+  .meta-tr { top: 50px; right: 50px; text-align: right; }
+  .meta-bl { bottom: 50px; left: 50px; }
+  .meta-br { bottom: 50px; right: 50px; text-align: right; }
+  .screen-after .meta-corner { color: #888; }
+
+  /* Quote serif touch on AFTER */
+  .quote-serif {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 38px;
+    color: #f0c79a;
+    letter-spacing: -0.01em;
+    margin-top: 30px;
+  }
+
+  /* ===== UI CONTROLS (hidden during recording) ===== */
+  .controls {
+    position: fixed;
+    top: 16px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(20, 20, 22, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+  }
+  .controls.hidden { opacity: 0; pointer-events: none; }
+  .ctrl-btn {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 10px 16px;
+    cursor: pointer;
+    font: inherit;
+    transition: all 0.2s;
+  }
+  .ctrl-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .ctrl-btn.active { background: #ff8a3c; color: #000; border-color: #ff8a3c; }
+  .ctrl-hint {
+    color: #666;
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ============ BEFORE ============ -->
+  <div class="screen screen-before is-active" id="screen-before">
+    <div class="grid-bg"></div>
+    <div class="glow"></div>
+
+    <div class="meta-corner meta-tl">● REC<br/>NO PROCESSING</div>
+    <div class="meta-corner meta-tr">DRY SIGNAL<br/>RAW</div>
+    <div class="meta-corner meta-bl">OTODESK / 2026</div>
+    <div class="meta-corner meta-br">01 / 02</div>
+
+    <div class="wave-row top" id="wave-before-top"></div>
+
+    <div class="content">
+      <div class="label">
+        <span class="label-dot"></span>
+        <span>Before</span>
+      </div>
+      <div class="big-word">DRY.</div>
+      <div class="sub-jp">リバーブなし、そのままの音。</div>
+      <div class="sub-en">no reverb · raw recording</div>
+    </div>
+
+    <div class="wave-row bottom" id="wave-before-bottom"></div>
+
+    <div class="brand-stamp">
+      <span class="mark"></span>
+      <span>OTODESK · Ambience</span>
+      <span class="mark"></span>
+    </div>
+  </div>
+
+  <!-- ============ AFTER ============ -->
+  <div class="screen screen-after" id="screen-after">
+    <div class="grid-bg"></div>
+
+    <div class="meta-corner meta-tl">● ON<br/>16ch FDN</div>
+    <div class="meta-corner meta-tr">AMBIENCE v1.0.1<br/>HALL2 / VIENNA MUSIKVEREIN</div>
+    <div class="meta-corner meta-bl">RT60 · 2.8s<br/>D50 · 0.62</div>
+    <div class="meta-corner meta-br">02 / 02</div>
+
+    <div class="wave-row top" id="wave-after-top"></div>
+
+    <div class="content">
+      <div class="label">
+        <span class="label-dot"></span>
+        <span>After · Ambience</span>
+      </div>
+      <div class="big-word">WET.</div>
+      <div class="sub-jp">空間を、支配する。</div>
+      <div class="sub-en">21 world-class halls · free forever</div>
+      <div class="quote-serif">"Can you tell it apart from the paid ones?"</div>
+    </div>
+
+    <div class="wave-row bottom" id="wave-after-bottom"></div>
+
+    <div class="brand-stamp">
+      <span class="mark"></span>
+      <span>OTODESK · Ambience</span>
+      <span class="mark"></span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Controls (hidden when recording: press H to toggle) -->
+<div class="controls" id="controls">
+  <button class="ctrl-btn active" id="btn-before">① Before</button>
+  <button class="ctrl-btn" id="btn-after">② After</button>
+  <span class="ctrl-hint">← → / Space to toggle · H to hide</span>
+</div>
+
+<script>
+  // Letterbox scaling
+  function fitStage() {
+    const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.documentElement.style.setProperty("--scale", s.toString());
+  }
+  fitStage();
+  window.addEventListener("resize", fitStage);
+
+  // Generate procedural waveform bars
+  function makeWave(el, count, opts) {
+    const { tall, irregular, withTail } = opts;
+    el.innerHTML = "";
+    for (let i = 0; i < count; i++) {
+      const bar = document.createElement("div");
+      bar.className = "wave-bar";
+      let h;
+      if (irregular) {
+        // dense, tall, organic — wet signal
+        const center = Math.abs(i - count / 2) / (count / 2); // 0..1 from center
+        const base = 30 + Math.random() * 100;
+        const env = Math.sin((i / count) * Math.PI * 3) * 40;
+        const tail = withTail ? Math.exp(-Math.abs(i - count * 0.4) / count * 6) * 80 : 0;
+        h = Math.max(8, base + env + tail);
+      } else {
+        // dry, simple, lower
+        const t = i / count;
+        h = 12 + Math.abs(Math.sin(t * Math.PI * 2.2)) * 60 + Math.random() * 12;
+      }
+      bar.style.height = (tall ? h * 1.2 : h) + "px";
+      el.appendChild(bar);
+    }
+  }
+  makeWave(document.getElementById("wave-before-top"), 120, { tall: false });
+  makeWave(document.getElementById("wave-before-bottom"), 120, { tall: false });
+  makeWave(document.getElementById("wave-after-top"), 160, { tall: true, irregular: true, withTail: true });
+  makeWave(document.getElementById("wave-after-bottom"), 160, { tall: true, irregular: true, withTail: true });
+
+  // Toggle
+  const before = document.getElementById("screen-before");
+  const after = document.getElementById("screen-after");
+  const btnBefore = document.getElementById("btn-before");
+  const btnAfter = document.getElementById("btn-after");
+  let state = "before";
+  function setState(s) {
+    state = s;
+    if (s === "before") {
+      before.classList.add("is-active");
+      after.classList.remove("is-active");
+      btnBefore.classList.add("active");
+      btnAfter.classList.remove("active");
+    } else {
+      after.classList.add("is-active");
+      before.classList.remove("is-active");
+      btnAfter.classList.add("active");
+      btnBefore.classList.remove("active");
+    }
+  }
+  btnBefore.addEventListener("click", () => setState("before"));
+  btnAfter.addEventListener("click", () => setState("after"));
+
+  // Keyboard
+  const controls = document.getElementById("controls");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "1") setState("before");
+    else if (e.key === "ArrowRight" || e.key === "2") setState("after");
+    else if (e.key === " ") { e.preventDefault(); setState(state === "before" ? "after" : "before"); }
+    else if (e.key === "h" || e.key === "H") controls.classList.toggle("hidden");
+    else if (e.key === "f" || e.key === "F") {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+</script>
+
+</body>
+</html>

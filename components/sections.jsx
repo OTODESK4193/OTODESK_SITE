@@ -446,15 +446,13 @@ function FeaturedAmbience({ lang, plugin }) {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="featured-video">
-              <div className="fv-placeholder">
-                <div className="fv-icon">▶</div>
-                <div className="fv-meta">
-                  <div className="fv-meta-k">DEMO VIDEO</div>
-                  <div className="fv-meta-v">{lang === "jp" ? "近日公開" : "Coming Soon"}</div>
-                </div>
-              </div>
-              {/* When YouTube URL is ready, replace fv-placeholder with:
-                  <iframe src="https://www.youtube.com/embed/VIDEO_ID" ... /> */}
+              <iframe
+                src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
+                title="Ambience demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           </Reveal>
         </div>
