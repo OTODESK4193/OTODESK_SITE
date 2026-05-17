@@ -146,18 +146,13 @@ function Pitch({ lang }) {
           ▶ {lang === "jp" ? "動作デモ" : "Demo video"}
         </div>
         <div className="amb-video-frame">
-          <div className="amb-video-placeholder">
-            <div className="avp-icon">▶</div>
-            <div className="avp-text">
-              <div className="avp-k">YOUTUBE DEMO</div>
-              <div className="avp-v">{lang === "jp" ? "近日公開予定" : "Coming soon"}</div>
-            </div>
-          </div>
-          {/* When ready, replace .amb-video-placeholder with:
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                title="Ambience demo" allowFullScreen
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
-          */}
+          <iframe
+            src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
+            title="Ambience — Before / After demo"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
       </div>
     </section>
