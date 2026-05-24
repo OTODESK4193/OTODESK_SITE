@@ -3,14 +3,14 @@
 window.PLUGINS = [
   {
     id: "ambience",
-    num: "00",
+    num: "01",
     name: "Ambience",
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
     year: "2026",
     version: "1.0.1",
-    status: "Coming Soon",
-    comingSoon: true,
+    status: "Released",
+    comingSoon: false,
     featured: true,
     featureUrl: "ambience.html",
     screenshot: "assets/ambience-screenshot-1.jpg",
@@ -34,12 +34,12 @@ window.PLUGINS = [
       { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
       { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
     ],
-    repo: "#",
+    repo: "https://github.com/OTODESK4193/Ambience1.0.1",
     accent: "#ff8a3c"
   },
   {
     id: "basssynth",
-    num: "01",
+    num: "02",
     name: "BassSynth",
     category: { en: "Next-Gen Wavetable Bass Synthesizer", jp: "次世代ウェーブテーブル・ベース・シンセ" },
     type: "Instrument",
@@ -71,7 +71,7 @@ window.PLUGINS = [
   },
   {
     id: "neoto-pre",
-    num: "02",
+    num: "03",
     name: "NEOTO Pre",
     category: { en: "Analog-Modeled Preamp & Transformer Saturator", jp: "アナログモデリング・プリアンプ／トランス・サチュレータ" },
     type: "Effect",
@@ -100,7 +100,7 @@ window.PLUGINS = [
   },
   {
     id: "lumina",
-    num: "03",
+    num: "04",
     name: "LUMINA",
     category: { en: "Spectral Dynamics", jp: "スペクトル・ダイナミクス" },
     type: "Effect",
@@ -130,7 +130,7 @@ window.PLUGINS = [
   },
   {
     id: "next-gen-kick",
-    num: "04",
+    num: "05",
     name: "NEXT GEN KICK",
     category: { en: "Professional Kick Drum Synthesizer", jp: "プロフェッショナル・キックドラム・シンセ" },
     type: "Instrument",
@@ -161,7 +161,7 @@ window.PLUGINS = [
   },
   {
     id: "otodesk-sampler",
-    num: "05",
+    num: "06",
     name: "Otodesk Sampler",
     category: { en: "Advanced Multi-Slot Sampler", jp: "高度なマルチスロット・サンプラー" },
     type: "Instrument",
@@ -191,7 +191,7 @@ window.PLUGINS = [
   },
   {
     id: "glitchnexus",
-    num: "06",
+    num: "07",
     name: "GlitchNexus",
     category: { en: "Instant IDM Machine — Controlled Destruction", jp: "即席 IDM マシン — 制御された破壊" },
     type: "Effect",
@@ -220,7 +220,7 @@ window.PLUGINS = [
   },
   {
     id: "rhythm-matrix",
-    num: "07",
+    num: "08",
     name: "Rhythm Matrix",
     category: { en: "Generative Drum Sequencer", jp: "ジェネレーティブ・ドラム・シーケンサ" },
     type: "MIDI",
@@ -248,7 +248,7 @@ window.PLUGINS = [
   },
   {
     id: "multi-oto",
-    num: "08",
+    num: "09",
     name: "MULTI-OTO",
     category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
     type: "Effect",
@@ -280,7 +280,7 @@ window.PLUGINS = [
   },
   {
     id: "chimera-filter",
-    num: "09",
+    num: "10",
     name: "CHIMERA Filter",
     category: { en: "4-Head Morphing Filter", jp: "4 ヘッド・モーフィング・フィルタ" },
     type: "Effect",
@@ -308,7 +308,7 @@ window.PLUGINS = [
   },
   {
     id: "chordmatrix",
-    num: "10",
+    num: "11",
     name: "ChordMatrix",
     category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
     type: "MIDI",
@@ -340,7 +340,7 @@ window.PLUGINS = [
   },
   {
     id: "basslinematrix",
-    num: "11",
+    num: "12",
     name: "BassLineMatrix",
     category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
     type: "MIDI",

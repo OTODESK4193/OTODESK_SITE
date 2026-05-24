@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 11</span>
+            <span>WORKS — 12</span>
           </div>
         </div>
 
@@ -113,11 +113,11 @@ function IndexList({ lang, plugins, onSelect }) {
     <section id="index" className="section index-section">
       <div className="section-head">
         <Reveal>
-          <div className="eyebrow">— {C.sections.index[lang]} / 11</div>
+          <div className="eyebrow">— {C.sections.index[lang]} / 12</div>
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="section-title">
-            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>11</span>つの<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Eleven plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>12</span>つの<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Twelve plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </Reveal>
       </div>
@@ -126,18 +126,25 @@ function IndexList({ lang, plugins, onSelect }) {
         {plugins.map((p, i) =>
         <li
           key={p.id}
-          className={`index-row${hover === p.id ? " is-hover" : ""}${hover && hover !== p.id ? " is-dim" : ""}`}
+          className={`index-row${hover === p.id ? " is-hover" : ""}${hover && hover !== p.id ? " is-dim" : ""}${p.featured ? " is-featured" : ""}`}
           onMouseEnter={() => setHover(p.id)}
           onClick={() => onSelect(p.id)}>
           
             <Reveal delay={i * 0.04} className="index-row-inner">
               <span className="ir-num">{p.num}</span>
-              <span className="ir-name">{p.name}</span>
+              <span className="ir-name">
+                {p.name}
+                {p.featured && (
+                  <span className="ir-badge" style={{ color: p.accent, borderColor: p.accent }}>
+                    {lang === "jp" ? "新作" : "NEW"}
+                  </span>
+                )}
+              </span>
               <span className="ir-cat">{p.category[lang]}</span>
               <span className="ir-type">{p.type}</span>
               <span className="ir-year">{p.year}</span>
               <span className="ir-go" style={{ color: p.accent }}>
-                →
+                {p.featureUrl ? "↗" : "→"}
               </span>
             </Reveal>
           </li>
@@ -461,7 +468,7 @@ function FeaturedAmbience({ lang, plugin }) {
           <Reveal>
             <div className="featured-flag">
               <span className="ff-dot" style={{ background: plugin.accent }} />
-              <span>{lang === "jp" ? "新作 · 近日公開" : "New · Coming Soon"}</span>
+              <span>{lang === "jp" ? "新作 · 本日リリース" : "New · Out now"}</span>
               <span className="ff-sep">/</span>
               <span>{plugin.name.toUpperCase()}</span>
             </div>
@@ -503,9 +510,24 @@ function FeaturedAmbience({ lang, plugin }) {
               <a href={plugin.featureUrl} className="btn-primary featured-cta">
                 {lang === "jp" ? "内容を知る" : "Read the story"} <span className="arrow">→</span>
               </a>
+              <a
+                href={plugin.repo + "/releases/latest"}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-ghost featured-dl"
+                onClick={() => {
+                  try {
+                    counterUp(`dl-${plugin.id}`);
+                    window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));
+                  } catch(e){}
+                }}
+              >
+                {lang === "jp" ? "ダウンロード" : "Download"} <span className="arrow">↓</span>
+              </a>
+              <DownloadChip pluginId={plugin.id} lang={lang} />
               <span className="featured-status">
                 <span className="fs-dot" />
-                {lang === "jp" ? "リリース準備中" : "Release in preparation"}
+                {lang === "jp" ? "GPLv3 · 完全無料" : "GPLv3 · Free forever"}
               </span>
             </div>
           </Reveal>

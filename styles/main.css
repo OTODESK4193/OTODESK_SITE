@@ -264,6 +264,25 @@ button { background: none; border: none; color: inherit; cursor: pointer; font: 
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 500;
   letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.ir-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-weight: 500;
+  transform: translateY(-2px);
+}
+.index-row.is-featured .index-row-inner {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--ink) 4%, transparent) 0%, transparent 60%);
 }
 .ir-cat {
   font-size: 16px;

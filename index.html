@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OTODESK — VST3 / AU Plugins</title>
+<title>OTODESK_Official_Site | VST Plugins</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -43,6 +43,11 @@ function App() {
   }, [tweaks.lang]);
 
   const onSelect = (id) => {
+    const plugin = window.PLUGINS.find((p) => p.id === id);
+    if (plugin && plugin.featureUrl) {
+      window.location.href = plugin.featureUrl;
+      return;
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -53,7 +58,10 @@ function App() {
   };
 
   const featuredPlugin = window.PLUGINS.find((p) => p.featured);
-  const indexPlugins = window.PLUGINS.filter((p) => !p.featured);
+  // Ambience appears as #01 in the index list (clicks → featureUrl),
+  // but is excluded from the inline CatalogDetail since it has its own page.
+  const indexPlugins = window.PLUGINS;
+  const catalogPlugins = window.PLUGINS.filter((p) => !p.featured);
 
   return (
     <>
@@ -62,7 +70,7 @@ function App() {
         <Hero lang={lang} />
         <FeaturedAmbience lang={lang} plugin={featuredPlugin} />
         <IndexList lang={lang} plugins={indexPlugins} onSelect={onSelect} />
-        <CatalogDetail lang={lang} plugins={indexPlugins} />
+        <CatalogDetail lang={lang} plugins={catalogPlugins} />
         <Features lang={lang} />
         <About lang={lang} />
       </main>

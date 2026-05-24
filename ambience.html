@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ambience — World-Class Reverb, Free Forever | OTODESK</title>
+<title>Ambience — Algorithmic Reverb | OTODESK_Official_Site</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -50,7 +50,7 @@ function AmbHero({ lang }) {
         <div className="amb-hero-flag">
           <a href="index.html" className="amb-back">← {lang === "jp" ? "OTODESK" : "OTODESK"}</a>
           <span className="amb-flag-tag">
-            <span className="amb-pulse" /> {lang === "jp" ? "新作 · 近日公開" : "NEW · COMING SOON"}
+            <span className="amb-pulse" /> {lang === "jp" ? "新作 · 本日リリース" : "NEW · OUT NOW"}
           </span>
         </div>
 
@@ -86,10 +86,31 @@ function AmbHero({ lang }) {
         </div>
 
         <div className="amb-hero-actions">
-          <span className="btn-soon" aria-disabled="true">
-            <span className="bs-dot" />
-            {lang === "jp" ? "Coming soon…" : "Coming soon…"}
-          </span>
+          <a
+            href="https://github.com/OTODESK4193/Ambience1.0.1/releases/latest"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-release"
+            onClick={() => {
+              try {
+                counterUp("dl-ambience");
+                window.dispatchEvent(new CustomEvent("dlbump", { detail: "ambience" }));
+              } catch(e){}
+            }}
+          >
+            <span className="br-dot" />
+            {lang === "jp" ? "ダウンロード v1.0.1" : "Download v1.0.1"}
+            <span className="arrow">↓</span>
+          </a>
+          <a
+            href="https://github.com/OTODESK4193/Ambience1.0.1"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost amb-src"
+          >
+            {lang === "jp" ? "ソースコード" : "Source"} <span className="arrow">↗</span>
+          </a>
+          <DownloadChip pluginId="ambience" lang={lang} />
           <button className="lang-toggle amb-lang" onClick={() => {
             const newLang = lang === "jp" ? "en" : "jp";
             localStorage.setItem(LANG_KEY, newLang);
@@ -471,15 +492,28 @@ function CTA({ lang }) {
       </h2>
       <p className="amb-cta-sub">
         {lang === "jp" ?
-          "近日公開。GitHub のリリースページで配布開始予定です。" :
-          "Coming soon. Public release on GitHub."
+          "本日リリース。GitHub から無料でダウンロードできます。" :
+          "Out now. Free download on GitHub."
         }
       </p>
       <div className="amb-cta-actions">
-        <span className="btn-soon big" aria-disabled="true">
-          <span className="bs-dot" />
-          {lang === "jp" ? "Coming soon…" : "Coming soon…"}
-        </span>
+        <a
+          href="https://github.com/OTODESK4193/Ambience1.0.1/releases/latest"
+          target="_blank"
+          rel="noreferrer"
+          className="btn-release big"
+          onClick={() => {
+            try {
+              counterUp("dl-ambience");
+              window.dispatchEvent(new CustomEvent("dlbump", { detail: "ambience" }));
+            } catch(e){}
+          }}
+        >
+          <span className="br-dot" />
+          {lang === "jp" ? "ダウンロード v1.0.1" : "Download v1.0.1"}
+          <span className="arrow">↓</span>
+        </a>
+        <DownloadChip pluginId="ambience" lang={lang} />
         <a href="index.html" className="btn-ghost">
           ← {lang === "jp" ? "他のプラグインを見る" : "Other plugins"}
         </a>
