@@ -242,6 +242,15 @@ function PluginCard({ plugin, lang, index }) {
           </a>
           <DownloadChip pluginId={plugin.id} lang={lang} />
         </Reveal>
+
+        <Reveal delay={0.45} className="pc-nudge">
+          <span className="pc-nudge-text">
+            {lang === "jp" ? "新作が出たら最初に知らせます ──" : "Get the next release first ──"}
+          </span>
+          <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">X</a>
+          <span className="pc-nudge-sep">/</span>
+          <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">note</a>
+        </Reveal>
       </div>
     </article>);
 
@@ -373,6 +382,21 @@ function About({ lang }) {
               YouTube — {lang === "jp" ? "自作曲プレイリスト" : "Original tracks"} <span className="arrow">↗</span>
             </a>
           </div>
+
+          <a className="note-card" href="https://note.com/pain_modulation/n/ncab34d152a3a" target="_blank" rel="noreferrer">
+            <div className="note-card-k">note — {lang === "jp" ? "開発日記" : "Dev diary"}</div>
+            <div className="note-card-title">
+              {lang === "jp"
+                ? "このサイトをどう作ったか、note に書きました。"
+                : "How this whole site was built — the full story on note."}
+            </div>
+            <div className="note-card-desc">
+              {lang === "jp"
+                ? "素人が AI と二人三脚で 12 個のプラグインと公式サイトを作るまでの全記録。"
+                : "A self-taught hobbyist, AI, and 12 plugins — the complete making-of."}
+            </div>
+            <div className="note-card-go">{lang === "jp" ? "記事を読む" : "Read the article"} <span className="arrow">↗</span></div>
+          </a>
         </Reveal>
       </div>
     </section>);
@@ -413,6 +437,34 @@ function Footer({ lang }) {
       <div className="ft-bottom">
         <span>© 2026 OTODESK</span>
         <span>VST3 is a trademark of Steinberg Media Technologies GmbH</span>
+      </div>
+
+      <div className="follow-block">
+        <div className="follow-head">
+          <div className="ft-h">{lang === "jp" ? "OTODESK をフォロー" : "Follow OTODESK"}</div>
+          <p className="follow-lead">
+            {lang === "jp"
+              ? "新作が出たら、最初に知らせます。"
+              : "Be the first to know when something new ships."}
+          </p>
+        </div>
+        <div className="follow-grid">
+          <a className="follow-card" href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">
+            <span className="fc-net">X</span>
+            <span className="fc-desc">{lang === "jp" ? "開発の裏側と、新作速報。" : "Dev updates & release news."}</span>
+            <span className="fc-go">↗</span>
+          </a>
+          <a className="follow-card" href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">
+            <span className="fc-net">note</span>
+            <span className="fc-desc">{lang === "jp" ? "制作秘話と技術解説（長文）。" : "Build stories & deep-dives."}</span>
+            <span className="fc-go">↗</span>
+          </a>
+          <a className="follow-card" href="https://youtube.com/playlist?list=PLaG0gX-K8LJMSJC8AxC4TmWKgA3-KHZze" target="_blank" rel="noreferrer">
+            <span className="fc-net">YouTube</span>
+            <span className="fc-desc">{lang === "jp" ? "デモ動画と、自作曲。" : "Demos & original tracks."}</span>
+            <span className="fc-go">↗</span>
+          </a>
+        </div>
       </div>
 
       <div className="visitor-wrap">
@@ -468,7 +520,7 @@ function FeaturedAmbience({ lang, plugin }) {
           <Reveal>
             <div className="featured-flag">
               <span className="ff-dot" style={{ background: plugin.accent }} />
-              <span>{lang === "jp" ? "新作 · 本日リリース" : "New · Out now"}</span>
+              <span>{lang === "jp" ? "リリース中" : "Out now"}</span>
               <span className="ff-sep">/</span>
               <span>{plugin.name.toUpperCase()}</span>
             </div>
@@ -529,6 +581,16 @@ function FeaturedAmbience({ lang, plugin }) {
                 <span className="fs-dot" />
                 {lang === "jp" ? "GPLv3 · 完全無料" : "GPLv3 · Free forever"}
               </span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.5}>
+            <div className="featured-nudge">
+              <span className="pc-nudge-text">
+                {lang === "jp" ? "新作が出たら最初に知らせます ──" : "Get the next release first ──"}
+              </span>
+              <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">X</a>
+              <span className="pc-nudge-sep">/</span>
+              <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">note</a>
             </div>
           </Reveal>
         </div>
