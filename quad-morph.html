@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quad Morph Filter — 28 Filter Models | OTODESK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --ink: #f8f7f5;
+      --ink-2: #ccc;
+      --dim: #888;
+      --bg: #0a0a0c;
+      --rule: #222;
+      --accent: #ff6b35;
+      --spec-v: #00d9ff;
+      --spec-y: #ffdd00;
+      --spec-r: #ff1493;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+    .qmf-wrap {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(180deg, #0a0a0c 0%, #1a0f2e 100%);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(8px);
+    }
+    .qmf-logo {
+      font-size: 20px; font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .qmf-logo:hover { color: var(--accent); }
+    .header-controls {
+      display: flex; gap: 24px; align-items: center;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--rule);
+      color: var(--dim);
+      padding: 8px 12px;
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.active { color: var(--accent); border-color: var(--accent); }
+    .back-link {
+      color: var(--dim);
+      text-decoration: none;
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ===== HERO ===== */
+    .qmf-hero {
+      position: relative;
+      padding: 120px 60px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .qmf-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('assets/quad-morph-screenshot.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(0.5px) brightness(0.8);
+    }
+    .qmf-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(ellipse 1200px 800px at 50% 0%, rgba(0, 217, 255, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 1200px 800px at 50% 100%, rgba(255, 20, 147, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .qmf-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .qmf-hero-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .qmf-flag-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .qmf-hero h1 {
+      font-size: clamp(48px, 8vw, 84px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 18px;
+      text-wrap: balance;
+    }
+    .qmf-hero-sub {
+      font-size: 18px;
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin: 0 0 40px;
+      text-wrap: balance;
+      max-width: 700px;
+    }
+    .qmf-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      background: var(--accent);
+      color: #000;
+      border: 1px solid var(--accent);
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter 0.15s;
+    }
+    .qmf-hero-cta:hover { filter: brightness(1.12); }
+    .qmf-soon { opacity: 0.6; cursor: not-allowed; }
+    .qmf-soon:hover { filter: none; }
+
+    /* ===== DEMO VIDEO ===== */
+    .qmf-video-section {
+      padding: 80px 60px;
+      background: rgba(0, 217, 255, 0.05);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .qmf-video-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .qmf-video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, rgba(0,217,255,0.2) 0%, rgba(255,20,147,0.1) 100%);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .qmf-video-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 10px,
+        rgba(255,107,53,0.1) 10px, rgba(255,107,53,0.1) 20px
+      );
+      animation: drift 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes drift {
+      0% { transform: translate(-20px, -20px); }
+      100% { transform: translate(20px, 20px); }
+    }
+    .qmf-video-icon {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .qmf-video-icon svg {
+      width: 80px; height: 80px;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+    .qmf-video-label {
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    /* ===== TAB SYSTEM ===== */
+    .qmf-tabs-section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .qmf-tabs-header {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+    .qmf-tabs-label {
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+    .qmf-tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .qmf-tab-btn {
+      flex: 1;
+      padding: 20px 28px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--dim);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-family: "Noto Sans JP", sans-serif;
+    }
+    .qmf-tab-btn:hover { color: var(--ink); }
+    .qmf-tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .qmf-tabs-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .qmf-tab-pane {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .qmf-tab-pane.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tab Content Grids */
+    .qmf-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .qmf-grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .qmf-card {
+      padding: 32px;
+      background: rgba(255, 107, 53, 0.08);
+      border: 1px solid var(--rule);
+      transition: all 0.2s;
+    }
+    .qmf-card:hover {
+      background: rgba(255, 107, 53, 0.12);
+      border-color: var(--accent);
+    }
+    .qmf-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+    .qmf-card-desc {
+      font-size: 14px;
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Filter Model Table */
+    .qmf-table-wrap {
+      overflow-x: auto;
+      margin: 48px 0;
+    }
+    .qmf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .qmf-table thead {
+      border-bottom: 2px solid var(--rule);
+    }
+    .qmf-table th {
+      padding: 16px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .qmf-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-2);
+    }
+    .qmf-table tbody tr:hover {
+      background: rgba(255, 107, 53, 0.06);
+    }
+    .qmf-cat-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .qmf-cat-ladder { background: rgba(255, 107, 53, 0.2); color: #ff8b6a; }
+    .qmf-cat-svf { background: rgba(0, 217, 255, 0.2); color: #4dd9ff; }
+    .qmf-cat-analog { background: rgba(255, 221, 0, 0.2); color: #ffed4d; }
+    .qmf-cat-digital { background: rgba(0, 255, 100, 0.2); color: #4dff7f; }
+    .qmf-cat-spectral { background: rgba(255, 20, 147, 0.2); color: #ff6bb8; }
+    .qmf-cat-exp { background: rgba(200, 100, 255, 0.2); color: #da9dff; }
+
+    /* LFO Waveform Grid */
+    .qmf-lfo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin: 48px 0;
+    }
+    .qmf-lfo-tile {
+      padding: 20px;
+      background: rgba(0, 217, 255, 0.08);
+      border: 1px solid var(--rule);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .qmf-lfo-tile:hover {
+      background: rgba(0, 217, 255, 0.15);
+      border-color: var(--spec-v);
+    }
+    .qmf-lfo-num {
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      color: var(--spec-v);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .qmf-lfo-name {
+      font-size: 12px;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    .qmf-lfo-cat {
+      font-size: 10px;
+      color: var(--dim);
+      margin-top: 6px;
+      font-family: "Geist Mono", monospace;
+    }
+
+    /* ===== SPECS FOOTER ===== */
+    .qmf-specs {
+      padding: 60px;
+      background: rgba(0, 217, 255, 0.04);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .qmf-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .qmf-spec-item { }
+    .qmf-spec-k {
+      font-family: "Geist Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--spec-v);
+      margin-bottom: 8px;
+    }
+    .qmf-spec-v {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== FOOTER ===== */
+    .qmf-footer {
+      padding: 60px;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+    }
+    .qmf-footer-text {
+      color: var(--dim);
+      font-size: 13px;
+      margin: 12px 0;
+    }
+    .qmf-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .qmf-footer-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+    .qmf-footer-link:hover { text-decoration: underline; }
+
+    @media (max-width: 1024px) {
+      header { padding: 16px 32px; }
+      .qmf-hero { padding: 80px 32px; }
+      .qmf-tabs-section { padding: 60px 32px; }
+      .qmf-grid-2col { grid-template-columns: 1fr; gap: 32px; }
+      .qmf-grid-3col { grid-template-columns: 1fr 1fr; }
+      .qmf-specs-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+    @media (max-width: 640px) {
+      .qmf-hero h1 { font-size: 42px; }
+      .qmf-hero-sub { font-size: 15px; }
+      .qmf-tabs-nav { flex-wrap: wrap; }
+      .qmf-tab-btn { padding: 14px 16px; font-size: 14px; }
+      .qmf-grid-3col { grid-template-columns: 1fr; }
+      .qmf-specs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="qmf-wrap" id="app"></div>
+
+<script type="text/babel">
+function QuadMorphApp() {
+  const [lang, setLang] = React.useState(() => {
+    try { return localStorage.getItem('qmf_lang') || 'ja'; } catch { return 'ja'; }
+  });
+  const [activeTab, setActiveTab] = React.useState(0);
+
+  React.useEffect(() => {
+    try { localStorage.setItem('qmf_lang', lang); } catch {}
+  }, [lang]);
+
+  const t = {
+    ja: {
+      back: "← OTODESK",
+      title: "踊れ、フィルター！",
+      subtitle: "あらゆる空間周波数を支配する、28のフィルター。リアルタイムモーフィング。",
+      demo: "デモ動画を見る",
+      coming_soon: "Coming Soon…",
+      designer: "🎹 Sound Designer",
+      technician: "🔬 Technician",
+      lfo_master: "🎚️ LFO Master",
+      
+      // Tabs content
+      intro_title: "4つのフィルターを、XY上で自由に操る",
+      intro_desc: "28個のハンドクラフトされたフィルターモデルから、最大4つを同時にセレクト。XYパッドでリアルタイムモーフィング。Equal Power、Linear、Smoothstep、Radialの4種ブレンドアルゴリズムで、無限の質感を引き出す。",
+      
+      models_title: "28フィルターモデル全覧",
+      models_desc: "Moog Ladder から Z-Plane 2D Morph、Bode Frequency Shifter まで。6つのカテゴリに整理された、アナログ〜デジタルの集大成。",
+      
+      lfo_title: "19種LFO + リアルタイムモジュレーション",
+      lfo_desc: "Classic（正弦波など）、Random、Geometric、Dynamic、Experimental。5つの独立した LFO システムで、XY、Cutoff、Resonance、Rate、Dry/Wet を自由に操調。Recording モードで手書きパターンも記録可能。",
+      
+      specs_filters: "28個のフィルター",
+      specs_lfo: "19種LFO + Rate / Wet調変",
+      specs_oversampling: "4段階オーバーサンプリング",
+      specs_platform: "Windows / VST3",
+      
+      footer_developed: "開発：OTODESK | GPLv3 オープンソース",
+      footer_back: "OTODESKサイトに戻る",
+    },
+    en: {
+      back: "← OTODESK",
+      title: "Dance, Filters!",
+      subtitle: "Command every spatial frequency with 28 algorithms. Real-time morphing.",
+      demo: "Watch the Demo",
+      coming_soon: "Coming Soon…",
+      designer: "🎹 Sound Designer",
+      technician: "🔬 Technician",
+      lfo_master: "🎚️ LFO Master",
+      
+      intro_title: "Four Filters, Infinite Motion on XY",
+      intro_desc: "Select up to 4 of 28 handcrafted filter models. Morph them in real-time via XY pad. Choose from 4 blend algorithms (Equal Power, Linear, Smoothstep, Radial) to unlock infinite tonal textures.",
+      
+      models_title: "28 Filter Models Spectrum",
+      models_desc: "Moog Ladder to Z-Plane 2D Morph, Bode Frequency Shifter and beyond. Six categories spanning analog emulations, digital precision, and spectral processing.",
+      
+      lfo_title: "19 LFO Waveforms + Modulation Engines",
+      lfo_desc: "Classic, Random, Geometric, Dynamic, Experimental. 5 independent LFO systems modulate XY position, Cutoff, Resonance, Rate, and Dry/Wet mix. Record custom hand-drawn patterns on the morph pad.",
+      
+      specs_filters: "28 Filter Models",
+      specs_lfo: "19 LFOs + Rate / Wet Mod",
+      specs_oversampling: "4× Oversampling Modes",
+      specs_platform: "Windows / VST3",
+      
+      footer_developed: "Developed by OTODESK | GPLv3 Open Source",
+      footer_back: "Back to OTODESK Site",
+    }
+  };
+
+  const txt = t[lang];
+
+  return (
+    <div className="qmf-wrap">
+      <header>
+        <a href="index.html" className="qmf-logo">OTODESK</a>
+        <div className="header-controls">
+          <a href="index.html" className="back-link">{txt.back}</a>
+          <button
+            className={`lang-btn ${lang === 'ja' ? 'active' : ''}`}
+            onClick={() => setLang('ja')}
+          >JP</button>
+          <button
+            className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+            onClick={() => setLang('en')}
+          >EN</button>
+        </div>
+      </header>
+
+      <section className="qmf-hero">
+        <div className="qmf-hero-inner">
+          <div className="qmf-hero-flag">
+            <span className="qmf-flag-dot"></span>
+            <span>{lang === 'ja' ? '新作 · 近日公開' : 'NEW · Coming Soon'}</span>
+          </div>
+          <h1>{txt.title}</h1>
+          <p className="qmf-hero-sub">{txt.subtitle}</p>
+          <button className="qmf-hero-cta qmf-soon" disabled>
+            <span>▶</span>
+            {txt.demo}
+          </button>
+        </div>
+      </section>
+
+      <section className="qmf-video-section">
+        <div className="qmf-video-wrap">
+          <div className="qmf-video-placeholder">
+            <div className="qmf-video-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <div className="qmf-video-label">{txt.coming_soon}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="qmf-tabs-section">
+        <div className="qmf-tabs-header">
+          <div className="qmf-tabs-label">{lang === 'ja' ? 'ユーザータイプ別' : 'User Type'}</div>
+          <div className="qmf-tabs-nav">
+            <button
+              className={`qmf-tab-btn ${activeTab === 0 ? 'active' : ''}`}
+              onClick={() => setActiveTab(0)}
+            >
+              {txt.designer}
+            </button>
+            <button
+              className={`qmf-tab-btn ${activeTab === 1 ? 'active' : ''}`}
+              onClick={() => setActiveTab(1)}
+            >
+              {txt.technician}
+            </button>
+            <button
+              className={`qmf-tab-btn ${activeTab === 2 ? 'active' : ''}`}
+              onClick={() => setActiveTab(2)}
+            >
+              {txt.lfo_master}
+            </button>
+          </div>
+        </div>
+
+        <div className="qmf-tabs-content">
+          {/* Tab 0: Sound Designer */}
+          <div className={`qmf-tab-pane ${activeTab === 0 ? 'active' : ''}`}>
+            <h2 style={{ fontSize: '32px', marginTop: '48px', marginBottom: '24px' }}>
+              {txt.intro_title}
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--ink-2)', lineHeight: '1.7', maxWidth: '800px' }}>
+              {txt.intro_desc}
+            </p>
+            <div className="qmf-grid-2col">
+              <div className="qmf-card">
+                <h3 className="qmf-card-title">{lang === 'ja' ? 'リアルタイムXYモーフィング' : 'Real-Time XY Morphing'}</h3>
+                <p className="qmf-card-desc">
+                  {lang === 'ja'
+                    ? '4つのフィルターを同時にブレンド。ビジュアルフィードバック付き周波数応答表示で、変化を見て、聞いて、感じる。'
+                    : 'Blend 4 filters simultaneously. Visual frequency response graph updates live as you morph.'}
+                </p>
+              </div>
+              <div className="qmf-card">
+                <h3 className="qmf-card-title">{lang === 'ja' ? 'イコールパワーブレンド' : 'Equal-Power Blending'}</h3>
+                <p className="qmf-card-desc">
+                  {lang === 'ja'
+                    ? '4種類のブレンドアルゴリズム。音量が常に安定した状態で、フィルター質感を自由に操調できる。'
+                    : '4 blend algorithms (Equal Power, Linear, Smoothstep, Radial) for tonal control.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Tab 1: Technician */}
+          <div className={`qmf-tab-pane ${activeTab === 1 ? 'active' : ''}`}>
+            <h2 style={{ fontSize: '32px', marginTop: '48px', marginBottom: '24px' }}>
+              {txt.models_title}
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--ink-2)', lineHeight: '1.7', maxWidth: '900px' }}>
+              {txt.models_desc}
+            </p>
+            <div className="qmf-table-wrap">
+              <table className="qmf-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>{lang === 'ja' ? 'モデル名' : 'Model Name'}</th>
+                    <th>{lang === 'ja' ? 'カテゴリ' : 'Category'}</th>
+                    <th>{lang === 'ja' ? '説明' : 'Description'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>Clean SVF</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? '高精度ステートバリエーブルフィルター' : 'High-precision state-variable'}</td></tr>
+                  <tr><td>1</td><td>Moog Ladder</td><td><span className="qmf-cat-tag qmf-cat-ladder">Ladder</span></td><td>{lang === 'ja' ? 'Moog tanh非線形' : 'Iconic analog 4-pole tanh'}</td></tr>
+                  <tr><td>2</td><td>TB-303 Diode</td><td><span className="qmf-cat-tag qmf-cat-ladder">Ladder</span></td><td>{lang === 'ja' ? 'Roland TB-303 アシッド' : 'Iconic acid synth filter'}</td></tr>
+                  <tr><td>3</td><td>SEM (Oberheim)</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? 'Oberheim クラシック' : 'Oberheim classic SVF'}</td></tr>
+                  <tr><td>4</td><td>Bitcrush/SRR</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? 'サンプルレート低下' : 'Sample-rate reduction'}</td></tr>
+                  <tr><td>5</td><td>Formant (Vowel)</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? '3並列SVF母音モーフィング' : 'Vowel morphing array'}</td></tr>
+                  <tr><td>6</td><td>Comb Filter</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? '遅延線コム' : 'Delay-line comb'}</td></tr>
+                  <tr><td>7</td><td>MS-20 Screaming</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? 'Korg MS-20 極端レゾ' : 'Korg MS-20 extreme res'}</td></tr>
+                  <tr><td>8</td><td>All-Pass Phaser</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? '16段オールパス' : '16-stage all-pass'}</td></tr>
+                  <tr><td>9</td><td>Wavefolder</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? '正弦波折り畳みADAA' : 'Sine expansion ADAA'}</td></tr>
+                  <tr><td>10</td><td>FDN Reverb</td><td><span className="qmf-cat-tag qmf-cat-exp">Exp</span></td><td>{lang === 'ja' ? '4遅延FDN' : '4-delay feedback network'}</td></tr>
+                  <tr><td>11</td><td>Kilo All-Pass</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? '16段オールパスカスケード' : '16-stage cascade'}</td></tr>
+                  <tr><td>12</td><td>CEM3320 (Prophet)</td><td><span className="qmf-cat-tag qmf-cat-ladder">Ladder</span></td><td>{lang === 'ja' ? 'Curtis CEM3320 emulation' : 'Curtis CEM3320'}</td></tr>
+                  <tr><td>13</td><td>SSM 2040 (OB)</td><td><span className="qmf-cat-tag qmf-cat-ladder">Ladder</span></td><td>{lang === 'ja' ? 'Oberheim クラシック' : 'Oberheim asymmetric clip'}</td></tr>
+                  <tr><td>14</td><td>CS-80 (Yamaha)</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? 'Yamaha ポリフォニック伝説' : 'Legendary polyphonic synth'}</td></tr>
+                  <tr><td>15</td><td>Jupiter (Roland)</td><td><span className="qmf-cat-tag qmf-cat-ladder">Ladder</span></td><td>{lang === 'ja' ? 'Roland SH-101 / Jupiter-8' : 'Roland diode ladder'}</td></tr>
+                  <tr><td>16</td><td>Phased Array</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? 'オールパスフェージング' : 'All-pass phasing'}</td></tr>
+                  <tr><td>17</td><td>Butterworth</td><td><span className="qmf-cat-tag qmf-cat-digital">Digital</span></td><td>{lang === 'ja' ? '最大フラット通過帯域' : 'Maximally flat passband'}</td></tr>
+                  <tr><td>18</td><td>Chebyshev</td><td><span className="qmf-cat-tag qmf-cat-digital">Digital</span></td><td>{lang === 'ja' ? 'リップル通過帯域' : 'Controlled passband ripple'}</td></tr>
+                  <tr><td>19</td><td>Bessel</td><td><span className="qmf-cat-tag qmf-cat-digital">Digital</span></td><td>{lang === 'ja' ? '線形位相' : 'Linear phase response'}</td></tr>
+                  <tr><td>20</td><td>Elliptic</td><td><span className="qmf-cat-tag qmf-cat-digital">Digital</span></td><td>{lang === 'ja' ? 'イコリップル通過阻止帯域' : 'Equiripple passband/stopband'}</td></tr>
+                  <tr><td>21</td><td>Vactrol LPG</td><td><span className="qmf-cat-tag qmf-cat-analog">Analog</span></td><td>{lang === 'ja' ? 'LED駆動光学LPG' : 'LED-driven optical LPG'}</td></tr>
+                  <tr><td>22</td><td>Modal Resonator</td><td><span className="qmf-cat-tag qmf-cat-analog">Analog</span></td><td>{lang === 'ja' ? '8フォルマント帯域' : '8 formant bands'}</td></tr>
+                  <tr><td>23</td><td>Waveguide Mesh</td><td><span className="qmf-cat-tag qmf-cat-svf">SVF</span></td><td>{lang === 'ja' ? '弦合成メッシュ' : 'String synthesis mesh'}</td></tr>
+                  <tr><td>24</td><td>Bode Frequency Shifter</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? 'Hilbert変換周波数シフト' : 'Hilbert-based freq shift'}</td></tr>
+                  <tr><td>25</td><td>Z-Plane 2D Morph</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? '7双二次極配置' : '7-biquad pole-placement'}</td></tr>
+                  <tr><td>26</td><td>Phased Array 2</td><td><span className="qmf-cat-tag qmf-cat-spectral">Spectral</span></td><td>{lang === 'ja' ? 'ステレオ装飾化' : 'Advanced stereo decorrelation'}</td></tr>
+                  <tr><td>27</td><td>Nyquist Anti-alias</td><td><span className="qmf-cat-tag qmf-cat-analog">Analog</span></td><td>{lang === 'ja' ? '透過的高周波リミッター' : 'Transparent high-freq limiter'}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: '13px', color: 'var(--dim)', marginTop: '32px' }}>
+              {lang === 'ja'
+                ? '詳細な全28モデルの仕様は GitHub README をご覧ください。'
+                : 'See GitHub README for complete specs on all 28 models.'}
+            </p>
+          </div>
+
+          {/* Tab 2: LFO Master */}
+          <div className={`qmf-tab-pane ${activeTab === 2 ? 'active' : ''}`}>
+            <h2 style={{ fontSize: '32px', marginTop: '48px', marginBottom: '24px' }}>
+              {txt.lfo_title}
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--ink-2)', lineHeight: '1.7', maxWidth: '900px' }}>
+              {txt.lfo_desc}
+            </p>
+            <h3 style={{ fontSize: '18px', marginTop: '48px', marginBottom: '24px', fontWeight: '600' }}>
+              {lang === 'ja' ? '19種類のLFO波形全覧' : 'All 19 LFO Waveforms'}
+            </h3>
+            <div className="qmf-lfo-grid">
+              {[
+                { num: 1, name: 'Sine', cat: 'Classic' },
+                { num: 2, name: 'Sawtooth', cat: 'Classic' },
+                { num: 3, name: 'Pulse', cat: 'Classic' },
+                { num: 4, name: 'Triangle', cat: 'Classic' },
+                { num: 5, name: 'Random 1', cat: 'Random' },
+                { num: 6, name: 'Random 2', cat: 'Random' },
+                { num: 7, name: 'White Noise', cat: 'Random' },
+                { num: 8, name: 'Smooth Noise', cat: 'Random' },
+                { num: 9, name: 'Spirograph', cat: 'Geometric' },
+                { num: 10, name: 'Torus Knot', cat: 'Geometric' },
+                { num: 11, name: 'Lissajous', cat: 'Geometric' },
+                { num: 12, name: 'Spiral', cat: 'Geometric' },
+                { num: 13, name: 'Star', cat: 'Geometric' },
+                { num: 14, name: 'Rose', cat: 'Geometric' },
+                { num: 15, name: 'Lemniscate', cat: 'Geometric' },
+                { num: 16, name: 'Billiard', cat: 'Dynamic' },
+                { num: 17, name: 'Polygon', cat: 'Dynamic' },
+                { num: 18, name: 'Attractor', cat: 'Dynamic' },
+                { num: 19, name: 'Recording', cat: 'Special' },
+              ].map((lfo) => (
+                <div key={lfo.num} className="qmf-lfo-tile">
+                  <div className="qmf-lfo-num">#{lfo.num}</div>
+                  <div className="qmf-lfo-name">{lfo.name}</div>
+                  <div className="qmf-lfo-cat">{lfo.cat}</div>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontSize: '13px', color: 'var(--dim)', marginTop: '32px' }}>
+              {lang === 'ja'
+                ? 'さらに LFO4（Rate Modulation）と LFO5（Dry/Wet Range Modulation）で、無限の時間領域操調が可能。'
+                : 'Plus LFO4 (Rate Modulation) and LFO5 (Dry/Wet Range Modulation) for infinite temporal control.'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="qmf-specs">
+        <div className="qmf-specs-grid">
+          <div className="qmf-spec-item">
+            <div className="qmf-spec-k">{txt.specs_filters}</div>
+            <div className="qmf-spec-v">28</div>
+          </div>
+          <div className="qmf-spec-item">
+            <div className="qmf-spec-k">{txt.specs_lfo}</div>
+            <div className="qmf-spec-v">19 + 5</div>
+          </div>
+          <div className="qmf-spec-item">
+            <div className="qmf-spec-k">{txt.specs_oversampling}</div>
+            <div className="qmf-spec-v">2×/4×</div>
+          </div>
+          <div className="qmf-spec-item">
+            <div className="qmf-spec-k">{txt.specs_platform}</div>
+            <div className="qmf-spec-v">VST3</div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="qmf-footer">
+        <p className="qmf-footer-text">{txt.footer_developed}</p>
+        <div className="qmf-footer-links">
+          <a href="index.html" className="qmf-footer-link">{txt.footer_back}</a>
+          <a href="https://github.com/OTODESK4193/QuadMorphFilter" target="_blank" rel="noreferrer" className="qmf-footer-link">GitHub</a>
+          <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer" className="qmf-footer-link">X</a>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(<QuadMorphApp />);
+  </script>
+</body>
+</html>

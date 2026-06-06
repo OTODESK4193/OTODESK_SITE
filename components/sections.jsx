@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 12</span>
+            <span>WORKS — 13</span>
           </div>
         </div>
 
@@ -113,11 +113,11 @@ function IndexList({ lang, plugins, onSelect }) {
     <section id="index" className="section index-section">
       <div className="section-head">
         <Reveal>
-          <div className="eyebrow">— {C.sections.index[lang]} / 12</div>
+          <div className="eyebrow">— {C.sections.index[lang]} / 13</div>
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="section-title">
-            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>12</span>つの<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Twelve plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>13</span>個の<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Thirteen plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </Reveal>
       </div>
@@ -134,11 +134,11 @@ function IndexList({ lang, plugins, onSelect }) {
               <span className="ir-num">{p.num}</span>
               <span className="ir-name">
                 {p.name}
-                {p.featured && (
-                  <span className="ir-badge" style={{ color: p.accent, borderColor: p.accent }}>
+                {p.featured &&
+              <span className="ir-badge" style={{ color: p.accent, borderColor: p.accent }}>
                     {lang === "jp" ? "新作" : "NEW"}
                   </span>
-                )}
+              }
               </span>
               <span className="ir-cat">{p.category[lang]}</span>
               <span className="ir-type">{p.type}</span>
@@ -223,6 +223,11 @@ function PluginCard({ plugin, lang, index }) {
         </Reveal>
 
         <Reveal delay={0.4} className="pc-actions">
+          {plugin.featureUrl && (
+            <a href={plugin.featureUrl} className="btn-primary">
+              {lang === "jp" ? "内容を詳しく" : "Learn more"} <span className="arrow">→</span>
+            </a>
+          )}
           <a
             href={plugin.repo + "/releases"}
             target="_blank"
@@ -232,9 +237,9 @@ function PluginCard({ plugin, lang, index }) {
               try {
                 counterUp(`dl-${plugin.id}`);
                 window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));
-              } catch(e){}
-            }}
-          >
+              } catch (e) {}
+            }}>
+            
             {lang === "jp" ? "ダウンロード" : "Download"} <span className="arrow">↓</span>
           </a>
           <a href={plugin.repo} target="_blank" rel="noreferrer" className="btn-ghost">
@@ -329,8 +334,8 @@ function About({ lang }) {
           </h2>
         </Reveal>
         <Reveal delay={0.2} className="about-text">
-          {lang === "jp" ? (
-            <>
+          {lang === "jp" ?
+          <>
               <p>
                 <span className="about-lead">OTODESK</span> は、一人の音楽プロデューサーが、自身の制作のためだけに立ち上げた DSP プロジェクトです。公開しているすべてのプラグインは、デモやコンセプトではなく、実際の楽曲制作の現場で「足りない」と感じた瞬間から逆算して設計され、繰り返し使い倒した上でリリースしています。
               </p>
@@ -347,9 +352,9 @@ function About({ lang }) {
                 <span className="about-aside-mark">＊</span>
                 誰にも再生されていない自作曲を、YouTube で公開しています。再生やコメントをいただけると、犬のように「ワンっ」と吠えて喜びます。
               </p>
-            </>
-          ) : (
-            <>
+            </> :
+
+          <>
               <p>
                 <span className="about-lead">OTODESK</span> is a solo DSP project — a one-person studio building tools for one person's productions. Every released plugin is reverse-engineered from real moments of "this isn't quite enough" in real sessions. Nothing ships as a concept demo; every plugin has been used in actual production work before it goes public.
               </p>
@@ -367,7 +372,7 @@ function About({ lang }) {
                 He also uploads original tracks that nobody plays to YouTube. A view or a comment makes him bark like a happy dog.
               </p>
             </>
-          )}
+          }
           <div className="about-links">
             <a href="https://github.com/OTODESK4193" target="_blank" rel="noreferrer">
               github.com/OTODESK4193 <span className="arrow">↗</span>
@@ -386,14 +391,14 @@ function About({ lang }) {
           <a className="note-card" href="https://note.com/pain_modulation/n/ncab34d152a3a" target="_blank" rel="noreferrer">
             <div className="note-card-k">note — {lang === "jp" ? "開発日記" : "Dev diary"}</div>
             <div className="note-card-title">
-              {lang === "jp"
-                ? "このサイトをどう作ったか、note に書きました。"
-                : "How this whole site was built — the full story on note."}
+              {lang === "jp" ?
+              "このサイトをどう作ったか、note に書きました。" :
+              "How this whole site was built — the full story on note."}
             </div>
             <div className="note-card-desc">
-              {lang === "jp"
-                ? "素人が AI と二人三脚で 12 個のプラグインと公式サイトを作るまでの全記録。"
-                : "A self-taught hobbyist, AI, and 12 plugins — the complete making-of."}
+              {lang === "jp" ?
+              "素人が AI と二人三脚で 12 個のプラグインと公式サイトを作るまでの全記録。" :
+              "A self-taught hobbyist, AI, and 12 plugins — the complete making-of."}
             </div>
             <div className="note-card-go">{lang === "jp" ? "記事を読む" : "Read the article"} <span className="arrow">↗</span></div>
           </a>
@@ -443,9 +448,9 @@ function Footer({ lang }) {
         <div className="follow-head">
           <div className="ft-h">{lang === "jp" ? "OTODESK をフォロー" : "Follow OTODESK"}</div>
           <p className="follow-lead">
-            {lang === "jp"
-              ? "新作が出たら、最初に知らせます。"
-              : "Be the first to know when something new ships."}
+            {lang === "jp" ?
+            "新作が出たら、最初に知らせます。" :
+            "Be the first to know when something new ships."}
           </p>
         </div>
         <div className="follow-grid">
@@ -489,97 +494,159 @@ function Footer({ lang }) {
 
 }
 
-function FeaturedAmbience({ lang, plugin }) {
+function Featured({ lang, plugin }) {
   if (!plugin) return null;
+
+  // Featured-specific content based on plugin ID
+  const getFeaturedContent = () => {
+    if (plugin.id === "quad-morph") {
+      return {
+        mainTitle: lang === "jp" ? "踊れ、フィルター！" : "Dance, Filters!",
+        subtitle: lang === "jp" ?
+        "あらゆる空間周波数を支配する、28のフィルター。リアルタイムモーフィング。" :
+        "Command every spatial frequency with 28 algorithms. Real-time morphing.",
+        flagText: lang === "jp" ? "近日公開" : "Coming soon",
+        bullets: [
+        { k: "28", v: lang === "jp" ? "ハンドクラフト・フィルター" : "handcrafted filters" },
+        { k: "19", v: lang === "jp" ? "LFO波形 + モジュレーション" : "LFO waveforms + mods" },
+        { k: "4×", v: lang === "jp" ? "オーバーサンプリング" : "oversampling" },
+        { k: "∞", v: lang === "ja" ? "無料 ・ オープンソース" : "free & open-source" }],
+
+        statusText: lang === "jp" ? "Coming Soon…" : "Coming Soon…",
+        showDL: false,
+        showVideo: true
+      };
+    }
+
+    // Ambience (fallback/default)
+    return {
+      mainTitle: lang === "jp" ?
+      <>
+            <span className="ft-line">最強の</span>
+            <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>アルゴリズム Reverb</span> を</span>
+            <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>無料</span>で。</span>
+          </> :
+      <>
+            <span className="ft-line">The strongest</span>
+            <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>algorithmic reverb</span></span>
+            <span className="ft-line">for <span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>free</span>.</span>
+          </>,
+      subtitle: lang === "jp" ?
+      "──有料のものと、違いが分かりますか？" :
+      "──Can you tell it apart from the paid ones?",
+      flagText: lang === "jp" ? "リリース中" : "Out now",
+      bullets: [
+      { k: "16ch", v: "Feedback Delay Network" },
+      { k: "21", v: lang === "jp" ? "世界の名空間プリセット" : "world-class hall presets" },
+      { k: "7", v: lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms" },
+      { k: "∞", v: lang === "jp" ? "完全無料 ・ オープンソース" : "free & open-source" }],
+
+      statusText: lang === "jp" ? "GPLv3 · 完全無料" : "GPLv3 · Free forever",
+      showDL: true,
+      showVideo: false
+    };
+  };
+
+  const content = getFeaturedContent();
+
   return (
     <section id="featured" className="section featured-section">
       <div className="featured-grid">
         <div className="featured-media">
+          {plugin.id === "quad-morph" ?
           <Reveal>
-            <div className="featured-shot" style={{ "--accent": plugin.accent }}>
-              <img src={plugin.screenshot} alt="Ambience UI" />
-              <div className="featured-shot-overlay">
-                <span className="fs-tag">UI · NORMAL MODE</span>
+              <div className="featured-video-placeholder">
+                <div className="featured-video-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <div className="featured-video-label">
+                    {lang === "jp" ? "デモ動画・近日公開" : "Demo video · Coming soon"}
+                  </div>
+                </div>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="featured-video">
-              <iframe
-                src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
-                title="Ambience demo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </Reveal>
+            </Reveal> :
+
+          <>
+              <Reveal>
+                <div className="featured-shot" style={{ "--accent": plugin.accent }}>
+                  <img src={plugin.screenshot} alt={plugin.name} />
+                  <div className="featured-shot-overlay">
+                    <span className="fs-tag">UI · NORMAL MODE</span>
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <div className="featured-video">
+                  <iframe
+                  src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
+                  title={plugin.name}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen />
+                
+                </div>
+              </Reveal>
+            </>
+          }
         </div>
 
         <div className="featured-info">
           <Reveal>
             <div className="featured-flag">
               <span className="ff-dot" style={{ background: plugin.accent }} />
-              <span>{lang === "jp" ? "リリース中" : "Out now"}</span>
+              <span>{content.flagText}</span>
               <span className="ff-sep">/</span>
               <span>{plugin.name.toUpperCase()}</span>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="featured-title">
-              {lang === "jp" ? (
-                <>
-                  <span className="ft-line">最強の</span>
-                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>アルゴリズム Reverb</span> を</span>
-                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>無料</span>で。</span>
-                </>
-              ) : (
-                <>
-                  <span className="ft-line">The strongest</span>
-                  <span className="ft-line"><span className="hl-accent" style={{ "--hl": "#ff8a3c" }}>algorithmic reverb</span></span>
-                  <span className="ft-line">for <span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>free</span>.</span>
-                </>
-              )}
+              {typeof content.mainTitle === 'string' ?
+              content.mainTitle :
+              content.mainTitle}
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="featured-sub">
-              {lang === "jp"
-                ? "──有料のものと、違いが分かりますか？"
-                : "──Can you tell it apart from the paid ones?"}
-            </p>
+            <p className="featured-sub">{content.subtitle}</p>
           </Reveal>
           <Reveal delay={0.3}>
             <ul className="featured-bullets">
-              <li><span className="fb-k">16ch</span> <span>Feedback Delay Network</span></li>
-              <li><span className="fb-k">21</span> <span>{lang === "jp" ? "世界の名空間プリセット" : "world-class hall presets"}</span></li>
-              <li><span className="fb-k">7</span> <span>{lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms"}</span></li>
-              <li><span className="fb-k">∞</span> <span>{lang === "jp" ? "完全無料 ・ オープンソース" : "free & open-source"}</span></li>
+              {content.bullets.map((b, i) =>
+              <li key={i}><span className="fb-k">{b.k}</span> <span>{b.v}</span></li>
+              )}
             </ul>
           </Reveal>
           <Reveal delay={0.4}>
             <div className="featured-actions">
               <a href={plugin.featureUrl} className="btn-primary featured-cta">
-                {lang === "jp" ? "内容を知る" : "Read the story"} <span className="arrow">→</span>
+                {lang === "jp" ?
+                plugin.id === "quad-morph" ? "詳しく見る" : "内容を知る" :
+                plugin.id === "quad-morph" ? "Learn more" : "Read the story"} 
+                <span className="arrow">→</span>
               </a>
-              <a
-                href={plugin.repo + "/releases/latest"}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-ghost featured-dl"
-                onClick={() => {
-                  try {
-                    counterUp(`dl-${plugin.id}`);
-                    window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));
-                  } catch(e){}
-                }}
-              >
-                {lang === "jp" ? "ダウンロード" : "Download"} <span className="arrow">↓</span>
-              </a>
-              <DownloadChip pluginId={plugin.id} lang={lang} />
+              {content.showDL &&
+              <>
+                  <a
+                  href={plugin.repo + "/releases/latest"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-ghost featured-dl"
+                  onClick={() => {
+                    try {
+                      counterUp(`dl-${plugin.id}`);
+                      window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));
+                    } catch (e) {}
+                  }}>
+                  
+                    {lang === "jp" ? "ダウンロード" : "Download"} <span className="arrow">↓</span>
+                  </a>
+                  <DownloadChip pluginId={plugin.id} lang={lang} />
+                </>
+              }
               <span className="featured-status">
                 <span className="fs-dot" />
-                {lang === "jp" ? "GPLv3 · 完全無料" : "GPLv3 · Free forever"}
+                {content.statusText}
               </span>
             </div>
           </Reveal>
@@ -595,8 +662,8 @@ function FeaturedAmbience({ lang, plugin }) {
           </Reveal>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
-Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, FeaturedAmbience });
+Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, Featured });

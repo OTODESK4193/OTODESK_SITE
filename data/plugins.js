@@ -2,8 +2,42 @@
 // All plugins: Windows / VST3 only. Ableton Live verified. Other DAWs unverified.
 window.PLUGINS = [
   {
-    id: "ambience",
+    id: "quad-morph",
     num: "01",
+    name: "Quad Morph Filter",
+    category: { en: "28-Model Real-Time Morphing Filter", jp: "28モデル・リアルタイムモーフィング・フィルター" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0",
+    status: "Coming Soon",
+    comingSoon: true,
+    featured: true,
+    featureUrl: "quad-morph.html",
+    screenshot: "assets/quad-morph-screenshot.jpg",
+    tagline: {
+      en: "Dance, Filters! Command every spatial frequency.",
+      jp: "踊れ、フィルター！あらゆる空間周波数を支配する。"
+    },
+    description: {
+      en: "A high-performance VST3 plugin featuring 28 meticulously modeled filter algorithms that morph together in real-time on an XY pad. Moog Ladder, TB-303, Z-Plane 2D Morph, Bode Frequency Shifter — all morphable with 19 LFO waveforms, real-time frequency response visualization, and equal-power blending.",
+      jp: "28個のハンドクラフトされたフィルターモデルをリアルタイムでXYパッドでモーフィング。Moog Ladder、TB-303、Z-Plane 2D Morph、Bode Frequency Shifterを、19種LFO、周波数応答リアルタイム表示、イコールパワーブレンドで操調する高性能VST3。"
+    },
+    features: [
+      { en: "28 handcrafted filter models — Ladder / SVF / Analog / Digital / Spectral", jp: "28個のハンドクラフト・フィルター — Ladder／SVF／Analog／Digital／Spectral" },
+      { en: "Real-time 4-way XY morphing with equal-power blending", jp: "リアルタイム4ウェイXYモーフィング (イコールパワーブレンド)" },
+      { en: "4 morph blend algorithms — Equal Power / Linear / Smoothstep / Radial", jp: "4種ブレンドアルゴリズム — Equal Power／Linear／Smoothstep／Radial" },
+      { en: "19 LFO waveforms + 5 modulation engines (LFO1-5)", jp: "19種LFO ＋ 5種モジュレーション・エンジン (LFO1-5)" },
+      { en: "Live frequency response graph (1024-point FFT)", jp: "リアルタイム周波数応答グラフ (1024ポイントFFT)" },
+      { en: "4× oversampling, ADAA anti-aliasing", jp: "4倍オーバーサンプリング、ADAA アンチエイリアシング" },
+      { en: "Envelope Follower — sidechain-style input tracking", jp: "Envelope Follower — サイドチェーン式入力追従" },
+      { en: "Hand-drawn LFO recording on morph pad", jp: "モーフパッド上での手書きLFO記録" }
+    ],
+    repo: "https://github.com/OTODESK4193/QuadMorphFilter",
+    accent: "#00d9ff"
+  },
+  {
+    id: "ambience",
+    num: "02",
     name: "Ambience",
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
@@ -11,7 +45,7 @@ window.PLUGINS = [
     version: "1.0.1",
     status: "Released",
     comingSoon: false,
-    featured: true,
+    featured: false,
     featureUrl: "ambience.html",
     screenshot: "assets/ambience-screenshot-1.jpg",
     screenshotPro: "assets/ambience-screenshot-2.jpg",
@@ -39,7 +73,7 @@ window.PLUGINS = [
   },
   {
     id: "basssynth",
-    num: "02",
+    num: "03",
     name: "BassSynth",
     category: { en: "Next-Gen Wavetable Bass Synthesizer", jp: "次世代ウェーブテーブル・ベース・シンセ" },
     type: "Instrument",
@@ -71,7 +105,7 @@ window.PLUGINS = [
   },
   {
     id: "neoto-pre",
-    num: "03",
+    num: "04",
     name: "NEOTO Pre",
     category: { en: "Analog-Modeled Preamp & Transformer Saturator", jp: "アナログモデリング・プリアンプ／トランス・サチュレータ" },
     type: "Effect",
@@ -100,7 +134,7 @@ window.PLUGINS = [
   },
   {
     id: "lumina",
-    num: "04",
+    num: "05",
     name: "LUMINA",
     category: { en: "Spectral Dynamics", jp: "スペクトル・ダイナミクス" },
     type: "Effect",
@@ -130,7 +164,7 @@ window.PLUGINS = [
   },
   {
     id: "next-gen-kick",
-    num: "05",
+    num: "06",
     name: "NEXT GEN KICK",
     category: { en: "Professional Kick Drum Synthesizer", jp: "プロフェッショナル・キックドラム・シンセ" },
     type: "Instrument",
@@ -161,7 +195,7 @@ window.PLUGINS = [
   },
   {
     id: "otodesk-sampler",
-    num: "06",
+    num: "07",
     name: "Otodesk Sampler",
     category: { en: "Advanced Multi-Slot Sampler", jp: "高度なマルチスロット・サンプラー" },
     type: "Instrument",
@@ -191,7 +225,7 @@ window.PLUGINS = [
   },
   {
     id: "glitchnexus",
-    num: "07",
+    num: "08",
     name: "GlitchNexus",
     category: { en: "Instant IDM Machine — Controlled Destruction", jp: "即席 IDM マシン — 制御された破壊" },
     type: "Effect",
@@ -220,7 +254,7 @@ window.PLUGINS = [
   },
   {
     id: "rhythm-matrix",
-    num: "08",
+    num: "09",
     name: "Rhythm Matrix",
     category: { en: "Generative Drum Sequencer", jp: "ジェネレーティブ・ドラム・シーケンサ" },
     type: "MIDI",
@@ -248,7 +282,7 @@ window.PLUGINS = [
   },
   {
     id: "multi-oto",
-    num: "09",
+    num: "10",
     name: "MULTI-OTO",
     category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
     type: "Effect",
@@ -280,7 +314,7 @@ window.PLUGINS = [
   },
   {
     id: "chimera-filter",
-    num: "10",
+    num: "11",
     name: "CHIMERA Filter",
     category: { en: "4-Head Morphing Filter", jp: "4 ヘッド・モーフィング・フィルタ" },
     type: "Effect",
@@ -308,7 +342,7 @@ window.PLUGINS = [
   },
   {
     id: "chordmatrix",
-    num: "11",
+    num: "12",
     name: "ChordMatrix",
     category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
     type: "MIDI",
@@ -340,7 +374,7 @@ window.PLUGINS = [
   },
   {
     id: "basslinematrix",
-    num: "12",
+    num: "13",
     name: "BassLineMatrix",
     category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
     type: "MIDI",
@@ -379,8 +413,8 @@ window.COPY = {
     jp: "物足りないなら、自分で作る。"
   },
   heroSub: {
-    en: "Open-source VST3 plugins, hand-built in C++ and JUCE. Windows · Ableton Live.",
-    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン。Windows ・ Ableton Live 専用。"
+    en: "Open-source VST3 plugins, hand-built in C++ and JUCE. 13 acoustic tools. Windows · Ableton Live.",
+    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン。13個の音響道具。Windows ・ Ableton Live 専用。"
   },
   compatNote: {
     en: "Windows / VST3 only · Built and tested for Ableton Live · Other DAWs unverified · macOS / AU not supported",

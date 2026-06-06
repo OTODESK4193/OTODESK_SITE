@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>素人がAIとサイトを作った話 — note記事プレビュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Geist+Mono&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #fcfbf7;
+  --ink: #292828;
+  --ink-2: #555;
+  --dim: #999;
+  --rule: #e5e2d8;
+  --accent: #ff8a3c;
+  --note-green: #41c9b4;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  background: #efece4;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  color: var(--ink);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+.article-wrap {
+  max-width: 720px;
+  margin: 60px auto;
+  background: var(--bg);
+  padding: 80px 72px;
+  box-shadow: 0 4px 60px rgba(0,0,0,0.06);
+}
+.article-meta {
+  display: flex;
+  gap: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.article-meta .tag {
+  background: var(--note-green);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.04em;
+}
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 700;
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+}
+h1 small {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--dim);
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 64px 0 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  letter-spacing: -0.005em;
+}
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  color: var(--ink-2);
+}
+p {
+  margin: 0 0 1.5em;
+  font-size: 16px;
+  text-wrap: pretty;
+}
+blockquote {
+  margin: 24px 0;
+  padding: 16px 22px;
+  background: #f3efe2;
+  border-left: 3px solid var(--accent);
+  font-size: 15px;
+  color: var(--ink-2);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.7;
+}
+blockquote p:last-child { margin-bottom: 0; }
+a {
+  color: var(--note-green);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+strong { font-weight: 700; }
+em {
+  font-style: normal;
+  background: linear-gradient(transparent 75%, color-mix(in oklab, var(--accent) 35%, transparent) 75%);
+  padding: 0 0.1em;
+}
+code {
+  font-family: "Geist Mono", "Courier New", monospace;
+  background: #f0ede2;
+  padding: 2px 6px;
+  font-size: 0.9em;
+  border-radius: 3px;
+  color: #b03c00;
+}
+.screenshot {
+  margin: 32px -8px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.screenshot img {
+  width: 100%;
+  display: block;
+}
+.screenshot-caption {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  color: var(--dim);
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+.callout {
+  background: linear-gradient(135deg, #fff5ec 0%, #fef9ee 100%);
+  border: 1px solid #ffd9b8;
+  padding: 24px 28px;
+  margin: 32px 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.callout-k {
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.link-card {
+  display: block;
+  margin: 32px 0;
+  padding: 24px 28px;
+  border: 1px solid var(--rule);
+  background: white;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: "Noto Sans JP", sans-serif;
+  transition: border-color 0.2s;
+}
+.link-card:hover { border-color: var(--accent); }
+.lc-host { font-size: 12px; color: var(--dim); letter-spacing: 0.06em; }
+.lc-title { font-size: 17px; font-weight: 700; margin: 6px 0 4px; }
+.lc-desc { font-size: 13px; color: var(--ink-2); margin: 0; }
+
+.endmark {
+  text-align: center;
+  margin: 60px 0 0;
+  font-size: 20px;
+  color: var(--dim);
+  letter-spacing: 1em;
+}
+
+.note-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+}
+.note-logo {
+  width: 24px;
+  height: 24px;
+  background: var(--note-green);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+.note-bar-title { color: var(--dim); }
+.note-bar-fake-btn {
+  margin-left: auto;
+  background: var(--note-green);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+.copy-btn {
+  margin-left: auto;
+  background: var(--note-green);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  transition: filter 0.15s;
+}
+.copy-btn:hover { filter: brightness(1.08); }
+.copy-btn + .copy-btn { margin-left: 8px; }
+.copy-btn.ghost {
+  background: white;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+}
+
+.copy-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--ink);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 4px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 30;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.print-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #292828;
+  color: white;
+  padding: 12px 18px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  z-index: 20;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.print-hint b { color: var(--accent); }
+
+@media (max-width: 760px) {
+  .article-wrap { margin: 0; padding: 40px 24px; }
+  h1 { font-size: 26px; }
+  p, blockquote { font-size: 15px; }
+  .print-hint { left: 20px; right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="note-bar">
+  <span class="note-logo">n</span>
+  <span class="note-bar-title">note プレビュー（実際の見た目の参考）</span>
+  <button class="copy-btn" id="copyRich" type="button">📋 リッチテキストで全文コピー</button>
+  <button class="copy-btn ghost" id="copyPlain" type="button">📝 プレーン版コピー</button>
+</div>
+
+<div class="copy-toast" id="copyToast">コピーしました！ note の本文欄に Ctrl+V で貼り付けてください。</div>
+
+<article class="article-wrap">
+
+<div class="article-meta">
+  <span class="tag">開発日記</span>
+  <span>2026.5.24</span>
+  <span>OTODESK</span>
+  <span>約12,000文字</span>
+</div>
+
+<h1>
+  耳しかない素人が、AI と一年で 12 個の VST プラグインを作って、
+  ついには自作の公式サイトまで持ってしまった話。
+  <small>素人サラリーマンの執念の音響開発記録 ／ 公式サイト編</small>
+</h1>
+
+<p>こんにちは、<strong>OTODESK</strong> です。<br />
+昼間は普通のサラリーマンをやっていて、家に帰れば子の良きパパ、ただ音楽が好きな一個人です。音響工学を専門で学んだことは一度もありません。ただ、若いころから DAW を触り続けて、自分の頭の中で鳴っている音と、市販プラグインで作れる音とのあいだに、ずっと埋まらない距離を感じていました。</p>
+
+<p>その距離を埋めるために、<strong>無謀にも自分で VST プラグインを開発し始めて、気がついたら一年で 12 個</strong>もリリースしていました。そして先日、ついに <strong>OTODESK の公式サイト</strong>まで作ってしまいました。</p>
+
+<a href="https://otodesk4193.github.io/" class="link-card">
+  <div class="lc-host">otodesk4193.github.io</div>
+  <div class="lc-title">OTODESK_Official_Site | VST Plugins</div>
+  <p class="lc-desc">物足りないなら、自分で作る。— C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン群。</p>
+</a>
+
+<p>この記事では、その公式サイトを「素人がどうやって、たった数日で形にしたか」という制作日記をお届けします。同じように「自分の音」を追いかけている VST 開発者の方、これから何か始めたい音楽制作者の方の、何かの背中押しになれば嬉しいです。</p>
+
+<h2>第一章：なぜ「自分のサイト」が必要だったのか</h2>
+
+<p>そもそも、僕がプラグインを作り始めたのは、商用プラグインへの不満からでした。Schroeder、Moorer、Jot ── 商用リバーブが拠って立つ DSP の土台は、1960年代から今までほとんど更新されていません。違いはプリセットと UI と価格だけ。それなのに、新作リバーブが出るたびに「次世代」「革新的」と煽られて、3万円、5万円と財布から飛んでいく。</p>
+
+<p><strong>「だったら、自分で作ればいい」</strong></p>
+
+<p>このたった一行の決意が、すべての始まりでした。最初は C++ も JUCE もろくに分からない状態で、AI（Gemini と Claude）を壁打ち相手に、JUCE のドキュメントと DSP の論文と、プロエンジニアの技術ブログを行き来して、難解な専門用語を一つずつ自分の言葉に翻訳しながら、設計と実装を進めてきました。</p>
+
+<p>ビルドエラーは、もはや数えていません。本当に。<br />
+正直、何度心が折れかけたか分かりません。それでも諦めなかったのは、頭の中で鳴っている音を、誰かが作ってくれるのを待っていられなかったからです。<em>執念だけは、誰にも負けない自信があります。</em></p>
+
+<p>そうして気がつくと、GitHub のリポジトリには 12 個のプラグインが並んでいました。BassSynth、NEOTO Pre、LUMINA、Next-Gen Kick、Otodesk Sampler、GlitchNexus、Rhythm Matrix、MULTI-OTO、CHIMERA Filter、ChordMatrix、BassLineMatrix、そして最新作の <strong>Ambience</strong>。</p>
+
+<p>でも、ふと思ったんです。</p>
+
+<blockquote>
+  <p>これだけ作ったのに、誰にも知られていない。<br />
+  GitHub のリポジトリページは、開発者には便利でも、音楽制作者には敷居が高い。<br />
+  「使ってもらう」ためには、もっと普通の「サイト」が必要なんじゃないか？</p>
+</blockquote>
+
+<h2>第二章：素人が「Ableton 公式サイトみたいなやつ」を作りたいと言った日</h2>
+
+<p>サイト制作の経験は、ゼロ。HTML タグの書き方も覚えていません。<br />
+それでも、僕には憧れがありました。<strong>Ableton の公式サイト</strong>です。あの、白い余白と、シャープなタイポグラフィと、装飾のための装飾をしないあの潔さ。あれが好きで、あれを目指したい。</p>
+
+<p>そこで、Claude に正直に伝えました。</p>
+
+<blockquote>
+  <p>私の開発した VST3 を紹介するサイトが欲しい。<br />
+  Ableton のホームページにあるような洗練された感じで。</p>
+</blockquote>
+
+<p>すると Claude は、いきなりコードを書き始めるのではなく、こちらの意図を確認する質問を山ほど投げてきました。配色は？ ヒーローの構成は？ プラグイン詳細はどう見せたい？ Tweaks 機能は要る？ ── 正直、最初は「もう作っちゃってよ」と思ったんですが、後から振り返ると、<strong>この最初のすり合わせが、サイトの方向性を決定づけていました</strong>。</p>
+
+<p>僕が選んだのは、こんな方向性です：</p>
+
+<ul>
+  <li><strong>ミニマル・モノクロ</strong>（白背景に、シャープなタイポグラフィ）</li>
+  <li><strong>アクセントカラーはシアン</strong>（後に各プラグインごとに色を変えた）</li>
+  <li><strong>スクロール連動アニメーション</strong>あり</li>
+  <li><strong>日英切替対応</strong></li>
+  <li><strong>2-3 案を比較してから決める</strong></li>
+</ul>
+
+<p>そして、サイトのキャッチコピーは、自分が一番大切にしている言葉を選びました。</p>
+
+<blockquote>
+  <p><strong>物足りないなら、自分で作る。</strong></p>
+</blockquote>
+
+<p>Claude はこの言葉のリズムをそのまま活かして、「物足りない」と「自分で作る」をそれぞれ別の色で強調するレイアウトを提案してくれました。コーラルレッドとスカイブルー。読んだ瞬間、頭の中で「これだ」と鳴りました。</p>
+
+<h2>第三章：プラグインを並べる、ということ</h2>
+
+<p>サイトの肝は、12 個のプラグインをどう見せるか、です。<br />
+ここで僕がこだわったのは、<strong>「Apple のプロダクトページ」と「LP の裏ジャケット」のあいだ</strong>のような佇まいでした。</p>
+
+<p>Claude は、まずプラグイン一覧を「インデックスリスト」として並べることを提案してきました。番号・名前・カテゴリ・タイプ・年。ホバーすると他の行が薄くなり、選択した行が強調される。<strong>これがめちゃくちゃ気持ちよかった</strong>。手元のマウスに、プラグインたちが反応する。それだけのことが、こんなに楽しいとは。</p>
+
+<p>その下に、各プラグインの詳細カードが続きます。プラグイン UI の SVG モックアップ（実物のスクリーンショットを使わず、敢えてキャラクタライズした抽象画にした）、タグライン、説明文、機能箇条書き、ダウンロードボタンとソースコードリンク。</p>
+
+<p>説明文を書くときに、僕は GitHub の各プラグインの README をそのまま Claude に貼り付けました。「これを参考に、サイト用にプロのライティングで書き直してくれ」と。返ってきた文章は、技術用語を残しつつも、音楽制作者の言葉に翻訳されていて、自分でも「あ、これは確かに自分のプラグインだ」と思える、不思議な解像度の高さがありました。</p>
+
+<div class="callout">
+<div class="callout-k">CLAUDE と組む上での発見</div>
+AI は「すべてを任せる相手」ではなく、「自分の頭にあるイメージを言語化してくれる、超優秀な後輩」だった。指示を放り投げると並のものしか返ってこないけれど、自分が「これがいい／これは違う」と言葉で評価し続けると、出力の精度がどんどん上がっていく。
+</div>
+
+<h2>第四章：ビルドエラーじゃない、別の落とし穴</h2>
+
+<p>サイト制作で、僕が最初に味わった挫折は、<strong>「ダウンロードしたファイルをダブルクリックしても、画面が真っ白になる」</strong>事件でした。</p>
+
+<p>Claude が作ったサイトのプレビューは、開発環境の中ではちゃんと表示される。ところが、ZIP にして自分の PC にダウンロードして、<code>index.html</code> をダブルクリックすると、ピクリとも反応しない真っ白なページ。</p>
+
+<p>原因を Claude に聞いたら、こう返ってきました。</p>
+
+<blockquote>
+  <p>ブラウザのセキュリティ仕様で、<code>file://</code> で開いたページから別ファイル（<code>.jsx</code> など）を fetch することはブロックされます。<code>http://</code> で配信すれば動きます。</p>
+</blockquote>
+
+<p>なるほど。<strong>静的サイトといえど、ローカルで開けるとは限らない</strong>のだと、ここで初めて知りました。VS Code の Live Server や、コマンドラインで <code>python -m http.server</code> を叩く方法、もしくは GitHub Pages に上げてしまう方法。Claude は3つの選択肢を並べて、それぞれの手順を丁寧に教えてくれました。</p>
+
+<p>僕は GitHub Pages を選びました。<strong>無料・HTTPS 自動・独自ドメイン対応。サイト公開に必要なすべてが揃っていて、コストはゼロ</strong>。GitHub にリポジトリを作って、Settings → Pages から「Deploy from branch」を選ぶだけ。3分後には <code>otodesk4193.github.io</code> でサイトが世界に公開されました。</p>
+
+<p>このとき、ちょっと震えました。<br />
+<strong>自分が作ったものが、URL を打てば、世界中のだれもが見られる状態になっている</strong>。これは、ローカルでビルドして「動いた」と喜んでいるのとは、まったく違う質感の感動でした。</p>
+
+<h2>第五章：訪問数と DL 数を、お洒落にカウントしたい</h2>
+
+<p>公開してから、僕はある欲求に襲われました。<br />
+「<strong>誰が来てくれているか、何回ダウンロードされたか、知りたい</strong>」。</p>
+
+<p>Google Analytics を仕込むのが王道です。でも、僕はそこまで分析がしたいわけじゃない。<strong>サイトの一部として、訪問数とダウンロード数が見えればいい</strong>。それも、お洒落に。</p>
+
+<p>Claude に相談すると、無料のカウンター API（<code>abacus.jasoncameron.dev</code>）を使う方法を提案してくれました。フェッチで叩くだけで、グローバルなカウンターを共有できる。これを各プラグインの「ダウンロード」ボタンの隣と、サイト下部に組み込んでもらいました。</p>
+
+<p>結果、各プラグインカードの隣には「DL 数」の数値チップが、サイト下部には「訪問総数」が、オドメーター風にカウントアップするビジュアルとして配置されました。<strong>橙色のパルスドットが脈打つ "● LIVE" 表示</strong>付きで。</p>
+
+<p>「サイトが生きている」感じが、グッと出ました。</p>
+
+<h2>第六章：Ambience を、最強の形で世に出すために</h2>
+
+<p>そして、僕が一年がかりで開発してきた中でも、<strong>最大の野心作 ── アルゴリズミック・リバーブ「Ambience」</strong>のリリースが近づいていました。</p>
+
+<p>これは、僕が「商用リバーブへの不満」をぶつけきった、執念の塊のような作品です。<br />
+16 チャンネルの Feedback Delay Network、FWHT 帰還行列、Välimäki-Liski の 10 バンド GEQ 吸収、ISM ベースの Early Reflections、Anti-Derivative Anti-Aliasing 適用の 4 種サチュレーター、そして Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall を含む 21 種のファクトリープリセット。これを全部、無料で配ります。</p>
+
+<p>こんなものを、他のプラグインと同じカードで横並びに紹介してたまるか。</p>
+
+<p>そこで Claude に依頼しました。</p>
+
+<blockquote>
+  <p>Ambience を、サイトのプラグイン紹介の一番上に固定したい。<br />
+  そこからキャッチを踏むと、Ambience だけの特設ページに飛ぶようにしたい。<br />
+  特設ページは、リサーチグレード DSP の中身をセンセーショナルに紹介してほしい。</p>
+</blockquote>
+
+<p>こうして生まれたのが、「<strong>空間を、支配する。</strong>」のキャッチで始まる Ambience 特設ページです。</p>
+
+<a href="https://otodesk4193.github.io/ambience.html" class="link-card">
+  <div class="lc-host">otodesk4193.github.io/ambience.html</div>
+  <div class="lc-title">Ambience — Algorithmic Reverb</div>
+  <p class="lc-desc">世界の名ホールを、16ch FDN に閉じ込めた。無料で。 — 21 のファクトリープリセット、7 つのアルゴリズム、リサーチグレードの DSP を、無料・オープンソースで。</p>
+</a>
+
+<p>このページは、ダーク基調で、暖色のグロウが効いた、いわば「映画のティーザーサイト」のような雰囲気でまとまりました。<br />
+"<strong>有料リバーブの 9 割は、実は同じものを隠して売っている。</strong>" と言い切るところから始まり、「FDN コア」「7 アルゴリズム」「Välimäki-Liski の絶対精度」「ISM Early Reflections」「ADAA サチュレーション」と、技術カードが続く。プリセット 21 種は、参照空間（Abbey Road Studio 2、Capitol Studio A、Tokyo Opera City…）を全部明記して列挙。最後は <strong>"Can you tell it apart from the paid ones?"</strong>（有料のものと、違いが分かりますか？）という挑発的な CTA で締めくくります。</p>
+
+<p>正直、ここまで攻めた書き方ができたのは、<strong>自分のプラグインに、それだけの自信があるから</strong>に他なりません。実装の段階で、世界の名ホールの実測値を何百回と読み込んで、RT60 と D50 と C80 を一つひとつ追い込んで、その上で「これは商用品と並べても引けを取らない」という確信を持って、世に出しているからこそ、こういう挑発が成立する。</p>
+
+<h2>第七章：Before / After 動画も、自前で作った</h2>
+
+<p>Ambience のリリースに合わせて、YouTube で <strong>Before / After のデモ動画</strong>も公開しました。</p>
+
+<p>普通なら、動画編集ソフトでタイトル画面を作るところ。でも、僕にはそんなスキルもソフトもありません。Claude に相談すると、<strong>「HTML で 1920×1080 の Before / After 画面を作って、ブラウザでフルスクリーン表示しながら画面録画すればいい」</strong>と提案してくれました。</p>
+
+<p>確かに、それなら自分にもできる。<br />
+キーボードの ← → で切り替えできる Before / After タイトル画面を作ってもらい、OBS で画面録画して、音声と合成しました。Before 画面は乾いた波形と「DRY.」、After 画面は橙のグロウと豊かなテール波形と「WET.」。そのまま動画の冒頭と後半のタイトル素材として使えました。</p>
+
+<a href="https://youtu.be/9UfD9NzSE3c" class="link-card">
+  <div class="lc-host">youtube.com</div>
+  <div class="lc-title">Ambience — Before / After demo</div>
+  <p class="lc-desc">市販リバーブと違いがわかるか。あなたの耳でどうぞ。</p>
+</a>
+
+<h2>第八章：完成。そして、ここからの話</h2>
+
+<p>こうして、OTODESK の公式サイトは、Ambience の正式リリースと同時に、完成しました。</p>
+
+<p>プラグインは 12 個。<br />
+公式サイト 1 枚と、Ambience 特設ページ 1 枚。<br />
+日英バイリンガル対応。アクセントカラー切替の Tweaks 機能つき。訪問カウンターと DL カウンターつき。<br />
+GitHub Pages で完全無料ホスティング。</p>
+
+<p>振り返ってみると、これだけのものを、僕は<strong>一行も自分で HTML を書くことなく、AI との対話だけで完成させた</strong>ことになります。プログラマでも、デザイナーでも、ライターでも、動画クリエイターでもない一介のサラリーマンが、です。</p>
+
+<p>これからは、サイトをハブにして、もっとプラグインを使ってもらう活動をしていきたいと思っています。バグ報告も、機能リクエストも、感想も、全部歓迎です。<strong>誰かが反応してくれると、僕は犬のように「ワンっ」と吠えて喜びます</strong>。</p>
+
+<h2>素人がこれから AI でサイトを作る人へ、最後の伝言</h2>
+
+<p>長くなりましたが、最後にいくつか伝言を。</p>
+
+<p><strong>1. AI に「すべてお任せ」しない。</strong><br />
+最初の質問にちゃんと答える。配色、ターゲット、トーン、含めたい要素。これを決めずに「いい感じで作って」と言うと、いい感じでなく、よくあるものが返ってくる。</p>
+
+<p><strong>2. 「これは違う」と言葉にする。</strong><br />
+出力を見て、何が違うと感じたのか、自分の言葉にする。「もっと暖かい色」「下線は不要」「ここを強調」と、具体的に。具体的なフィードバックの量だけ、AI の出力精度は上がる。</p>
+
+<p><strong>3. ローカルで動かないことを恐れない。</strong><br />
+<code>file://</code> でダブルクリックして真っ白でも、それは仕様。GitHub Pages に上げれば普通に動く。怖がらず、上げてしまえばいい。</p>
+
+<p><strong>4. 「素人だから」を言い訳にしない。</strong><br />
+専門教育を受けていない自分にできることは、限られています。でも、執念だけは限らない。なんども躓いて、なんども書き直して、それでも一個ずつ理解していけば、必ず形になる。AI は、その執念を持つ人にとって、史上最高の相棒です。</p>
+
+<p>音楽もそうですよね。<br />
+コードを知らなくても、音楽理論を学んでいなくても、頭の中で鳴っている音をなんとか形にしたい執念さえあれば、トラックは完成する。プラグインも、サイトも、それと同じです。</p>
+
+<p>では、また。<br />
+もし OTODESK のプラグインを試してくださったら、X でも GitHub Issues でも、note のコメントでも、どこでもいいので教えてください。「ワンっ」と吠えに行きます。</p>
+
+<a href="https://otodesk4193.github.io/" class="link-card">
+  <div class="lc-host">otodesk4193.github.io</div>
+  <div class="lc-title">OTODESK_Official_Site | VST Plugins</div>
+  <p class="lc-desc">12個のオープンソース VST3 プラグイン。すべて無料。すべて自作。</p>
+</a>
+
+<a href="https://x.com/kijyoumusic" class="link-card">
+  <div class="lc-host">x.com</div>
+  <div class="lc-title">@kijyoumusic（OTODESK）</div>
+  <p class="lc-desc">開発の日常、プラグインの裏側、ときどき自作曲のお知らせ。</p>
+</a>
+
+<a href="https://youtube.com/playlist?list=PLaG0gX-K8LJMSJC8AxC4TmWKgA3-KHZze" class="link-card">
+  <div class="lc-host">youtube.com</div>
+  <div class="lc-title">OTODESK — Original tracks playlist</div>
+  <p class="lc-desc">誰にも再生されない自作曲を公開中。反応していただくと「ワンっ」と吠えます。</p>
+</a>
+
+<div class="endmark">＊　＊　＊</div>
+
+</article>
+
+<div class="print-hint">
+  <b>このファイルは記事プレビューです。</b><br />
+  右上の <b>「リッチテキストで全文コピー」</b> ボタンを押して、<br />
+  note の編集画面の本文欄に Ctrl+V（Mac は Cmd+V）で貼り付けてください。
+</div>
+
+<script>
+function showToast(text) {
+  const toast = document.getElementById('copyToast');
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+document.getElementById('copyRich').addEventListener('click', async () => {
+  // Copy the article HTML as rich text — note preserves headings, bold, links
+  const article = document.querySelector('article.article-wrap');
+  // Build a clean clone without the meta tag bar
+  const clone = article.cloneNode(true);
+  const meta = clone.querySelector('.article-meta');
+  if (meta) meta.remove();
+  const html = clone.innerHTML;
+  const plain = clone.innerText;
+  try {
+    const blob = new Blob([html], { type: 'text/html' });
+    const plainBlob = new Blob([plain], { type: 'text/plain' });
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': blob,
+      'text/plain': plainBlob
+    })]);
+    showToast('✓ リッチテキストでコピーしました！ note の本文欄に貼り付けてください。');
+  } catch (e) {
+    // Fallback: select + execCommand
+    const range = document.createRange();
+    range.selectNodeContents(article);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
+    showToast('✓ コピーしました！ note の本文欄に貼り付けてください。');
+  }
+});
+
+document.getElementById('copyPlain').addEventListener('click', async () => {
+  // Build a plain-text version with light markdown-style structure
+  // (note doesn't render markdown, but the structure makes it easy to manually format)
+  const article = document.querySelector('article.article-wrap');
+  let text = '';
+  for (const node of article.children) {
+    if (node.classList && node.classList.contains('article-meta')) continue;
+    if (node.tagName === 'H1') {
+      const small = node.querySelector('small');
+      const main = node.childNodes[0].textContent.trim();
+      text += main + '\n';
+      if (small) text += small.textContent.trim() + '\n';
+      text += '\n';
+    } else if (node.tagName === 'H2') {
+      text += '\n━━━━━━━━━━━━━━━━━━━━━━\n■ ' + node.textContent.trim() + '\n━━━━━━━━━━━━━━━━━━━━━━\n\n';
+    } else if (node.tagName === 'H3') {
+      text += '\n● ' + node.textContent.trim() + '\n\n';
+    } else if (node.tagName === 'P') {
+      text += node.textContent.trim() + '\n\n';
+    } else if (node.tagName === 'BLOCKQUOTE') {
+      const lines = node.textContent.trim().split('\n').map(l => '> ' + l.trim()).join('\n');
+      text += lines + '\n\n';
+    } else if (node.tagName === 'UL') {
+      for (const li of node.querySelectorAll('li')) {
+        text += '・' + li.textContent.trim() + '\n';
+      }
+      text += '\n';
+    } else if (node.classList && node.classList.contains('callout')) {
+      const k = node.querySelector('.callout-k')?.textContent.trim() || '';
+      const rest = node.textContent.replace(k, '').trim();
+      text += '\n【 ' + k + ' 】\n' + rest + '\n\n';
+    } else if (node.classList && node.classList.contains('link-card')) {
+      const title = node.querySelector('.lc-title')?.textContent.trim() || '';
+      const desc = node.querySelector('.lc-desc')?.textContent.trim() || '';
+      const url = node.getAttribute('href') || '';
+      text += '▼ ' + title + '\n  ' + desc + '\n  ' + url + '\n\n';
+    } else if (node.classList && node.classList.contains('endmark')) {
+      text += '\n　　　＊　＊　＊\n';
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(text.trim());
+    showToast('✓ プレーンテキストでコピーしました！');
+  } catch(e) {
+    // Show a textarea fallback for manual copy
+    const ta = document.createElement('textarea');
+    ta.value = text.trim();
+    ta.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:80vw;height:60vh;z-index:100;padding:20px;font-family:monospace;';
+    document.body.appendChild(ta);
+    ta.select();
+    showToast('全文を選択しました。Ctrl+C / Cmd+C でコピーしてください。');
+  }
+});
+</script>
+
+</body>
+</html>
