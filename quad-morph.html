@@ -575,14 +575,43 @@ function QuadMorphApp() {
         <div className="qmf-hero-inner">
           <div className="qmf-hero-flag">
             <span className="qmf-flag-dot"></span>
-            <span>{lang === 'ja' ? '新作 · 近日公開' : 'NEW · Coming Soon'}</span>
+            <span>{lang === 'ja' ? 'リリース公開' : 'NOW AVAILABLE'}</span>
           </div>
           <h1>{txt.title}</h1>
           <p className="qmf-hero-sub">{txt.subtitle}</p>
-          <button className="qmf-hero-cta qmf-soon" disabled>
-            <span>▶</span>
-            {txt.demo}
-          </button>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginTop: '32px' }}>
+            <a 
+              href="https://github.com/OTODESK4193/QuadMorphFilter/releases/" 
+              target="_blank" 
+              rel="noreferrer"
+              className="btn-primary"
+              style={{ textDecoration: 'none', padding: '12px 24px', borderRadius: '4px', background: 'var(--accent)', color: 'var(--bg)', fontSize: '14px' }}
+              onClick={() => {
+                const current = parseInt(localStorage.getItem('qmf-dl-count') || '0');
+                localStorage.setItem('qmf-dl-count', current + 1);
+              }}
+            >
+              {lang === 'ja' ? 'ダウンロード' : 'Download'} ↓
+            </a>
+            <a 
+              href="https://github.com/OTODESK4193/QuadMorphFilter" 
+              target="_blank" 
+              rel="noreferrer"
+              className="btn-secondary"
+              style={{ textDecoration: 'none', padding: '12px 24px', borderRadius: '4px', border: '1px solid var(--rule)', background: 'transparent', color: 'var(--ink)', fontSize: '14px' }}
+              onClick={() => {
+                const current = parseInt(localStorage.getItem('qmf-src-count') || '0');
+                localStorage.setItem('qmf-src-count', current + 1);
+              }}
+            >
+              {lang === 'ja' ? 'ソースコード' : 'Source Code'} →
+            </a>
+            <span style={{ fontSize: '12px', color: 'var(--dim)', fontFamily: '"Geist Mono", monospace' }}>
+              ↓ {(parseInt(localStorage.getItem('qmf-dl-count') || '0')).toLocaleString()} 
+              {' '} | {' '}
+              → {(parseInt(localStorage.getItem('qmf-src-count') || '0')).toLocaleString()}
+            </span>
+          </div>
         </div>
       </section>
 

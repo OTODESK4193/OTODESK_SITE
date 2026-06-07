@@ -505,15 +505,15 @@ function Featured({ lang, plugin }) {
         subtitle: lang === "jp" ?
         "あらゆる空間周波数を支配する、28のフィルター。リアルタイムモーフィング。" :
         "Command every spatial frequency with 28 algorithms. Real-time morphing.",
-        flagText: lang === "jp" ? "近日公開" : "Coming soon",
+        flagText: lang === "jp" ? "リリース公開" : "Now Available",
         bullets: [
         { k: "28", v: lang === "jp" ? "ハンドクラフト・フィルター" : "handcrafted filters" },
         { k: "19", v: lang === "jp" ? "LFO波形 + モジュレーション" : "LFO waveforms + mods" },
         { k: "4×", v: lang === "jp" ? "オーバーサンプリング" : "oversampling" },
         { k: "∞", v: lang === "ja" ? "無料 ・ オープンソース" : "free & open-source" }],
 
-        statusText: lang === "jp" ? "Coming Soon…" : "Coming Soon…",
-        showDL: false,
+        statusText: lang === "jp" ? "v1.0.0 公開中" : "v1.0.0 Available",
+        showDL: true,
         showVideo: true
       };
     }
