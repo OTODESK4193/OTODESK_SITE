@@ -555,15 +555,13 @@ function Featured({ lang, plugin }) {
         <div className="featured-media">
           {plugin.id === "quad-morph" ?
           <Reveal>
-              <div className="featured-video-placeholder">
-                <div className="featured-video-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  <div className="featured-video-label">
-                    {lang === "jp" ? "デモ動画・近日公開" : "Demo video · Coming soon"}
-                  </div>
-                </div>
+              <div className="featured-video">
+                <iframe
+                  src="https://www.youtube.com/embed/DlfUTYyS-48?rel=0&modestbranding=1"
+                  title={lang === "jp" ? "Quad Morph Filter — 概要編" : "Quad Morph Filter — Overview"}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen />
               </div>
             </Reveal> :
 
@@ -621,7 +619,7 @@ function Featured({ lang, plugin }) {
             <div className="featured-actions">
               <a href={plugin.featureUrl} className="btn-primary featured-cta">
                 {lang === "jp" ?
-                plugin.id === "quad-morph" ? "詳しく見る" : "内容を知る" :
+                plugin.id === "quad-morph" ? "詳細を知る" : "内容を知る" :
                 plugin.id === "quad-morph" ? "Learn more" : "Read the story"} 
                 <span className="arrow">→</span>
               </a>

@@ -588,13 +588,34 @@ function QuadMorphApp() {
 
       <section className="qmf-video-section">
         <div className="qmf-video-wrap">
-          <div className="qmf-video-placeholder">
-            <div className="qmf-video-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              <div className="qmf-video-label">{txt.coming_soon}</div>
-            </div>
+          <div style={{ marginBottom: '64px' }}>
+            <h3 style={{ fontSize: '20px', marginBottom: '24px', color: 'var(--ink)', fontFamily: '"Geist Mono", monospace', letterSpacing: '0.05em' }}>
+              {lang === 'ja' ? '【概要編】基本操作とコアコンセプト' : '【Overview】Basic Operation & Core Concepts'}
+            </h3>
+            <iframe
+              style={{ width: '100%', aspectRatio: '16/9', borderRadius: '8px', border: '1px solid var(--rule)' }}
+              src="https://www.youtube.com/embed/DlfUTYyS-48"
+              title="Quad Morph Filter — Overview"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen>
+            </iframe>
+          </div>
+
+          <div>
+            <h3 style={{ fontSize: '20px', marginBottom: '24px', color: 'var(--ink)', fontFamily: '"Geist Mono", monospace', letterSpacing: '0.05em' }}>
+              {lang === 'ja' ? '【応用編】高度なテクニックと音色設計' : '【Advanced】Techniques & Sound Design'}
+            </h3>
+            <iframe
+              style={{ width: '100%', aspectRatio: '16/9', borderRadius: '8px', border: '1px solid var(--rule)' }}
+              src="https://www.youtube.com/embed/du0M7cGGnPc"
+              title="Quad Morph Filter — Advanced"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen>
+            </iframe>
           </div>
         </div>
       </section>
