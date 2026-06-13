@@ -701,18 +701,18 @@ function NewsSection({ lang }) {
     },
     {
       id: "ambience",
-      badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
-      date: "2026.05",
-      title: { jp: "\u6700\u5f37\u306e\u30ea\u30d0\u30fc\u30d6\u3092\u3001\u7121\u6599\u3067\u3002", en: "World-Class Reverb. Free." },
-      sub: { jp: "Ambience \u2014 16ch FDN \u30a2\u30eb\u30b4\u30ea\u30ba\u30df\u30c3\u30af\u30fb\u30ea\u30d0\u30fc\u30d6", en: "Ambience \u2014 16-Channel FDN Algorithmic Reverb" },
+      badge: { jp: "VST3 \u00b7 UPDATE", en: "VST3 \u00b7 UPDATE" },
+      date: "2026.06.13",
+      title: { jp: "Ambience v1.1.0 \u30ea\u30ea\u30fc\u30b9\u3002", en: "Ambience v1.1.0 Released." },
+      sub: { jp: "PreDelay \u4fee\u6b63\u30fb\u91d1\u5c5e\u7cfb\u30a2\u30fc\u30c6\u30a3\u30d5\u30a1\u30af\u30c8\u89e3\u6c88\u30fb\u97f3\u8cea\u5411\u4e0a", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
       excerpt: {
-        jp: "Abbey Road\u3001Musikverein\u3001Carnegie Hall\u2026\u2026 21 \u7a2e\u306e\u540d\u30db\u30fc\u30eb\u30d7\u30ea\u30bb\u30c3\u30c8\u3092\u7121\u6599\u3067\u300216 \u30c1\u30e3\u30f3\u30cd\u30eb FDN \u3092\u6838\u306b\u636e\u3048\u305f\u7814\u7a76\u30b0\u30ec\u30fc\u30c9\u306e\u30ea\u30d0\u30fc\u30d6\u3002",
-        en: "Abbey Road, Musikverein, Carnegie Hall \u2014 21 presets from the world\u2019s finest halls. Research-grade reverb on a 16-channel Feedback Delay Network."
+        jp: "PreDelay \u304c DSP \u306b\u6b63\u3057\u304f\u53cd\u6620\u3055\u308c\u306a\u3044\u30d0\u30b0\u3092\u4fee\u6b63\u3002\u9577\u3044 DecayTime \u3067\u70ba\u304c\u3063\u305f\u91d1\u5c5e\u7cfb\u30ea\u30f3\u30ae\u30f3\u30b0\u3082\u89e3\u6c88\u3002\u30b3\u30fc\u30e9\u30b9 LFO\u30fb3\u6bb5\u30aa\u30fc\u30eb\u30d1\u30b9\u30fb Thiran補間\u306b\u3088\u308a\u3001\u30c6\u30fc\u30eb\u306e\u5bc6\u5ea6\u3068\u8ca7\u75af\u30c6\u30af\u30b9\u30c1\u30e3\u304c\u5927\u5e45\u5411\u4e0a\u3002",
+        en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
       },
       img: "screenshots/ambience.jpg",
       url: "ambience.html",
       accent: "#ff8a3c",
-      isNew: false
+      isNew: true
     }
   ];
 

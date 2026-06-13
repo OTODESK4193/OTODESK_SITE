@@ -79,7 +79,7 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
     year: "2026",
-    version: "1.0.1",
+    version: "1.1.0",
     status: "Released",
     comingSoon: false,
     featured: false,
@@ -105,7 +105,7 @@ window.PLUGINS = [
       { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
       { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
     ],
-    repo: "https://github.com/OTODESK4193/Ambience1.0.1",
+    repo: "https://github.com/OTODESK4193/Ambience1.1.0",
     accent: "#ff8a3c"
   },
   {

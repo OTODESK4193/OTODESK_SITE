@@ -79,7 +79,7 @@ function AmbHero({ lang }) {
         </p>
 
         <div className="amb-hero-meta">
-          <div><span className="ahm-k">PLUGIN</span> Ambience v1.0.1</div>
+          <div><span className="ahm-k">PLUGIN</span> Ambience v1.1.0</div>
           <div><span className="ahm-k">TYPE</span> Algorithmic Reverb</div>
           <div><span className="ahm-k">FORMAT</span> VST3 · Windows</div>
           <div><span className="ahm-k">LICENSE</span> GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
@@ -99,11 +99,11 @@ function AmbHero({ lang }) {
             }}
           >
             <span className="br-dot" />
-            {lang === "jp" ? "ダウンロード v1.0.1" : "Download v1.0.1"}
+            {lang === "jp" ? "ダウンロード v1.1.0" : "Download v1.1.0"}
             <span className="arrow">↓</span>
           </a>
           <a
-            href="https://github.com/OTODESK4193/Ambience1.0.1"
+            href="https://github.com/OTODESK4193/Ambience1.1.0"
             target="_blank"
             rel="noreferrer"
             className="btn-ghost amb-src"
@@ -498,7 +498,7 @@ function CTA({ lang }) {
       </p>
       <div className="amb-cta-actions">
         <a
-          href="https://github.com/OTODESK4193/Ambience1.0.1/releases/latest"
+          href="https://github.com/OTODESK4193/Ambience1.1.0/releases/latest"
           target="_blank"
           rel="noreferrer"
           className="btn-release big"
@@ -510,13 +510,57 @@ function CTA({ lang }) {
           }}
         >
           <span className="br-dot" />
-          {lang === "jp" ? "ダウンロード v1.0.1" : "Download v1.0.1"}
+          {lang === "jp" ? "ダウンロード v1.1.0" : "Download v1.1.0"}
           <span className="arrow">↓</span>
         </a>
         <DownloadChip pluginId="ambience" lang={lang} />
         <a href="index.html" className="btn-ghost">
           ← {lang === "jp" ? "他のプラグインを見る" : "Other plugins"}
         </a>
+      </div>
+    </section>
+  );
+}
+
+function Changelog({ lang }) {
+  const bugs = [
+    { jp: "PreDelay 修正：ER パスと FDN パスの両方に正しく信号が供給されるよう修正。", en: "PreDelay fix: signal now correctly feeds both ER and FDN paths." },
+    { jp: "金属的なコムフィルターアーティファクト解消：DC ブロッカー・マイクロサチュレーション・変調深度スケーリング・動的ネスト型オールパス変調の 4 重対策。", en: "Metallic comb artefact resolved via DC blocker, micro-saturation blend, modulation-depth scaling, and dynamic nested allpass modulation." },
+    { jp: "プリセット PROモード修正：読み込み時に常に通常モードにリセットされるよう修正。", en: "Preset PRO-mode fix: always resets to normal mode on preset load." }
+  ];
+  const improvements = [
+    { jp: "コーラス LFO：FDN チャンネルごとに黄金比分布の正弦波 LFO を追加。より豊かで有機的なテールテクスチャ。", en: "Chorus-style pitch modulation: per-channel sine LFO (golden-ratio phase/rate) for richer, organic tails." },
+    { jp: "3 段直列オールパスチェーン：FDN チャンネルごとに 1 段から 3 段に拡張。後部エコー密度を大幅向上。", en: "3-stage serial nested allpass per FDN channel (was 1-stage). Rear echo density greatly improved." },
+    { jp: "ER → 後期残響遷移平滑化：初期反射音を 15% ブレンドで FDN 入力に送り、自然な遷移をシミュレート。", en: "ER→late-reverb transition: early reflections fed at 15% into FDN input for natural crossover." },
+    { jp: "周波数依存変調：短遅延 / HF チャンネルは 1.5×、長遅延 / LF チャンネルは 0.5× の変調深度スケーリング。", en: "Frequency-dependent modulation: 1.5× depth for short/HF channels, 0.5× for long/LF channels." },
+    { jp: "FDN ループのソフトニー RMS 圧縮：チャンネルごとの RMS エンベロープフォロワーにより透明性の高いレベル制御。", en: "Soft-knee RMS compressor in FDN loop (threshold 0.35) for transparent level control." },
+    { jp: "Thiran オールパス分数遅延補間：線形補間を置換。|H(ω)|=1 を保持し HF 明瞭度を維持。", en: "Thiran allpass fractional delay: replaces linear interpolation, flat |H(ω)|=1 response, maintains HF clarity." },
+    { jp: "CPU 最適化：全体的な処理負荷を軽減。", en: "CPU optimisations: overall processing overhead reduced." }
+  ];
+  return (
+    <section className="amb-section amb-changelog">
+      <div className="amb-eyebrow">— 09 / {lang === "jp" ? "v1.1.0 アップデート内容" : "v1.1.0 Changelog"}</div>
+      <h2 className="amb-h2" style={{ marginBottom: "12px" }}>
+        {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.1.0</span> アップデート</> : <>v1.1.0 <span style={{ color: "#ff8a3c" }}>Update</span></>}
+      </h2>
+      <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "40px" }}>2026.06.13</p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px" }}>
+        <div>
+          <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff6b6b", fontFamily: "var(--mono)", marginBottom: "20px", textTransform: "uppercase" }}>🐛 {lang === "jp" ? "バグ修正" : "Bug Fixes"}</h3>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
+            {bugs.map((b, i) => (
+              <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff6b6b44" }}>{b[lang]}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "20px", textTransform: "uppercase" }}>✨ {lang === "jp" ? "音質・機能向上" : "Improvements"}</h3>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
+            {improvements.map((m, i) => (
+              <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>{m[lang]}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -535,6 +579,7 @@ function App() {
       <Safety lang={lang} />
       <Metrics lang={lang} />
       <Specs lang={lang} />
+      <Changelog lang={lang} />
       <CTA lang={lang} />
       <Footer lang={lang} />
     </div>
