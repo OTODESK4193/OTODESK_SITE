@@ -2,6 +2,41 @@
 // All plugins: Windows / VST3 only. Ableton Live verified. Other DAWs unverified.
 window.PLUGINS = [
   {
+    id: "score-viewer",
+    num: "M4L",
+    name: "ScoreViewer",
+    category: { en: "Max for Live MIDI Device — Real-time Score Display", jp: "Max for Live MIDI デバイス — リアルタイム楽譜表示" },
+    type: "Max for Live",
+    platform: { en: "Windows / macOS", jp: "Windows / macOS" },
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    comingSoon: false,
+    featured: false,
+    featureUrl: "scoreviewer.html",
+    downloadUrl: "https://github.com/OTODESK4193/ScoreViewer/releases/",
+    sourceUrl: "https://github.com/OTODESK4193/ScoreViewer",
+    screenshot: "screenshots/score-viewer.jpg",
+    tagline: {
+      en: "Your MIDI clip, as sheet music. In real-time.",
+      jp: "MIDI クリップを五線譜で。リアルタイムで。"
+    },
+    description: {
+      en: "A Max for Live MIDI device for Ableton Live that displays MIDI clips as musical notation in real-time. Select or play a clip and watch the score update instantly — supports chords, rests, dotted notes, beaming, and tuplets.",
+      jp: "Ableton Live の MIDI クリップを、選択・再生に合わせてリアルタイムに五線譜で表示する Max for Live デバイス。和音・休符・付点・連桁・連符に対応。"
+    },
+    features: [
+      { en: "Real-time score display — chords / rests / dotted / beamed / tuplets", jp: "リアルタイム五線譜表示 — 和音・休符・付点・連桁・連符" },
+      { en: "Key signature display with accidentals (♯ ♭ ♮) — auto-processing", jp: "調号と臨時記号（♯ ♭ ♮）の自動処理" },
+      { en: "Time signature support — Scan for mid-clip meter changes", jp: "拍子記号対応 — 変拍子クリップも Scan ボタンで取込" },
+      { en: "Clef select — Treble / Bass / Grand Staff / Auto", jp: "クレフ選択 — ト音・ヘ音・大譜表・Auto 自動判定" },
+      { en: "Bar navigation (◀ ▶) + Follow mode (sync to playback)", jp: "小節ナビ（◀ ▶）＋ Follow モード（再生に追従）" },
+      { en: "Windows & macOS compatible (Ableton Live 11+)", jp: "Windows / macOS 対応（Ableton Live 11 以降）" }
+    ],
+    repo: "https://github.com/OTODESK4193/ScoreViewer",
+    accent: "#00e5a0"
+  },
+  {
     id: "quad-morph",
     num: "01",
     name: "Quad Morph Filter",
@@ -15,7 +50,7 @@ window.PLUGINS = [
     featureUrl: "quad-morph.html",
     downloadUrl: "https://github.com/OTODESK4193/QuadMorphFilter/releases/",
     sourceUrl: "https://github.com/OTODESK4193/QuadMorphFilter",
-    screenshot: "assets/quad-morph-screenshot.jpg",
+    screenshot: "screenshots/quad-morph.jpg",
     tagline: {
       en: "Dance, Filters! Command every spatial frequency.",
       jp: "踊れ、フィルター！あらゆる空間周波数を支配する。"
@@ -49,7 +84,7 @@ window.PLUGINS = [
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "assets/ambience-screenshot-1.jpg",
+    screenshot: "screenshots/ambience.jpg",
     screenshotPro: "assets/ambience-screenshot-2.jpg",
     tagline: {
       en: "World-class halls in 16 channels of FDN. Free.",
@@ -415,8 +450,8 @@ window.COPY = {
     jp: "物足りないなら、自分で作る。"
   },
   heroSub: {
-    en: "Open-source VST3 plugins, hand-built in C++ and JUCE. 13 acoustic tools. Windows · Ableton Live.",
-    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン。13個の音響道具。Windows ・ Ableton Live 専用。"
+    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 14 acoustic tools. Windows · Ableton Live.",
+    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。14個の音響道具。Windows ・ Ableton Live 専用。"
   },
   compatNote: {
     en: "Windows / VST3 only · Built and tested for Ableton Live · Other DAWs unverified · macOS / AU not supported",

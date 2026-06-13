@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plugin — OTODESK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f5f1; --bg-2: #ffffff;
+      --ink: #0a0a0a; --ink-2: #1a1a1a;
+      --dim: #6b6b6b; --dim-2: #a5a5a5;
+      --rule: #1a1a1a; --rule-faint: #d8d6cf;
+      --accent: #00d4ff;
+      --mono: "Geist Mono", ui-monospace, monospace;
+      --sans: "Geist", -apple-system, system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { background: none; border: none; color: inherit; cursor: pointer; font: inherit; padding: 0; }
+    ::selection { background: var(--accent); color: #000; }
+
+    /* NAV */
+    .pl-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      transition: background 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .pl-nav.scrolled { background: var(--bg); border-color: var(--rule-faint); }
+    .pl-nav-left { display: flex; align-items: center; gap: 20px; }
+    .pl-back { font-family: var(--mono); font-size: 11px; color: var(--dim); display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+    .pl-back:hover { color: var(--accent); }
+    .pl-brand { font-size: 13px; font-weight: 600; }
+    .pl-brand-sep { color: var(--dim-2); margin: 0 4px; }
+    .pl-brand-sub { font-family: var(--mono); font-size: 11px; }
+    .pl-lang { font-family: var(--mono); font-size: 10px; color: var(--dim); border: 1px solid var(--rule-faint); padding: 4px 10px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .pl-lang:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* HERO */
+    .pl-hero {
+      padding: 120px 40px 60px;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .pl-hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      padding: 4px 12px; margin-bottom: 20px;
+      background: var(--accent); color: #000;
+    }
+    .pl-hero-num { font-family: var(--mono); font-size: 10px; color: var(--dim); margin-bottom: 8px; letter-spacing: 0.1em; }
+    .pl-hero-title { font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; line-height: 1.1; margin: 0 0 8px; }
+    .pl-hero-cat { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-bottom: 20px; }
+    .pl-hero-tagline { font-size: 16px; font-family: var(--serif); font-style: italic; color: var(--ink-2); line-height: 1.6; margin: 0 0 16px; }
+    .pl-hero-desc { font-size: 13px; color: var(--ink-2); line-height: 1.75; margin: 0 0 28px; text-wrap: pretty; }
+    .pl-hero-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .pl-btn-dl { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 11px 22px; letter-spacing: 0.05em; transition: opacity 0.15s; }
+    .pl-btn-dl:hover { opacity: 0.85; }
+    .pl-btn-src { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--rule-faint); color: var(--dim); font-family: var(--mono); font-size: 12px; padding: 10px 18px; transition: border-color 0.15s, color 0.15s; }
+    .pl-btn-src:hover { border-color: var(--ink); color: var(--ink); }
+    .pl-hero-counts { font-family: var(--mono); font-size: 10px; color: var(--dim-2); display: flex; gap: 12px; margin-top: 12px; }
+
+    /* SCREENSHOT */
+    .pl-hero-img { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--rule-faint); background: var(--bg-2); }
+    .pl-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pl-hero-img-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+    /* SECTION */
+    .pl-section { padding: 64px 40px; max-width: 1200px; margin: 0 auto; }
+    .pl-section-label { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.12em; margin-bottom: 16px; }
+    .pl-section-title { font-size: clamp(22px, 3vw, 32px); font-weight: 500; line-height: 1.2; margin: 0 0 36px; }
+    .pl-divider { border: none; border-top: 1px solid var(--rule-faint); }
+
+    /* FEATURES */
+    .pl-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border: 1px solid var(--rule-faint); }
+    .pl-feature { padding: 22px 24px; background: var(--bg-2); transition: background 0.15s; }
+    .pl-feature:hover { background: color-mix(in oklch, var(--accent) 5%, var(--bg-2)); }
+    .pl-feature-bullet { font-family: var(--mono); font-size: 10px; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.1em; font-weight: 700; }
+    .pl-feature-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+    /* COMPAT */
+    .pl-compat { background: var(--bg-2); border: 1px solid var(--rule-faint); padding: 28px 32px; display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; }
+    .pl-compat-group { display: flex; flex-direction: column; gap: 4px; }
+    .pl-compat-label { font-family: var(--mono); font-size: 9px; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; }
+    .pl-compat-value { font-size: 14px; font-weight: 500; }
+    .pl-compat-note { font-family: var(--mono); font-size: 10px; color: var(--dim); line-height: 1.6; flex: 1; min-width: 240px; }
+
+    /* FOOTER */
+    .pl-footer { border-top: 1px solid var(--rule-faint); padding: 32px 40px; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .pl-footer-links { display: flex; gap: 20px; }
+    .pl-footer-links a { font-family: var(--mono); font-size: 10px; color: var(--dim); transition: color 0.15s; }
+    .pl-footer-links a:hover { color: var(--accent); }
+
+    /* NOT FOUND */
+    .pl-notfound { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; gap: 16px; }
+    .pl-notfound h1 { font-size: 24px; font-weight: 500; }
+    .pl-notfound p { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+    @media (max-width: 900px) {
+      .pl-hero { grid-template-columns: 1fr; gap: 40px; padding: 110px 24px 60px; }
+      .pl-features { grid-template-columns: 1fr; }
+      .pl-section { padding: 48px 24px; }
+      .pl-nav { padding: 16px 24px; }
+      .pl-footer { padding: 28px 24px; flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="data/plugins.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="env,react">
+const { useState, useEffect } = React;
+
+function App() {
+  const params = new URLSearchParams(window.location.search);
+  const pluginId = params.get('id');
+  const plugin = (window.PLUGINS || []).find(p => p.id === pluginId);
+
+  const [lang, setLang] = useState(() => localStorage.getItem('pl-lang') || 'jp');
+  const [scrolled, setScrolled] = useState(false);
+  const [imgErr, setImgErr] = useState(false);
+  const [dlCount, setDlCount] = useState(() => plugin ? parseInt(localStorage.getItem('dl-' + plugin.id) || '0') : 0);
+  const [srcCount, setSrcCount] = useState(() => plugin ? parseInt(localStorage.getItem('src-' + plugin.id) || '0') : 0);
+
+  useEffect(() => {
+    if (plugin) {
+      document.title = plugin.name + ' — OTODESK';
+      document.documentElement.style.setProperty('--accent', plugin.accent || '#00d4ff');
+    }
+    localStorage.setItem('pl-lang', lang);
+  }, [plugin, lang]);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  if (!plugin) {
+    return (
+      <div className="pl-notfound">
+        <h1>Plugin not found</h1>
+        <p>{pluginId ? `"${pluginId}" is not in the catalog.` : 'No plugin ID specified.'}</p>
+        <a href="index.html" style={{ fontFamily: 'var(--mono)', fontSize: '12px', color: 'var(--accent)' }}>← Back to OTODESK</a>
+      </div>
+    );
+  }
+
+  const dlUrl = plugin.downloadUrl || (plugin.repo ? plugin.repo + '/releases/latest' : null);
+  const srcUrl = plugin.sourceUrl || plugin.repo || null;
+  const screenshotPath = plugin.screenshot || ('screenshots/' + plugin.id + '.jpg');
+
+  const handleDL = () => {
+    const n = dlCount + 1;
+    localStorage.setItem('dl-' + plugin.id, n);
+    setDlCount(n);
+  };
+  const handleSrc = () => {
+    const n = srcCount + 1;
+    localStorage.setItem('src-' + plugin.id, n);
+    setSrcCount(n);
+  };
+
+  const L = lang === 'jp';
+  const cat = plugin.category ? (L ? plugin.category.jp : plugin.category.en) : '';
+  const tagline = plugin.tagline ? (L ? plugin.tagline.jp : plugin.tagline.en) : '';
+  const desc = plugin.description ? (L ? plugin.description.jp : plugin.description.en) : '';
+  const features = plugin.features || [];
+
+  const isMFL = plugin.type === 'Max for Live';
+  const platform = isMFL
+    ? (L ? 'Windows / macOS' : 'Windows / macOS')
+    : (L ? 'Windows 10/11 (64bit)' : 'Windows 10/11 (64-bit)');
+  const format = isMFL ? 'Max for Live (.amxd)' : 'VST3';
+  const daw = isMFL
+    ? 'Ableton Live 11+ + Max for Live'
+    : (L ? 'Ableton Live 11/12 (動作確認済)' : 'Ableton Live 11/12 (Verified)');
+
+  return (
+    <>
+      {/* NAV */}
+      <nav className={'pl-nav' + (scrolled ? ' scrolled' : '')}>
+        <div className="pl-nav-left">
+          <a href="index.html" className="pl-back">← {L ? 'OTODESK に戻る' : 'Back to OTODESK'}</a>
+          <span className="pl-brand">
+            OTODESK<span className="pl-brand-sep">/</span>
+            <span className="pl-brand-sub" style={{ color: plugin.accent || 'var(--accent)' }}>{plugin.name}</span>
+          </span>
+        </div>
+        <button className="pl-lang" onClick={() => setLang(l => l === 'jp' ? 'en' : 'jp')}>
+          {lang === 'jp' ? 'EN' : 'JP'}
+        </button>
+      </nav>
+
+      {/* HERO */}
+      <div className="pl-hero">
+        <div>
+          <div className="pl-hero-badge" style={{ background: plugin.accent || 'var(--accent)', color: '#000' }}>
+            ● {plugin.num} / {format}
+          </div>
+          <div className="pl-hero-num">v{plugin.version} · {plugin.year}</div>
+          <h1 className="pl-hero-title">{plugin.name}</h1>
+          <p className="pl-hero-cat">{cat}</p>
+          {tagline && <p className="pl-hero-tagline">"{tagline}"</p>}
+          {desc && <p className="pl-hero-desc">{desc}</p>}
+          <div className="pl-hero-actions">
+            {!plugin.comingSoon && dlUrl && (
+              <a href={dlUrl} target="_blank" rel="noreferrer" className="pl-btn-dl" onClick={handleDL}>
+                {L ? 'ダウンロード' : 'Download'} ↓
+              </a>
+            )}
+            {!plugin.comingSoon && srcUrl && (
+              <a href={srcUrl} target="_blank" rel="noreferrer" className="pl-btn-src" onClick={handleSrc}>
+                {L ? 'ソースコード' : 'Source Code'} →
+              </a>
+            )}
+            {plugin.comingSoon && (
+              <span style={{ fontFamily: 'var(--mono)', fontSize: '12px', color: 'var(--dim)', padding: '11px 0' }}>
+                Coming Soon…
+              </span>
+            )}
+          </div>
+
+        </div>
+
+        <div className="pl-hero-img">
+          {!imgErr
+            ? <img src={screenshotPath} alt={plugin.name} onError={() => setImgErr(true)} />
+            : <div className="pl-hero-img-fallback" style={{ background: (plugin.accent || '#888') + '18' }}>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: plugin.accent || 'var(--accent)', letterSpacing: '0.1em' }}>
+                  SCREENSHOT
+                </span>
+              </div>
+          }
+        </div>
+      </div>
+
+      <hr className="pl-divider" />
+
+      {/* FEATURES */}
+      {features.length > 0 && (
+        <div className="pl-section">
+          <div className="pl-section-label">— {L ? '主な機能' : 'FEATURES'}</div>
+          <h2 className="pl-section-title">
+            {L ? '設計されたすべての機能。' : 'Everything that was built in.'}
+          </h2>
+          <div className="pl-features">
+            {features.map((f, i) => (
+              <div className="pl-feature" key={i}>
+                <div className="pl-feature-bullet">{'0' + (i + 1)}</div>
+                <div className="pl-feature-text">{L ? f.jp : f.en}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <hr className="pl-divider" />
+
+      {/* COMPAT */}
+      <div className="pl-section">
+        <div className="pl-section-label">— {L ? '動作環境' : 'COMPATIBILITY'}</div>
+        <div className="pl-compat">
+          <div className="pl-compat-group">
+            <span className="pl-compat-label">Platform</span>
+            <span className="pl-compat-value">{platform}</span>
+          </div>
+          <div className="pl-compat-group">
+            <span className="pl-compat-label">Format</span>
+            <span className="pl-compat-value">{format}</span>
+          </div>
+          <div className="pl-compat-group">
+            <span className="pl-compat-label">DAW</span>
+            <span className="pl-compat-value">{daw}</span>
+          </div>
+          {!isMFL && (
+            <p className="pl-compat-note">
+              {L
+                ? '※ macOS / AU 非対応。他 DAW では動作する可能性がありますが、現時点では未検証です。'
+                : '※ macOS / AU not supported. Other DAWs may work but are currently unverified.'}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="pl-footer">
+        <a href="index.html" className="pl-back">← {L ? 'OTODESK へ戻る' : 'Back to OTODESK'}</a>
+        <div className="pl-footer-links">
+          {srcUrl && <a href={srcUrl} target="_blank" rel="noreferrer">GitHub ↗</a>}
+          <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">X ↗</a>
+          <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">note ↗</a>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

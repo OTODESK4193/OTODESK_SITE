@@ -8,10 +8,10 @@ function Header({ lang, setLang, dark }) {
   }, []);
 
   const links = [
-  { href: "#index", en: "Index", jp: "一覧" },
-  { href: "#catalog", en: "Catalog", jp: "詳細" },
-  { href: "#features", en: "Built", jp: "つくり" },
-  { href: "#about", en: "About", jp: "About" }];
+  { href: "#news", en: "News", jp: "新着" },
+  { href: "#gallery", en: "Works", jp: "全作品" },
+  { href: "#about", en: "About", jp: "About" }
+];
 
 
   return (
@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 13</span>
+            <span>WORKS — 14</span>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ function Hero({ lang }) {
           </Reveal>
           <Reveal delay={0.4}>
             <div className="hero-actions">
-              <a href="#index" className="btn-primary">
+              <a href="#gallery" className="btn-primary">
                 {lang === "jp" ? "プラグインを見る" : "View plugins"}
                 <span className="arrow">→</span>
               </a>
@@ -662,6 +662,207 @@ function Featured({ lang, plugin }) {
       </div>
     </section>);
 
+}
+
+// =========================================================
+// NEWS SECTION
+// =========================================================
+function NewsSection({ lang }) {
+  var newsItems = [
+    {
+      id: "score-viewer",
+      badge: { jp: "MAX FOR LIVE \u00b7 NEW", en: "MAX FOR LIVE \u00b7 NEW" },
+      date: "2026.06.13",
+      title: { jp: "MIDI\u3092\u3001\u4e94\u7dda\u8b5c\u3067\u898b\u308b\u3002", en: "See Your MIDI as Sheet Music." },
+      sub: { jp: "ScoreViewer \u2014 \u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u697d\u8b5c\u8868\u793a Max for Live \u30c7\u30d0\u30a4\u30b9", en: "ScoreViewer \u2014 Real-time Score Display for Ableton Live" },
+      excerpt: {
+        jp: "Ableton Live \u306e MIDI \u30af\u30ea\u30c3\u30d7\u3092\u9078\u629e\u30fb\u518d\u751f\u3059\u308b\u3060\u3051\u3067\u3001\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306b\u4e94\u7dda\u8b5c\u8868\u793a\u3002\u548c\u97f3\u30fb\u4f11\u7b26\u30fb\u4ed8\u70b9\u30fb\u9023\u6841\u30fb\u9023\u7b26\u306b\u5bfe\u5fdc\u3002\u300c\u3053\u306e\u30af\u30ea\u30c3\u30d7\u3092\u697d\u8b5c\u3067\u898b\u305f\u3044\u300d\u306b\u7279\u5316\u3057\u305f\u30d3\u30e5\u30fc\u30a2\u30fc\u3002",
+        en: "Select or play any MIDI clip in Ableton Live \u2014 notation renders instantly. Chords, rests, dotted notes, beaming, tuplets. Purpose-built for \u2018I just want to see this as sheet music\u2019."
+      },
+      img: "screenshots/score-viewer.jpg",
+      url: "scoreviewer.html",
+      accent: "#00e5a0",
+      isNew: true
+    },
+    {
+      id: "quad-morph",
+      badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
+      date: "2026.06",
+      title: { jp: "\u8e0a\u308c\u3001\u30d5\u30a3\u30eb\u30bf\u30fc\uff01", en: "Dance, Filters!" },
+      sub: { jp: "Quad Morph Filter \u2014 28\u30e2\u30c7\u30eb\u30fb\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0", en: "Quad Morph Filter \u2014 28 Models, Real-time Morphing" },
+      excerpt: {
+        jp: "28 \u500b\u306e\u30cf\u30f3\u30c9\u30af\u30e9\u30d5\u30c8\u30d5\u30a3\u30eb\u30bf\u30fc\u3092 XY \u30d1\u30c3\u30c9\u3067\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306b\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0\u3002Moog Ladder\u3001TB-303\u3001Z-Plane 2D\u2026 19 \u7a2e LFO\u30014\u00d7 \u30aa\u30fc\u30d0\u30fc\u30b5\u30f3\u30d7\u30ea\u30f3\u30b0\u3002\u5b8c\u5168\u7121\u6599\u3002",
+        en: "28 handcrafted filter topologies morphing live on an XY pad. Moog Ladder, TB-303, Z-Plane 2D, and more \u2014 19 LFO waveforms, 4\u00d7 oversampling. Completely free."
+      },
+      img: "screenshots/quad-morph.jpg",
+      url: "quad-morph.html",
+      accent: "#00d9ff",
+      isNew: false
+    },
+    {
+      id: "ambience",
+      badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
+      date: "2026.05",
+      title: { jp: "\u6700\u5f37\u306e\u30ea\u30d0\u30fc\u30d6\u3092\u3001\u7121\u6599\u3067\u3002", en: "World-Class Reverb. Free." },
+      sub: { jp: "Ambience \u2014 16ch FDN \u30a2\u30eb\u30b4\u30ea\u30ba\u30df\u30c3\u30af\u30fb\u30ea\u30d0\u30fc\u30d6", en: "Ambience \u2014 16-Channel FDN Algorithmic Reverb" },
+      excerpt: {
+        jp: "Abbey Road\u3001Musikverein\u3001Carnegie Hall\u2026\u2026 21 \u7a2e\u306e\u540d\u30db\u30fc\u30eb\u30d7\u30ea\u30bb\u30c3\u30c8\u3092\u7121\u6599\u3067\u300216 \u30c1\u30e3\u30f3\u30cd\u30eb FDN \u3092\u6838\u306b\u636e\u3048\u305f\u7814\u7a76\u30b0\u30ec\u30fc\u30c9\u306e\u30ea\u30d0\u30fc\u30d6\u3002",
+        en: "Abbey Road, Musikverein, Carnegie Hall \u2014 21 presets from the world\u2019s finest halls. Research-grade reverb on a 16-channel Feedback Delay Network."
+      },
+      img: "screenshots/ambience.jpg",
+      url: "ambience.html",
+      accent: "#ff8a3c",
+      isNew: false
+    }
+  ];
+
+  return (
+    <section id="news" className="section news-section">
+      <div className="news-inner">
+        <div className="section-head">
+          <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u6700\u8fd1\u306e\u30ea\u30ea\u30fc\u30b9" : "RECENT RELEASES"}{" / 2026"}</div>
+          <h2 className="section-title">
+            {lang === "jp"
+              ? <><span className="hl-accent" style={{ "--hl": "var(--accent)" }}>{"新しいものを"}</span>{"、届けています。"}</>
+              : <>New tools, <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>regularly shipped.</span></>}
+          </h2>
+        </div>
+        <div className="news-grid">
+          <NewsCard item={newsItems[0]} lang={lang} size="large" />
+          <div className="news-side">
+            <NewsCard item={newsItems[1]} lang={lang} size="small" />
+            <NewsCard item={newsItems[2]} lang={lang} size="small" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NewsCard({ item, lang, size }) {
+  var [imgErr, setImgErr] = React.useState(false);
+  return (
+    <Reveal>
+      <article className={"news-card news-card--" + size} style={{ "--nc-accent": item.accent }}>
+        <a href={item.url} className="news-card-img-wrap">
+          {!imgErr
+            ? <img src={item.img} alt={item.title[lang]} className="news-card-img"
+                onError={function() { setImgErr(true); }} loading="lazy" />
+            : <div className="news-img-fallback" style={{ background: item.accent + "22" }}>
+                <span style={{ color: item.accent, fontFamily: "var(--mono)", fontSize: "11px", letterSpacing: "0.1em" }}>
+                  {item.id.toUpperCase()}
+                </span>
+              </div>
+          }
+          <div className="news-card-overlay" />
+          {item.isNew && <div className="news-new-badge">NEW</div>}
+        </a>
+        <div className="news-card-body">
+          <div className="news-card-meta">
+            <span className="news-card-type" style={{ color: item.accent }}>{item.badge[lang]}</span>
+            <time className="news-card-date">{item.date}</time>
+          </div>
+          <h3 className="news-card-title">{item.title[lang]}</h3>
+          {size === "large" && <p className="news-card-excerpt">{item.excerpt[lang]}</p>}
+          <p className="news-card-sub">{item.sub[lang]}</p>
+          <a href={item.url} className="news-card-cta">
+            {lang === "jp" ? "\u8a73\u3057\u304f\u898b\u308b" : "Learn more"} <span className="arrow">{"\u2192"}</span>
+          </a>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+// =========================================================
+// PLUGIN GALLERY
+// =========================================================
+function PluginGallery({ lang }) {
+  var plugins = window.PLUGINS;
+  return (
+    <section id="gallery" className="section gallery-section">
+      <div className="gallery-inner">
+        <div className="section-head">
+          <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u5168\u4f5c\u54c1 / " + plugins.length : "ALL WORKS / " + plugins.length}</div>
+          <h2 className="section-title">
+            {lang === "jp"
+              ? <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>14</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</>
+              : <>Fourteen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+          </h2>
+        </div>
+        <div className="pgallery-grid">
+          {plugins.map(function(p) { return <GalleryCard key={p.id} plugin={p} lang={lang} />; })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryCard({ plugin, lang }) {
+  var [imgErr, setImgErr] = React.useState(false);
+  var [dlCount, setDlCount] = React.useState(function() { return parseInt(localStorage.getItem("dl-" + plugin.id) || "0"); });
+  var [srcCount, setSrcCount] = React.useState(function() { return parseInt(localStorage.getItem("src-" + plugin.id) || "0"); });
+  var screenshotPath = plugin.screenshot || ("screenshots/" + plugin.id + ".jpg");
+  var isMFL = plugin.type === "Max for Live";
+
+  // Derive URLs — use explicit fields or fall back to repo
+  var detailUrl = plugin.featureUrl || ("plugin.html?id=" + plugin.id);
+  var dlUrl = plugin.downloadUrl || (plugin.repo ? plugin.repo + "/releases/latest" : null);
+  var srcUrl = plugin.sourceUrl || plugin.repo || null;
+
+  var handleDL = function() {
+    if (plugin.comingSoon) return;
+    try { counterUp("dl-" + plugin.id); window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id })); } catch(e) {}
+    var n = dlCount + 1; localStorage.setItem("dl-" + plugin.id, n); setDlCount(n);
+  };
+  var handleSrc = function() {
+    try { counterUp("src-" + plugin.id); window.dispatchEvent(new CustomEvent("srcbump", { detail: plugin.id })); } catch(e) {}
+    var n = srcCount + 1; localStorage.setItem("src-" + plugin.id, n); setSrcCount(n);
+  };
+
+  var imgNode = !imgErr
+    ? <img src={screenshotPath} alt={plugin.name} className="pgcard-img"
+        onError={function() { setImgErr(true); }} loading="lazy" />
+    : <div className="pgcard-img-fallback" style={{ background: (plugin.accent || "#888") + "22" }}>
+        <span style={{ color: plugin.accent || "var(--accent)", fontFamily: "var(--mono)", fontSize: "10px" }}>
+          {plugin.name.toUpperCase()}
+        </span>
+      </div>;
+
+  return (
+    <Reveal>
+      <div className={"pgcard" + (plugin.comingSoon ? " pgcard--soon" : "")}
+           style={{ "--pg-accent": plugin.accent || "var(--accent)" }}>
+        <div className="pgcard-img-wrap">
+          <a href={detailUrl} className="pgcard-img-link">{imgNode}</a>
+          <div className="pgcard-num">{plugin.num}</div>
+          {isMFL && <div className="pgcard-badge pgcard-badge--mfl">M4L</div>}
+          {plugin.comingSoon && !isMFL && <div className="pgcard-badge pgcard-badge--soon">Soon</div>}
+        </div>
+        <div className="pgcard-body">
+          <div className="pgcard-head-row">
+            <span className="pgcard-name">{plugin.name}</span>
+            <span className="pgcard-version">v{plugin.version}</span>
+          </div>
+          <p className="pgcard-cat">{plugin.category[lang === "jp" ? "jp" : "en"]}</p>
+          <div className="pgcard-actions">
+            <a href={detailUrl} className="pgcard-btn pgcard-btn--detail">
+              {lang === "jp" ? "詳細" : "Info"}
+            </a>
+            {plugin.comingSoon
+              ? <span className="pgcard-btn pgcard-btn--soon">Coming Soon</span>
+              : dlUrl
+                ? <a href={dlUrl} target="_blank" rel="noreferrer"
+                     className="pgcard-btn pgcard-btn--dl" onClick={handleDL}>{"DL ↓"}</a>
+                : null}
+            {srcUrl && !plugin.comingSoon &&
+              <a href={srcUrl} target="_blank" rel="noreferrer"
+                 className="pgcard-btn pgcard-btn--src" onClick={handleSrc}>src</a>}
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  );
 }
 
 Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, Featured });

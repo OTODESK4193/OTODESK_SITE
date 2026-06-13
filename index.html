@@ -57,21 +57,13 @@ function App() {
     setTweak("lang", l);
   };
 
-  const featuredPlugin = window.PLUGINS.find((p) => p.featured);
-  // Ambience appears as #01 in the index list (clicks → featureUrl),
-  // but is excluded from the inline CatalogDetail since it has its own page.
-  const indexPlugins = window.PLUGINS;
-  const catalogPlugins = window.PLUGINS.filter((p) => !p.featured);
-
   return (
     <>
       <Header lang={lang} setLang={updateLang} />
       <main>
         <Hero lang={lang} />
-        <Featured lang={lang} plugin={featuredPlugin} />
-        <IndexList lang={lang} plugins={indexPlugins} onSelect={onSelect} />
-        <CatalogDetail lang={lang} plugins={catalogPlugins} />
-        <Features lang={lang} />
+        <NewsSection lang={lang} />
+        <PluginGallery lang={lang} />
         <About lang={lang} />
       </main>
       <Footer lang={lang} />

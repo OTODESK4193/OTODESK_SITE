@@ -606,11 +606,7 @@ function QuadMorphApp() {
             >
               {lang === 'ja' ? 'ソースコード' : 'Source Code'} →
             </a>
-            <span style={{ fontSize: '12px', color: 'var(--dim)', fontFamily: '"Geist Mono", monospace' }}>
-              ↓ {(parseInt(localStorage.getItem('qmf-dl-count') || '0')).toLocaleString()} 
-              {' '} | {' '}
-              → {(parseInt(localStorage.getItem('qmf-src-count') || '0')).toLocaleString()}
-            </span>
+
           </div>
         </div>
       </section>
