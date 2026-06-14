@@ -105,7 +105,7 @@ window.PLUGINS = [
       { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
       { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
     ],
-    repo: "https://github.com/OTODESK4193/Ambience1.1.0",
+    repo: "https://github.com/OTODESK4193/Ambience1.0.1",
     accent: "#ff8a3c"
   },
   {
@@ -440,6 +440,39 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/BassLineMatrix",
     accent: "#ffb347"
+  },
+  {
+    id: "anatomy",
+    num: "14",
+    name: "ANATOMY",
+    category: { en: "Transient / Tonal Separation Sampler", jp: "過渡音/音色 分離サンプラー" },
+    type: "Sampler",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "1.0",
+    status: "Coming Soon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "anatomy.html",
+    screenshot: "screenshots/anatomy.jpg",
+    tagline: {
+      en: "Dissect your samples.",
+      jp: "サンプルを解剖しませんか？"
+    },
+    description: {
+      en: "Real-time transient/tonal separation engine using mathematically lossless cos\u00b2 crossfade. Three independent signal lanes \u2014 Transient, Tonal, Full Mix \u2014 each with pitch, gain, shape controls and 6-slot FX chains.",
+      jp: "数学的に完璧な cos\u00b2 クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。トランジェント・トーン・フルミックスの 3 レーンに独立ピッチ/ゲイン/シェイプ制御と 6 スロットエフェクトチェーン。"
+    },
+    bullets: [
+      { en: "Lossless cos\u00b2 crossfade separation \u2014 transient + tonal = original, zero artefacts", jp: "エネルギー損失ゼロの cos\u00b2 分離" },
+      { en: "3 independent lanes \u00d7 6-slot FX chains each (18 total)", jp: "3 レーン \u00d7 6 エフェクトチェーン（合計 18）" },
+      { en: "Drag & drop WAV loading \u2014 auto-analyzed and separated", jp: "WAV ドラッグ&ドロップ → 自動分析・分離" },
+      { en: "Custom sample replacement per lane (Transient / Tonal browser)", jp: "レーンごとのカスタムサンプル置換" },
+      { en: "Tone Offset slider \u2014 fill gaps or create intentional overlaps", jp: "トーンオフセットスライダー（\u00b1500ms）" },
+      { en: "Waveform zoom up to 32\u00d7 for precise transient inspection", jp: "波形ズーム 最大 32\u00d7" }
+    ],
+    repo: "https://github.com/OTODESK4193/ANATOMY",
+    accent: "#c084fc"
   }
 ];
 

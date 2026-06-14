@@ -435,8 +435,8 @@ function Footer({ lang }) {
         </div>
         <div>
           <div className="ft-h">Legal</div>
-          <a href="#">GPLv3</a>
-          <a href="#">Built with JUCE</a>
+          <a href="https://www.gnu.org/licenses/agpl-3.0.ja.html#license-text" target="_blank" rel="noreferrer">AGPLv3</a>
+          <a href="https://juce.com/" target="_blank" rel="noreferrer">Built with JUCE</a>
         </div>
       </div>
       <div className="ft-bottom">
@@ -670,6 +670,22 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
     {
+      id: "anatomy",
+      badge: { jp: "VST3 · COMING SOON", en: "VST3 · COMING SOON" },
+      date: "2026.06.14",
+      title: { jp: "サンプルを解剖しませんか？", en: "Dissect Your Samples." },
+      sub: { jp: "ANATOMY — リアルタイム過渡音/音色分離エンジン", en: "ANATOMY — Real-time Transient / Tonal Separation Engine" },
+      excerpt: {
+        jp: "読み込んだオーディオを cos² クロスフェードでトランジェント・トーン・フルミックスの 3 レーンにエネルギー損失ゼロで分離。各レーンに独立ピッチ/ゲインと 6 スロットエフェクトチェーン。サンプルの構造そのものを解剖する、まったく新しい発想のサンプラー。近日公開予定。",
+        en: "Splits any audio into Transient, Tonal, and Full Mix lanes via lossless cos\u00b2 crossfade \u2014 zero energy loss, zero overlap artefacts. 6 FX chains per lane, independent pitch \u0026 gain. A sampler that dissects the anatomy of sound. Coming Soon."
+      },
+      img: "screenshots/anatomy.jpg",
+      url: "anatomy.html",
+      accent: "#c084fc",
+      isNew: true,
+      comingSoon: true
+    },
+    {
       id: "score-viewer",
       badge: { jp: "MAX FOR LIVE \u00b7 NEW", en: "MAX FOR LIVE \u00b7 NEW" },
       date: "2026.06.13",
@@ -732,6 +748,7 @@ function NewsSection({ lang }) {
           <div className="news-side">
             <NewsCard item={newsItems[1]} lang={lang} size="small" />
             <NewsCard item={newsItems[2]} lang={lang} size="small" />
+            <NewsCard item={newsItems[3]} lang={lang} size="small" />
           </div>
         </div>
       </div>
@@ -841,7 +858,7 @@ function GalleryCard({ plugin, lang }) {
         </div>
         <div className="pgcard-body">
           <div className="pgcard-head-row">
-            <span className="pgcard-name">{plugin.name}</span>
+            <a href={detailUrl} className="pgcard-name" style={{ color: "inherit", textDecoration: "none" }}>{plugin.name}</a>
             <span className="pgcard-version">v{plugin.version}</span>
           </div>
           <p className="pgcard-cat">{plugin.category[lang === "jp" ? "jp" : "en"]}</p>
