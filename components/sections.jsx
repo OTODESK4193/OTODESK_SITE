@@ -424,7 +424,7 @@ function Footer({ lang }) {
         <div>
           <div className="ft-h">{lang === "jp" ? "プラグイン" : "Plugins"}</div>
           {window.PLUGINS.map((p) =>
-          <a key={p.id} href={`#${p.id}`}>{p.name}</a>
+          <a key={p.id} href={p.featureUrl || ("plugin.html?id=" + p.id)}>{p.name}</a>
           )}
         </div>
         <div>
