@@ -25,6 +25,82 @@
 <script type="text/babel" data-presets="env,react">
 const LANG_KEY = "otodesk_lang";
 
+// DownloadChip コンポーネント
+function DownloadChip({ pluginId, lang }) {
+  const [count, setCount] = React.useState(() => {
+    return parseInt(localStorage.getItem(`dl-${pluginId}`) || "0");
+  });
+
+  React.useEffect(() => {
+    const handleDLBump = (e) => {
+      if (e.detail === pluginId) {
+        const newCount = count + 1;
+        setCount(newCount);
+        localStorage.setItem(`dl-${pluginId}`, newCount);
+      }
+    };
+    window.addEventListener("dlbump", handleDLBump);
+    return () => window.removeEventListener("dlbump", handleDLBump);
+  }, [count, pluginId]);
+
+  if (count === 0) return null;
+
+  return (
+    <div style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "10px",
+      padding: "12px 16px",
+      fontFamily: "var(--mono)",
+      fontSize: "11px",
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      border: "1px solid var(--rule-faint)",
+      color: "var(--ink-2)",
+      background: "transparent",
+    }}>
+      <span style={{
+        width: "6px",
+        height: "6px",
+        borderRadius: "50%",
+        background: "var(--accent)",
+        boxShadow: "0 0 8px var(--accent)",
+      }} />
+      <span style={{ color: "var(--dim)" }}>{lang === "jp" ? "ダウンロード" : "Downloads"}</span>
+      <span style={{
+        fontFeatureSettings: "tnum",
+        fontVariantNumeric: "tabular-nums",
+        color: "var(--ink)",
+        fontWeight: "500",
+        letterSpacing: "0.12em",
+      }}>
+        {count.toLocaleString()}
+      </span>
+    </div>
+  );
+}
+
+// Footer用の訪問者カウンター
+function useVisitorCount() {
+  const [count, setCount] = React.useState(() => {
+    return parseInt(localStorage.getItem("visitor-count") || "0");
+  });
+
+  React.useEffect(() => {
+    const newCount = count + 1;
+    setCount(newCount);
+    localStorage.setItem("visitor-count", newCount);
+  }, []);
+
+  return count;
+}
+
+// CountNumber コンポーネント
+function CountNumber({ value, pad }) {
+  return String(value).padStart(pad || 0, "0");
+}
+
+
 function useLang() {
   const [lang, setLang] = React.useState(() => localStorage.getItem(LANG_KEY) || "jp");
   const set = (v) => { setLang(v); localStorage.setItem(LANG_KEY, v); };
@@ -164,16 +240,27 @@ function Pitch({ lang }) {
 
       <div className="amb-pitch-video">
         <div className="amb-eyebrow" style={{ marginTop: 0, marginBottom: 16 }}>
-          ▶ {lang === "jp" ? "動作デモ" : "Demo video"}
+          ▶ {lang === "jp" ? "動作デモ（Before / After）" : "Demo video (Before / After)"}
         </div>
-        <div className="amb-video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
-            title="Ambience — Before / After demo"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "32px" }}>
+          <div className="amb-video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
+              title="Ambience — Before / After demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+          <div className="amb-video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/kytVu2M-t30?rel=0&modestbranding=1"
+              title="Ambience — Demo video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
         </div>
       </div>
     </section>

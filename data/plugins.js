@@ -147,7 +147,7 @@ window.PLUGINS = [
     category: { en: "Analog-Modeled Preamp & Transformer Saturator", jp: "アナログモデリング・プリアンプ／トランス・サチュレータ" },
     type: "Effect",
     year: "2026",
-    version: "1.0",
+    version: "1.1.0",
     status: "Released",
     tagline: {
       en: "Physical modeling of magnetic hysteresis. Not waveshaping.",

@@ -686,18 +686,33 @@ function NewsSection({ lang }) {
       comingSoon: true
     },
     {
-      id: "score-viewer",
-      badge: { jp: "MAX FOR LIVE \u00b7 NEW", en: "MAX FOR LIVE \u00b7 NEW" },
+      id: "neoto-pre-update",
+      badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
       date: "2026.06.13",
-      title: { jp: "MIDI\u3092\u3001\u4e94\u7dda\u8b5c\u3067\u898b\u308b\u3002", en: "See Your MIDI as Sheet Music." },
-      sub: { jp: "ScoreViewer \u2014 \u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u697d\u8b5c\u8868\u793a Max for Live \u30c7\u30d0\u30a4\u30b9", en: "ScoreViewer \u2014 Real-time Score Display for Ableton Live" },
+      title: { jp: "NEOTO Pre v1.1.0 リリース。", en: "NEOTO Pre v1.1.0 Released." },
+      sub: { jp: "NEOTO Pre — アナログモデリング・プリアンプ／トランス・サチュレータ\n動画公開！！", en: "NEOTO Pre — Analog-Modeled Preamp & Transformer Saturator" },
       excerpt: {
-        jp: "Ableton Live \u306e MIDI \u30af\u30ea\u30c3\u30d7\u3092\u9078\u629e\u30fb\u518d\u751f\u3059\u308b\u3060\u3051\u3067\u3001\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306b\u4e94\u7dda\u8b5c\u8868\u793a\u3002\u548c\u97f3\u30fb\u4f11\u7b26\u30fb\u4ed8\u70b9\u30fb\u9023\u6841\u30fb\u9023\u7b26\u306b\u5bfe\u5fdc\u3002\u300c\u3053\u306e\u30af\u30ea\u30c3\u30d7\u3092\u697d\u8b5c\u3067\u898b\u305f\u3044\u300d\u306b\u7279\u5316\u3057\u305f\u30d3\u30e5\u30fc\u30a2\u30fc\u3002",
-        en: "Select or play any MIDI clip in Ableton Live \u2014 notation renders instantly. Chords, rests, dotted notes, beaming, tuplets. Purpose-built for \u2018I just want to see this as sheet music\u2019."
+        jp: "磁気ヒステリシスの物理モデリングと最先端アンチエイリアシングを組み合わせた精密なプリアンプ／トランスサチュレーション。Jiles-Atherton と Tellinen ヒステリシスモデル、6 種プリアンプ、6 種トランスモデルで、静的な波形整形では到達できない有機的なサチュレーション・キャラクタを実現します。",
+        en: "Physical modeling of magnetic hysteresis meets state-of-the-art anti-aliasing. Jiles-Atherton & Tellinen hysteresis models, 6 preamp architectures, 6 transformer topologies — organic saturation that static waveshapers can\u2019t reach."
       },
-      img: "screenshots/score-viewer.jpg",
-      url: "scoreviewer.html",
-      accent: "#00e5a0",
+      img: "screenshots/neoto-pre.jpg",
+      url: "plugin.html?id=neoto-pre",
+      accent: "#ff7a3a",
+      isNew: true
+    },
+    {
+      id: "ambience",
+      badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
+      date: "2026.06.13",
+      title: { jp: "Ambience v1.1.0 リリース。", en: "Ambience v1.1.0 Released." },
+      sub: { jp: "PreDelay 修正・金属系アーティファクト解消・音質向上\n動画公開！！", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
+      excerpt: {
+        jp: "PreDelay が DSP に正しく反映されないバグを修正。長い DecayTime で為が付いた金属系リンギングも解消。コーラス LFO・3段オールパス・ Thiran補間により、テールの密度と貧乏テクスチャが大幅向上。",
+        en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
+      },
+      img: "screenshots/ambience.jpg",
+      url: "ambience.html",
+      accent: "#ff8a3c",
       isNew: true
     },
     {
@@ -714,21 +729,6 @@ function NewsSection({ lang }) {
       url: "quad-morph.html",
       accent: "#00d9ff",
       isNew: false
-    },
-    {
-      id: "ambience",
-      badge: { jp: "VST3 \u00b7 UPDATE", en: "VST3 \u00b7 UPDATE" },
-      date: "2026.06.13",
-      title: { jp: "Ambience v1.1.0 \u30ea\u30ea\u30fc\u30b9\u3002", en: "Ambience v1.1.0 Released." },
-      sub: { jp: "PreDelay \u4fee\u6b63\u30fb\u91d1\u5c5e\u7cfb\u30a2\u30fc\u30c6\u30a3\u30d5\u30a1\u30af\u30c8\u89e3\u6c88\u30fb\u97f3\u8cea\u5411\u4e0a", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
-      excerpt: {
-        jp: "PreDelay \u304c DSP \u306b\u6b63\u3057\u304f\u53cd\u6620\u3055\u308c\u306a\u3044\u30d0\u30b0\u3092\u4fee\u6b63\u3002\u9577\u3044 DecayTime \u3067\u70ba\u304c\u3063\u305f\u91d1\u5c5e\u7cfb\u30ea\u30f3\u30ae\u30f3\u30b0\u3082\u89e3\u6c88\u3002\u30b3\u30fc\u30e9\u30b9 LFO\u30fb3\u6bb5\u30aa\u30fc\u30eb\u30d1\u30b9\u30fb Thiran補間\u306b\u3088\u308a\u3001\u30c6\u30fc\u30eb\u306e\u5bc6\u5ea6\u3068\u8ca7\u75af\u30c6\u30af\u30b9\u30c1\u30e3\u304c\u5927\u5e45\u5411\u4e0a\u3002",
-        en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
-      },
-      img: "screenshots/ambience.jpg",
-      url: "ambience.html",
-      accent: "#ff8a3c",
-      isNew: true
     }
   ];
 
