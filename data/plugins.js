@@ -453,7 +453,7 @@ window.PLUGINS = [
     status: "Coming Soon",
     comingSoon: false,
     featured: false,
-    featureUrl: "plugin.html?id=anatomy",
+    featureUrl: "anatomy.html",
     downloadUrl: "https://github.com/OTODESK4193/ANATOMY/releases",
     sourceUrl: "https://github.com/OTODESK4193/ANATOMY",
     screenshot: "screenshots/anatomy.jpg",

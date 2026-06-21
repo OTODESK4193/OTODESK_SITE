@@ -51,6 +51,8 @@
     .btn-soon { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid rgba(192,132,252,0.4); color: var(--accent); background: rgba(192,132,252,0.08); cursor: not-allowed; }
     .btn-src { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid var(--rule); color: var(--dim); text-decoration: none; }
     .btn-src:hover { border-color: var(--ink); color: var(--ink); }
+    .btn-dl { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid var(--accent); color: var(--bg); background: var(--accent); text-decoration: none; font-weight: 600; }
+    .btn-dl:hover { background: #a855f7; border-color: #a855f7; }
     .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
     .hero-meta-item { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
     .hero-meta-item span { color: var(--ink); }
@@ -200,7 +202,7 @@
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot"></span>
-            {lang === "jp" ? "VST3 · COMING SOON" : "VST3 · COMING SOON"}
+            {lang === "jp" ? "VST3 · 6/21 公開" : "VST3 · RELEASED 6/21"}
           </div>
           <h1 className="hero-title">
             {lang === "jp"
@@ -214,15 +216,15 @@
               : "Mathematically perfect transient/tonal separation. Independent effect chains per lane. A sampler that dissects the anatomy of sound."}
           </p>
           <div className="hero-cta-row" style={{ marginBottom: "48px" }}>
-            <span className="btn-soon">Coming Soon — {lang === "jp" ? "近日公開" : "Release TBD"}</span>
-            <a href="https://github.com/OTODESK4193/ANATOMY" target="_blank" rel="noreferrer" className="btn-src">GitHub →</a>
+            <a href="https://github.com/OTODESK4193/ANATOMY/releases" target="_blank" rel="noreferrer" className="btn-dl">{lang === "jp" ? "ダウンロード" : "Download"} →</a>
+            <a href="https://github.com/OTODESK4193/ANATOMY" target="_blank" rel="noreferrer" className="btn-src">{lang === "jp" ? "ソースコード" : "Source"} →</a>
           </div>
           <div className="hero-meta">
             <div className="hero-meta-item">FORMAT <span>VST3</span></div>
             <div className="hero-meta-item">PLATFORM <span>Windows 64-bit</span></div>
             <div className="hero-meta-item">HOST <span>Ableton Live</span></div>
             <div className="hero-meta-item">LICENSE <span>AGPLv3</span></div>
-            <div className="hero-meta-item">VERSION <span>v1.1.0</span></div>
+            <div className="hero-meta-item">VERSION <span>v1.0.0</span></div>
           </div>
         </div>
       </section>
@@ -274,6 +276,27 @@
           <div style={{ width: "100%", textAlign: "center" }}>
             <div className="eq-note">{lang === "jp" ? "エネルギー損失ゼロ・オーバーラップアーティファクトゼロを数学的に保証" : "Mathematically guaranteed zero energy loss and zero overlap artefacts"}</div>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  function VideoSection({ lang }) {
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <hr className="divider" style={{ marginBottom: "96px", maxWidth: "none" }} />
+        <div className="section-eyebrow">— {lang === "jp" ? "デモ動画" : "DEMO VIDEO"}</div>
+        <h2 className="section-h">{lang === "jp" ? "動きで見る ANATOMY。" : "ANATOMY in motion."}</h2>
+        <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#0d0d12", border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}>
+          <iframe
+            width="100%" height="100%"
+            src="https://www.youtube.com/embed/SJVZsBOG1pk?rel=0&modestbranding=1"
+            title="ANATOMY Demo"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{ display: "block", position: "absolute", inset: 0 }}
+          />
         </div>
       </div>
     );
@@ -438,16 +461,16 @@
     return (
       <div className="cta-section">
         <div className="cta-inner">
-          <div className="cta-soon-badge">COMING SOON</div>
+          <div className="cta-soon-badge">RELEASED 6/21</div>
           <h2 className="cta-title">
             {lang === "jp"
-              ? <>{lang === "jp" ? "近日" : ""}<span style={{ color: "var(--accent)" }}>公開</span>。</>
-              : <>Available <span style={{ color: "var(--accent)" }}>soon.</span></>}
+              ? <><span style={{ color: "var(--accent)" }}>6/21</span>公開。</>
+              : <>Released <span style={{ color: "var(--accent)" }}>6/21.</span></>}
           </h2>
           <p className="cta-sub">
             {lang === "jp"
-              ? "リリースは GitHub で公開予定。X (@kijyoumusic) でフォローしてお見逃しなく。"
-              : "Will be released on GitHub. Follow @kijyoumusic on X so you don't miss it."}
+              ? "GitHub にて無料公開中。ダウンロードして使ってみてください。"
+              : "Now available on GitHub. Download and try it out."}
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://github.com/OTODESK4193/ANATOMY" target="_blank" rel="noreferrer" className="btn-src">
@@ -478,6 +501,7 @@
         <Nav lang={lang} toggle={toggle} />
         <Hero lang={lang} />
         <Concept lang={lang} />
+        <VideoSection lang={lang} />
         <Screenshot lang={lang} />
         <Workflow lang={lang} />
         <Effects lang={lang} />

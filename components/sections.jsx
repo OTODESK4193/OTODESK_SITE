@@ -680,7 +680,7 @@ function NewsSection({ lang }) {
       en: "Splits any audio into Transient, Tonal, and Full Mix lanes via lossless cos\u00b2 crossfade \u2014 zero energy loss, zero overlap artefacts. 6 FX chains per lane, independent pitch & gain. A sampler that dissects the anatomy of sound."
     },
     img: "screenshots/anatomy.jpg",
-    url: "plugin.html?id=anatomy",
+    url: "anatomy.html",
     accent: "#c084fc",
     isNew: true,
     comingSoon: false
