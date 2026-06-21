@@ -451,9 +451,11 @@ window.PLUGINS = [
     year: "2026",
     version: "1.0",
     status: "Coming Soon",
-    comingSoon: true,
+    comingSoon: false,
     featured: false,
-    featureUrl: "anatomy.html",
+    featureUrl: "plugin.html?id=anatomy",
+    downloadUrl: "https://github.com/OTODESK4193/ANATOMY/releases",
+    sourceUrl: "https://github.com/OTODESK4193/ANATOMY",
     screenshot: "screenshots/anatomy.jpg",
     tagline: {
       en: "Dissect your samples.",
@@ -483,8 +485,8 @@ window.COPY = {
     jp: "物足りないなら、自分で作る。"
   },
   heroSub: {
-    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 14 acoustic tools. Windows · Ableton Live.",
-    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。14個の音響道具。Windows ・ Ableton Live 専用。"
+    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 15 acoustic tools. Windows · Ableton Live.",
+    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。15個の音響道具。Windows ・ Ableton Live 専用。"
   },
   compatNote: {
     en: "Windows / VST3 only · Built and tested for Ableton Live · Other DAWs unverified · macOS / AU not supported",

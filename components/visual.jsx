@@ -3,7 +3,7 @@
 // Animated reveal — fades + slides element up when it enters the viewport
 function Reveal({ children, delay = 0, as: As = "div", className = "", style = {}, threshold = 0.15 }) {
   const ref = React.useRef(null);
-  const [shown, setShown] = React.useState(false);
+  const [shown, setShown] = React.useState(true);
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -16,7 +16,7 @@ function Reveal({ children, delay = 0, as: As = "div", className = "", style = {
           }
         });
       },
-      { threshold, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0, rootMargin: "0px", root: document.scrollingElement || document.body }
     );
     io.observe(el);
     return () => io.disconnect();

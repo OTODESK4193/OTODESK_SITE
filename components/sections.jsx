@@ -10,8 +10,8 @@ function Header({ lang, setLang, dark }) {
   const links = [
   { href: "#news", en: "News", jp: "新着" },
   { href: "#gallery", en: "Works", jp: "全作品" },
-  { href: "#about", en: "About", jp: "About" }
-];
+  { href: "#about", en: "About", jp: "About" }];
+
 
 
   return (
@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 14</span>
+            <span>WORKS — 15</span>
           </div>
         </div>
 
@@ -223,11 +223,11 @@ function PluginCard({ plugin, lang, index }) {
         </Reveal>
 
         <Reveal delay={0.4} className="pc-actions">
-          {plugin.featureUrl && (
-            <a href={plugin.featureUrl} className="btn-primary">
+          {plugin.featureUrl &&
+          <a href={plugin.featureUrl} className="btn-primary">
               {lang === "jp" ? "内容を詳しく" : "Learn more"} <span className="arrow">→</span>
             </a>
-          )}
+          }
           <a
             href={plugin.repo + "/releases"}
             target="_blank"
@@ -423,8 +423,8 @@ function Footer({ lang }) {
       <div className="ft-grid">
         <div>
           <div className="ft-h">{lang === "jp" ? "プラグイン" : "Plugins"}</div>
-          {window.PLUGINS.map((p) =>
-          <a key={p.id} href={p.featureUrl || ("plugin.html?id=" + p.id)}>{p.name}</a>
+          {window.PLUGINS.filter((p) => p.id).map((p) =>
+          <a key={p.id} href={p.featureUrl || "plugin.html?id=" + p.id}>{p.name}</a>
           )}
         </div>
         <div>
@@ -557,11 +557,11 @@ function Featured({ lang, plugin }) {
           <Reveal>
               <div className="featured-video">
                 <iframe
-                  src="https://www.youtube.com/embed/DlfUTYyS-48?rel=0&modestbranding=1"
-                  title={lang === "jp" ? "Quad Morph Filter — 概要編" : "Quad Morph Filter — Overview"}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen />
+                src="https://www.youtube.com/embed/DlfUTYyS-48?rel=0&modestbranding=1"
+                title={lang === "jp" ? "Quad Morph Filter — 概要編" : "Quad Morph Filter — Overview"}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen />
               </div>
             </Reveal> :
 
@@ -669,68 +669,85 @@ function Featured({ lang, plugin }) {
 // =========================================================
 function NewsSection({ lang }) {
   var newsItems = [
-    {
-      id: "anatomy",
-      badge: { jp: "VST3 · COMING SOON", en: "VST3 · COMING SOON" },
-      date: "2026.06.14",
-      title: { jp: "サンプルを解剖しませんか？", en: "Dissect Your Samples." },
-      sub: { jp: "ANATOMY — リアルタイム過渡音/音色分離エンジン", en: "ANATOMY — Real-time Transient / Tonal Separation Engine" },
-      excerpt: {
-        jp: "読み込んだオーディオを cos² クロスフェードでトランジェント・トーン・フルミックスの 3 レーンにエネルギー損失ゼロで分離。各レーンに独立ピッチ/ゲインと 6 スロットエフェクトチェーン。サンプルの構造そのものを解剖する、まったく新しい発想のサンプラー。近日公開予定。",
-        en: "Splits any audio into Transient, Tonal, and Full Mix lanes via lossless cos\u00b2 crossfade \u2014 zero energy loss, zero overlap artefacts. 6 FX chains per lane, independent pitch \u0026 gain. A sampler that dissects the anatomy of sound. Coming Soon."
-      },
-      img: "screenshots/anatomy.jpg",
-      url: "anatomy.html",
-      accent: "#c084fc",
-      isNew: true,
-      comingSoon: true
+  {
+    id: "anatomy",
+    badge: { jp: "VST3 · 6/21公開", en: "VST3 · 6/21 RELEASED" },
+    date: "2026.06.21",
+    title: { jp: "サンプルを解剖しませんか？", en: "Dissect Your Samples." },
+    sub: { jp: "ANATOMY — リアルタイム過渡音/音色分離エンジン", en: "ANATOMY — Real-time Transient / Tonal Separation Engine" },
+    excerpt: {
+      jp: "読み込んだオーディオを cos² クロスフェードでトランジェント・トーン・フルミックスの 3 レーンにエネルギー損失ゼロで分離。各レーンに独立ピッチ/ゲインと 6 スロットエフェクトチェーン。サンプルの構造そのものを解剖する、まったく新しい発想のサンプラー。6/21公開（動画も公開）。",
+      en: "Splits any audio into Transient, Tonal, and Full Mix lanes via lossless cos\u00b2 crossfade \u2014 zero energy loss, zero overlap artefacts. 6 FX chains per lane, independent pitch & gain. A sampler that dissects the anatomy of sound."
     },
-    {
-      id: "neoto-pre-update",
-      badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
-      date: "2026.06.13",
-      title: { jp: "NEOTO Pre v1.1.0 リリース。", en: "NEOTO Pre v1.1.0 Released." },
-      sub: { jp: "NEOTO Pre — アナログモデリング・プリアンプ／トランス・サチュレータ\n動画公開！！", en: "NEOTO Pre — Analog-Modeled Preamp & Transformer Saturator" },
-      excerpt: {
-        jp: "磁気ヒステリシスの物理モデリングと最先端アンチエイリアシングを組み合わせた精密なプリアンプ／トランスサチュレーション。Jiles-Atherton と Tellinen ヒステリシスモデル、6 種プリアンプ、6 種トランスモデルで、静的な波形整形では到達できない有機的なサチュレーション・キャラクタを実現します。",
-        en: "Physical modeling of magnetic hysteresis meets state-of-the-art anti-aliasing. Jiles-Atherton & Tellinen hysteresis models, 6 preamp architectures, 6 transformer topologies — organic saturation that static waveshapers can\u2019t reach."
-      },
-      img: "screenshots/neoto-pre.jpg",
-      url: "plugin.html?id=neoto-pre",
-      accent: "#ff7a3a",
-      isNew: true
+    img: "screenshots/anatomy.jpg",
+    url: "plugin.html?id=anatomy",
+    accent: "#c084fc",
+    isNew: true,
+    comingSoon: false
+  },
+  {
+    id: "lowcut-police",
+    badge: { jp: "VST3 · Coming Soon", en: "VST3 · Coming Soon" },
+    date: "2026.06.21",
+    title: { jp: "ローカット警察は怖くない！！", en: "LowCut Police is coming." },
+    sub: { jp: "LowCutPolice\nもうローカットを恐れる必要はありません", en: "LowCut Police — Zero-Phase IIR Highpass + Step Servo Control" },
+    excerpt: {
+      jp: "低域を切りすぎて信号が無くなることはもうない。ゼロフェーズ IIR ハイパスと内蔵サーボで、完全な周波数制御と瞬時フェーズコヒーレンスを実現します。",
+      en: "Stop losing your lows. Zero-phase IIR highpass with built-in servo keeps perfect frequency control and instant phase coherence."
     },
-    {
-      id: "ambience",
-      badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
-      date: "2026.06.13",
-      title: { jp: "Ambience v1.1.0 リリース。", en: "Ambience v1.1.0 Released." },
-      sub: { jp: "PreDelay 修正・金属系アーティファクト解消・音質向上\n動画公開！！", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
-      excerpt: {
-        jp: "PreDelay が DSP に正しく反映されないバグを修正。長い DecayTime で為が付いた金属系リンギングも解消。コーラス LFO・3段オールパス・ Thiran補間により、テールの密度と貧乏テクスチャが大幅向上。",
-        en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
-      },
-      img: "screenshots/ambience.jpg",
-      url: "ambience.html",
-      accent: "#ff8a3c",
-      isNew: true
+    img: "uploads/LowCutPolice.jpg",
+    url: "#",
+    accent: "#ff6b4a",
+    isNew: true,
+    comingSoon: true,
+    hideLink: true
+  },
+  {
+    id: "neoto-pre-update",
+    badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
+    date: "2026.06.13",
+    title: { jp: "NEOTO Pre v1.1.0 リリース。", en: "NEOTO Pre v1.1.0 Released." },
+    sub: { jp: "NEOTO Pre — アナログモデリング・プリアンプ／トランス・サチュレータ\n動画公開！！", en: "NEOTO Pre — Analog-Modeled Preamp & Transformer Saturator" },
+    excerpt: {
+      jp: "磁気ヒステリシスの物理モデリングと最先端アンチエイリアシングを組み合わせた精密なプリアンプ／トランスサチュレーション。Jiles-Atherton と Tellinen ヒステリシスモデル、6 種プリアンプ、6 種トランスモデルで、静的な波形整形では到達できない有機的なサチュレーション・キャラクタを実現します。",
+      en: "Physical modeling of magnetic hysteresis meets state-of-the-art anti-aliasing. Jiles-Atherton & Tellinen hysteresis models, 6 preamp architectures, 6 transformer topologies — organic saturation that static waveshapers can\u2019t reach."
     },
-    {
-      id: "quad-morph",
-      badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
-      date: "2026.06",
-      title: { jp: "\u8e0a\u308c\u3001\u30d5\u30a3\u30eb\u30bf\u30fc\uff01", en: "Dance, Filters!" },
-      sub: { jp: "Quad Morph Filter \u2014 28\u30e2\u30c7\u30eb\u30fb\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0", en: "Quad Morph Filter \u2014 28 Models, Real-time Morphing" },
-      excerpt: {
-        jp: "28 \u500b\u306e\u30cf\u30f3\u30c9\u30af\u30e9\u30d5\u30c8\u30d5\u30a3\u30eb\u30bf\u30fc\u3092 XY \u30d1\u30c3\u30c9\u3067\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306b\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0\u3002Moog Ladder\u3001TB-303\u3001Z-Plane 2D\u2026 19 \u7a2e LFO\u30014\u00d7 \u30aa\u30fc\u30d0\u30fc\u30b5\u30f3\u30d7\u30ea\u30f3\u30b0\u3002\u5b8c\u5168\u7121\u6599\u3002",
-        en: "28 handcrafted filter topologies morphing live on an XY pad. Moog Ladder, TB-303, Z-Plane 2D, and more \u2014 19 LFO waveforms, 4\u00d7 oversampling. Completely free."
-      },
-      img: "screenshots/quad-morph.jpg",
-      url: "quad-morph.html",
-      accent: "#00d9ff",
-      isNew: false
-    }
-  ];
+    img: "screenshots/neoto-pre.jpg",
+    url: "plugin.html?id=neoto-pre",
+    accent: "#ff7a3a",
+    isNew: true
+  },
+  {
+    id: "ambience",
+    badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
+    date: "2026.06.13",
+    title: { jp: "Ambience v1.1.0 リリース。", en: "Ambience v1.1.0 Released." },
+    sub: { jp: "PreDelay 修正・金属系アーティファクト解消・音質向上\n動画公開！！", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
+    excerpt: {
+      jp: "PreDelay が DSP に正しく反映されないバグを修正。長い DecayTime で為が付いた金属系リンギングも解消。コーラス LFO・3段オールパス・ Thiran補間により、テールの密度と貧乏テクスチャが大幅向上。",
+      en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
+    },
+    img: "screenshots/ambience.jpg",
+    url: "ambience.html",
+    accent: "#ff8a3c",
+    isNew: true
+  },
+  {
+    id: "quad-morph",
+    badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
+    date: "2026.06",
+    title: { jp: "\u8e0a\u308c\u3001\u30d5\u30a3\u30eb\u30bf\u30fc\uff01", en: "Dance, Filters!" },
+    sub: { jp: "Quad Morph Filter \u2014 28\u30e2\u30c7\u30eb\u30fb\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0", en: "Quad Morph Filter \u2014 28 Models, Real-time Morphing" },
+    excerpt: {
+      jp: "28 \u500b\u306e\u30cf\u30f3\u30c9\u30af\u30e9\u30d5\u30c8\u30d5\u30a3\u30eb\u30bf\u30fc\u3092 XY \u30d1\u30c3\u30c9\u3067\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306b\u30e2\u30fc\u30d5\u30a3\u30f3\u30b0\u3002Moog Ladder\u3001TB-303\u3001Z-Plane 2D\u2026 19 \u7a2e LFO\u30014\u00d7 \u30aa\u30fc\u30d0\u30fc\u30b5\u30f3\u30d7\u30ea\u30f3\u30b0\u3002\u5b8c\u5168\u7121\u6599\u3002",
+      en: "28 handcrafted filter topologies morphing live on an XY pad. Moog Ladder, TB-303, Z-Plane 2D, and more \u2014 19 LFO waveforms, 4\u00d7 oversampling. Completely free."
+    },
+    img: "screenshots/quad-morph.jpg",
+    url: "quad-morph.html",
+    accent: "#00d9ff",
+    isNew: false
+  }];
+
 
   return (
     <section id="news" className="section news-section">
@@ -738,9 +755,9 @@ function NewsSection({ lang }) {
         <div className="section-head">
           <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u6700\u8fd1\u306e\u30ea\u30ea\u30fc\u30b9" : "RECENT RELEASES"}{" / 2026"}</div>
           <h2 className="section-title">
-            {lang === "jp"
-              ? <><span className="hl-accent" style={{ "--hl": "var(--accent)" }}>{"新しいものを"}</span>{"、届けています。"}</>
-              : <>New tools, <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>regularly shipped.</span></>}
+            {lang === "jp" ?
+            <><span className="hl-accent" style={{ "--hl": "var(--accent)" }}>{"新しいものを"}</span>{"、届けています。"}</> :
+            <>New tools, <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>regularly shipped.</span></>}
           </h2>
         </div>
         <div className="news-grid">
@@ -752,20 +769,20 @@ function NewsSection({ lang }) {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 function NewsCard({ item, lang, size }) {
   var [imgErr, setImgErr] = React.useState(false);
   return (
     <Reveal>
-      <article className={"news-card news-card--" + size} style={{ "--nc-accent": item.accent }}>
+      <article className={"news-card news-card--" + size} style={{ "--nc-accent": item.accent, fontSize: "40px" }}>
         <a href={item.url} className="news-card-img-wrap">
-          {!imgErr
-            ? <img src={item.img} alt={item.title[lang]} className="news-card-img"
-                onError={function() { setImgErr(true); }} loading="lazy" />
-            : <div className="news-img-fallback" style={{ background: item.accent + "22" }}>
+          {!imgErr ?
+          <img src={item.img} alt={item.title[lang]} className="news-card-img"
+          onError={function () {setImgErr(true);}} loading="lazy" /> :
+          <div className="news-img-fallback" style={{ background: item.accent + "22" }}>
                 <span style={{ color: item.accent, fontFamily: "var(--mono)", fontSize: "11px", letterSpacing: "0.1em" }}>
                   {item.id.toUpperCase()}
                 </span>
@@ -773,6 +790,30 @@ function NewsCard({ item, lang, size }) {
           }
           <div className="news-card-overlay" />
           {item.isNew && <div className="news-new-badge">NEW</div>}
+          {item.comingSoon &&
+          <div style={{
+            position: "absolute", inset: 0, overflow: "hidden",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            pointerEvents: "none"
+          }}>
+              <div style={{
+              position: "absolute",
+              width: "160%",
+              textAlign: "center",
+              transform: "rotate(-35deg) translateY(-10%)",
+              background: "rgba(255,255,255,0.95)",
+              color: "#111",
+              fontFamily: "var(--mono, monospace)",
+              fontSize: "clamp(16px, 3vw, 22px)",
+              fontWeight: "700",
+              letterSpacing: "0.2em",
+              padding: "13px 0",
+              textTransform: "uppercase",
+              userSelect: "none",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.18)"
+            }}>COMING SOON</div>
+            </div>
+          }
         </a>
         <div className="news-card-body">
           <div className="news-card-meta">
@@ -780,15 +821,17 @@ function NewsCard({ item, lang, size }) {
             <time className="news-card-date">{item.date}</time>
           </div>
           <h3 className="news-card-title">{item.title[lang]}</h3>
-          {size === "large" && <p className="news-card-excerpt">{item.excerpt[lang]}</p>}
-          <p className="news-card-sub">{item.sub[lang]}</p>
+          {size === "large" && <p className="news-card-excerpt" style={{ fontSize: "20px" }}>{item.excerpt[lang]}</p>}
+          <p className="news-card-sub" style={{ fontSize: "20px" }}>{item.sub[lang]}</p>
+          {!item.hideLink &&
           <a href={item.url} className="news-card-cta">
-            {lang === "jp" ? "\u8a73\u3057\u304f\u898b\u308b" : "Learn more"} <span className="arrow">{"\u2192"}</span>
+            {lang === "jp" ? "詳しく見る" : "Learn more"} <span className="arrow">{"\u2192"}</span>
           </a>
+          }
         </div>
       </article>
-    </Reveal>
-  );
+    </Reveal>);
+
 }
 
 // =========================================================
@@ -802,45 +845,45 @@ function PluginGallery({ lang }) {
         <div className="section-head">
           <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u5168\u4f5c\u54c1 / " + plugins.length : "ALL WORKS / " + plugins.length}</div>
           <h2 className="section-title">
-            {lang === "jp"
-              ? <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>14</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</>
-              : <>Fourteen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ?
+            <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>15</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</> :
+            <>Fifteen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </div>
         <div className="pgallery-grid">
-          {plugins.map(function(p) { return <GalleryCard key={p.id} plugin={p} lang={lang} />; })}
+          {plugins.filter((p) => p.id).map(function (p) {return <GalleryCard key={p.id} plugin={p} lang={lang} />;})}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 function GalleryCard({ plugin, lang }) {
   var [imgErr, setImgErr] = React.useState(false);
-  var [dlCount, setDlCount] = React.useState(function() { return parseInt(localStorage.getItem("dl-" + plugin.id) || "0"); });
-  var [srcCount, setSrcCount] = React.useState(function() { return parseInt(localStorage.getItem("src-" + plugin.id) || "0"); });
-  var screenshotPath = plugin.screenshot || ("screenshots/" + plugin.id + ".jpg");
+  var [dlCount, setDlCount] = React.useState(function () {return parseInt(localStorage.getItem("dl-" + plugin.id) || "0");});
+  var [srcCount, setSrcCount] = React.useState(function () {return parseInt(localStorage.getItem("src-" + plugin.id) || "0");});
+  var screenshotPath = plugin.screenshot || "screenshots/" + plugin.id + ".jpg";
   var isMFL = plugin.type === "Max for Live";
 
   // Derive URLs — use explicit fields or fall back to repo
-  var detailUrl = plugin.featureUrl || ("plugin.html?id=" + plugin.id);
+  var detailUrl = plugin.featureUrl || "plugin.html?id=" + plugin.id;
   var dlUrl = plugin.downloadUrl || (plugin.repo ? plugin.repo + "/releases/latest" : null);
   var srcUrl = plugin.sourceUrl || plugin.repo || null;
 
-  var handleDL = function() {
+  var handleDL = function () {
     if (plugin.comingSoon) return;
-    try { counterUp("dl-" + plugin.id); window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id })); } catch(e) {}
-    var n = dlCount + 1; localStorage.setItem("dl-" + plugin.id, n); setDlCount(n);
+    try {counterUp("dl-" + plugin.id);window.dispatchEvent(new CustomEvent("dlbump", { detail: plugin.id }));} catch (e) {}
+    var n = dlCount + 1;localStorage.setItem("dl-" + plugin.id, n);setDlCount(n);
   };
-  var handleSrc = function() {
-    try { counterUp("src-" + plugin.id); window.dispatchEvent(new CustomEvent("srcbump", { detail: plugin.id })); } catch(e) {}
-    var n = srcCount + 1; localStorage.setItem("src-" + plugin.id, n); setSrcCount(n);
+  var handleSrc = function () {
+    try {counterUp("src-" + plugin.id);window.dispatchEvent(new CustomEvent("srcbump", { detail: plugin.id }));} catch (e) {}
+    var n = srcCount + 1;localStorage.setItem("src-" + plugin.id, n);setSrcCount(n);
   };
 
-  var imgNode = !imgErr
-    ? <img src={screenshotPath} alt={plugin.name} className="pgcard-img"
-        onError={function() { setImgErr(true); }} loading="lazy" />
-    : <div className="pgcard-img-fallback" style={{ background: (plugin.accent || "#888") + "22" }}>
+  var imgNode = !imgErr ?
+  <img src={screenshotPath} alt={plugin.name} className="pgcard-img"
+  onError={function () {setImgErr(true);}} loading="lazy" /> :
+  <div className="pgcard-img-fallback" style={{ background: (plugin.accent || "#888") + "22" }}>
         <span style={{ color: plugin.accent || "var(--accent)", fontFamily: "var(--mono)", fontSize: "10px" }}>
           {plugin.name.toUpperCase()}
         </span>
@@ -849,7 +892,7 @@ function GalleryCard({ plugin, lang }) {
   return (
     <Reveal>
       <div className={"pgcard" + (plugin.comingSoon ? " pgcard--soon" : "")}
-           style={{ "--pg-accent": plugin.accent || "var(--accent)" }}>
+      style={{ "--pg-accent": plugin.accent || "var(--accent)" }}>
         <div className="pgcard-img-wrap">
           <a href={detailUrl} className="pgcard-img-link">{imgNode}</a>
           <div className="pgcard-num">{plugin.num}</div>
@@ -866,20 +909,20 @@ function GalleryCard({ plugin, lang }) {
             <a href={detailUrl} className="pgcard-btn pgcard-btn--detail">
               {lang === "jp" ? "詳細" : "Info"}
             </a>
-            {plugin.comingSoon
-              ? <span className="pgcard-btn pgcard-btn--soon">Coming Soon</span>
-              : dlUrl
-                ? <a href={dlUrl} target="_blank" rel="noreferrer"
-                     className="pgcard-btn pgcard-btn--dl" onClick={handleDL}>{"DL ↓"}</a>
-                : null}
+            {plugin.comingSoon ?
+            <span className="pgcard-btn pgcard-btn--soon">Coming Soon</span> :
+            dlUrl ?
+            <a href={dlUrl} target="_blank" rel="noreferrer"
+            className="pgcard-btn pgcard-btn--dl" onClick={handleDL}>{"DL ↓"}</a> :
+            null}
             {srcUrl && !plugin.comingSoon &&
-              <a href={srcUrl} target="_blank" rel="noreferrer"
-                 className="pgcard-btn pgcard-btn--src" onClick={handleSrc}>src</a>}
+            <a href={srcUrl} target="_blank" rel="noreferrer"
+            className="pgcard-btn pgcard-btn--src" onClick={handleSrc}>src</a>}
           </div>
         </div>
       </div>
-    </Reveal>
-  );
+    </Reveal>);
+
 }
 
 Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, Featured });
