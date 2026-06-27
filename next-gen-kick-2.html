@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXT GEN KICK 2 — OTODESK | Professional Kick Synthesizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050507;
+      --bg2: #0c0c0f;
+      --bg3: #111116;
+      --ink: #e8e6de;
+      --dim: #64635e;
+      --dim2: #888;
+      --rule: rgba(255,255,255,0.06);
+      --gold: #ffd166;
+      --gold2: #ffba33;
+      --orange: #ff8c42;
+      --red: #ff4757;
+      --accent: #ffd166;
+      --mono: "Geist Mono", monospace;
+      --sans: "Geist", system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,5,7,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); text-decoration: none; }
+    .nav-logo span { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); letter-spacing: 0.05em; }
+    .nav-back:hover { color: var(--ink); }
+    .lang-btn { background: none; border: 1px solid var(--rule); color: var(--dim2); font-family: var(--mono); font-size: 11px; padding: 5px 10px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; }
+    .lang-btn.active { border-color: var(--gold); color: var(--gold); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 88px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.18; filter: saturate(1.2); }
+    .hero-bg-grad { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,7,0.4) 0%, rgba(5,5,7,0.55) 35%, rgba(5,5,7,0.95) 78%, var(--bg) 100%); }
+    .hero-content { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 48px; width: 100%; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 32px; padding: 7px 16px; border: 1px solid rgba(255,209,102,0.3); background: rgba(255,209,102,0.06); }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+    .hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--dim2); margin-bottom: 16px; text-transform: uppercase; }
+    .hero-title { font-size: clamp(52px, 7.5vw, 96px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 28px; }
+    .hero-title .gold { color: var(--gold); }
+    .hero-title .orange { color: var(--orange); }
+    .hero-sub { font-size: 17px; color: var(--dim2); max-width: 560px; line-height: 1.75; margin-bottom: 20px; font-weight: 300; }
+    .hero-sub-em { color: var(--ink); font-weight: 500; }
+    .hero-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; margin-top: 36px; }
+    .btn-soon { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid rgba(255,209,102,0.35); color: var(--gold); background: rgba(255,209,102,0.07); cursor: default; }
+    .btn-gh { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid var(--rule); color: var(--dim2); }
+    .btn-gh:hover { border-color: var(--ink); color: var(--ink); }
+    .btn-dl { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid var(--gold); color: var(--bg); background: var(--gold); font-weight: 700; }
+    .btn-dl:hover { background: var(--gold2); border-color: var(--gold2); }
+    .hero-meta { display: flex; gap: 36px; flex-wrap: wrap; }
+    .hero-meta-item { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
+    .hero-meta-item span { color: var(--ink); margin-left: 6px; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 96px 48px; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--dim2); margin-bottom: 18px; }
+    .section-h { font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 52px; }
+    .gold-text { color: var(--gold); }
+    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1100px; margin: 0 auto; }
+
+    /* LAYER CARDS */
+    .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 2px; margin-bottom: 48px; }
+    .layer-card { padding: 36px 24px; position: relative; overflow: hidden; background: var(--bg2); border: 1px solid var(--rule); }
+    .layer-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .layer-card.atk::before { background: var(--orange); }
+    .layer-card.body::before { background: var(--gold); }
+    .layer-card.sub::before { background: #7ecaff; }
+    .layer-card.master::before { background: linear-gradient(90deg, var(--orange), var(--gold), #7ecaff); }
+    .layer-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; margin-bottom: 14px; }
+    .layer-card.atk .layer-label { color: var(--orange); }
+    .layer-card.body .layer-label { color: var(--gold); }
+    .layer-card.sub .layer-label { color: #7ecaff; }
+    .layer-card.master .layer-label { color: var(--dim2); }
+    .layer-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .layer-body { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+    .layer-wave { height: 36px; margin-top: 20px; opacity: 0.55; }
+    .layer-wave svg { width: 100%; height: 100%; }
+
+    /* SIGNAL CHAIN */
+    .chain-box { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; padding: 28px 32px; background: var(--bg2); border: 1px solid var(--rule); font-family: var(--mono); font-size: 12px; overflow-x: auto; }
+    .chain-node { padding: 10px 16px; border: 1px solid var(--rule); color: var(--dim2); white-space: nowrap; }
+    .chain-node.active { border-color: rgba(255,209,102,0.4); color: var(--gold); background: rgba(255,209,102,0.06); }
+    .chain-arrow { color: var(--dim); padding: 0 8px; font-size: 14px; }
+
+    /* SCREENSHOTS */
+    .shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .shot-wrap { position: relative; overflow: hidden; background: var(--bg2); border: 1px solid var(--rule); }
+    .shot-wrap img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .shot-wrap:hover img { transform: scale(1.02); }
+    .shot-cap { padding: 14px 18px; background: var(--bg2); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+    .shot-cap-label { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.12em; }
+    .shot-cap-desc { font-family: var(--mono); font-size: 10px; color: var(--dim2); }
+
+    /* FX TABLE */
+    .fx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--rule); border: 1px solid var(--rule); }
+    .fx-card { background: var(--bg2); padding: 28px 22px; }
+    .fx-num { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.12em; margin-bottom: 10px; }
+    .fx-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .fx-cat { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 12px; }
+    .fx-body { font-size: 13px; color: var(--dim2); line-height: 1.65; }
+    .fx-params { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+    .fx-param { font-family: var(--mono); font-size: 10px; color: var(--dim2); padding: 3px 8px; border: 1px solid var(--rule); }
+
+    /* ENVELOPE */
+    .env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .env-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px 28px; }
+    .env-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .env-card-sub { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 16px; }
+    .env-card-body { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+    .presets-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .preset-chip { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--rule); color: var(--dim2); letter-spacing: 0.04em; }
+    .preset-chip.gold { border-color: rgba(255,209,102,0.35); color: var(--gold); background: rgba(255,209,102,0.05); }
+
+    /* PRESETS TABLE */
+    .preset-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--rule); border: 1px solid var(--rule); }
+    .pcat-card { background: var(--bg2); padding: 24px 20px; }
+    .pcat-label { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 12px; }
+    .pcat-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .pcat-body { font-size: 12px; color: var(--dim2); line-height: 1.65; }
+    .pcat-count { font-family: var(--mono); font-size: 26px; font-weight: 700; color: var(--gold); opacity: 0.35; margin-bottom: 4px; }
+
+    /* ANALYZER */
+    .analyzer-vis { position: relative; height: 160px; background: var(--bg2); border: 1px solid var(--rule); overflow: hidden; margin-bottom: 32px; }
+    .analyzer-bars { display: flex; align-items: flex-end; gap: 2px; height: 100%; padding: 12px 12px 0; }
+    .a-bar { flex: 1; border-radius: 1px 1px 0 0; min-width: 2px; }
+    .analyzer-label { position: absolute; top: 10px; right: 12px; font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.1em; }
+    .analyzer-grid-line { position: absolute; left: 0; right: 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    .freq-ticks { display: flex; justify-content: space-between; padding: 6px 12px; font-family: var(--mono); font-size: 9px; color: var(--dim); }
+
+    /* SPECS */
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .spec-group h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--dim); margin-bottom: 20px; text-transform: uppercase; }
+    .spec-row { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); gap: 16px; }
+    .spec-k { font-family: var(--mono); font-size: 12px; color: var(--dim2); }
+    .spec-v { font-family: var(--mono); font-size: 12px; color: var(--ink); text-align: right; }
+    .spec-v.soon { color: var(--gold); }
+
+    /* CTA */
+    .cta-section { background: var(--bg2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 108px 48px; text-align: center; }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-badge { display: inline-block; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--gold); padding: 10px 28px; border: 1px solid rgba(255,209,102,0.35); background: rgba(255,209,102,0.06); margin-bottom: 32px; }
+    .cta-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .cta-sub { font-size: 16px; color: var(--dim2); line-height: 1.75; margin-bottom: 44px; }
+    .cta-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-follow { margin-top: 36px; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .cta-follow a { color: var(--dim2); border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+    .cta-follow a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* FOOTER */
+    .page-footer { padding: 44px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); }
+    .footer-brand { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .footer-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); }
+    .footer-back:hover { color: var(--ink); }
+
+    /* COMPARE BOX */
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 48px; }
+    .compare-cell { background: var(--bg2); padding: 28px 24px; }
+    .compare-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .compare-cell.v1 .compare-label { color: var(--dim2); }
+    .compare-cell.v2 .compare-label { color: var(--gold); }
+    .compare-list { list-style: none; }
+    .compare-list li { font-size: 13px; color: var(--dim2); line-height: 1.7; padding: 4px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 10px; }
+    .compare-list li::before { content: "—"; color: var(--dim); flex-shrink: 0; }
+    .compare-cell.v2 .compare-list li { color: var(--ink); }
+    .compare-cell.v2 .compare-list li::before { content: "✦"; color: var(--gold); }
+
+    @media (max-width: 800px) {
+      .nav { padding: 16px 20px; }
+      .hero-content, .section { padding-left: 20px; padding-right: 20px; }
+      .layer-grid { grid-template-columns: 1fr 1fr; }
+      .shot-grid { grid-template-columns: 1fr; }
+      .fx-grid { grid-template-columns: 1fr 1fr; }
+      .env-grid, .specs-grid, .compare-row { grid-template-columns: 1fr; }
+      .preset-cats { grid-template-columns: 1fr 1fr; }
+      .chain-box { font-size: 10px; }
+      .page-footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .layer-grid { grid-template-columns: 1fr; }
+      .fx-grid { grid-template-columns: 1fr; }
+      .preset-cats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel">
+  function useLang() {
+    var [lang, setLang] = React.useState(function() {
+      return localStorage.getItem("otodesk-lang") || "jp";
+    });
+    var toggle = function() {
+      var next = lang === "jp" ? "en" : "jp";
+      localStorage.setItem("otodesk-lang", next);
+      setLang(next);
+    };
+    return [lang, toggle];
+  }
+
+  /* Waveform SVGs */
+  function AtkWave() {
+    return (
+      <svg className="layer-wave" viewBox="0 0 200 36" preserveAspectRatio="none">
+        <polyline stroke="var(--orange)" strokeWidth="1.5" fill="none"
+          points="0,18 3,12 5,4 7,1 9,4 11,10 14,16 18,20 24,22 32,22 50,20 80,19 120,18 160,18 200,18" />
+      </svg>
+    );
+  }
+  function BodyWave() {
+    return (
+      <svg className="layer-wave" viewBox="0 0 200 36" preserveAspectRatio="none">
+        <path stroke="var(--gold)" strokeWidth="1.5" fill="none"
+          d="M0,18 C6,4 10,2 16,12 C22,22 28,28 40,24 C55,18 80,14 120,17 C155,18 180,18 200,18" />
+      </svg>
+    );
+  }
+  function SubWave() {
+    return (
+      <svg className="layer-wave" viewBox="0 0 200 36" preserveAspectRatio="none">
+        <path stroke="#7ecaff" strokeWidth="1.5" fill="none"
+          d="M0,18 Q10,6 20,18 Q30,30 40,18 Q50,6 60,18 Q70,30 80,18 Q90,6 100,18 Q110,30 120,18 Q130,6 140,18 Q150,30 160,18 Q175,6 190,18 Q196,22 200,18" />
+      </svg>
+    );
+  }
+  function MasterWave() {
+    return (
+      <svg className="layer-wave" viewBox="0 0 200 36" preserveAspectRatio="none">
+        <path stroke="var(--gold)" strokeWidth="1" fill="none" opacity="0.5"
+          d="M0,18 C4,4 8,2 12,10 C16,18 22,26 32,22 C45,16 70,14 100,17 C130,18 160,18 200,18" />
+        <path stroke="#7ecaff" strokeWidth="1" fill="none" opacity="0.5"
+          d="M0,18 Q12,8 24,18 Q36,28 48,18 Q60,8 72,18 Q84,28 96,18 Q108,8 120,18 Q140,22 160,18 Q180,14 200,18" />
+      </svg>
+    );
+  }
+
+  /* Fake analyzer bars */
+  function AnalyzerViz() {
+    var bands = 60;
+    var freqs = ["20", "50", "100", "200", "500", "1k", "2k", "5k", "10k", "20k"];
+    var heights = React.useMemo(function() {
+      return Array.from({ length: bands }, function(_, i) {
+        var f = i / bands;
+        var h = f < 0.15 ? 0.85 - f * 2 + Math.random() * 0.1
+              : f < 0.35 ? 0.65 - f * 0.8 + Math.random() * 0.15
+              : f < 0.6  ? 0.35 - f * 0.3 + Math.random() * 0.18
+              : 0.15 + Math.random() * 0.12;
+        return Math.max(0.04, Math.min(0.96, h));
+      });
+    }, []);
+    var getColor = function(i) {
+      var f = i / bands;
+      if (f < 0.12) return "rgba(255,70,70,0.8)";
+      if (f < 0.28) return "rgba(255,180,50,0.8)";
+      if (f < 0.55) return "rgba(120,220,80,0.8)";
+      return "rgba(100,200,255,0.8)";
+    };
+    return (
+      <div className="analyzer-vis">
+        {[25, 50, 75].map(function(y) {
+          return <div key={y} className="analyzer-grid-line" style={{ top: y + "%" }} />;
+        })}
+        <div className="analyzer-bars">
+          {heights.map(function(h, i) {
+            return (
+              <div key={i} className="a-bar"
+                style={{ height: (h * 100) + "%", background: getColor(i) }} />
+            );
+          })}
+        </div>
+        <div className="analyzer-label">480 BANDS · Fund: E1 · 41 Hz</div>
+      </div>
+    );
+  }
+
+  function Nav({ lang, toggle }) {
+    return (
+      <nav className="nav">
+        <a href="index.html" className="nav-logo">OTODE<span>SK</span></a>
+        <div className="nav-right">
+          <a href="index.html" className="nav-back">← {lang === "jp" ? "一覧に戻る" : "Back to index"}</a>
+          <button className={"lang-btn" + (lang === "jp" ? " active" : "")} onClick={toggle}>JP</button>
+          <button className={"lang-btn" + (lang === "en" ? " active" : "")} onClick={toggle}>EN</button>
+        </div>
+      </nav>
+    );
+  }
+
+  function Hero({ lang }) {
+    return (
+      <section className="hero">
+        <div className="hero-bg">
+          <img src="screenshots/NextGenKick2Main.jpg" alt="NEXT GEN KICK 2 UI" />
+          <div className="hero-bg-grad" />
+        </div>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="hero-badge-dot" />
+            {lang === "jp" ? "VST3 · Coming Soon" : "VST3 · Coming Soon"}
+          </div>
+          <div className="hero-eyebrow">NEXT GEN KICK 2 — OTODESK / 2026</div>
+          <h1 className="hero-title">
+            {lang === "jp"
+              ? <><span className="gold">最強の</span><br /><span className="orange">キックシンセ</span><br />降臨。</>
+              : <><span className="gold">The Ultimate</span><br /><span className="orange">Kick Synth</span><br />is here.</>
+            }
+          </h1>
+          <p className="hero-sub">
+            {lang === "jp"
+              ? <><span className="hero-sub-em">NEXT GEN KICK から 7 ヶ月。</span>AI との対話による開発で積み上げてきた全てのノウハウを、この一本に注ぎ込んだ最高傑作。3 層合成エンジン、70 ファクトリプリセット、480 バンドアナライザ——頭の中にあるキックを、全てゼロレイテンシで形にする。</>
+              : <><span className="hero-sub-em">Seven months after NEXT GEN KICK.</span> Every lesson from AI-assisted development distilled into one masterpiece. Three synthesis layers, 70 factory presets, 480-band analyzer — design any kick in your head at zero latency.</>
+            }
+          </p>
+          <div className="hero-cta-row">
+            <span className="btn-soon">⏳ {lang === "jp" ? "Coming Soon" : "Coming Soon"}</span>
+            <a href="https://github.com/OTODESK4193/NextGenKick2" target="_blank" rel="noreferrer" className="btn-gh">GitHub ↗</a>
+            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-gh">{lang === "jp" ? "Releases ↗" : "Releases ↗"}</a>
+          </div>
+          <div className="hero-meta">
+            <div className="hero-meta-item">FORMAT<span>VST3</span></div>
+            <div className="hero-meta-item">PLATFORM<span>Windows 64-bit</span></div>
+            <div className="hero-meta-item">HOST<span>Ableton Live</span></div>
+            <div className="hero-meta-item">PRESETS<span>70 Factory</span></div>
+            <div className="hero-meta-item">VERSION<span>1.0.0</span></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Engine({ lang }) {
+    return (
+      <div className="section">
+        <div className="section-eyebrow">— 01 / {lang === "jp" ? "3レイヤー合成エンジン" : "3-LAYER SYNTHESIS ENGINE"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <><span className="gold-text">Attack</span> × <span style={{color:"var(--gold)"}}>Body</span> × <span style={{color:"#7ecaff"}}>Sub</span><br />で音を作る。</>
+            : <>One kick.<br /><span className="gold-text">Three layers.</span> Zero compromise.</>
+          }
+        </h2>
+        <div className="layer-grid">
+          <div className="layer-card atk">
+            <div className="layer-label">ATTACK LAYER</div>
+            <div className="layer-title">{lang === "jp" ? "打撃感" : "Click / Transient"}</div>
+            <div className="layer-body">
+              {lang === "jp"
+                ? "クリック・トランジェント層。Impulse / Ultra Sine / Metal（FM）/ ノイズ各タイプが選べ、P.Decay で瞬間的なピッチスイープも。第2アタック（Click 2）でレイヤーも可。"
+                : "The click and transient component. Choose from Impulse, Ultra Sine, Metal (FM), and noise types. P.Decay for instant pitch sweep. Click 2 for layered attacks."}
+            </div>
+            <AtkWave />
+          </div>
+          <div className="layer-card body">
+            <div className="layer-label">BODY LAYER</div>
+            <div className="layer-title">{lang === "jp" ? "音色・パンチ" : "Tone / Punch"}</div>
+            <div className="layer-body">
+              {lang === "jp"
+                ? "主音色と「ボーン」とするパンチを担当。P.Start → P.End の高速降下でパンチを生成。Membrane（モード共鳴）と FM でキャラクターを作る。"
+                : "The tonal core and punch. Fast P.Start→P.End pitch drop for punch. Membrane (modal resonance) and FM for character shaping."}
+            </div>
+            <BodyWave />
+          </div>
+          <div className="layer-card sub">
+            <div className="layer-label">SUB LAYER</div>
+            <div className="layer-title">{lang === "jp" ? "低域・重さ" : "Low-End / Weight"}</div>
+            <div className="layer-body">
+              {lang === "jp"
+                ? "Ultra Sine を基本とした低域の基音。Key Track ON でベースライン演奏も対応。Anti-Click で発音ノイズを抑える。スペクトラム・アナライザと共存。"
+                : "Low-end foundation built on Ultra Sine. Key Track mode for bassline playing. Anti-Click for clean transient start. Shares the panel with the spectrum analyzer."}
+            </div>
+            <SubWave />
+          </div>
+          <div className="layer-card master">
+            <div className="layer-label">MASTER BUS</div>
+            <div className="layer-title">{lang === "jp" ? "出力制御" : "Output Control"}</div>
+            <div className="layer-body">
+              {lang === "jp"
+                ? "Volume・Width・Hi-Cut・Smooth（デクリック）を一括制御。Sub Bypass でサブをマスターFXから迂回。各レイヤーをDAWへWAV書き出し。"
+                : "Volume, Width, Hi-Cut, Smooth (de-click) in one place. Sub Bypass to keep Sub clean from master FX. Per-layer WAV drag-export."}
+            </div>
+            <MasterWave />
+          </div>
+        </div>
+        <div className="chain-box">
+          <span className="chain-node active">ATK</span>
+          <span className="chain-arrow">┐</span>
+          <span className="chain-node active">BODY</span>
+          <span className="chain-arrow">┼──►</span>
+          <span className="chain-node">Layer FX</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">MIX</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Master Insert</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Glue → Limiter</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Vol · Width · Velocity</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node active">OUT</span>
+          <span style={{width:"100%", textAlign:"center", marginTop:"10px", fontFamily:"var(--mono)", fontSize:"10px", color:"var(--dim)"}}>
+            {lang === "jp" ? "SUB は Sub Bypass スイッチでマスターインサートを迂回可能" : "SUB can bypass master insert via Sub Bypass switch"}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  function Screenshots({ lang }) {
+    var shots = [
+      { file: "screenshots/NextGenKick2Main.jpg", label: "MAIN VIEW", desc: { jp: "全レイヤーコントロール＋スコープ表示", en: "All layer controls + waveform scope" } },
+      { file: "screenshots/NextGenKick2FX.jpg",   label: "FX RACK",   desc: { jp: "レイヤー別エフェクトラック", en: "Per-layer effect rack" } },
+      { file: "screenshots/NextGenKick2Env.jpg",  label: "ENVELOPE",  desc: { jp: "多点ベジェ・エンベロープエディタ", en: "Multi-point bezier envelope editor" } },
+      { file: "screenshots/NextGenKickBrowse.jpg",label: "BROWSER",   desc: { jp: "プリセットブラウザ (Factory + User)", en: "Preset browser (Factory + User)" } }
+    ];
+    return (
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 0 96px" }}>
+        <hr className="divider" style={{ maxWidth: "none", marginBottom: "96px" }} />
+        <div style={{ padding: "0 48px", marginBottom: "36px" }}>
+          <div className="section-eyebrow">— 02 / {lang === "jp" ? "スクリーンショット" : "SCREENSHOTS"}</div>
+          <h2 className="section-h">{lang === "jp" ? "4つの画面で全機能を網羅。" : "Four screens. Every feature."}</h2>
+        </div>
+        <div className="shot-grid" style={{ padding: "0 24px" }}>
+          {shots.map(function(s) {
+            return (
+              <div key={s.label} className="shot-wrap">
+                <img src={s.file} alt={s.label} loading="lazy" />
+                <div className="shot-cap">
+                  <span className="shot-cap-label">{s.label}</span>
+                  <span className="shot-cap-desc">{s.desc[lang]}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function FXRack({ lang }) {
+    var fx = [
+      { n: "01", name: "ADAA Saturation", cat: lang === "jp" ? "サチュレーション" : "Saturation",
+        body: { jp: "10 種のアルゴリズム（Soft Tanh / Hard Clip / Triode / Tape / Transformer / JFET / BJT / Wavefold / Exciter / Cubic）すべてにアンチエイリアス処理を適用。Drive とキャラクターを制御。", en: "10 algorithms — Soft Tanh, Hard Clip, Triode, Tape, Transformer, JFET, BJT, Wavefold, Exciter, Cubic — all ADAA processed. Control Drive and tonal character." },
+        params: ["DRIVE", "TYPE ×10", "OUTPUT TRIM", "PRE HPF", "MIX"] },
+      { n: "02", name: "Bit Crusher", cat: lang === "jp" ? "ローファイ" : "Lo-Fi",
+        body: { jp: "ビット深度削減とサンプルレートデシメーション。Jitter でデジタルなビンテージ感を付加。キックのアタックレイヤーにさりげなく掛けると倍音が増す。", en: "Bit-depth reduction + sample-rate decimation. Jitter adds vintage digital instability. Try it on the Attack layer to add crunch." },
+        params: ["BITS", "DOWNSAMPLE", "JITTER", "MIX"] },
+      { n: "03", name: "OTT Multiband", cat: lang === "jp" ? "マルチバンド圧縮" : "Multiband Dynamics",
+        body: { jp: "3 バンドの上方向 + 下方向コンプレッサー。バンドごとに Upward / Downward / Gain を制御。Depth でかかり具合を一括調整。TPT ZDF クロスオーバーで位相一貫性を保持。", en: "3-band upward + downward compressor per band. Per-band Upward/Downward/Gain. TPT ZDF crossovers for phase coherence. Global Depth control." },
+        params: ["DEPTH", "TIME", "GATE", "LO/MID", "MID/HI", "UP×3", "DOWN×3"] },
+      { n: "04", name: "Glue Compressor", cat: lang === "jp" ? "バスコンプ" : "Bus Compressor",
+        body: { jp: "バス向けフィードフォワード RMS コンプレッサー。ソフトニー。キック全体を締める定番ツール。Threshold / Ratio / Attack / Release / Makeup を制御。", en: "Feed-forward RMS compressor for bus glue. Soft-knee. The standard tool to tighten the whole kick. Threshold, Ratio, Attack, Release, Makeup." },
+        params: ["THR", "RATIO", "ATK", "REL", "MAKEUP", "MIX"] },
+      { n: "05", name: "Limiter", cat: lang === "jp" ? "リミッター" : "Limiter",
+        body: { jp: "透明なブリックウォール・ピークリミッター。調整可能な Ceiling とパラレルブレンド。FX チェーンの最後に置いてクリップを防ぐ。", en: "Transparent brick-wall peak limiter. Adjustable Ceiling and parallel blend. Place at the end of any chain to prevent clips." },
+        params: ["CEILING", "MIX"] },
+      { n: "06", name: "Transient Shaper", cat: lang === "jp" ? "トランジェント" : "Transient",
+        body: { jp: "Attack と Sustain を独立制御。Attack を上げるとより鋭いキック、Sustain を下げるとタイトな余韻。Body / Master ルートでの使用が特に効果的。", en: "Independent Attack and Sustain control. Boost Attack for sharper attack, cut Sustain for tighter decay. Works especially well on Body or Master." },
+        params: ["ATTACK", "SUSTAIN", "MIX"] },
+      { n: "07", name: "Noise Generator", cat: lang === "jp" ? "ノイズ" : "Noise",
+        body: { jp: "ノートごとに再トリガーされるノイズバースト。White / Pink / Brown / Blue の 4 種類。Band-Pass フィルタで帯域を絞って自然なノイズ感を加える。", en: "Note-triggered noise burst — White, Pink, Brown, or Blue. Band-Pass filter to target frequency ranges. Adds natural texture." },
+        params: ["TYPE", "DECAY", "MIX", "GAIN", "BP FREQ", "BP Q"] }
+    ];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 03 / {lang === "jp" ? "FX ラック" : "FX RACK"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>7エフェクト × 4ルート。<br /><span className="gold-text">ドラッグで並び替え可能。</span></>
+            : <>7 FX × 4 routes.<br /><span className="gold-text">Drag to reorder.</span></>
+          }
+        </h2>
+        <div style={{ marginBottom: "20px", fontFamily: "var(--mono)", fontSize: "12px", color: "var(--dim2)" }}>
+          {lang === "jp"
+            ? "Attack / Body / Sub / Master の各ルートに独立したエフェクトチェーンを持ちます。定番構成: OTT → Glue → Limiter"
+            : "Each route — Attack / Body / Sub / Master — has its own independent FX chain. Classic combo: OTT → Glue → Limiter"}
+        </div>
+        <div className="fx-grid">
+          {fx.map(function(f) {
+            return (
+              <div key={f.n} className="fx-card">
+                <div className="fx-num">FX {f.n}</div>
+                <div className="fx-name">{f.name}</div>
+                <div className="fx-cat">{f.cat}</div>
+                <div className="fx-body">{f.body[lang]}</div>
+                <div className="fx-params">{f.params.map(function(p) { return <span key={p} className="fx-param">{p}</span>; })}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function EnvelopeSection({ lang }) {
+    var ampShapes = ["Classic Decay", "Sharp Click", "Punch", "Pluck", "Long Tail", "Gate Hold", "Double Tap", "Slow Swell", "Reverse Swell", "Stutter"];
+    var pitchShapes = ["Flat (No Move)", "Linear", "Fast Drop", "Instant Drop", "Smooth Drop", "Hold then Drop", "Two-Stage", "Overshoot", "S-Curve", "Stepped", "Wobble"];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 04 / {lang === "jp" ? "エンベロープエディタ" : "ENVELOPE EDITOR"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>Amp と Pitch、<br /><span className="gold-text">レイヤーごとに独立。</span></>
+            : <>Amp and Pitch.<br /><span className="gold-text">Independent per layer.</span></>
+          }
+        </h2>
+        <div style={{ marginBottom: "24px", fontSize: "14px", color: "var(--dim2)", lineHeight: 1.75 }}>
+          {lang === "jp"
+            ? "各レイヤーに Amp（音量カーブ）と Pitch（ピッチカーブ）の 2 本のエンベロープを持ちます。点を追加・ドラッグし、区間ハンドルでベジェ曲率を調整。プリセットで瞬時に形状をリセットでき、.nge ファイルとして保存・呼び出し可能。"
+            : "Each layer has two independent multi-point bezier envelopes: Amp (volume curve) and Pitch (pitch curve). Add points, drag them, adjust bezier curvature per segment. Shape presets for instant reset, .nge file save/load for reuse."}
+        </div>
+        <div className="env-grid">
+          <div className="env-card">
+            <div className="env-card-sub">AMP ENVELOPE — 10 PRESETS</div>
+            <div className="env-card-title">{lang === "jp" ? "音量エンベロープ" : "Amplitude Envelope"}</div>
+            <div className="env-card-body">
+              {lang === "jp"
+                ? "横軸は時間（Decay ノブで正規化）、縦軸はレベル 0〜1。bend 負＝パーカッシブ（速く落ちる）、bend 正＝ゆっくり立ち上がる。"
+                : "X-axis is time (normalized by the Decay knob), Y-axis is level 0–1. Negative bend = percussive (fast decay). Positive bend = slow onset."}
+            </div>
+            <div className="presets-row">
+              {ampShapes.map(function(s) { return <span key={s} className="preset-chip">{s}</span>; })}
+            </div>
+          </div>
+          <div className="env-card">
+            <div className="env-card-sub">PITCH ENVELOPE — 11 PRESETS</div>
+            <div className="env-card-title">{lang === "jp" ? "ピッチエンベロープ" : "Pitch Envelope"}</div>
+            <div className="env-card-body">
+              {lang === "jp"
+                ? "縦軸は対数周波数（P.Start → P.End ノブと連動）。プリセットはピッチの「落ち方」だけを定義し、始点・終点はノブで決まる。Sub は Flat（No Move）が基本。"
+                : "Y-axis is log frequency (linked to P.Start/P.End knobs). Presets define the pitch contour only; start/end points are set by the knobs. Sub usually stays Flat."}
+            </div>
+            <div className="presets-row">
+              {pitchShapes.map(function(s) { return <span key={s} className={"preset-chip" + (s === "Fast Drop" || s === "Smooth Drop" ? " gold" : "")}>{s}</span>; })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function PresetBrowser({ lang }) {
+    var cats = [
+      { label: "KICK", count: "★★★★", title: { jp: "キックドラム", en: "Kick Drums" }, body: { jp: "808・Trap・House・Techno・EDM・Monster など、現代の全ジャンルを網羅するキックプリセット集。E1〜G1 にチューニング済み。", en: "808, Trap, House, Techno, EDM, Monster Kick and more. All tuned to E1–G1 for immediate use." } },
+      { label: "SNARE/CLAP", count: "★★★", title: { jp: "スネア / クラップ", en: "Snare / Clap" }, body: { jp: "アコースティック・タイト・トラップスネア・クラップ・リムショットなど。幅広いスタイルを収録。", en: "Acoustic, tight, trap snare, clap, rimshot, and more. Wide style coverage." } },
+      { label: "TOM/HAT", count: "★★", title: { jp: "タム / ハイハット", en: "Tom / Hi-Hat" }, body: { jp: "Low / Mid / High タムと Membrane・FM バリアント。クローズ / オープン / ペダル / メタリックハット。", en: "Low, Mid, High toms with Membrane/FM variants. Closed, open, pedal, and metallic hats." } },
+      { label: "SPECIAL", count: "★★", title: { jp: "Special FX / Bass", en: "Special FX / Bass" }, body: { jp: "ライザー・スイープ・ドロップ・ザップ・インパクト・ドローン、Key Track ベースプリセット（10 サチュレーションアルゴリズム対応）。", en: "Risers, sweeps, drops, zaps, impacts, drones, and Key Track bass presets with 10 saturation algorithms." } }
+    ];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 05 / {lang === "jp" ? "プリセットブラウザ" : "PRESET BROWSER"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <><span className="gold-text">70</span> ファクトリプリセット。<br />カテゴリ・検索・お気に入り。</>
+            : <><span className="gold-text">70</span> factory presets.<br />Category, search, favorites.</>
+          }
+        </h2>
+        <div className="preset-cats">
+          {cats.map(function(c) {
+            return (
+              <div key={c.label} className="pcat-card">
+                <div className="pcat-label">{c.label}</div>
+                <div className="pcat-title">{c.title[lang]}</div>
+                <div className="pcat-body">{c.body[lang]}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap", fontFamily: "var(--mono)", fontSize: "12px", color: "var(--dim2)" }}>
+          <span>✦ {lang === "jp" ? "シングルクリックで即読込" : "Single click to load"}</span>
+          <span>✦ {lang === "jp" ? "Factory は ◆ 印" : "Factory marked with ◆"}</span>
+          <span>✦ {lang === "jp" ? "お気に入り ★ トグル" : "★ Favorites toggle"}</span>
+          <span>✦ {lang === "jp" ? "カテゴリ / サブカテゴリ フィルタ" : "Category / subcategory filter"}</span>
+          <span>✦ {lang === "jp" ? "ユーザープリセット保存・削除" : "Save and delete user presets"}</span>
+          <span>✦ {lang === "jp" ? "Init ボタンでシグネチャー Kick を呼び出し" : "Init loads the signature kick"}</span>
+        </div>
+      </div>
+    );
+  }
+
+  function SpectrumSection({ lang }) {
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 06 / {lang === "jp" ? "スペクトラム・アナライザ" : "SPECTRUM ANALYZER"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <><span className="gold-text">480 バンド</span>対数解析。<br />基音表示＋ピークホールド。</>
+            : <><span className="gold-text">480-band</span> log analyzer.<br />Pitch readout + peak hold.</>
+          }
+        </h2>
+        <AnalyzerViz />
+        <div className="freq-ticks">
+          {["20Hz","50","100","200","500","1k","2k","5k","10k","20k"].map(function(f) { return <span key={f}>{f}</span>; })}
+        </div>
+        <div style={{ marginTop: "32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "var(--rule)", border: "1px solid var(--rule)" }}>
+          {[
+            { k: { jp: "バンド数", en: "Bands" }, v: "480 (log-spaced)" },
+            { k: { jp: "カラーグラデーション", en: "Color gradient" }, v: lang === "jp" ? "赤（超低域）→黄→緑→水（高域）" : "Red (sub) → Yellow → Green → Cyan (high)" },
+            { k: { jp: "ピークホールド", en: "Peak hold" }, v: lang === "jp" ? "〜10dB/秒でゆっくり下降" : "Slow decay ~10 dB/sec" },
+            { k: { jp: "基音表示", en: "Fundamental pitch" }, v: lang === "jp" ? "最大バンドの Hz ＋ 音名（例: E1 · 41Hz）" : "Hz + note name of highest band (e.g. E1 · 41Hz)" },
+            { k: { jp: "ホバー", en: "Hover" }, v: lang === "jp" ? "マウス位置の正確な周波数と音名" : "Exact Hz and note name at mouse position" },
+            { k: { jp: "Zoom モード", en: "Zoom mode" }, v: lang === "jp" ? "左上ボタンで全面最大化" : "Top-left button to maximize fullscreen" }
+          ].map(function(r, i) {
+            return (
+              <div key={i} style={{ background: "var(--bg2)", padding: "16px 20px", display: "flex", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "var(--dim2)" }}>{r.k[lang]}</span>
+                <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "var(--ink)", textAlign: "right" }}>{r.v}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function Comparison({ lang }) {
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 07 / {lang === "jp" ? "v1 との比較" : "VS NEXT GEN KICK v1"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>7 ヶ月で、<span className="gold-text">何が変わったか。</span></>
+            : <>What changed in<br /><span className="gold-text">7 months.</span></>
+          }
+        </h2>
+        <div className="compare-row">
+          <div className="compare-cell v1">
+            <div className="compare-label">NEXT GEN KICK v1</div>
+            <ul className="compare-list">
+              <li>{lang === "jp" ? "3レイヤー基本エンジン" : "3-layer basic engine"}</li>
+              <li>{lang === "jp" ? "固定エンベロープ形状" : "Fixed envelope shapes"}</li>
+              <li>{lang === "jp" ? "11 サチュレーションアルゴリズム" : "11 saturation algorithms"}</li>
+              <li>{lang === "jp" ? "基本プリセット構成" : "Basic preset structure"}</li>
+              <li>{lang === "jp" ? "標準スペクトラム表示" : "Standard spectrum display"}</li>
+              <li>{lang === "jp" ? "レイヤー別 FX（基本）" : "Per-layer FX (basic)"}</li>
+            </ul>
+          </div>
+          <div className="compare-cell v2">
+            <div className="compare-label">NEXT GEN KICK 2 — 進化点</div>
+            <ul className="compare-list">
+              <li>{lang === "jp" ? "多点ベジェ・エンベロープエディタ（Amp + Pitch）" : "Multi-point bezier Amp+Pitch envelope editor"}</li>
+              <li>{lang === "jp" ? "22 種エンベロープ形状プリセット + .nge 保存" : "22 envelope shape presets + .nge save/load"}</li>
+              <li>{lang === "jp" ? "FX ラック — 7 エフェクト、ドラッグ並べ替え" : "FX rack — 7 effects, drag-to-reorder"}</li>
+              <li>{lang === "jp" ? "70 ファクトリプリセット（Kick/Snare/Clap/Tom/Bass/Hat/SFX）" : "70 factory presets across all categories"}</li>
+              <li>{lang === "jp" ? "480 バンドアナライザ + 基音表示 + Zoom" : "480-band analyzer + fundamental pitch readout + Zoom"}</li>
+              <li>{lang === "jp" ? "Sub Bypass・Align・Random 機能追加" : "Sub Bypass, Align, Random functions added"}</li>
+              <li>{lang === "jp" ? "レイヤー別 WAV ドラッグ書き出し" : "Per-layer WAV drag-export to DAW"}</li>
+              <li>{lang === "jp" ? "AI 開発 7 ヶ月分のノウハウが全て入っている" : "7 months of AI-assisted development knowhow — all of it"}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Specs({ lang }) {
+    var sys = [
+      { k: "OS", v: "Windows 10 / 11 (64-bit)" },
+      { k: "FORMAT", v: "VST3 (64-bit)" },
+      { k: "CPU", v: "AVX2 required (Intel 2013+ / Ryzen)" },
+      { k: "HOST", v: "Ableton Live (verified)" },
+      { k: "LICENSE", v: "AGPLv3 — Free" },
+      { k: "VERSION", v: "1.0.0" }
+    ];
+    var dsp = [
+      { k: lang === "jp" ? "合成エンジン" : "Synthesis", v: "3-Layer Pure Synthesis (Attack/Body/Sub)" },
+      { k: lang === "jp" ? "ファクトリプリセット" : "Factory Presets", v: "70" },
+      { k: lang === "jp" ? "エンベロープ" : "Envelopes", v: "Amp + Pitch × 3 layers (multi-point bezier)" },
+      { k: lang === "jp" ? "FX スロット" : "FX per route", v: "7 effect types, drag-reorderable" },
+      { k: lang === "jp" ? "アナライザ" : "Spectrum Analyzer", v: "480-band log" },
+      { k: lang === "jp" ? "レイテンシ" : "Latency", v: "Zero (0 samples reported to host)" },
+      { k: lang === "jp" ? "マルチインスタンス" : "Multi-instance", v: lang === "jp" ? "完全独立・安定" : "Fully independent, stable" },
+      { k: "Thread model", v: "Lock-free, zero alloc on audio thread" }
+    ];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 08 / {lang === "jp" ? "仕様" : "SPECIFICATIONS"}</div>
+        <h2 className="section-h">{lang === "jp" ? "動作環境 & 技術仕様" : "System Requirements & Tech Specs"}</h2>
+        <div className="specs-grid">
+          <div>
+            <div className="spec-group"><h3>{lang === "jp" ? "システム要件" : "System Requirements"}</h3>
+              {sys.map(function(r) {
+                return <div key={r.k} className="spec-row"><span className="spec-k">{r.k}</span><span className="spec-v">{r.v}</span></div>;
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="spec-group"><h3>{lang === "jp" ? "DSP / エンジン" : "DSP / Engine"}</h3>
+              {dsp.map(function(r) {
+                return <div key={r.k} className="spec-row"><span className="spec-k">{r.k}</span><span className="spec-v">{r.v}</span></div>;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function CTA({ lang }) {
+    return (
+      <div className="cta-section">
+        <div className="cta-inner">
+          <div className="cta-badge">⏳ COMING SOON</div>
+          <h2 className="cta-title">
+            {lang === "jp"
+              ? <><span style={{ color: "var(--gold)" }}>最強の</span>キックシンセ。<br />もうすぐ公開。</>
+              : <>The <span style={{ color: "var(--gold)" }}>ultimate</span> kick.<br />Coming soon.</>
+            }
+          </h2>
+          <p className="cta-sub">
+            {lang === "jp"
+              ? "GitHub をウォッチするか X をフォローして、リリースをいち早くキャッチしてください。NEXT GEN KICK 2 は完全無料・オープンソースです。"
+              : "Watch the GitHub repo or follow on X to be first when it drops. NEXT GEN KICK 2 is completely free and open-source."}
+          </p>
+          <div className="cta-links">
+            <a href="https://github.com/OTODESK4193/NextGenKick2" target="_blank" rel="noreferrer" className="btn-gh">
+              GitHub — OTODESK4193/NextGenKick2 ↗
+            </a>
+            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-gh">
+              Releases ↗
+            </a>
+          </div>
+          <p className="cta-follow">
+            {lang === "jp" ? "フォローして最初に知る ——  " : "Follow to know first —— "}
+            <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">X @kijyoumusic</a>
+            {"  /  "}
+            <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">note</a>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  function PageFooter({ lang }) {
+    return (
+      <footer className="page-footer">
+        <span className="footer-brand">OTODESK © 2026 — AGPLv3</span>
+        <a href="index.html" className="footer-back">← {lang === "jp" ? "全プラグイン一覧" : "All Plugins"}</a>
+      </footer>
+    );
+  }
+
+  function App() {
+    var [lang, toggle] = useLang();
+    return (
+      <React.Fragment>
+        <Nav lang={lang} toggle={toggle} />
+        <Hero lang={lang} />
+        <Engine lang={lang} />
+        <Screenshots lang={lang} />
+        <FXRack lang={lang} />
+        <EnvelopeSection lang={lang} />
+        <PresetBrowser lang={lang} />
+        <SpectrumSection lang={lang} />
+        <Comparison lang={lang} />
+        <Specs lang={lang} />
+        <CTA lang={lang} />
+        <PageFooter lang={lang} />
+      </React.Fragment>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+</script>
+</body>
+</html>

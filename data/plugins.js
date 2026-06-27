@@ -442,6 +442,41 @@ window.PLUGINS = [
     accent: "#ffb347"
   },
   {
+    id: "next-gen-kick-2",
+    num: "15",
+    name: "NEXT GEN KICK 2",
+    category: { en: "Professional Kick & Percussion Synthesizer", jp: "プロフェッショナル・キック＆パーカッション・シンセ" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "1.0.0",
+    status: "Coming Soon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "next-gen-kick-2.html",
+    screenshot: "screenshots/NextGenKick2Main.jpg",
+    tagline: {
+      en: "The ultimate kick synthesizer. 7 months of AI-driven mastery, distilled.",
+      jp: "最強のキックシンセ降臨。AI との対話 7 ヶ月分のノウハウを全て注ぎ込んだ最高傑作。"
+    },
+    description: {
+      en: "The ultimate evolution of NEXT GEN KICK — seven months after the original, every lesson from AI-assisted development has been distilled into one masterpiece instrument. A three-layer synthesis engine (Attack / Body / Sub), 70 factory presets, multi-point bezier envelope editor, per-layer FX rack with 10-algorithm ADAA saturation, and a 480-band spectrum analyzer with fundamental-pitch readout. Everything you need to design any kick you can imagine, at zero latency.",
+      jp: "NEXT GEN KICK から 7 ヶ月。AI との対話による開発で積み上げてきた全てのノウハウを一本に注ぎ込んだ、OTODESK の最高傑作。3 層合成エンジン（Attack ／ Body ／ Sub）、70 ファクトリプリセット、多点ベジェ・エンベロープエディタ、10 アルゴリズム ADAA サチュレーション搭載のレイヤー別 FX ラック、480 バンド・スペクトラム・アナライザ——頭の中にあるキックを、全てゼロレイテンシで形にできる。"
+    },
+    features: [
+      { en: "3-layer pure synthesis engine — Attack (click/transient) · Body (tone/punch) · Sub (low-end weight)", jp: "3 層ピュア合成エンジン — Attack（クリック）・Body（音色／パンチ）・Sub（低域）" },
+      { en: "70 factory presets — Kick / Snare / Clap / Tom / Bass / Hat / Special FX", jp: "70 ファクトリプリセット — Kick ／ Snare ／ Clap ／ Tom ／ Bass ／ Hat ／ Special FX" },
+      { en: "Multi-point envelope editor — Amp & Pitch per layer, bezier curves, 11 Amp + 11 Pitch shape presets", jp: "多点エンベロープエディタ — レイヤーごと Amp ＋ Pitch、ベジェ曲線、形状プリセット 22 種" },
+      { en: "Per-layer FX rack — ADAA Saturation (10 algorithms), OTT Multiband, Glue Compressor, Limiter, Transient Shaper, Noise", jp: "レイヤー別 FX ラック — ADAA サチュレーション 10 種、OTT、Glue、Limiter、Transient Shaper、Noise" },
+      { en: "480-band log spectrum analyzer — peak-hold, hover readout, fundamental-pitch display, maximize", jp: "480 バンド対数スペクトラム・アナライザ — ピークホールド、ホバー表示、基音表示、全面最大化" },
+      { en: "Preset browser — Factory + User, category/subcategory filter, favorites, search, save/load", jp: "プリセットブラウザ — Factory＋User、カテゴリフィルタ、お気に入り、検索、保存／読込" },
+      { en: "Per-layer WAV drag & drop export straight into DAW", jp: "レイヤー別 WAV ドラッグ＆ドロップ — DAW タイムラインへ直接書き出し" },
+      { en: "Zero-latency · velocity-sensitive · multi-instance safe", jp: "ゼロレイテンシ ・ ベロシティ対応 ・ マルチインスタンス安全" }
+    ],
+    repo: "https://github.com/OTODESK4193/NextGenKick2",
+    accent: "#ffd166"
+  },
+  {
     id: "anatomy",
     num: "14",
     name: "ANATOMY",
