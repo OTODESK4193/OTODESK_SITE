@@ -63,7 +63,7 @@ function Hero({ lang }) {
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 15</span>
+            <span>WORKS — 17</span>
           </div>
         </div>
 
@@ -113,11 +113,11 @@ function IndexList({ lang, plugins, onSelect }) {
     <section id="index" className="section index-section">
       <div className="section-head">
         <Reveal>
-          <div className="eyebrow">— {C.sections.index[lang]} / 13</div>
+          <div className="eyebrow">— {C.sections.index[lang]} / 17</div>
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="section-title">
-            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>13</span>個の<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Thirteen plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>17</span>個の<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Thirteen plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </Reveal>
       </div>
@@ -397,8 +397,8 @@ function About({ lang }) {
             </div>
             <div className="note-card-desc">
               {lang === "jp" ?
-              "素人が AI と二人三脚で 12 個のプラグインと公式サイトを作るまでの全記録。" :
-              "A self-taught hobbyist, AI, and 12 plugins — the complete making-of."}
+              "素人が AI と二人三脚で 17 個のプラグインと公式サイトを作るまでの全記録。" :
+              "A self-taught hobbyist, AI, and 17 plugins — the complete making-of."}
             </div>
             <div className="note-card-go">{lang === "jp" ? "記事を読む" : "Read the article"} <span className="arrow">↗</span></div>
           </a>
@@ -703,20 +703,19 @@ function NewsSection({ lang }) {
   },
   {
     id: "lowcut-police",
-    badge: { jp: "VST3 · Coming Soon", en: "VST3 · Coming Soon" },
-    date: "2026.06.21",
-    title: { jp: "ローカット警察は怖くない！！", en: "LowCut Police is coming." },
-    sub: { jp: "LowCutPolice\nもうローカットを恐れる必要はありません", en: "LowCut Police — Zero-Phase IIR Highpass + Step Servo Control" },
+    badge: { jp: "VST3 · 7/4 リリース！", en: "VST3 · RELEASED 7/4" },
+    date: "2026.07.04",
+    title: { jp: "ローカット警察は怖くない！！", en: "LowCut Police — Released." },
+    sub: { jp: "LowCut Police — ミニマムフェーズ IIR ハイパス＋超高解像度アナライザー（1Hz〜）", en: "LowCut Police — Minimum-Phase IIR Highpass + Ultra-High-Res Analyzer" },
     excerpt: {
-      jp: "低域を切りすぎて信号が無くなることはもうない。ゼロフェーズ IIR ハイパスと内蔵サーボで、完全な周波数制御と瞬時フェーズコヒーレンスを実現します。",
-      en: "Stop losing your lows. Zero-phase IIR highpass with built-in servo keeps perfect frequency control and instant phase coherence."
+      jp: "本日 7/4 リリース！動画も公開。ミニマムフェーズ IIR ハイパスと 1Hz まで表示できる超高解像度アナライザーで、低域の問題を可視化して精確にクリーンアップ。着色なし、アーティファクトなし、完全無料。",
+      en: "Released today 7/4! Video now live. Minimum-phase IIR highpass + ultra-high-resolution analyzer down to 1 Hz — visualize low-end problems and clean them up with surgical precision. No coloration, no artifacts, completely free."
     },
-    img: "uploads/LowCutPolice.jpg",
-    url: "#",
+    img: "screenshots/LowCutPolice.jpg",
+    url: "lowcut-police.html",
     accent: "#ff6b4a",
     isNew: true,
-    comingSoon: true,
-    hideLink: true
+    comingSoon: false
   },
   {
     id: "neoto-pre-update",
@@ -862,8 +861,8 @@ function PluginGallery({ lang }) {
           <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u5168\u4f5c\u54c1 / " + plugins.length : "ALL WORKS / " + plugins.length}</div>
           <h2 className="section-title">
             {lang === "jp" ?
-            <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>15</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</> :
-            <>Fifteen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>17</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</> :
+            <>Seventeen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </div>
         <div className="pgallery-grid">

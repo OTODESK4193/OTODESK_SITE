@@ -510,6 +510,41 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/ANATOMY",
     accent: "#c084fc"
+  },
+  {
+    id: "lowcut-police",
+    num: "16",
+    name: "LowCut Police",
+    category: { en: "Minimum-Phase IIR Highpass + Ultra-High-Res Analyzer", jp: "ミニマムフェーズ IIR ハイパス＋超高解像度アナライザー" },
+    type: "Effect",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "1.0.0",
+    status: "Released",
+    comingSoon: false,
+    featured: false,
+    featureUrl: "lowcut-police.html",
+    downloadUrl: "https://github.com/OTODESK4193/HighPrecisionEQ/releases/tag/V1.0.0",
+    sourceUrl: "https://github.com/OTODESK4193/HighPrecisionEQ",
+    screenshot: "screenshots/LowCutPolice.jpg",
+    tagline: {
+      en: "Low-cut without fear. Zero-phase, zero compromise.",
+      jp: "もうローカットを恐れる必要はない。ゼロフェーズ、ゼロ妥協。"
+    },
+    description: {
+      en: "Stop losing your lows. LowCut Police is a zero-phase IIR highpass filter with built-in step servo control, delivering perfect frequency precision and instant phase coherence. Surgical low-end cleanup without coloration or unwanted artifacts — free, open-source, and precision-engineered.",
+      jp: "低域を切りすぎることはもうない。ゼロフェーズ IIR ハイパスと内蔵ステップサーボで、完全な周波数制御と瞬時フェーズコヒーレンスを実現。着色なし、アーティファクトなし、外科的な低域整理を無料で。"
+    },
+    features: [
+      { en: "Zero-phase IIR highpass — no phase distortion, no smearing", jp: "ゼロフェーズ IIR ハイパス — 位相歪みなし、スメアリングなし" },
+      { en: "Built-in step servo control — instant frequency precision", jp: "内蔵ステップサーボ制御 — 瞬時の周波数精度" },
+      { en: "Perfect phase coherence — safe for parallel processing", jp: "完全なフェーズコヒーレンス — パラレル処理でも安全" },
+      { en: "Surgical low-end cleanup without coloration", jp: "着色なしの外科的な低域整理" },
+      { en: "Zero latency · lightweight CPU footprint", jp: "ゼロレイテンシ・軽量CPU負荷" },
+      { en: "Free & open-source (AGPLv3)", jp: "無料＆オープンソース（AGPLv3）" }
+    ],
+    repo: "https://github.com/OTODESK4193/HighPrecisionEQ",
+    accent: "#ff6b4a"
   }
 ];
 
@@ -520,8 +555,8 @@ window.COPY = {
     jp: "物足りないなら、自分で作る。"
   },
   heroSub: {
-    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 15 acoustic tools. Windows · Ableton Live.",
-    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。15個の音響道具。Windows ・ Ableton Live 専用。"
+    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 17 acoustic tools. Windows · Ableton Live.",
+    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。17個の音響道具。Windows ・ Ableton Live 専用。"
   },
   compatNote: {
     en: "Windows / VST3 only · Built and tested for Ableton Live · Other DAWs unverified · macOS / AU not supported",
