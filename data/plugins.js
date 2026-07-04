@@ -112,30 +112,31 @@ window.PLUGINS = [
     id: "basssynth",
     num: "03",
     name: "BassSynth",
-    category: { en: "Next-Gen Wavetable Bass Synthesizer", jp: "次世代ウェーブテーブル・ベース・シンセ" },
+    category: { en: "Next-Gen Wavetable Bass Synthesizer — Polyphonic", jp: "次世代ウェーブテーブル・ベース・シンセ — ポリフォニック進化版" },
     type: "Instrument",
     year: "2026",
-    version: "1.0",
-    status: "Released",
+    version: "1.2.0",
+    status: "Coming Soon",
+    comingSoon: true,
+    featureUrl: "basssynth-1-2-0.html",
+    screenshot: "screenshots/basssynth-1-2-0-main.png",
     tagline: {
-      en: "Crushing low end meets crystalline top textures.",
-      jp: "圧倒的な低域と、結晶のような高域のテクスチャ。"
+      en: "Crushing low end meets polyphonic textures. Re-engineered.",
+      jp: "圧倒的な低域が、ポリフォニックな質感と出会う。再構築されたベースシンセ。"
     },
     description: {
-      en: "A next-generation wavetable bass synthesizer built in C++ and JUCE for modern electronic music producers. Combines crushing low end with crystal-clear top textures in an intuitive Ableton-style dark UI.",
-      jp: "C++ と JUCE で構築された次世代ウェーブテーブル・ベース・シンセ。圧倒的な低域とクリスタルクリアな高域を、直感的な Ableton スタイルのダーク UI で操作できます。"
+      en: "A massive evolutionary leap for BassSynth. Now supporting up to 24-voice polyphony for rich chords and pads, an advanced modulation matrix with performance-oriented sources (Velocity, threshold gate, trigger random), smoothing controls to eliminate clicks, a real-time mathematical formula editor for custom wavetable generation, a swappable 3-slot FX routing engine (Chorus, Delay, Reverb), and hardcoded factory assets for portable zero-dependency speed. Zero-latency and optimized.",
+      jp: "BassSynth の巨大な進化。最大 24 ボイスのポリフォニック対応により豊かな和音やパッド演奏が可能となり、打鍵速度やランダム等の拡張モジュレーション・マトリクス、クリックノイズを防ぐスムージング、数式からウェーブテーブルをリアルタイム生成する数式エディタ、順番を入れ替え可能な3系統の空間エフェクト（Chorus / Delay / Reverb）、バイナリ埋め込みによる高速なアセット読み込みを搭載。ゼロレイテンシで圧倒的な低音を。"
     },
     features: [
-      { en: "10 factory morphing tables (64-frame, zero-latency)", jp: "10 種ファクトリーモーフィングテーブル (64 フレーム / ゼロレイテンシ)" },
-      { en: "Custom .wav wavetable import w/ band-limited interp", jp: "カスタム .wav インポート (帯域制限補間)" },
-      { en: "13 spectral morph modes across A / B / C slots", jp: "A / B / C スロット × 13 モーフモード" },
-      { en: "Color IR Engine — auto chord-learning convolution", jp: "Color IR エンジン — MIDI コード自動学習 → IR 生成" },
-      { en: "Sparkle Arp — harmony-aware high-freq arpeggiator", jp: "Sparkle Arp — 学習コードに連動する高周波アルペジエータ" },
-      { en: "Dual state-variable filter (serial / parallel)", jp: "デュアル状態可変フィルタ (直列／並列)" },
-      { en: "MSEG × 2 + 3 LFO + 3 mod envelopes", jp: "MSEG × 2 ＋ LFO × 3 ＋ Mod Env × 3" },
-      { en: "10-slot modulation matrix", jp: "10 スロット・モジュレーション・マトリクス" },
-      { en: "True OTT + Soothe-style resonance suppressor", jp: "真の OTT ＋ Soothe スタイル共振抑制" },
-      { en: "Zero-latency brickwall peak limiter", jp: "ゼロレイテンシ・ブリックウォール・リミッタ" }
+      { en: "24-voice polyphony support — rich chords & pads w/ dynamic GUI slider", jp: "最大 24 ボイスのポリフォニック対応 — 和音・パッド演奏とボイス数制御スライダー" },
+      { en: "Formula-based wavetable generator — math equation editor in real-time", jp: "数式ベースのウェーブテーブル生成 — 数式からリアルタイム波形生成・書き出し" },
+      { en: "3 new performance modulation sources — Velocity, threshold gate, trigger random", jp: "3つの拡張モジュレーションソース — Velocity、閾値ゲート、トリガーランダム" },
+      { en: "Dedicated smoothing time (0.5ms–200ms) & polarity controls per performance source", jp: "パフォーマンスソース専用スムージング（0.5ms〜200ms）＆ 極性切り替え" },
+      { en: "New FX suite & routing editor — Dimension Chorus, Delay, Diffusion Cloud Reverb w/ drag-reorderable slots", jp: "空間系エフェクト＆順序入れ替え — コーラス、ディレイ、リバーブを直感的に並び替え" },
+      { en: "Enhanced modulators — Triangle LFO shape + One-Shot trigger mode", jp: "モジュレータの拡張 — 三角波LFO ＋ 1サイクルで停止するOne-Shotモード" },
+      { en: "29 factory presets & 13 custom wavetables embedded directly in binary", jp: "29ファクトリープリセット ＋ 13波形をバイナリ埋め込み、外部パス依存なし" },
+      { en: "Real-time render optimization — binding parameter displays to active voice", jp: "リアルタイム描画最適化 — アクティブボイスへのパラメータ表示追従" }
     ],
     repo: "https://github.com/OTODESK4193/BassSynth",
     accent: "#00d4ff"

@@ -686,6 +686,22 @@ function NewsSection({ lang }) {
     comingSoon: true
   },
   {
+    id: "basssynth-1-2-0",
+    badge: { jp: "VST3 · Coming Soon", en: "VST3 · Coming Soon" },
+    date: "2026.07",
+    title: { jp: "次世代ウェーブテーブル・ベースシンセが劇的進化！", en: "Next-Gen Wavetable Bass Synth Evolves." },
+    sub: { jp: "BassSynth v1.2.0 — ポリフォニック化 × 数式ウェーブテーブル × エフェクト順変更", en: "BassSynth v1.2.0 — Polyphony × Formula WT × Swappable FX Chain" },
+    excerpt: {
+      jp: "BassSynth の巨大な進化。最大 24 ボイスのポリフォニック対応により豊かな和音やパッド演奏が可能となり、打鍵速度やランダム等の拡張モジュレーション・マトリクス、クリックノイズを防ぐスムージング、数式からウェーブテーブルをリアルタイム生成する数式エディタ、順番を入れ替え可能な3系統の空間エフェクト（Chorus / Delay / Reverb）、バイナリ埋め込みによる高速なアセット読み込みを搭載。ゼロレイテンシで圧倒的な低音を。",
+      en: "A massive evolutionary leap for BassSynth. Now supporting up to 24-voice polyphony for rich chords and pads, an advanced modulation matrix with performance-oriented sources (Velocity, threshold gate, trigger random), smoothing controls to eliminate clicks, a real-time mathematical formula editor for custom wavetable generation, a swappable 3-slot FX routing engine (Chorus, Delay, Reverb), and hardcoded factory assets for portable zero-dependency speed. Zero-latency and optimized."
+    },
+    img: "screenshots/basssynth-1-2-0.jpg",
+    url: "basssynth-1-2-0.html",
+    accent: "#00d4ff",
+    isNew: true,
+    comingSoon: true
+  },
+  {
     id: "anatomy",
     badge: { jp: "VST3 · 6/21公開", en: "VST3 · 6/21 RELEASED" },
     date: "2026.06.21",

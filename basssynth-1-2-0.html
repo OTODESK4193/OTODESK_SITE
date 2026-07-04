@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BassSynth 1.2.0 — OTODESK | Next-Gen Wavetable Bass Synthesizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050608;
+      --bg2: #0b0c10;
+      --bg3: #0f1117;
+      --ink: #e2e8f0;
+      --dim: #5a6578;
+      --dim2: #94a3b8;
+      --rule: rgba(255,255,255,0.06);
+      --cyan: #00d4ff;
+      --cyan2: #38bdf8;
+      --orange: #f97316;
+      --accent: #00d4ff;
+      --mono: "Geist Mono", monospace;
+      --sans: "Geist", system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,6,8,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); text-decoration: none; }
+    .nav-logo span { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); letter-spacing: 0.05em; }
+    .nav-back:hover { color: var(--ink); }
+    .lang-btn { background: none; border: 1px solid var(--rule); color: var(--dim2); font-family: var(--mono); font-size: 11px; padding: 5px 10px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; }
+    .lang-btn.active { border-color: var(--cyan); color: var(--cyan); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 88px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.22; filter: saturate(1.1); }
+    .hero-bg-grad { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,6,8,0.3) 0%, rgba(5,6,8,0.5) 35%, rgba(5,6,8,0.95) 78%, var(--bg) 100%); }
+    .hero-content { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 48px; width: 100%; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--cyan); margin-bottom: 32px; padding: 7px 16px; border: 1px solid rgba(0,212,255,0.3); background: rgba(0,212,255,0.06); }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+    .hero-title { font-size: clamp(52px, 7.5vw, 96px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 28px; }
+    .hero-title .cyan { color: var(--cyan); }
+    .hero-title .orange { color: var(--orange); }
+    .hero-sub { font-size: 17px; color: var(--dim2); max-width: 560px; line-height: 1.75; margin-bottom: 20px; font-weight: 300; }
+    .hero-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; margin-top: 36px; }
+    .btn-soon { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid rgba(0,212,255,0.35); color: var(--cyan); background: rgba(0,212,255,0.07); cursor: default; }
+    .btn-gh { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; border: 1px solid var(--rule); color: var(--dim2); }
+    .btn-gh:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-meta { display: flex; gap: 36px; flex-wrap: wrap; }
+    .hero-meta-item { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
+    .hero-meta-item span { color: var(--ink); margin-left: 6px; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 96px 48px; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--dim2); margin-bottom: 18px; }
+    .section-h { font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 52px; }
+    .cyan-text { color: var(--cyan); }
+    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1100px; margin: 0 auto; }
+
+    /* FEATURE CARDS */
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 48px; }
+    .feature-card { padding: 36px 24px; position: relative; overflow: hidden; background: var(--bg2); border: 1px solid var(--rule); }
+    .feature-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .feature-card.poly::before { background: var(--cyan); }
+    .feature-card.formula::before { background: #10b981; }
+    .feature-card.mod::before { background: #8b5cf6; }
+    .feature-card.fx::before { background: #ec4899; }
+    .feature-card.preset::before { background: #f59e0b; }
+    .feature-card.opt::before { background: #3b82f6; }
+    
+    .feature-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; margin-bottom: 14px; }
+    .feature-card.poly .feature-label { color: var(--cyan); }
+    .feature-card.formula .feature-label { color: #10b981; }
+    .feature-card.mod .feature-label { color: #8b5cf6; }
+    .feature-card.fx .feature-label { color: #ec4899; }
+    .feature-card.preset .feature-label { color: #f59e0b; }
+    .feature-card.opt .feature-label { color: #3b82f6; }
+    
+    .feature-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .feature-body { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+
+    /* SIGNAL CHAIN */
+    .chain-box { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; padding: 28px 32px; background: var(--bg2); border: 1px solid var(--rule); font-family: var(--mono); font-size: 12px; overflow-x: auto; }
+    .chain-node { padding: 10px 16px; border: 1px solid var(--rule); color: var(--dim2); white-space: nowrap; }
+    .chain-node.active { border-color: rgba(0,212,255,0.4); color: var(--cyan); background: rgba(0,212,255,0.06); }
+    .chain-arrow { color: var(--dim); padding: 0 8px; font-size: 14px; }
+
+    /* SCREENSHOTS */
+    .shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .shot-wrap { position: relative; overflow: hidden; background: var(--bg2); border: 1px solid var(--rule); }
+    .shot-wrap img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .shot-wrap:hover img { transform: scale(1.02); }
+    .shot-cap { padding: 14px 18px; background: var(--bg2); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+    .shot-cap-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; }
+    .shot-cap-desc { font-family: var(--mono); font-size: 10px; color: var(--dim2); }
+
+    /* FX GRID */
+    .fx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--rule); border: 1px solid var(--rule); }
+    .fx-card { background: var(--bg2); padding: 28px 22px; }
+    .fx-num { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.12em; margin-bottom: 10px; }
+    .fx-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .fx-cat { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 12px; }
+    .fx-body { font-size: 13px; color: var(--dim2); line-height: 1.65; }
+    .fx-params { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+    .fx-param { font-family: var(--mono); font-size: 10px; color: var(--dim2); padding: 3px 8px; border: 1px solid var(--rule); }
+
+    /* MODULATOR MATRIX */
+    .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .matrix-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px 28px; }
+    .matrix-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .matrix-card-sub { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 16px; }
+    .matrix-card-body { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+    .mods-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .mod-chip { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--rule); color: var(--dim2); letter-spacing: 0.04em; }
+    .mod-chip.cyan { border-color: rgba(0,212,255,0.35); color: var(--cyan); background: rgba(0,212,255,0.05); }
+
+    /* SPECS */
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .spec-group h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--dim); margin-bottom: 20px; text-transform: uppercase; }
+    .spec-row { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); gap: 16px; }
+    .spec-k { font-family: var(--mono); font-size: 12px; color: var(--dim2); }
+    .spec-v { font-family: var(--mono); font-size: 12px; color: var(--ink); text-align: right; }
+    .spec-v.soon { color: var(--cyan); }
+
+    /* CTA */
+    .cta-section { background: var(--bg2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 108px 48px; text-align: center; }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-badge { display: inline-block; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--cyan); padding: 10px 28px; border: 1px solid rgba(0,212,255,0.35); background: rgba(0,212,255,0.06); margin-bottom: 32px; }
+    .cta-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .cta-sub { font-size: 16px; color: var(--dim2); line-height: 1.75; margin-bottom: 44px; }
+    .cta-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-follow { margin-top: 36px; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .cta-follow a { color: var(--dim2); border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+    .cta-follow a:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    /* FOOTER */
+    .page-footer { padding: 44px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); }
+    .footer-brand { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .footer-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); }
+    .footer-back:hover { color: var(--ink); }
+
+    /* COMPARISON */
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 48px; }
+    .compare-cell { background: var(--bg2); padding: 28px 24px; }
+    .compare-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .compare-cell.v1 .compare-label { color: var(--dim2); }
+    .compare-cell.v2 .compare-label { color: var(--cyan); }
+    .compare-list { list-style: none; }
+    .compare-list li { font-size: 13px; color: var(--dim2); line-height: 1.7; padding: 4px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 10px; }
+    .compare-list li::before { content: "—"; color: var(--dim); flex-shrink: 0; }
+    .compare-cell.v2 .compare-list li { color: var(--ink); }
+    .compare-cell.v2 .compare-list li::before { content: "✦"; color: var(--cyan); }
+
+    @media (max-width: 800px) {
+      .nav { padding: 16px 20px; }
+      .hero-content, .section { padding-left: 20px; padding-right: 20px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .shot-grid { grid-template-columns: 1fr; }
+      .fx-grid { grid-template-columns: 1fr; }
+      .matrix-grid, .specs-grid, .compare-row { grid-template-columns: 1fr; }
+      .page-footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel">
+  const LANG_KEY = "otodesk_lang";
+  
+  function useLang() {
+    const [lang, setLang] = React.useState(() => localStorage.getItem(LANG_KEY) || "jp");
+    const toggle = () => {
+      const next = lang === "jp" ? "en" : "jp";
+      localStorage.setItem(LANG_KEY, next);
+      setLang(next);
+    };
+    return [lang, toggle];
+  }
+
+  function Nav({ lang, toggle }) {
+    return (
+      <nav className="nav">
+        <a href="index.html" className="nav-logo">OTODES<span>K</span></a>
+        <div className="nav-right">
+          <a href="index.html" className="nav-back">← {lang === "jp" ? "一覧に戻る" : "Back to index"}</a>
+          <button className={"lang-btn" + (lang === "jp" ? " active" : "")} onClick={toggle}>JP</button>
+          <button className={"lang-btn" + (lang === "en" ? " active" : "")} onClick={toggle}>EN</button>
+        </div>
+      </nav>
+    );
+  }
+
+  function Hero({ lang }) {
+    return (
+      <section className="hero">
+        <div className="hero-bg">
+          <img src="screenshots/basssynth-1-2-0-main.png" alt="BassSynth 1.2.0 UI" />
+          <div className="hero-bg-grad"></div>
+        </div>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="hero-badge-dot"></span>
+            {lang === "jp" ? "VST3 · COMING SOON" : "VST3 · COMING SOON"}
+          </div>
+          <div className="hero-eyebrow">BassSynth v1.2.0</div>
+          <h1 className="hero-title">
+            {lang === "jp"
+              ? <><span className="cyan">重低音が、</span><br />ポリフォニックに覚醒する。</>
+              : <><span className="cyan">Crushing low end.</span><br />Awakens in polyphony.</>
+            }
+          </h1>
+          <p className="hero-sub">
+            {lang === "jp"
+              ? "圧倒的なローエンドを誇るウェーブテーブル・ベースシンセが劇的進化。24ボイス・ポリフォニック対応、リアルタイム数式ウェーブテーブルエディタ、順序入れ替え可能な新エフェクトスイートを搭載。"
+              : "The definitive open-source wavetable bass synthesizer evolves. Features 24-voice polyphony, real-time math-equation WT generation, and a flexible swappable FX routing matrix."}
+          </p>
+          <div className="hero-cta-row">
+            <span className="btn-soon">⏳ {lang === "jp" ? "近日公開予定！" : "Coming Soon"}</span>
+            <a href="https://github.com/OTODESK4193/BassSynth" target="_blank" rel="noreferrer" className="btn-gh">
+              GitHub {lang === "jp" ? "リポジトリ" : "Repository"} ↗
+            </a>
+          </div>
+          <div className="hero-meta">
+            <div className="hero-meta-item">FORMAT <span>VST3</span></div>
+            <div className="hero-meta-item">PLATFORM <span>Windows 64-bit</span></div>
+            <div className="hero-meta-item">HOST <span>Ableton Live (Verified)</span></div>
+            <div className="hero-meta-item">LICENSE <span>AGPLv3 — Free</span></div>
+            <div className="hero-meta-item">VERSION <span>v1.2.0</span></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Engine({ lang }) {
+    var features = [
+      {
+        type: "poly",
+        label: "VOICE ENGINE",
+        title: { jp: "24ボイス・ポリフォニック対応", en: "24-Voice Polyphony" },
+        body: { jp: "モノフォニック専用だったボイスエンジンをポリフォニックへ再構築。UIスライダーから最大24ボイスまで動的に調整可能になり、広がりのある重厚なコードやパッド演奏に対応。", en: "Rebuilt the voice engine to support up to 24 voices. Rich chords, moving pads, and wide polyphonic layers are now fully adjustable in real-time." }
+      },
+      {
+        type: "formula",
+        label: "WAVETABLE GENERATION",
+        title: { jp: "数式ベース波形ジェネレータ", en: "Equation Wave Generator" },
+        body: { jp: "数式（Sine, Cos など）を入力してカスタム・ウェーブテーブルをリアルタイム生成する数式エディタパネルを統合。生成波形はそのままプレビューでき、.wav での書き出しも可能。", en: "Integrated formula editor to generate custom wavetable shapes using math equations in real-time. Export tables to .wav or preview instantly." }
+      },
+      {
+        type: "mod",
+        label: "MODULATION MATRIX",
+        title: { jp: "3つの拡張モジュレーション源", en: "Extended Modulation Sources" },
+        body: { jp: "Velocity（打鍵速度）、Vel > N（ベロシティ閾値ゲート）、Trig.Ran（トリガー毎ランダム）を追加。全ソースにクリック防止スムージング（0.5ms〜200ms）と極性切替を装備。", en: "Adds Velocity, Vel > N threshold gate, and per-trigger Trig.Ran Modulators. All feature dedicated lag smoothing (0.5ms–200ms) and polarity switches." }
+      },
+      {
+        type: "fx",
+        label: "FX ROUTING",
+        title: { jp: "新空間エフェクト＆順序変更", en: "Swappable FX Suite" },
+        body: { jp: "高品質なディメンションコーラス、ステレオディレイ、ディフュージョン・クラウド・リバーブを新搭載。スロット（1, 2, 3）をドラッグして接続順をリアルタイムに入れ替え可能。", en: "High-quality Dimension Chorus, Stereo Delay, and Diffusion Cloud Reverb. Dynamic routing editor lets you drag and swap FX chain order on the fly." }
+      },
+      {
+        type: "preset",
+        label: "PORTABILITY",
+        title: { jp: "バイナリ埋め込みアセット", en: "Hardcoded Factory Assets" },
+        body: { jp: "29種のファクトリープリセットと13種のカスタムウェーブテーブルを直接バイナリに埋め込み。パス依存を無くし、どこにでも持ち運べるポータビリティと高速起動を実現。", en: "Embedded 29 factory presets and 13 custom wavetables directly in the plugin binary, eliminating external path dependency issues." }
+      },
+      {
+        type: "opt",
+        label: "OPTIMIZATION",
+        title: { jp: "アクティブボイス描画の最適化", en: "Real-Time Render Opt" },
+        body: { jp: "波形描画ロジックを直近のアクティブボイスへ自動バインドするよう最適化。描画ラグやフリーズ、スレッド競合を防ぎ、スムーズなビジュアルフィードバックを提供します。", en: "Refactored UI waveform render logic to bind parameters to the latest active voice. Resolves display lags and prevents thread contention." }
+      }
+    ];
+    return (
+      <div className="section">
+        <div className="section-eyebrow">— 01 / {lang === "jp" ? "主な新機能" : "KEY FEATURES"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <><span className="cyan-text">極限の進化。</span>強力な新機能群。</>
+            : <>Extreme evolution.<br /><span className="cyan-text">Powerhouse features.</span></>
+          }
+        </h2>
+        <div className="feature-grid">
+          {features.map(function(f) {
+            return (
+              <div key={f.type} className={"feature-card " + f.type}>
+                <div className="feature-label">{f.label}</div>
+                <div className="feature-title">{f.title[lang]}</div>
+                <div className="feature-body">{f.body[lang]}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="chain-box">
+          <span className="chain-node active">OSC A / B / C</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Dual Filter (SVF / Comb)</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Distortion Unit</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node active">{lang === "jp" ? "FX ラック (順序変更可)" : "FX Rack (Drag/Swap)"}</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">True OTT</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node">Soothe-Style Reso Suppressor</span>
+          <span className="chain-arrow">──►</span>
+          <span className="chain-node active">Peak Limiter</span>
+        </div>
+      </div>
+    );
+  }
+
+  function Screenshots({ lang }) {
+    var shots = [
+      { file: "screenshots/basssynth-1-2-0-main.png", label: "MAIN INTERFACE", desc: { jp: "Abletonスタイルの高密度ダークUI。パラメータを一画面に集約", en: "Ableton-style high-density dark UI. All controls in one screen." } },
+      { file: "screenshots/basssynth-1-2-0-sub.png",  label: "SPECIFICATION VIEW", desc: { jp: "Juxtaposing performance matrix and equation settings", en: "Visualizing complex envelope, routing, and preset settings." } }
+    ];
+    return (
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 0 96px" }}>
+        <hr className="divider" style={{ maxWidth: "none", marginBottom: "96px" }} />
+        <div style={{ padding: "0 48px", marginBottom: "36px" }}>
+          <div className="section-eyebrow">— 02 / {lang === "jp" ? "スクリーンショット" : "SCREENSHOTS"}</div>
+          <h2 className="section-h">{lang === "jp" ? "一望できる、触れるUI。" : "Visual interface. Highly tactical."}</h2>
+        </div>
+        <div className="shot-grid" style={{ padding: "0 24px" }}>
+          {shots.map(function(s) {
+            return (
+              <div key={s.label} className="shot-wrap">
+                <img src={s.file} alt={s.label} loading="lazy" />
+                <div className="shot-cap">
+                  <span className="shot-cap-label">{s.label}</span>
+                  <span className="shot-cap-desc">{s.desc[lang]}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function FXSection({ lang }) {
+    var fx = [
+      { n: "01", name: "Dimension Chorus", cat: lang === "jp" ? "コーラス" : "Chorus",
+        body: { jp: "空間の広がりと厚みを付加する3モードディメンションコーラス。低域のコヒーレンスを保ったまま、超高域のテクスチャを大きく広げます。", en: "Adds spatial width and thick textures. Smooth out the top end while maintaining low-end coherence." },
+        params: ["RATE", "DEPTH", "MODE I-III", "MIX"] },
+      { n: "02", name: "Stereo Delay", cat: lang === "jp" ? "ディレイ" : "Delay",
+        body: { jp: "テンポ同期可能、ピンポンモード搭載のステレオディレイ。フィードバックフィルタでリピート音の帯域を制限し、混ざり具合を調整。", en: "Tempo-syncable stereo delay with ping-pong mode. Feedback filtering prevents cluttering the mix." },
+        params: ["TIME L/R", "FEEDBACK", "FILTER (HPF/LPF)", "MIX"] },
+      { n: "03", name: "Diffusion Cloud Reverb", cat: lang === "jp" ? "リバーブ" : "Reverb",
+        body: { jp: "拡散度の高いクラウドアルゴリズムを用いたシンプルリバーブ。低域をすっきりカットした広大でクリアな反響音を生成します。", en: "High-diffusion cloud reverb. Clear space creation with built-in low-cut absorption." },
+        params: ["SIZE", "DECAY", "DAMPING", "PRE-DELAY", "MIX"] }
+    ];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 03 / {lang === "jp" ? "空間エフェクト" : "FX SUITE"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>新空間系エフェクト。<br /><span className="cyan-text">接続順はドラッグで自由自在。</span></>
+            : <>New Spatial FX Suite.<br /><span className="cyan-text">Drag & drop routing order.</span></>
+          }
+        </h2>
+        <div className="fx-grid">
+          {fx.map(function(f) {
+            return (
+              <div key={f.n} className="fx-card">
+                <div className="fx-num">FX {f.n}</div>
+                <div className="fx-name">{f.name}</div>
+                <div className="fx-cat">{f.cat}</div>
+                <div className="fx-body">{f.body[lang]}</div>
+                <div className="fx-params">{f.params.map(function(p) { return <span key={p} className="fx-param">{p}</span>; })}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function ModulationMatrix({ lang }) {
+    var modSources = ["LFO 1", "LFO 2", "LFO 3", "MSEG 1", "MSEG 2", "Amp Envelope", "Filter Envelope", "Mod Env 3", "Velocity (New)", "Vel > N Gate (New)", "Trig.Ran (New)"];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 04 / {lang === "jp" ? "モジュレーション・マトリクス" : "MODULATION POWER"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>パフォーマンスを解き放つ、<br /><span className="cyan-text">11のモジュレーション源。</span></>
+            : <>Performance modulation.<br /><span className="cyan-text">11 rich sources.</span></>
+          }
+        </h2>
+        <div style={{ marginBottom: "24px", fontSize: "14px", color: "var(--dim2)", lineHeight: 1.75 }}>
+          {lang === "jp"
+            ? "10スロットの変調マトリクスは、新しい打鍵ベロシティ、設定可能な閾値ゲート、トリガーごとの完全ランダムをフル装備。変調ごとのスムージング（クリック音排除）や極性（ユニポーラ/バイポーラ）の個別設定が可能。"
+            : "The 10-slot routing matrix integrates note velocity, threshold gates, and per-trigger random modulators. Each performative source is highly customisable with smoothing lag filters (0.5ms–200ms) and polarity switches."}
+        </div>
+        <div className="matrix-grid">
+          <div className="matrix-card">
+            <div className="matrix-card-sub">MODULATION SOURCES — 11 TOTAL</div>
+            <div className="matrix-card-title">{lang === "jp" ? "多彩な変調ソース" : "Modulation Sources"}</div>
+            <div className="matrix-card-body">
+              {lang === "jp"
+                ? "3機のLFO（Triangle波追加）、2つの多点MSEG、3基のエンベロープに加え、ライブパフォーマンスを反映する3つのベロシティ・トリガーソースを自在にルーティング可能。"
+                : "Equipped with 3 LFOs (new Triangle shape), 2 multi-point MSEGs, 3 mod envelopes, and 3 new note velocity-driven sources."}
+            </div>
+            <div className="mods-row">
+              {modSources.map(function(s) { return <span key={s} className={"mod-chip" + (s.includes("New") ? " cyan" : "")}>{s}</span>; })}
+            </div>
+          </div>
+          <div className="matrix-card">
+            <div className="matrix-card-sub">FORMULA WAVETABLE — MATH EDITOR</div>
+            <div className="matrix-card-title">{lang === "jp" ? "数式波形生成エディタ" : "Formula Wave Generator"}</div>
+            <div className="matrix-card-body">
+              {lang === "jp"
+                ? "数式入力で独自のウェーブテーブルをその場でプログラム可能。シンプルな正弦・余弦波の組み合わせから、倍音成分をコントロールした変則波形まで、数学的精度で生成します。"
+                : "Real-time math compiler compiles equations into wavetable frames. Generate simple, complex, or morphing waveforms mathematically with surgical accuracy."}
+            </div>
+            <div className="presets-row" style={{marginTop:"18px", display:"flex", gap:"6px"}}>
+              <span className="mod-chip">Sine Wave</span>
+              <span className="mod-chip">PWM Sweep</span>
+              <span className="mod-chip">Sync Wave</span>
+              <span className="mod-chip">Export .wav</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Comparison({ lang }) {
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 05 / {lang === "jp" ? "v1.0 との比較" : "COMPARED TO BASSYSNTH v1.0"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <>モノフォニックから、<br /><span className="cyan-text">ポリフォニック・モンスターへ。</span></>
+            : <>From Monophonic synth<br /><span className="cyan-text">to Polyphonic Monster.</span></>
+          }
+        </h2>
+        <div className="compare-row">
+          <div className="compare-cell v1">
+            <div className="compare-label">BASSYSNTH v1.0</div>
+            <ul className="compare-list">
+              <li>{lang === "jp" ? "モノフォニック（単音専用）ボイスエンジン" : "Monophonic voice engine"}</li>
+              <li>{lang === "jp" ? "基本的な変調マトリクス（8スロット）" : "Basic 8-slot modulation matrix"}</li>
+              <li>{lang === "jp" ? "外部ファイル読み込みのみのウェーブテーブル" : "Import-only wavetable engine"}</li>
+              <li>{lang === "jp" ? "空間系エフェクトなし（歪み＋OTT＋リミッター）" : "No spatial effects (Distortion/OTT/Limiter only)"}</li>
+              <li>{lang === "jp" ? "外部プリセットパスの依存関係" : "External preset path dependencies"}</li>
+              <li>{lang === "jp" ? "通常のLFO波形（4種）、Retrig/Free" : "4 basic LFO shapes, Retrig/Free"}</li>
+            </ul>
+          </div>
+          <div className="compare-cell v2">
+            <div className="compare-label">BASSYSNTH v1.2.0 — 進化点</div>
+            <ul className="compare-list">
+              <li>{lang === "jp" ? "最大24ボイスのポリフォニック対応" : "Up to 24-voice polyphony support"}</li>
+              <li>{lang === "jp" ? "拡張マトリクス（打鍵速度、閾値、ランダムソース追加）" : "Extended velocity & random mod matrix sources"}</li>
+              <li>{lang === "jp" ? "数式波形ジェネレータ（リアルタイム数式エディタ）" : "Formula-based custom wavetable editor"}</li>
+              <li>{lang === "jp" ? "空間FXスイート（Chorus / Delay / Reverb、順序入替可）" : "Spatial FX chain — Chorus / Delay / Reverb, drag-reorderable"}</li>
+              <li>{lang === "jp" ? "29プリセット＋13ウェーブテーブルをバイナリ埋め込み" : "29 presets + 13 WT shapes embedded directly in binary"}</li>
+              <li>{lang === "jp" ? "Triangle LFO波形追加 ＋ One-Shotトリガーモード" : "Triangle LFO shape + One-Shot trigger mode"}</li>
+              <li>{lang === "jp" ? "アクティブボイス追従の描画バインディング最適化" : "Optimized voice-specific render bind (lag-free)"}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Specs({ lang }) {
+    var sys = [
+      { k: "OS", v: "Windows 10 / 11 (64-bit)" },
+      { k: "FORMAT", v: "VST3 (64-bit)" },
+      { k: "CPU", v: "AVX2 required (Intel 2013+ / Ryzen)" },
+      { k: "HOST", v: "Ableton Live 11 / 12 (verified)" },
+      { k: "LICENSE", v: "AGPLv3 — Free" },
+      { k: "VERSION", v: "1.2.0" }
+    ];
+    var dsp = [
+      { k: lang === "jp" ? "ボイスエンジン" : "Voice Engine", v: "24-voice Polyphonic (w/ GUI voice slider)" },
+      { k: lang === "jp" ? "ウェーブテーブル" : "Wavetable", v: "10 Factory morphing + Custom Import + Formula Generator" },
+      { k: lang === "jp" ? "モジュレーター" : "Modulators", v: "MSEG ×2, LFO ×3, Mod Env ×3, Velocity sources" },
+      { k: lang === "jp" ? "変調マトリクス" : "Mod Matrix", v: "10 slots (w/ lag smoothing & polarity)" },
+      { k: lang === "jp" ? "空間エフェクト" : "Spatial FX", v: "Chorus, Delay, Reverb (drag-reorderable slots)" },
+      { k: lang === "jp" ? "ファクトリコンテンツ" : "Factory Assets", v: "29 presets, 13 custom wavetables (embedded)" },
+      { k: lang === "jp" ? "レイテンシ" : "Latency", v: "Zero (0 samples reported to host)" }
+    ];
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">— 06 / {lang === "jp" ? "技術仕様" : "SPECIFICATIONS"}</div>
+        <h2 className="section-h">{lang === "jp" ? "動作環境 & 技術仕様" : "System Requirements & Tech Specs"}</h2>
+        <div className="specs-grid">
+          <div>
+            <div className="spec-group"><h3>{lang === "jp" ? "システム要件" : "System Requirements"}</h3>
+              {sys.map(function(r) {
+                return <div key={r.k} className="spec-row"><span className="spec-k">{r.k}</span><span className="spec-v">{r.v}</span></div>;
+               })}
+            </div>
+          </div>
+          <div>
+            <div className="spec-group"><h3>{lang === "jp" ? "DSP / エンジン" : "DSP / Engine"}</h3>
+              {dsp.map(function(r) {
+                return <div key={r.k} className="spec-row"><span className="spec-k">{r.k}</span><span className="spec-v">{r.v}</span></div>;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function CTA({ lang }) {
+    return (
+      <div className="cta-section">
+        <div className="cta-inner">
+          <div className="cta-badge">⏳ COMING SOON</div>
+          <h2 className="cta-title">
+            {lang === "jp"
+              ? <><span style={{ color: "var(--cyan)" }}>次世代ベースシンセ。</span><br />近日リリース予定。</>
+              : <>Next-gen bass.<br />Coming very soon.</>
+            }
+          </h2>
+          <p className="cta-sub">
+            {lang === "jp"
+              ? "GitHub でのソースコード公開に向けて、現在ファイナルビルドを調整中。BassSynth v1.2.0 は完全無料・オープンソース (AGPLv3) でリリースされます。"
+              : "Currently adjusting the final build for release on GitHub. BassSynth v1.2.0 will be completely free and open-source."}
+          </p>
+          <div className="cta-links">
+            <a href="https://github.com/OTODESK4193/BassSynth" target="_blank" rel="noreferrer" className="btn-gh">
+              GitHub — OTODESK4193/BassSynth ↗
+            </a>
+          </div>
+          <p className="cta-follow">
+            {lang === "jp" ? "フォローして最初に知る —— " : "Follow to know first —— "}
+            <a href="https://x.com/kijyoumusic" target="_blank" rel="noreferrer">X @kijyoumusic</a>
+            {"  /  "}
+            <a href="https://note.com/pain_modulation" target="_blank" rel="noreferrer">note</a>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  function PageFooter({ lang }) {
+    return (
+      <footer className="page-footer">
+        <span className="footer-brand">OTODESK © 2026 — AGPLv3</span>
+        <a href="index.html" className="footer-back">← {lang === "jp" ? "全プラグイン一覧" : "All Plugins"}</a>
+      </footer>
+    );
+  }
+
+  function App() {
+    const [lang, toggle] = useLang();
+    return (
+      <React.Fragment>
+        <Nav lang={lang} toggle={toggle} />
+        <Hero lang={lang} />
+        <Engine lang={lang} />
+        <Screenshots lang={lang} />
+        <FXSection lang={lang} />
+        <ModulationMatrix lang={lang} />
+        <Comparison lang={lang} />
+        <Specs lang={lang} />
+        <CTA lang={lang} />
+        <PageFooter lang={lang} />
+      </React.Fragment>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+</script>
+</body>
+</html>
