@@ -311,7 +311,7 @@
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot" />
-            {lang === "jp" ? "VST3 · Coming Soon" : "VST3 · Coming Soon"}
+            {lang === "jp" ? "VST3 · RELEASED 7/11" : "VST3 · RELEASED 7/11"}
           </div>
           <div className="hero-eyebrow">NEXT GEN KICK 2 — OTODESK / 2026</div>
           <h1 className="hero-title">
@@ -327,9 +327,10 @@
             }
           </p>
           <div className="hero-cta-row">
-            <span className="btn-soon">⏳ {lang === "jp" ? "Coming Soon" : "Coming Soon"}</span>
+            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-dl">
+              {lang === "jp" ? "ダウンロード v1.0.0" : "Download v1.0.0"} <span className="arrow">↓</span>
+            </a>
             <a href="https://github.com/OTODESK4193/NextGenKick2" target="_blank" rel="noreferrer" className="btn-gh">GitHub ↗</a>
-            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-gh">{lang === "jp" ? "Releases ↗" : "Releases ↗"}</a>
           </div>
           <div className="hero-meta">
             <div className="hero-meta-item">FORMAT<span>VST3</span></div>
@@ -340,6 +341,31 @@
           </div>
         </div>
       </section>
+    );
+  }
+
+  function VideoSection({ lang }) {
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <hr className="divider" style={{ marginBottom: "96px", maxWidth: "none" }} />
+        <div style={{ padding: "0 48px", marginBottom: "36px" }}>
+          <div className="section-eyebrow">— {lang === "jp" ? "デモ動画" : "DEMO VIDEO"}</div>
+          <h2 className="section-h">{lang === "jp" ? "動きで見る NEXT GEN KICK 2。" : "NEXT GEN KICK 2 in motion."}</h2>
+        </div>
+        <div style={{ padding: "0 48px" }}>
+          <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#0c0c0f", border: "1px solid var(--rule)", overflow: "hidden" }}>
+            <iframe
+              width="100%" height="100%"
+              src="https://www.youtube.com/embed/zVMrKWEHhww?rel=0&modestbranding=1"
+              title="NEXT GEN KICK 2 Demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{ display: "block", position: "absolute", inset: 0 }}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -713,24 +739,24 @@
     return (
       <div className="cta-section">
         <div className="cta-inner">
-          <div className="cta-badge">⏳ COMING SOON</div>
+          <div className="cta-badge">⚡ RELEASED 7/11</div>
           <h2 className="cta-title">
             {lang === "jp"
-              ? <><span style={{ color: "var(--gold)" }}>最強の</span>キックシンセ。<br />もうすぐ公開。</>
-              : <>The <span style={{ color: "var(--gold)" }}>ultimate</span> kick.<br />Coming soon.</>
+              ? <><span style={{ color: "var(--gold)" }}>最強の</span>キックシンセ。<br />本日公開。</>
+              : <>The <span style={{ color: "var(--gold)" }}>ultimate</span> kick.<br />Out now.</>
             }
           </h2>
           <p className="cta-sub">
             {lang === "jp"
-              ? "GitHub をウォッチするか X をフォローして、リリースをいち早くキャッチしてください。NEXT GEN KICK 2 は完全無料・オープンソースです。"
-              : "Watch the GitHub repo or follow on X to be first when it drops. NEXT GEN KICK 2 is completely free and open-source."}
+              ? "GitHub にて無料公開中。ダウンロードして使ってみてください。NEXT GEN KICK 2 は完全無料・オープンソースです。"
+              : "Now available on GitHub. Download and try it out. NEXT GEN KICK 2 is completely free and open-source."}
           </p>
           <div className="cta-links">
-            <a href="https://github.com/OTODESK4193/NextGenKick2" target="_blank" rel="noreferrer" className="btn-gh">
-              GitHub — OTODESK4193/NextGenKick2 ↗
+            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-dl">
+              {lang === "jp" ? "ダウンロード v1.0.0" : "Download v1.0.0"} <span className="arrow">↓</span>
             </a>
-            <a href="https://github.com/OTODESK4193/NextGenKick2/releases" target="_blank" rel="noreferrer" className="btn-gh">
-              Releases ↗
+            <a href="https://github.com/OTODESK4193/NextGenKick2" target="_blank" rel="noreferrer" className="btn-gh">
+              GitHub ↗
             </a>
           </div>
           <p className="cta-follow">
@@ -759,6 +785,7 @@
       <React.Fragment>
         <Nav lang={lang} toggle={toggle} />
         <Hero lang={lang} />
+        <VideoSection lang={lang} />
         <Engine lang={lang} />
         <Screenshots lang={lang} />
         <FXRack lang={lang} />

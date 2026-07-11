@@ -671,19 +671,19 @@ function NewsSection({ lang }) {
   var newsItems = [
   {
     id: "next-gen-kick-2",
-    badge: { jp: "VST3 · Coming Soon", en: "VST3 · Coming Soon" },
-    date: "2026.06",
-    title: { jp: "最強のキックシンセ降臨！", en: "The Ultimate Kick Synth is Coming." },
+    badge: { jp: "VST3 · 7/11 リリース！", en: "VST3 · RELEASED 7/11" },
+    date: "2026.07.11",
+    title: { jp: "最強のキックシンセ本日公開！", en: "The Ultimate Kick Synth is Out Now." },
     sub: { jp: "NEXT GEN KICK 2 — 3レイヤー合成エンジン × 70プリセット × 480バンドアナライザ", en: "NEXT GEN KICK 2 — 3-Layer Synthesis × 70 Factory Presets × 480-Band Analyzer" },
     excerpt: {
-      jp: "NEXT GEN KICK から 7 ヶ月。AI との対話による開発で積み上げてきたすべてのノウハウを注ぎ込んだ、OTODESK の最高傑作がもうすぐ公開。3 層合成エンジン（Attack / Body / Sub）、70 ファクトリプリセット、多点ベジェ・エンベロープエディタ、レイヤー別 FX ラック（ADAA サチュレーション 10 種 / OTT / Glue / Limiter）、480 バンド・スペクトラム・アナライザ——頭の中にあるキックを、全てゼロレイテンシで形にできる。",
-      en: "Seven months after NEXT GEN KICK, every lesson from AI-assisted development distilled into one masterpiece. 3-layer synthesis (Attack / Body / Sub), 70 factory presets, multi-point bezier envelope editor, per-layer FX rack (10-algorithm ADAA saturation / OTT / Glue / Limiter), 480-band spectrum analyzer. Design any kick you can imagine — at zero latency."
+      jp: "本日7/11リリース！動画も公開。NEXT GEN KICK から 7 ヶ月。AI との対話による開発で積み上げてきたすべてのノウハウを一本に注ぎ込んだ、OTODESK の最高傑作。3 層合成エンジン（Attack / Body / Sub）、70 ファクトリプリセット、多点ベジェ・エンベロープエディタ、レイヤー別 FX ラック（ADAA サチュレーション 10 種 / OTT / Glue / Limiter）、480 バンド・スペクトラム・アナライザ——頭の中にあるキックを、全てゼロレイテンシで形にできる。",
+      en: "Released today 7/11! Demo video live. Seven months after NEXT GEN KICK, every lesson from AI-assisted development distilled into one masterpiece. 3-layer synthesis (Attack / Body / Sub), 70 factory presets, multi-point bezier envelope editor, per-layer FX rack (10-algorithm ADAA saturation / OTT / Glue / Limiter), 480-band spectrum analyzer. Design any kick you can imagine — at zero latency."
     },
     img: "screenshots/NextGenKick2Main.jpg",
     url: "next-gen-kick-2.html",
     accent: "#ffd166",
     isNew: true,
-    comingSoon: true
+    comingSoon: false
   },
   {
     id: "basssynth-1-2-0",
