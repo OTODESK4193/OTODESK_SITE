@@ -108,6 +108,8 @@ function Hero({ lang }) {
       name: "PicoSampler",
       url: "picosampler.html",
       color: "#00e5a0",
+      badge: "VST3 · RELEASED 2026.7.30",
+      status: "Released",
       copy: {
         jp: "クリエイティブな簡易サンプラー",
         en: "A Creative & Intuitive Sampler"
@@ -263,8 +265,8 @@ function Hero({ lang }) {
 
             <p className="hero-teaser-sub">
               {lang === "jp"
-                ? "PicoSampler · SPECTRA8 · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグインを開発中。順次公開予定。"
-                : "PicoSampler · SPECTRA8 · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins under active development."}
+                ? "PicoSampler (2026.7.30 本日公開！) · SPECTRA8 · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグイン。順次公開中！"
+                : "PicoSampler (Released 2026.7.30!) · SPECTRA8 · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins releasing sequentially!"}
             </p>
 
             <div className="hero-actions">
@@ -276,7 +278,7 @@ function Hero({ lang }) {
                 className="btn-ghost"
                 onClick={() => changeSlide(1)}
               >
-                {lang === "jp" ? "PicoSampler を見る" : "Explore PicoSampler"} <span className="arrow">→</span>
+                {lang === "jp" ? "PicoSampler (2026.7.30 リリース) を見る" : "Explore PicoSampler (Released)"} <span className="arrow">→</span>
               </button>
             </div>
           </div>
@@ -289,7 +291,7 @@ function Hero({ lang }) {
               {/* Left Column: Badge, Large Title with 『』, Copy, Actions */}
               <div className="hero-slide-left">
                 <div className="hero-badge" style={{ marginBottom: "16px", background: activePlugin.color, color: "#000", fontFamily: "var(--mono)", fontSize: "11px", fontWeight: "700", padding: "4px 12px", display: "inline-block" }}>
-                  VST3 · COMING SOON 2026
+                  {activePlugin.badge || "VST3 · COMING SOON 2026"}
                 </div>
 
                 <h1 className="hero-plugin-title" style={{ color: activePlugin.color }}>
