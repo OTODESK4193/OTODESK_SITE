@@ -1523,7 +1523,99 @@ body.theme-dark .vc-tick { color: var(--accent); }
   .pgallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .news-side { flex-direction: column; }
 }
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 16px 40px !important;
+    min-height: auto !important;
+  }
+  .hero-grid {
+    gap: 16px !important;
+  }
+  .hero-slide-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .hero-teaser-title {
+    font-size: clamp(20px, 5.5vw, 32px) !important;
+    margin-bottom: 14px !important;
+    line-height: 1.25 !important;
+  }
+  .hero-plugin-title {
+    font-size: clamp(28px, 8vw, 44px) !important;
+    margin-bottom: 8px !important;
+  }
+  .hero-teaser-sub {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    padding: 10px 14px !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-actions {
+    gap: 8px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px 16px !important;
+    font-size: 11px !important;
+    box-sizing: border-box !important;
+  }
+  .hero-shot-gallery {
+    margin: 12px 0 !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+  }
+  .hero-shot-thumb {
+    width: 100px !important;
+  }
+  .hero-slider-nav-wrap {
+    margin-top: 12px !important;
+    padding-top: 12px !important;
+  }
+  .hero-slider-nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 6px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hero-slider-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .hero-slide-tab {
+    flex-shrink: 0 !important;
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+    white-space: nowrap !important;
+  }
+  .hero-footer {
+    padding-top: 12px !important;
+    font-size: 9px !important;
+  }
+  .scroll-cue {
+    display: none !important;
+  }
+}
+
 @media (max-width: 480px) {
+  .hero {
+    padding: 70px 12px 24px !important;
+  }
+  .hero-meta-row {
+    font-size: 10px !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .hero-plugin-title {
+    font-size: 26px !important;
+  }
+  .hero-teaser-title {
+    font-size: 18px !important;
+  }
   .pgallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .news-card--large .news-card-title { font-size: 20px; }
 }

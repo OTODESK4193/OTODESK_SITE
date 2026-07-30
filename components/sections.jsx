@@ -296,7 +296,7 @@ function Hero({ lang }) {
                   『{activePlugin.name}』
                 </h1>
 
-                <h2 className="hero-teaser-title" style={{ fontSize: "clamp(22px, 3.2vw, 38px)", marginBottom: "24px" }}>
+                <h2 className="hero-teaser-title" style={{ marginBottom: "24px" }}>
                   <span className="hl-accent" style={{ "--hl": activePlugin.color }}>
                     {activePlugin.copy[lang]}
                   </span>
