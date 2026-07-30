@@ -30,7 +30,7 @@ window.PLUGINS = [
       { en: "Continuous parameters & zero-crossing snap at 100,000× zoom", jp: "連続パラメータ ＆ 10万倍ズーム対応ゼロクロススナップ" },
       { en: "Signalsmith Time-Stretch — 49 anchor buffers spanning -24 to +24 semitones", jp: "Signalsmith タイムストレッチ — -24〜+24半音の49アンカーバッファ" },
       { en: "Auto-slice transient detection & smart distribution", jp: "自動スライス過渡音検出 ＆ ゼロクロス境界面分割" },
-      { en: "13-pattern Arpeggiator & 17-scale Scale Quantizer", jp: "13パターン・アルペジエイター ＆ 17スケール・クオンタイザー" },
+      { en: "13-pattern Arpeggiator & 16-scale Scale Quantizer", jp: "13パターン・アルペジエイター ＆ 16スケール・クオンタイザー" },
       { en: "16-slot Modulation Matrix & 5-slot drag-to-reorder FX rack", jp: "16スロット ModMatrix ＆ 自由に並び替え可能な5スロットFXラック" }
     ],
     repo: "https://github.com/OTODESK4193/PicoSampler",
@@ -97,7 +97,7 @@ window.PLUGINS = [
     },
     features: [
       { en: "24 voices × up to 100 grains (1200 grain CPU budget)", jp: "24ボイス × 各最大100グレイン (最大1200グレイン予算)" },
-      { en: "Post-modulation scale quantizer across 17 scales", jp: "変調後に適用される17スケール対応ピッチクオンタイザー" },
+      { en: "Post-modulation scale quantizer across 16 scales", jp: "変調後に適用される16スケール対応ピッチクオンタイザー" },
       { en: "P-SYNC pitch-synchronous grain firing for noise playable pitch", jp: "ノイズも音程化する P-SYNC ピッチ同期グレイン発音" },
       { en: "Note-tuned TONE comb resonator & Hermite 4-point interpolation", jp: "ノート音程同調 TONE コムレゾネーター ＆ 4点エルミート補間" },
       { en: "Dot-matrix waveform display colored by frequency content", jp: "周波数成分に応じたカラーリングドットマトリクス波形表示" },
@@ -166,7 +166,7 @@ window.PLUGINS = [
       jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!"
     },
     features: [
-      { en: "Wavetable OSC with 3 Morph slots × 19 spectral processing modes", jp: "19の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
+      { en: "Wavetable OSC with 3 Morph slots × 18 spectral processing modes", jp: "18の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
       { en: "Dual multi-mode filters (9 types) with serial/parallel routing", jp: "9タイプ対応デュアルマルチモードフィルター (直列/並列切り替え)" },
       { en: "Deep Modulation — 3 LFOs, 2 MSEGs (32 nodes), 3 Mod Envelopes, 18-slot matrix", jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット ModMatrix" },
       { en: "IR-based Color Engine with 8 tone types & Learn mode", jp: "8タイプの音色IR ＆ 演奏学習機能を備えた Color エンジン" },
