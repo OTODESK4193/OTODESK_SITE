@@ -45,6 +45,11 @@ function Header({ lang, setLang, dark }) {
 function Hero({ lang }) {
   const ref = React.useRef(null);
   const [t, setT] = React.useState(0);
+  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [selectedShotIdx, setSelectedShotIdx] = React.useState({});
+  const [timerProgress, setTimerProgress] = React.useState(0);
+
+  // Scroll parallax effect
   React.useEffect(() => {
     const onScroll = () => {
       const el = ref.current;
@@ -56,41 +61,310 @@ function Hero({ lang }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const C = window.COPY;
+  // 30s Autoplay timer & progress bar
+  React.useEffect(() => {
+    setTimerProgress(0);
+    const intervalMs = 100;
+    const totalMs = 30000; // 30 seconds
+    const step = (intervalMs / totalMs) * 100;
+
+    const timer = setInterval(() => {
+      setTimerProgress((prev) => {
+        if (prev >= 100) {
+          setActiveSlide((s) => (s + 1) % 6);
+          return 0;
+        }
+        return prev + step;
+      });
+    }, intervalMs);
+
+    return () => clearInterval(timer);
+  }, [activeSlide]);
+
+  const changeSlide = (idx) => {
+    setActiveSlide(idx);
+    setTimerProgress(0);
+  };
+
+  const teaserCollage = [
+    { name: "PicoSampler", src: "screenshots/picosampler-main.jpg" },
+    { name: "SPECTRA8", src: "screenshots/spectra8-vocoder.jpg" },
+    { name: "Granular", src: "screenshots/granular-main.jpg" },
+    { name: "LIFT-X", src: "screenshots/liftx-main.jpg" },
+    { name: "Wavetable", src: "screenshots/wavetable-main.jpg" }
+  ];
+
+  const slideTabs = [
+    { id: 0, num: "01", label: lang === "jp" ? "近日公開" : "TEASER" },
+    { id: 1, num: "02", label: "PicoSampler" },
+    { id: 2, num: "03", label: "SPECTRA8" },
+    { id: 3, num: "04", label: "Granular" },
+    { id: 4, num: "05", label: "LIFT-X" },
+    { id: 5, num: "06", label: "Wavetable" }
+  ];
+
+  const pluginPages = {
+    1: {
+      name: "PicoSampler",
+      url: "picosampler.html",
+      color: "#00e5a0",
+      copy: {
+        jp: "クリエイティブな簡易サンプラー",
+        en: "A Creative & Intuitive Sampler"
+      },
+      desc: {
+        jp: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。",
+        en: "Randomly trigger audio across 8 slots or use scale-quantized arpeggiation to unlock your creative vision."
+      },
+      shots: [
+        { label: "Main Sampler", file: "screenshots/picosampler-main.jpg" },
+        { label: "Waveform View", file: "screenshots/picosampler-wave.jpg" },
+        { label: "Arp & Quantize", file: "screenshots/picosampler-arp.jpg" },
+        { label: "Mod Matrix", file: "screenshots/picosampler-mod.jpg" },
+        { label: "FX Rack", file: "screenshots/picosampler-fx.jpg" }
+      ]
+    },
+    2: {
+      name: "SPECTRA8",
+      url: "spectra8.html",
+      color: "#b76cff",
+      copy: {
+        jp: "革新的なVocoderが誕生！",
+        en: "An Innovative Vocoder Is Born!"
+      },
+      desc: {
+        jp: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。",
+        en: "8-voice polyphonic vocoder engine with custom wavetables. Switch between FilterBank & LPC modes, equipped with deep ModMatrix and auto-tune scale quantization."
+      },
+      shots: [
+        { label: "Vocoder Engine", file: "screenshots/spectra8-vocoder.jpg" },
+        { label: "Carrier Synth", file: "screenshots/spectra8-carrier.jpg" },
+        { label: "Formant Filter", file: "screenshots/spectra8-formant.jpg" },
+        { label: "Resonator", file: "screenshots/spectra8-resonator.jpg" },
+        { label: "Spectrum", file: "screenshots/spectra8-spectrum.jpg" }
+      ]
+    },
+    3: {
+      name: "Granular",
+      url: "granular.html",
+      color: "#ff2d75",
+      copy: {
+        jp: "カオスと調和の実現",
+        en: "Harmony Meets Chaos"
+      },
+      desc: {
+        jp: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。",
+        en: "24-voice granular synthesizer that granulates samples to rebuild sound. Transform bass into pads, or vocals into sub bass. Expand your imagination to another dimension."
+      },
+      shots: [
+        { label: "Granular Main", file: "screenshots/granular-main.jpg" },
+        { label: "Granular Arp", file: "screenshots/granular-arp.jpg" },
+        { label: "FX Module", file: "screenshots/granular-fx.jpg" },
+        { label: "Mod Matrix", file: "screenshots/granular-mod.jpg" },
+        { label: "Config", file: "screenshots/granular-config.jpg" }
+      ]
+    },
+    4: {
+      name: "LIFT-X",
+      url: "lift-x.html",
+      color: "#ff8a3c",
+      copy: {
+        jp: "31個のエンベロープが連動する驚愕のライザープラグイン",
+        en: "A Mind-Blowing Riser Plugin Driven by 31 Envelopes"
+      },
+      desc: {
+        jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
+        en: "3× OSCs (w/ custom wavetables), 1× Noise, 4× Filters, 5× FX. Command 31 multi-envelopes to translate your imagination into production-ready risers."
+      },
+      shots: [
+        { label: "Main Panel", file: "screenshots/liftx-main.jpg" },
+        { label: "Filter Matrix", file: "screenshots/liftx-filter.jpg" },
+        { label: "FX Suite", file: "screenshots/liftx-fx.jpg" },
+        { label: "OSC Envelopes", file: "screenshots/liftx-oscenv.jpg" },
+        { label: "Presets", file: "screenshots/liftx-preset.jpg" }
+      ]
+    },
+    5: {
+      name: "Wavetable",
+      url: "wavetable.html",
+      color: "#00d4ff",
+      copy: {
+        jp: "これはモンスターかもしれない",
+        en: "This Might Be a Monster"
+      },
+      desc: {
+        jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
+        en: "1× OSC with 3-stage morphing, exclusive Color Engine, built-in OTT and Soothe. Assign custom wavetables and deep modulation (3× LFO, 2× MSEG, 3× ENV) to revolutionize your bass, leads, plucks, stabs, and pads!!"
+      },
+      shots: [
+        { label: "Wavetable Main", file: "screenshots/wavetable-main.jpg" },
+        { label: "Filter Section", file: "screenshots/wavetable-filter.jpg" },
+        { label: "FX Engine", file: "screenshots/wavetable-fx.jpg" },
+        { label: "Color Engine", file: "screenshots/wavetable-color.jpg" },
+        { label: "Mod Matrix", file: "screenshots/wavetable-matrix.jpg" }
+      ]
+    }
+  };
+
+  const activePlugin = pluginPages[activeSlide];
+  const activeShotIdx = selectedShotIdx[activeSlide] || 0;
+  const currentBgImg = activeSlide === 0
+    ? null
+    : activePlugin.shots[activeShotIdx].file;
+
   return (
     <section id="top" className="hero" ref={ref}>
+      {/* Slide 0 Collage Background */}
+      {activeSlide === 0 && (
+        <div className="hero-bg-collage">
+          {teaserCollage.map((img, i) => (
+            <div key={img.name} className="hero-bg-item" style={{
+              transform: `translateY(${(-t * (10 + i * 5))}px)`
+            }}>
+              <img src={img.src} alt={img.name} loading="lazy" />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Slides 1-5 Dedicated Plugin Backdrop */}
+      {activeSlide > 0 && currentBgImg && (
+        <div className="hero-single-bg">
+          <img key={currentBgImg} src={currentBgImg} alt={activePlugin.name} loading="lazy" />
+        </div>
+      )}
+
+      <div className="hero-bg-overlay" />
+
       <div className="hero-grid">
         <div className="hero-meta">
           <div className="hero-meta-row">
             <span>OTODESK / 2026</span>
-            <span>WORKS — 17</span>
+            <span>SLIDE 0{activeSlide + 1} / 06 — {slideTabs[activeSlide].label}</span>
           </div>
         </div>
 
-        <h1 className="hero-title">
-          <span className="hero-line" style={{ transform: `translateY(${-t * 8}px)` }}>
-            {lang === "jp" ? <><span className="hl-accent" style={{ "--hl": "#e0506a" }}>物足りない</span>なら、</> : <>If it's <span className="hl-accent" style={{ "--hl": "#e0506a" }}>not enough,</span></>}
-          </span>
-          <span className="hero-line" style={{ transform: `translateY(${-t * 16}px)` }}>
-            {lang === "jp" ? <><span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>自分で</span>作る。</> : <>I'll <span className="hl-accent" style={{ "--hl": "#3d8bbf" }}>build it myself.</span></>}
-          </span>
-        </h1>
+        {/* SLIDE 0: Overview Teaser Page */}
+        {activeSlide === 0 && (
+          <div className="hero-teaser-content">
+            <h1 className="hero-teaser-title">
+              {lang === "jp" ? (
+                <>
+                  アナタの想像力を刺激する<br />
+                  <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>5つのツール</span>　近日公開！！
+                </>
+              ) : (
+                <>
+                  5 Creative Tools to Spark Your Imagination —<br />
+                  <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>Coming Soon!!</span>
+                </>
+              )}
+            </h1>
 
-        <div className="hero-sub">
-          <Reveal delay={0.2}>
-            <p>{C.heroSub[lang]}</p>
-          </Reveal>
-          <Reveal delay={0.4}>
+            <p className="hero-teaser-sub">
+              {lang === "jp"
+                ? "PicoSampler · SPECTRA8 · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグインを開発中。順次公開予定。"
+                : "PicoSampler · SPECTRA8 · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins under active development."}
+            </p>
+
             <div className="hero-actions">
-              <a href="#gallery" className="btn-primary">
-                {lang === "jp" ? "プラグインを見る" : "View plugins"}
-                <span className="arrow">→</span>
+              <a href="#index" className="btn-primary">
+                {lang === "jp" ? "公開中の作品一覧を見る" : "Explore current plugins"}
+                <span className="arrow">↓</span>
               </a>
-              <a href="https://github.com/OTODESK4193" target="_blank" rel="noreferrer" className="btn-ghost">
-                GitHub <span className="arrow">↗</span>
-              </a>
+              <button
+                className="btn-ghost"
+                onClick={() => changeSlide(1)}
+              >
+                {lang === "jp" ? "PicoSampler を見る" : "Explore PicoSampler"} <span className="arrow">→</span>
+              </button>
             </div>
-          </Reveal>
+          </div>
+        )}
+
+        {/* SLIDES 1-5: 2-Column Detailed Tool Presentation Pages */}
+        {activeSlide > 0 && activePlugin && (
+          <div className="hero-teaser-content">
+            <div className="hero-slide-grid">
+              {/* Left Column: Badge, Large Title with 『』, Copy, Actions */}
+              <div className="hero-slide-left">
+                <div className="hero-badge" style={{ marginBottom: "16px", background: activePlugin.color, color: "#000", fontFamily: "var(--mono)", fontSize: "11px", fontWeight: "700", padding: "4px 12px", display: "inline-block" }}>
+                  VST3 · COMING SOON 2026
+                </div>
+
+                <h1 className="hero-plugin-title" style={{ color: activePlugin.color }}>
+                  『{activePlugin.name}』
+                </h1>
+
+                <h2 className="hero-teaser-title" style={{ fontSize: "clamp(22px, 3.2vw, 38px)", marginBottom: "24px" }}>
+                  <span className="hl-accent" style={{ "--hl": activePlugin.color }}>
+                    {activePlugin.copy[lang]}
+                  </span>
+                </h2>
+
+                <div className="hero-actions">
+                  <a
+                    href={activePlugin.url}
+                    className="btn-primary"
+                    style={{ background: activePlugin.color, color: "#000", borderColor: activePlugin.color }}
+                  >
+                    {lang === "jp" ? "詳細情報を見る" : "View Details"} <span className="arrow">↗</span>
+                  </a>
+                  <button
+                    className="btn-ghost"
+                    onClick={() => changeSlide((activeSlide % 5) + 1)}
+                  >
+                    {lang === "jp" ? "次のツールを見る" : "Next Tool"} <span className="arrow">→</span>
+                  </button>
+                  <button
+                    className="btn-ghost"
+                    onClick={() => changeSlide(0)}
+                  >
+                    ← {lang === "jp" ? "概要ページに戻る" : "Back to Overview"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Description Text (Right Side) & Multi-Screenshot Gallery */}
+              <div className="hero-slide-right">
+                <p className="hero-teaser-sub" style={{ borderLeftColor: activePlugin.color }}>
+                  {activePlugin.desc[lang]}
+                </p>
+
+                {/* Multi-Screenshot Selector */}
+                <div className="hero-shot-gallery">
+                  {activePlugin.shots.map((shot, sIdx) => (
+                    <div
+                      key={shot.label}
+                      className={`hero-shot-thumb${sIdx === activeShotIdx ? " active" : ""}`}
+                      style={{ borderColor: sIdx === activeShotIdx ? activePlugin.color : "var(--rule-faint)" }}
+                      onClick={() => setSelectedShotIdx({ ...selectedShotIdx, [activeSlide]: sIdx })}
+                    >
+                      <img src={shot.file} alt={shot.label} loading="lazy" />
+                      <div className="hero-shot-label">{shot.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 6 Slide Switcher Nav with 30s Timer Progress */}
+        <div className="hero-slider-nav-wrap">
+          <div className="hero-timer-bar" style={{ width: `${timerProgress}%` }} />
+          <div className="hero-slider-nav">
+            {slideTabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`hero-slide-tab${activeSlide === tab.id ? " active" : ""}`}
+                onClick={() => changeSlide(tab.id)}
+              >
+                <span className="tab-num">{tab.num}</span>
+                <span className="tab-label">{tab.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="hero-footer">
@@ -102,8 +376,8 @@ function Hero({ lang }) {
         <span>{lang === "jp" ? "スクロール" : "Scroll"}</span>
         <span className="line" />
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
 function IndexList({ lang, plugins, onSelect }) {
@@ -397,8 +671,8 @@ function About({ lang }) {
             </div>
             <div className="note-card-desc">
               {lang === "jp" ?
-              "素人が AI と二人三脚で 17 個のプラグインと公式サイトを作るまでの全記録。" :
-              "A self-taught hobbyist, AI, and 17 plugins — the complete making-of."}
+              "素人が AI と二人三脚で 22 個のプラグインと公式サイトを作るまでの全記録。" :
+              "A self-taught hobbyist, AI, and 22 plugins — the complete making-of."}
             </div>
             <div className="note-card-go">{lang === "jp" ? "記事を読む" : "Read the article"} <span className="arrow">↗</span></div>
           </a>
@@ -686,22 +960,6 @@ function NewsSection({ lang }) {
     comingSoon: false
   },
   {
-    id: "basssynth-1-2-0",
-    badge: { jp: "VST3 · Coming Soon", en: "VST3 · Coming Soon" },
-    date: "2026.07",
-    title: { jp: "次世代ウェーブテーブル・ベースシンセが劇的進化！", en: "Next-Gen Wavetable Bass Synth Evolves." },
-    sub: { jp: "BassSynth v1.2.0 — ポリフォニック化 × 数式ウェーブテーブル × エフェクト順変更", en: "BassSynth v1.2.0 — Polyphony × Formula WT × Swappable FX Chain" },
-    excerpt: {
-      jp: "BassSynth の巨大な進化。最大 24 ボイスのポリフォニック対応により豊かな和音やパッド演奏が可能となり、打鍵速度やランダム等の拡張モジュレーション・マトリクス、クリックノイズを防ぐスムージング、数式からウェーブテーブルをリアルタイム生成する数式エディタ、順番を入れ替え可能な3系統の空間エフェクト（Chorus / Delay / Reverb）、バイナリ埋め込みによる高速なアセット読み込みを搭載。ゼロレイテンシで圧倒的な低音を。",
-      en: "A massive evolutionary leap for BassSynth. Now supporting up to 24-voice polyphony for rich chords and pads, an advanced modulation matrix with performance-oriented sources (Velocity, threshold gate, trigger random), smoothing controls to eliminate clicks, a real-time mathematical formula editor for custom wavetable generation, a swappable 3-slot FX routing engine (Chorus, Delay, Reverb), and hardcoded factory assets for portable zero-dependency speed. Zero-latency and optimized."
-    },
-    img: "screenshots/basssynth-1-2-0.jpg",
-    url: "basssynth-1-2-0.html",
-    accent: "#00d4ff",
-    isNew: true,
-    comingSoon: true
-  },
-  {
     id: "anatomy",
     badge: { jp: "VST3 · 6/21公開", en: "VST3 · 6/21 RELEASED" },
     date: "2026.06.21",
@@ -787,8 +1045,8 @@ function NewsSection({ lang }) {
           <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u6700\u8fd1\u306e\u30ea\u30ea\u30fc\u30b9" : "RECENT RELEASES"}{" / 2026"}</div>
           <h2 className="section-title">
             {lang === "jp" ?
-            <><span className="hl-accent" style={{ "--hl": "var(--accent)" }}>{"新しいものを"}</span>{"、届けています。"}</> :
-            <>New tools, <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>regularly shipped.</span></>}
+            <><span className="hl-accent" style={{ "--hl": "var(--accent)" }}>新着情報！！</span></> :
+            <>Latest <span className="hl-accent" style={{ "--hl": "var(--accent)" }}>News!!</span></>}
           </h2>
         </div>
         <div className="news-grid">
@@ -877,8 +1135,8 @@ function PluginGallery({ lang }) {
           <div className="eyebrow">{"\u2014 "}{lang === "jp" ? "\u5168\u4f5c\u54c1 / " + plugins.length : "ALL WORKS / " + plugins.length}</div>
           <h2 className="section-title">
             {lang === "jp" ?
-            <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>17</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</> :
-            <>Seventeen tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            <>{"ぜんぶ自作の"}<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>22</span>{"個の"}<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{"音響道具"}</span>{"。"}</> :
+            <>Twenty-two tools,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
           </h2>
         </div>
         <div className="pgallery-grid">

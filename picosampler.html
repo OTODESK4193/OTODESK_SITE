@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PicoSampler — OTODESK | 8-Slot / 32-Voice Creative Sampler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050507;
+      --bg2: #0c0c0f;
+      --bg3: #111116;
+      --ink: #e8e6de;
+      --dim: #64635e;
+      --dim2: #888;
+      --rule: rgba(255,255,255,0.06);
+      --accent: #00e5a0;
+      --accent-dim: rgba(0, 229, 160, 0.12);
+      --accent-border: rgba(0, 229, 160, 0.35);
+      --mono: "Geist Mono", monospace;
+      --sans: "Geist", system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,5,7,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); }
+    .nav-logo span { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { position: relative; padding: 140px 48px 80px; max-width: 1200px; margin: 0 auto; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 24px; padding: 6px 14px; border: 1px solid var(--accent-border); background: var(--accent-dim); width: fit-content; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .hero-title { font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 24px; color: var(--accent); }
+    .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
+    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
+    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
+    .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
+
+    .hero-shot-main { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-top: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+
+    /* SECTIONS */
+    .section { max-width: 1200px; margin: 0 auto; padding: 96px 48px; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
+    .section-h { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 48px; }
+    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
+
+    /* FEATURES GRID */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 64px; }
+    .feat-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; border-radius: 4px; transition: border-color 0.2s; }
+    .feat-card:hover { border-color: rgba(255,255,255,0.15); }
+    .feat-num { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+    .feat-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .feat-desc { font-size: 14px; color: var(--dim2); line-height: 1.7; font-weight: 300; }
+
+    /* SCREENSHOT SHOWCASE */
+    .showcase-item { margin-bottom: 80px; }
+    .showcase-img { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .showcase-info { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+    .showcase-title { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .showcase-desc { font-size: 14px; color: var(--dim2); line-height: 1.75; font-weight: 300; }
+
+    /* SPECS TABLE */
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 48px; }
+    .spec-table th, .spec-table td { padding: 14px 18px; border-bottom: 1px solid var(--rule); text-align: left; }
+    .spec-table th { font-family: var(--mono); color: var(--accent); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; background: var(--bg2); }
+    .spec-table td { color: var(--dim2); }
+    .spec-table tr:hover td { color: var(--ink); background: rgba(255,255,255,0.01); }
+
+    /* SIGNAL FLOW BOX */
+    .flow-box { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; font-family: var(--mono); font-size: 12px; color: var(--dim2); line-height: 1.8; overflow-x: auto; white-space: pre; }
+
+    /* LICENSE & FOOTER */
+    .license-box { background: var(--bg2); border: 1px solid var(--rule); padding: 28px; border-radius: 4px; margin-top: 64px; }
+    .license-title { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
+    .license-text { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+
+    .footer { padding: 60px 48px; border-top: 1px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .section { padding: 60px 24px; }
+      .showcase-info { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">OTODESK <span>/ PicoSampler</span></a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← TOPへ戻る</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      VST3 · COMING SOON 2026
+    </div>
+    <h1 class="hero-title">PicoSampler</h1>
+    <div class="hero-copy">クリエイティブな簡易サンプラー</div>
+    <p class="hero-desc">
+      8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーの Signalsmith タイムストレッチ、10万倍ズーム、16スロットModMatrix、5スロットFXラックを凝縮。
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://github.com/OTODESK4193/PicoSampler" target="_blank" rel="noreferrer" class="btn-main">
+        GitHub Source (Private) ↗
+      </a>
+      <a href="index.html#gallery" class="btn-sub">
+        全プラグイン一覧を見る
+      </a>
+    </div>
+
+    <div class="hero-shot-main">
+      <img src="screenshots/picosampler-main.jpg" alt="PicoSampler Main Interface" />
+    </div>
+  </header>
+
+  <hr class="divider" />
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-eyebrow">// Key Features</div>
+    <h2 class="section-h">直感的な操作性と、妥協なき音質設計。</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 / SLOTS & POLYPHONY</div>
+        <div class="feat-title">8スロット × 32ボイス</div>
+        <div class="feat-desc">Single / Layer / Random 再生モードを搭載。8つのスロットに配置したサンプルを柔軟にレイヤーおよびランダム発音させることが可能です。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 / TIME-STRETCH</div>
+        <div class="feat-title">Signalsmith Stretch 49アンカー</div>
+        <div class="feat-desc">-24〜+24半音の広大な範囲をカバーする49個のアンカーバッファを搭載。音程を変えずにピッチ・スピードを完璧にコントロール。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 / ARPEGGIATOR & QUANTIZE</div>
+        <div class="feat-title">13パターンArp ＆ 17スケール</div>
+        <div class="feat-desc">スケールクオンタイズ（17種類）と連動する13パターンのアルペジエイター。どんなサンプルも楽曲のキーと調和させます。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 / MOD MATRIX & FX</div>
+        <div class="feat-title">16スロット Mod ＆ 5スロット FX</div>
+        <div class="feat-desc">LFOやEnvelopeを縦横無尽にルーティング。並び替え自在な5スロットエフェクトラック（サチュレーション、コーラス、ディレイ、フリーズ、リバーブ）を内蔵。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SCREENSHOT GALLERY -->
+  <section class="section">
+    <div class="section-eyebrow">// Visual Walkthrough</div>
+    <h2 class="section-h">PicoSampler の主要機能とインターフェース</h2>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/picosampler-wave.jpg" alt="Waveform & Slice" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">精密波形編集 ＆ 自動スライス</div>
+        <div class="showcase-desc">10万倍ズームに対応した波形表示。過渡音検出（Auto-slice）とゼロクロススナップにより、クリックノイズを発生させずに完璧なサンプル切り出し・ループポイント設定が行えます。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/picosampler-arp.jpg" alt="Arpeggiator & Scale Quantizer" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">アルペジエイター ＆ スケールクオンタイズ</div>
+        <div class="showcase-desc">Up / Down / Random などの13パターンアルペジエイターと、Major, Pentatonic, Dorian などの17種類のスケールクオンタイズを搭載。どんなアブストラクトな素材も音楽的フレーズへ昇華。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/picosampler-mod.jpg" alt="Modulation Matrix" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">16スロット モジュレーション・マトリクス</div>
+        <div class="showcase-desc">LFOやエンベロープなどのソースから、Filter Cutoff, Pitch, Grain Size, FX Wet などの目的地へ自由に割り当て。バイポーラ/ユニポーラの切り替えとリアルタイム可視化に対応。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/picosampler-fx.jpg" alt="5-Slot FX Rack" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">自由な順序で組める 5スロット FXラック</div>
+        <div class="showcase-desc">10アルゴリズムのサチュレーション、アンサンブルコーラス、テープディレイ、フリーズ、シマーリバーブ。ドラッグ＆ドロップでエフェクト順序を即座に変更可能。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SPECS -->
+  <section class="section">
+    <div class="section-eyebrow">// Parameter Reference</div>
+    <h2 class="section-h">仕様 ＆ パラメーターリファレンス</h2>
+
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>カテゴリ</th>
+          <th>パラメーター</th>
+          <th>範囲</th>
+          <th>概要</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sample Engine</td>
+          <td>Slots / Polyphony</td>
+          <td>8 Slots / Max 32 Voices</td>
+          <td>Single, Layer, Random 再生モード</td>
+        </tr>
+        <tr>
+          <td>Time-Stretch</td>
+          <td>Signalsmith Stretch</td>
+          <td>-24 ～ +24 st / 49 anchors</td>
+          <td>フェーズボコーダー時間伸長・ピッチシフト</td>
+        </tr>
+        <tr>
+          <td>Filter</td>
+          <td>3 Models</td>
+          <td>LPF / HPF / BPF</td>
+          <td>TPT SVF トポロジー・スムーズ制御</td>
+        </tr>
+        <tr>
+          <td>Arpeggiator</td>
+          <td>Pattern / Rate / Scale</td>
+          <td>13 patterns / 17 scales</td>
+          <td>テンポ同期・フリーラン・クオンタイズ</td>
+        </tr>
+        <tr>
+          <td>FX Rack</td>
+          <td>5 Reorderable Slots</td>
+          <td>Sat / Chorus / Delay / Freeze / Reverb</td>
+          <td>マスター Dry/Wet 制御・Mod可能</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-eyebrow" style="margin-top: 48px;">// Signal Flow</div>
+    <div class="flow-box">
+Sample In ──► [Auto-Slice / Loop Snap] ──► [Signalsmith Time-Stretch]
+                                                │
+                                                ▼
+MIDI In ──► [Arpeggiator] ──► [Scale Quantizer] ──► [3-Model Filter]
+                                                        │
+                                                        ▼
+[Master Out] ◄── [Limiter] ◄── [5-Slot FX Rack] ◄── [Amp ADSR]
+    </div>
+  </section>
+
+  <!-- LICENSE -->
+  <section class="section" style="padding-top: 0;">
+    <div class="license-box">
+      <div class="license-title">LICENCE & CREDITS</div>
+      <div class="license-text">
+        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されます。<br />
+        GUI / DSP フレームワークには <strong>JUCE 8</strong> を使用しています。タイムストレッチエンジンには <strong>Signalsmith Stretch</strong> (MIT License / Copyright © 2022 Geraint Luff) を使用しています。<br />
+        Developer: @kijyoumusic (OTODESK)
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>OTODESK — Creative Audio Tools for Windows / VST3</div>
+  </footer>
+
+</body>
+</html>

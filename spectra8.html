@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPECTRA8 — OTODESK | Dual Engine Polyphonic Vocoder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050507;
+      --bg2: #0c0c0f;
+      --bg3: #111116;
+      --ink: #e8e6de;
+      --dim: #64635e;
+      --dim2: #888;
+      --rule: rgba(255,255,255,0.06);
+      --accent: #b76cff;
+      --accent-dim: rgba(183, 108, 255, 0.12);
+      --accent-border: rgba(183, 108, 255, 0.35);
+      --mono: "Geist Mono", monospace;
+      --sans: "Geist", system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,5,7,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); }
+    .nav-logo span { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { position: relative; padding: 140px 48px 80px; max-width: 1200px; margin: 0 auto; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 24px; padding: 6px 14px; border: 1px solid var(--accent-border); background: var(--accent-dim); width: fit-content; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .hero-title { font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 24px; color: var(--accent); }
+    .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
+    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
+    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
+    .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
+
+    .hero-shot-main { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-top: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+
+    /* SECTIONS */
+    .section { max-width: 1200px; margin: 0 auto; padding: 96px 48px; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
+    .section-h { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 48px; }
+    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
+
+    /* FEATURES GRID */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 64px; }
+    .feat-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; border-radius: 4px; transition: border-color 0.2s; }
+    .feat-card:hover { border-color: rgba(255,255,255,0.15); }
+    .feat-num { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+    .feat-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .feat-desc { font-size: 14px; color: var(--dim2); line-height: 1.7; font-weight: 300; }
+
+    /* SCREENSHOT SHOWCASE */
+    .showcase-item { margin-bottom: 80px; }
+    .showcase-img { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .showcase-info { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+    .showcase-title { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .showcase-desc { font-size: 14px; color: var(--dim2); line-height: 1.75; font-weight: 300; }
+
+    /* SPECS TABLE */
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 48px; }
+    .spec-table th, .spec-table td { padding: 14px 18px; border-bottom: 1px solid var(--rule); text-align: left; }
+    .spec-table th { font-family: var(--mono); color: var(--accent); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; background: var(--bg2); }
+    .spec-table td { color: var(--dim2); }
+    .spec-table tr:hover td { color: var(--ink); background: rgba(255,255,255,0.01); }
+
+    /* SIGNAL FLOW BOX */
+    .flow-box { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; font-family: var(--mono); font-size: 12px; color: var(--dim2); line-height: 1.8; overflow-x: auto; white-space: pre; }
+
+    /* LICENSE & FOOTER */
+    .license-box { background: var(--bg2); border: 1px solid var(--rule); padding: 28px; border-radius: 4px; margin-top: 64px; }
+    .license-title { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
+    .license-text { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+
+    .footer { padding: 60px 48px; border-top: 1px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .section { padding: 60px 24px; }
+      .showcase-info { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">OTODESK <span>/ SPECTRA8</span></a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← TOPへ戻る</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      VST3 · COMING SOON 2026
+    </div>
+    <h1 class="hero-title">SPECTRA8</h1>
+    <div class="hero-copy">革新的なVocoderが誕生！</div>
+    <p class="hero-desc">
+      8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://github.com/OTODESK4193/SPECTRA8" target="_blank" rel="noreferrer" class="btn-main">
+        GitHub Source (Private) ↗
+      </a>
+      <a href="index.html#gallery" class="btn-sub">
+        全プラグイン一覧を見る
+      </a>
+    </div>
+
+    <div class="hero-shot-main">
+      <img src="screenshots/spectra8-vocoder.jpg" alt="SPECTRA8 Vocoder Interface" />
+    </div>
+  </header>
+
+  <hr class="divider" />
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-eyebrow">// Key Features</div>
+    <h2 class="section-h">デュアルボコーダーエンジン ＆ 次世代モジュレーション</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 / DUAL ENGINE</div>
+        <div class="feat-title">Filterbank ＆ LPC エンジン</div>
+        <div class="feat-desc">8〜48バンドの精密バンドパスFilterBankと、音声合成アルゴリズムであるLPC (線形予測符号化 8〜16次) を切替可能。古典ロボットボイスから現代的なボーカルリシンセまで対応。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 / CARRIER SYNTH</div>
+        <div class="feat-title">8ボイス Carrier ＆ Wavetable</div>
+        <div class="feat-desc">PolyBLEP基本波形に加え、カスタムWavetableをCarrierとして読み込み可能。Bend, Sync, Formantモーフィングにより表情豊かなボコーダーサウンドを生成。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 / AUTO-TUNE</div>
+        <div class="feat-title">MPM Pitch Tracker ＆ 20 Scales</div>
+        <div class="feat-desc">入力ボーカルのピッチをリアルタイム検出（McLeod Pitch Method）。20種類のスケールクオンタイズにより、音痴なボーカルも瞬時にパーフェクトピッチへ修正。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 / RESONATOR & FX</div>
+        <div class="feat-title">Spectral Resonator ＆ 5 FX Chain</div>
+        <div class="feat-desc">Chord / MIDI / Free モードを備えたスペクトラル・レゾネーターを内蔵。Drive, Gate, Chorus, Reverb など、自由に並び替えできる5スロットFXラックを搭載。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SCREENSHOT GALLERY -->
+  <section class="section">
+    <div class="section-eyebrow">// Visual Walkthrough</div>
+    <h2 class="section-h">SPECTRA8 の主要機能とインターフェース</h2>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-carrier.jpg" alt="Carrier Synth & Wavetable" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">8ボイス・ポリフォニック Carrier シンセ</div>
+        <div class="showcase-desc">8ボイスポリフォニックの内部Carrierシンセサイザー。Saw/Square/Triangleといった基本波形に加えて、任意のWavetableを読み込み、3つのMorphスロットでスペクトル加工が可能です。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-formant.jpg" alt="Formant & Filterbank" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">フォルマントシフト ＆ デュアルボコーダー</div>
+        <div class="showcase-desc">FilterBank (8〜48 bands) と LPC (order 8〜16) をリアルタイム切替。フォルマントコントロール（±12半音）と母音フィルター（A-E-I-O-U）により、声質や性別表現を自由自在に変更。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-resonator.jpg" alt="Spectral Resonator" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">スペクトラル・レゾネーター</div>
+        <div class="showcase-desc">入力信号に弦のような美しい倍音共鳴を付加するレゾネーター。コード入力・MIDI追従・フリーモードを搭載し、Shimmerエフェクトと組み合わせて幻想的なテクスチャを生成します。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-spectrum.jpg" alt="320-Band Spectrum Analyzer" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">320バンド Constant-Q スペクトラム・アナライザ</div>
+        <div class="showcase-desc">入力 Modulator と Carrier の倍音構造をリアルタイムで高精度に描画。各バンドのゲイン調整やフォルマント変形がひと目で把握できます。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SPECS -->
+  <section class="section">
+    <div class="section-eyebrow">// Parameter Reference</div>
+    <h2 class="section-h">仕様 ＆ パラメーターリファレンス</h2>
+
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>カテゴリ</th>
+          <th>パラメーター</th>
+          <th>範囲</th>
+          <th>概要</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vocoder Engine</td>
+          <td>FilterBank / LPC</td>
+          <td>8–48 Bands / Order 8–16</td>
+          <td>デュアルエンジン切り替え、Formant Shift ±12st</td>
+        </tr>
+        <tr>
+          <td>Carrier Synth</td>
+          <td>8-Voice Polyphonic</td>
+          <td>PolyBLEP + Custom Wavetable</td>
+          <td>3 Morph Modes (Bend / Sync / Vowel)</td>
+        </tr>
+        <tr>
+          <td>Pitch Tracker</td>
+          <td>MPM & Scale Quantize</td>
+          <td>Auto-detect / 20 Scales</td>
+          <td>リアルタイムボーカル補正 ＆ オートチューン</td>
+        </tr>
+        <tr>
+          <td>Resonator</td>
+          <td>Spectral Resonator</td>
+          <td>Chord / MIDI / Free Modes</td>
+          <td>倍音共鳴 ＆ Shimmer レゾナンス</td>
+        </tr>
+        <tr>
+          <td>FX Suite</td>
+          <td>5 Reorderable Slots</td>
+          <td>Resonator / Drive / Gate / Chorus / Reverb</td>
+          <td>モジュレーションマトリクス対応</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-eyebrow" style="margin-top: 48px;">// Signal Flow</div>
+    <div class="flow-box">
+Modulator In (Vocal) ──► [MPM Pitch Tracker] ──► [Formant Shift] ──┐
+                                                                 ▼
+MIDI / Internal Carrier ──► [8-Voice Wavetable Synth] ──► [Vocoder Engine]
+                                                                 │
+                                                                 ▼
+[Master Out] ◄── [Limiter] ◄── [5-Slot FX Rack] ◄── [Resonator]
+    </div>
+  </section>
+
+  <!-- LICENSE -->
+  <section class="section" style="padding-top: 0;">
+    <div class="license-box">
+      <div class="license-title">LICENCE & CREDITS</div>
+      <div class="license-text">
+        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されます。<br />
+        GUI / DSP フレームワークには <strong>JUCE 8</strong> を使用しています。<br />
+        Developer: @kijyoumusic (OTODESK)
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>OTODESK — Creative Audio Tools for Windows / VST3</div>
+  </footer>
+
+</body>
+</html>

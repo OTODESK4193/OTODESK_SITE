@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFT-X — OTODESK | Riser-Dedicated Synthesizer — 31 Envelopes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050507;
+      --bg2: #0c0c0f;
+      --bg3: #111116;
+      --ink: #e8e6de;
+      --dim: #64635e;
+      --dim2: #888;
+      --rule: rgba(255,255,255,0.06);
+      --accent: #ff8a3c;
+      --accent-dim: rgba(255, 138, 60, 0.12);
+      --accent-border: rgba(255, 138, 60, 0.35);
+      --mono: "Geist Mono", monospace;
+      --sans: "Geist", system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,5,7,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); }
+    .nav-logo span { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { position: relative; padding: 140px 48px 80px; max-width: 1200px; margin: 0 auto; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 24px; padding: 6px 14px; border: 1px solid var(--accent-border); background: var(--accent-dim); width: fit-content; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .hero-title { font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 24px; color: var(--accent); }
+    .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
+    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
+    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
+    .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
+
+    .hero-shot-main { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-top: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+
+    /* SECTIONS */
+    .section { max-width: 1200px; margin: 0 auto; padding: 96px 48px; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
+    .section-h { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 48px; }
+    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
+
+    /* FEATURES GRID */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 64px; }
+    .feat-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; border-radius: 4px; transition: border-color 0.2s; }
+    .feat-card:hover { border-color: rgba(255,255,255,0.15); }
+    .feat-num { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+    .feat-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .feat-desc { font-size: 14px; color: var(--dim2); line-height: 1.7; font-weight: 300; }
+
+    /* SCREENSHOT SHOWCASE */
+    .showcase-item { margin-bottom: 80px; }
+    .showcase-img { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .showcase-info { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+    .showcase-title { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .showcase-desc { font-size: 14px; color: var(--dim2); line-height: 1.75; font-weight: 300; }
+
+    /* SPECS TABLE */
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 48px; }
+    .spec-table th, .spec-table td { padding: 14px 18px; border-bottom: 1px solid var(--rule); text-align: left; }
+    .spec-table th { font-family: var(--mono); color: var(--accent); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; background: var(--bg2); }
+    .spec-table td { color: var(--dim2); }
+    .spec-table tr:hover td { color: var(--ink); background: rgba(255,255,255,0.01); }
+
+    /* SIGNAL FLOW BOX */
+    .flow-box { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; font-family: var(--mono); font-size: 12px; color: var(--dim2); line-height: 1.8; overflow-x: auto; white-space: pre; }
+
+    /* LICENSE & FOOTER */
+    .license-box { background: var(--bg2); border: 1px solid var(--rule); padding: 28px; border-radius: 4px; margin-top: 64px; }
+    .license-title { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
+    .license-text { font-size: 13px; color: var(--dim2); line-height: 1.7; }
+
+    .footer { padding: 60px 48px; border-top: 1px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .section { padding: 60px 24px; }
+      .showcase-info { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">OTODESK <span>/ LIFT-X</span></a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← TOPへ戻る</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      VST3 · COMING SOON 2026
+    </div>
+    <h1 class="hero-title">LIFT-X</h1>
+    <div class="hero-copy">31個のエンベロープが連動する驚愕のライザープラグイン</div>
+    <p class="hero-desc">
+      ライザーは単なる音量エンベロープではない——31個のカーブが同時に躍動する音楽的展開である。3×OSC、1×NOISE、4×Filter、5×FXの全パラメーターを単一のプレイヘッドで統合制御。
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://github.com/OTODESK4193/LIFT-X" target="_blank" rel="noreferrer" class="btn-main">
+        GitHub Source (Private) ↗
+      </a>
+      <a href="index.html#gallery" class="btn-sub">
+        全プラグイン一覧を見る
+      </a>
+    </div>
+
+    <div class="hero-shot-main">
+      <img src="screenshots/liftx-main.jpg" alt="LIFT-X Main Interface" />
+    </div>
+  </header>
+
+  <hr class="divider" />
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-eyebrow">// Key Features</div>
+    <h2 class="section-h">展開のカーブを描くだけ。トランジション構築の完成形。</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 / 31 CURVES</div>
+        <div class="feat-title">1 プレイヘッド × 31 カーブ</div>
+        <div class="feat-desc">ピッチ、レベル、デチューン、ノイズ、フィルターカットオフ、FXパラメータ。あらゆる自動化要素が1つの進行軸（LIFT）に完全同期連動。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 / ABSOLUTE PITCH</div>
+        <div class="feat-title">Start Key → End Key 絶対ピッチ</div>
+        <div class="feat-desc">MIDIノートはトリガーに過ぎません。どの鍵盤を押しても、設定した Start Key から End Key の目的音階へ寸分違わず正確に上昇。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 / 70 SCALES</div>
+        <div class="feat-title">70スケール対応 Scale Quantize</div>
+        <div class="feat-desc">ピッチスイープを任意キーのスケール音へスナップ。滑らかな滑空ライザーから、階段状にステップ上昇する音楽的なライザーへ即座に変貌。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 / WAV CAPTURE & ROUTING</div>
+        <div class="feat-title">WAVドラッグ ＆ ソース別ルーティング</div>
+        <div class="feat-desc">生成されたライザーをそのままDAWへWAVドラッグ＆ドロップ。4フィルター＆5FXは各ソース（OSC 1〜3, Noise）ごとに通過/バイパスを個別指定可能。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SCREENSHOT GALLERY -->
+  <section class="section">
+    <div class="section-eyebrow">// Visual Walkthrough</div>
+    <h2 class="section-h">LIFT-X の主要機能とインターフェース</h2>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/liftx-oscenv.jpg" alt="31 Multi-Point Curve Editor" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">多点ベジェ・エンベロープ・エディター</div>
+        <div class="showcase-desc">各カーブ最大128ポイント。ベジェテンションハンドルで自由な曲線を自由自在にカーブ描写。28種類のプリセット（Exp, Log, Steps, Saw, Pulse等）を内蔵。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/liftx-filter.jpg" alt="Per-Source Filter Matrix" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">4 ZDF/TPT フィルターマトリクス</div>
+        <div class="showcase-desc">Cytomicスタイルの台形統合TPT SVF（LP/HP/BP/Notch）。OSC 1〜3およびNoiseに対し、フィルターごとに通過・バイパスを独立マトリクス制御。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/liftx-fx.jpg" alt="5-Slot FX Suite" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">ソース別ルーティング付き 5スロット FXラック</div>
+        <div class="showcase-desc">Saturation (10 ADAA algo), Chorus, Delay, Reverb, Ducking。効果ごとにサブベースだけリバーブから除外するなどの柔軟なソースルーティングを実現。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/liftx-preset.jpg" alt="Config & 70 Scale Quantizer" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">70種類のスケールクオンタイズ ＆ リバース機能</div>
+        <div class="showcase-desc">モード、日本古風（平調子・岩戸等）、ワールド、コードトーンなど70スケールを完備。「REVERSE」ボタン1つで31のカーブすべてを逆再生し、ダウンナーへ反転。</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SPECS -->
+  <section class="section">
+    <div class="section-eyebrow">// Parameter Reference</div>
+    <h2 class="section-h">仕様 ＆ パラメーターリファレンス</h2>
+
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>カテゴリ</th>
+          <th>パラメーター</th>
+          <th>範囲</th>
+          <th>概要</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Envelope System</td>
+          <td>31 Curves / 1 Playhead</td>
+          <td>1/32 to 16 Bars / Manual</td>
+          <td>Auto/Manual, Reverse, 128 Points/Curve</td>
+        </tr>
+        <tr>
+          <td>Oscillators</td>
+          <td>3 OSCs + Noise</td>
+          <td>6 Waves (Sine/Tri/Sq/Saw/FM/Wavetable)</td>
+          <td>7-Voice Unison, 3 Noise Types (White/Pink/Brown)</td>
+        </tr>
+        <tr>
+          <td>Pitch Control</td>
+          <td>Start Key → End Key</td>
+          <td>C-2 to G8 / 70 Scales</td>
+          <td>絶対ピッチ制御・スケールスナップ・Coarseオフセット</td>
+        </tr>
+        <tr>
+          <td>Filters</td>
+          <td>4 TPT SVF Filters</td>
+          <td>LP / HP / BP / Notch</td>
+          <td>各ソース独立パス/バイパスルーティング</td>
+        </tr>
+        <tr>
+          <td>FX Engine</td>
+          <td>5 Reorderable Slots</td>
+          <td>Sat / Chorus / Delay / Reverb / Ducking</td>
+          <td>ソース別独立エフェクトアサイン・WAVキャプチャ</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-eyebrow" style="margin-top: 48px;">// Signal Flow</div>
+    <div class="flow-box">
+MIDI Trigger ──► Transport Sync / Manual LIFT ──► [Evaluate 31 Curves]
+                                                        │
+┌─ OSC 1 (Wavetable) ─┐                                 ▼
+├─ OSC 2 (Wavetable) ─┼─► [4× Filter Matrix] ──► [5-Slot FX Suite]
+├─ OSC 3 (Wavetable) ─┤   (Per-source pass)     (Per-source route)
+└─ Noise Generator ───┘                                 │
+                                                        ▼
+[DAW WAV Drag] ◄── [Riser Capture Buffer] ◄── [Limiter] ◄── [Master Output]
+    </div>
+  </section>
+
+  <!-- LICENSE -->
+  <section class="section" style="padding-top: 0;">
+    <div class="license-box">
+      <div class="license-title">LICENCE & CREDITS</div>
+      <div class="license-text">
+        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されます。<br />
+        GUI / DSP フレームワークには <strong>JUCE 8</strong> を使用しています。<br />
+        Developer: @kijyoumusic (OTODESK)
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>OTODESK — Creative Audio Tools for Windows / VST3</div>
+  </footer>
+
+</body>
+</html>

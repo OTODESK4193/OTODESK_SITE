@@ -2,449 +2,8 @@
 // All plugins: Windows / VST3 only. Ableton Live verified. Other DAWs unverified.
 window.PLUGINS = [
   {
-    id: "score-viewer",
-    num: "M4L",
-    name: "ScoreViewer",
-    category: { en: "Max for Live MIDI Device — Real-time Score Display", jp: "Max for Live MIDI デバイス — リアルタイム楽譜表示" },
-    type: "Max for Live",
-    platform: { en: "Windows / macOS", jp: "Windows / macOS" },
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    comingSoon: false,
-    featured: false,
-    featureUrl: "scoreviewer.html",
-    downloadUrl: "https://github.com/OTODESK4193/ScoreViewer/releases/",
-    sourceUrl: "https://github.com/OTODESK4193/ScoreViewer",
-    screenshot: "screenshots/score-viewer.jpg",
-    tagline: {
-      en: "Your MIDI clip, as sheet music. In real-time.",
-      jp: "MIDI クリップを五線譜で。リアルタイムで。"
-    },
-    description: {
-      en: "A Max for Live MIDI device for Ableton Live that displays MIDI clips as musical notation in real-time. Select or play a clip and watch the score update instantly — supports chords, rests, dotted notes, beaming, and tuplets.",
-      jp: "Ableton Live の MIDI クリップを、選択・再生に合わせてリアルタイムに五線譜で表示する Max for Live デバイス。和音・休符・付点・連桁・連符に対応。"
-    },
-    features: [
-      { en: "Real-time score display — chords / rests / dotted / beamed / tuplets", jp: "リアルタイム五線譜表示 — 和音・休符・付点・連桁・連符" },
-      { en: "Key signature display with accidentals (♯ ♭ ♮) — auto-processing", jp: "調号と臨時記号（♯ ♭ ♮）の自動処理" },
-      { en: "Time signature support — Scan for mid-clip meter changes", jp: "拍子記号対応 — 変拍子クリップも Scan ボタンで取込" },
-      { en: "Clef select — Treble / Bass / Grand Staff / Auto", jp: "クレフ選択 — ト音・ヘ音・大譜表・Auto 自動判定" },
-      { en: "Bar navigation (◀ ▶) + Follow mode (sync to playback)", jp: "小節ナビ（◀ ▶）＋ Follow モード（再生に追従）" },
-      { en: "Windows & macOS compatible (Ableton Live 11+)", jp: "Windows / macOS 対応（Ableton Live 11 以降）" }
-    ],
-    repo: "https://github.com/OTODESK4193/ScoreViewer",
-    accent: "#00e5a0"
-  },
-  {
-    id: "quad-morph",
-    num: "01",
-    name: "Quad Morph Filter",
-    category: { en: "28-Model Real-Time Morphing Filter", jp: "28モデル・リアルタイムモーフィング・フィルター" },
-    type: "Effect",
-    year: "2026",
-    version: "1.0.0",
-    status: "Released",
-    comingSoon: false,
-    featured: true,
-    featureUrl: "quad-morph.html",
-    downloadUrl: "https://github.com/OTODESK4193/QuadMorphFilter/releases/",
-    sourceUrl: "https://github.com/OTODESK4193/QuadMorphFilter",
-    screenshot: "screenshots/quad-morph.jpg",
-    tagline: {
-      en: "Dance, Filters! Command every spatial frequency.",
-      jp: "踊れ、フィルター！あらゆる空間周波数を支配する。"
-    },
-    description: {
-      en: "A high-performance VST3 plugin featuring 28 meticulously modeled filter algorithms that morph together in real-time on an XY pad. Moog Ladder, TB-303, Z-Plane 2D Morph, Bode Frequency Shifter — all morphable with 19 LFO waveforms, real-time frequency response visualization, and equal-power blending.",
-      jp: "28個のハンドクラフトされたフィルターモデルをリアルタイムでXYパッドでモーフィング。Moog Ladder、TB-303、Z-Plane 2D Morph、Bode Frequency Shifterを、19種LFO、周波数応答リアルタイム表示、イコールパワーブレンドで操調する高性能VST3。"
-    },
-    features: [
-      { en: "28 handcrafted filter models — Ladder / SVF / Analog / Digital / Spectral", jp: "28個のハンドクラフト・フィルター — Ladder／SVF／Analog／Digital／Spectral" },
-      { en: "Real-time 4-way XY morphing with equal-power blending", jp: "リアルタイム4ウェイXYモーフィング (イコールパワーブレンド)" },
-      { en: "4 morph blend algorithms — Equal Power / Linear / Smoothstep / Radial", jp: "4種ブレンドアルゴリズム — Equal Power／Linear／Smoothstep／Radial" },
-      { en: "19 LFO waveforms + 5 modulation engines (LFO1-5)", jp: "19種LFO ＋ 5種モジュレーション・エンジン (LFO1-5)" },
-      { en: "Live frequency response graph (1024-point FFT)", jp: "リアルタイム周波数応答グラフ (1024ポイントFFT)" },
-      { en: "4× oversampling, ADAA anti-aliasing", jp: "4倍オーバーサンプリング、ADAA アンチエイリアシング" },
-      { en: "Envelope Follower — sidechain-style input tracking", jp: "Envelope Follower — サイドチェーン式入力追従" },
-      { en: "Hand-drawn LFO recording on morph pad", jp: "モーフパッド上での手書きLFO記録" }
-    ],
-    repo: "https://github.com/OTODESK4193/QuadMorphFilter",
-    accent: "#00d9ff"
-  },
-  {
-    id: "ambience",
-    num: "02",
-    name: "Ambience",
-    category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
-    type: "Effect",
-    year: "2026",
-    version: "1.1.0",
-    status: "Released",
-    comingSoon: false,
-    featured: false,
-    featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg",
-    screenshotPro: "assets/ambience-screenshot-2.jpg",
-    tagline: {
-      en: "World-class halls in 16 channels of FDN. Free.",
-      jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
-    },
-    description: {
-      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 21 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall and more — at zero cost.",
-      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall など 21 種の名空間プリセットを、無料で。"
-    },
-    features: [
-      { en: "16-channel FDN with FWHT feedback matrix", jp: "FWHT 帰還行列の 16ch FDN" },
-      { en: "7 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL", jp: "7 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL" },
-      { en: "21 factory presets (Abbey Road, Musikverein, Carnegie etc.)", jp: "21 ファクトリプリセット (Abbey Road、Musikverein、Carnegie 他)" },
-      { en: "10-band Välimäki-Liski GEQ absorption per channel", jp: "チャンネルごとの 10 バンド Välimäki-Liski GEQ 吸収" },
-      { en: "ISM-based Early Reflections w/ per-algorithm tuning", jp: "ISM ベース Early Reflections (アルゴリズムごとに最適化)" },
-      { en: "ADAA Saturator — Warm / Tape / Tube / Hard", jp: "ADAA サチュレータ — Warm／Tape／Tube／Hard" },
-      { en: "Real-time D50 / C50 / C80 / EDT readouts", jp: "リアルタイム D50 ／ C50 ／ C80 ／ EDT 計測表示" },
-      { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
-      { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
-    ],
-    repo: "https://github.com/OTODESK4193/Ambience1.0.1",
-    accent: "#ff8a3c"
-  },
-  {
-    id: "basssynth",
-    num: "03",
-    name: "BassSynth",
-    category: { en: "Next-Gen Wavetable Bass Synthesizer — Polyphonic", jp: "次世代ウェーブテーブル・ベース・シンセ — ポリフォニック進化版" },
-    type: "Instrument",
-    year: "2026",
-    version: "1.2.0",
-    status: "Coming Soon",
-    comingSoon: true,
-    featureUrl: "basssynth-1-2-0.html",
-    screenshot: "screenshots/basssynth-1-2-0-main.png",
-    tagline: {
-      en: "Crushing low end meets polyphonic textures. Re-engineered.",
-      jp: "圧倒的な低域が、ポリフォニックな質感と出会う。再構築されたベースシンセ。"
-    },
-    description: {
-      en: "A massive evolutionary leap for BassSynth. Now supporting up to 24-voice polyphony for rich chords and pads, an advanced modulation matrix with performance-oriented sources (Velocity, threshold gate, trigger random), smoothing controls to eliminate clicks, a real-time mathematical formula editor for custom wavetable generation, a swappable 3-slot FX routing engine (Chorus, Delay, Reverb), and hardcoded factory assets for portable zero-dependency speed. Zero-latency and optimized.",
-      jp: "BassSynth の巨大な進化。最大 24 ボイスのポリフォニック対応により豊かな和音やパッド演奏が可能となり、打鍵速度やランダム等の拡張モジュレーション・マトリクス、クリックノイズを防ぐスムージング、数式からウェーブテーブルをリアルタイム生成する数式エディタ、順番を入れ替え可能な3系統の空間エフェクト（Chorus / Delay / Reverb）、バイナリ埋め込みによる高速なアセット読み込みを搭載。ゼロレイテンシで圧倒的な低音を。"
-    },
-    features: [
-      { en: "24-voice polyphony support — rich chords & pads w/ dynamic GUI slider", jp: "最大 24 ボイスのポリフォニック対応 — 和音・パッド演奏とボイス数制御スライダー" },
-      { en: "Formula-based wavetable generator — math equation editor in real-time", jp: "数式ベースのウェーブテーブル生成 — 数式からリアルタイム波形生成・書き出し" },
-      { en: "3 new performance modulation sources — Velocity, threshold gate, trigger random", jp: "3つの拡張モジュレーションソース — Velocity、閾値ゲート、トリガーランダム" },
-      { en: "Dedicated smoothing time (0.5ms–200ms) & polarity controls per performance source", jp: "パフォーマンスソース専用スムージング（0.5ms〜200ms）＆ 極性切り替え" },
-      { en: "New FX suite & routing editor — Dimension Chorus, Delay, Diffusion Cloud Reverb w/ drag-reorderable slots", jp: "空間系エフェクト＆順序入れ替え — コーラス、ディレイ、リバーブを直感的に並び替え" },
-      { en: "Enhanced modulators — Triangle LFO shape + One-Shot trigger mode", jp: "モジュレータの拡張 — 三角波LFO ＋ 1サイクルで停止するOne-Shotモード" },
-      { en: "29 factory presets & 13 custom wavetables embedded directly in binary", jp: "29ファクトリープリセット ＋ 13波形をバイナリ埋め込み、外部パス依存なし" },
-      { en: "Real-time render optimization — binding parameter displays to active voice", jp: "リアルタイム描画最適化 — アクティブボイスへのパラメータ表示追従" }
-    ],
-    repo: "https://github.com/OTODESK4193/BassSynth",
-    accent: "#00d4ff"
-  },
-  {
-    id: "neoto-pre",
-    num: "04",
-    name: "NEOTO Pre",
-    category: { en: "Analog-Modeled Preamp & Transformer Saturator", jp: "アナログモデリング・プリアンプ／トランス・サチュレータ" },
-    type: "Effect",
-    year: "2026",
-    version: "1.1.0",
-    status: "Released",
-    tagline: {
-      en: "Physical modeling of magnetic hysteresis. Not waveshaping.",
-      jp: "磁気ヒステリシスの物理モデリング。ただの波形整形ではない。"
-    },
-    description: {
-      en: "An open-source, finely-tuned analog-modeled preamp & transformer saturation plugin. Built on rigorous DSP and physical modeling of magnetic hysteresis and discrete component behavior — not static waveshapers — with state-of-the-art anti-aliasing.",
-      jp: "オープンソースの精密なアナログモデリング・プリアンプ／トランスサチュレーション・プラグイン。静的な波形整形器ではなく、磁気ヒステリシスと個別部品挙動の物理モデリング、最先端のアンチエイリアシングを組み合わせています。"
-    },
-    features: [
-      { en: "6 preamp models — API / Neve / Vintage Tube / SSL / Modern 1&2", jp: "6 種プリアンプ — API / Neve / Vintage Tube / SSL / Modern 1&2" },
-      { en: "Independent input & output transformer selection", jp: "入力／出力トランスを独立選択" },
-      { en: "6 transformer models — Nickel / Steel / Iron / Amorphous / Carnhill / Cinemag", jp: "6 種トランス — Nickel / Steel / Iron / Amorphous / Carnhill / Cinemag" },
-      { en: "Jiles-Atherton & Tellinen hysteresis models", jp: "Jiles-Atherton ＋ Tellinen ヒステリシスモデル" },
-      { en: "Drive & Character — even/odd harmonic balance", jp: "Drive ＆ Character — 偶数／奇数倍音バランス" },
-      { en: "Color & Air — transformer-specific biquad shelves", jp: "Color ＆ Air — トランス専用バイカッドシェルフ" },
-      { en: "Aging — dynamic HP/LP for component wear", jp: "Aging — 動的 HP/LP で経年劣化シミュレート" }
-    ],
-    repo: "https://github.com/OTODESK4193/NEOTO_Pre",
-    accent: "#ff7a3a"
-  },
-  {
-    id: "lumina",
-    num: "05",
-    name: "LUMINA",
-    category: { en: "Spectral Dynamics", jp: "スペクトル・ダイナミクス" },
-    type: "Effect",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Psychoacoustic precision. Surgical, not broad.",
-      jp: "心理音響モデルによる外科的精度。広帯域には頼らない。"
-    },
-    description: {
-      en: "An open-source next-gen spectral dynamics & glitch resynthesizer. Combines a high-resolution Kaiser-Bessel WOLA STFT engine with a 24-band Bark-scale psychoacoustic masking model for absolute precision in resonance control, harmonic/percussive manipulation, and dynamic spatial depth.",
-      jp: "オープンソースの次世代スペクトル・ダイナミクス／グリッチ・リシンセサイザー。高解像度 Kaiser-Bessel WOLA STFT エンジンと 24 バンド Bark スケール心理音響マスキングモデルを組み合わせ、共鳴制御・ハーモニック/パーカッシブ操作・空間表現で絶対的な精度を実現。"
-    },
-    features: [
-      { en: "24-band Bark-scale mutual masking — only suppresses clashing freqs", jp: "24 バンド Bark スケール相互マスキング — 衝突周波数のみ抑制" },
-      { en: "TPT zero-delay-feedback envelope follower (artifact-free)", jp: "TPT ゼロ遅延フィードバック・エンベロープ追従" },
-      { en: "Harmonic / Percussive Source Separation (HPSS)", jp: "Harmonic / Percussive Source Separation (HPSS)" },
-      { en: "Spectral flux onset detection, alloc-free", jp: "スペクトル・フラックス onset 検出 (割当なし)" },
-      { en: "Intelligent Auto-band — finds optimal crossovers", jp: "Intelligent Auto-band — 最適クロスオーバー自動検出" },
-      { en: "M/S Width + Schroeder all-pass decoherence", jp: "M/S Width ＋ Schroeder オールパス・デコヒーレンス" },
-      { en: "TPT Linkwitz-Riley crossover — phase-coherent, zero latency stack", jp: "TPT Linkwitz-Riley クロスオーバー — 位相整合・レイテンシ蓄積なし" },
-      { en: "Pro mode — independent HPSS/M-S/band-link control", jp: "Pro モード — HPSS／M-S／バンドリンク独立制御" }
-    ],
-    repo: "https://github.com/OTODESK4193/LUMINA",
-    accent: "#9be7ff"
-  },
-  {
-    id: "next-gen-kick",
-    num: "06",
-    name: "NEXT GEN KICK",
-    category: { en: "Professional Kick Drum Synthesizer", jp: "プロフェッショナル・キックドラム・シンセ" },
-    type: "Instrument",
-    year: "2026",
-    version: "1.2.1",
-    status: "Released",
-    tagline: {
-      en: "Attack, Body, Sub — synthesized, not sampled.",
-      jp: "アタック、ボディ、サブを合成で組み立てる。"
-    },
-    description: {
-      en: "A professional kick drum synthesizer plugin. PolyBLEP oscillators apply anti-aliasing at waveform generation, with up to 8x oversampling and TPT filters for excellent phase response.",
-      jp: "プロフェッショナル・キックドラム・シンセ。PolyBLEP オシレータが波形生成段階でアンチエイリアシングを適用、最大 8 倍オーバーサンプリングと位相特性に優れた TPT フィルタを搭載。"
-    },
-    features: [
-      { en: "3-layer engine — Attack / Body / Sub", jp: "3 層エンジン — Attack ／ Body ／ Sub" },
-      { en: "PolyBLEP anti-aliased oscillators", jp: "PolyBLEP アンチエイリアシング・オシレータ" },
-      { en: "Up to 8× oversampling (Ultra mode)", jp: "最大 8 倍オーバーサンプリング (Ultra モード)" },
-      { en: "TPT filters — topology-preserving, phase-accurate", jp: "TPT フィルタ — 位相特性に優れた構造保存型" },
-      { en: "11 saturation models w/ ADAA — soft-tan / hard-clip / triode / tape / wavefold / JFET / BJT / exciter etc.", jp: "11 種サチュレーション (ADAA 適用)" },
-      { en: "Physical modeling — Bessel membrane theory", jp: "物理モデリング — Bessel 関数膜理論応用" },
-      { en: "Per-layer interference visualizer", jp: "レイヤー間干渉ビジュアライザ" },
-      { en: "Look-ahead limiter (transient-preserving)", jp: "ルックアヘッド・リミッタ (トランジェント保持)" },
-      { en: "Detailed Japanese PDF manual included", jp: "詳細な日本語 PDF マニュアル同梱" }
-    ],
-    repo: "https://github.com/OTODESK4193/next-gen-kick",
-    accent: "#ffd166"
-  },
-  {
-    id: "otodesk-sampler",
-    num: "07",
-    name: "Otodesk Sampler",
-    category: { en: "Advanced Multi-Slot Sampler", jp: "高度なマルチスロット・サンプラー" },
-    type: "Instrument",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Eight slots. Pitch-detected, time-stretched, modulated.",
-      jp: "8 スロット。自動キー検出、タイムストレッチ、モジュレーション完備。"
-    },
-    description: {
-      en: "An advanced sampler plugin designed for the modern production workflow. Multi-slot playback, intelligent pitch detection, real-time time-stretching and a deep modulation/effects system — all optimized for Ableton Live.",
-      jp: "現代の音楽制作ワークフロー向けに設計された高度なサンプラー。マルチスロット再生、インテリジェントなピッチ検出、リアルタイム・タイムストレッチ、深いモジュレーション／エフェクトシステム搭載。Ableton Live に最適化。"
-    },
-    features: [
-      { en: "8 independent sample slots, layerable", jp: "8 つの独立サンプルスロット (レイヤー可)" },
-      { en: "Intelligent pitch detection — auto root key", jp: "インテリジェント・ピッチ検出 — ルートキー自動判定" },
-      { en: "RubberBand-integrated time-stretching", jp: "RubberBand 統合タイムストレッチ" },
-      { en: "Zero-cross loop detection w/ crossfade automation", jp: "ゼロクロス検出ループ ＋ クロスフェード・オートメーション" },
-      { en: "3 LFOs per slot → 13+ targets", jp: "スロットごと 3 LFO → 13 種以上のターゲット" },
-      { en: "4 FX slots — Ring Mod / Phantom Delay / Freeze / Hall Reverb / Limiter", jp: "4 エフェクトスロット — Ring Mod／Phantom Delay／Freeze／Hall Reverb／Limiter" },
-      { en: "Aegis Limiter — adaptive soft-clip protection", jp: "Aegis Limiter — 適応型ソフトクリップ保護" },
-      { en: "Material detection — auto-optimized processing", jp: "マテリアル検出 — サンプル自動分析" }
-    ],
-    repo: "https://github.com/OTODESK4193/OtodeskSampler",
-    accent: "#c2b5ff"
-  },
-  {
-    id: "glitchnexus",
-    num: "08",
-    name: "GlitchNexus",
-    category: { en: "Instant IDM Machine — Controlled Destruction", jp: "即席 IDM マシン — 制御された破壊" },
-    type: "Effect",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Controlled destruction. Rhythmic integrity intact.",
-      jp: "制御された破壊。リズムの整合性はそのまま。"
-    },
-    description: {
-      en: "Not just a random noise generator — an instant IDM machine that transforms simple loops into complex, evolving textures while preserving rhythmic integrity.",
-      jp: "ただのランダムノイズジェネレータではない。シンプルなループを複雑で変化に富んだテクスチャに変換しながら、リズムの整合性を維持する即席 IDM マシン。"
-    },
-    features: [
-      { en: "Hi-fi granular engine — Density / Spread / Direction", jp: "高忠実度グラニュラーエンジン — Density ／ Spread ／ Direction" },
-      { en: "4 window shapes — triangular / sine / square / saw", jp: "4 種ウィンドウ — 三角／正弦／矩形／鋸歯" },
-      { en: "X-Mod engine — Spectral wavefolder / AM diode-ring / FM delay-line", jp: "X-Mod エンジン — Spectral wavefolder／AM diode-ring／FM delay-line" },
-      { en: "16-step sequencer w/ Mute / Trigger / Freeze / Random / Stutter states", jp: "16 ステップシーケンサ — Mute／Trigger／Freeze／Random／Stutter" },
-      { en: "Musical Random — safe randomization, never breaks gain staging", jp: "Musical Random — ゲインを壊さない安全ランダマイズ" },
-      { en: "Dual visualizer — Ghost Horizon (in/out overlay) & Grain Scanner", jp: "デュアル・ビジュアライザ — Ghost Horizon ＋ Grain Scanner" },
-      { en: "Master FX — Resonator / BitCrush / Downsample / Drive / Tilt EQ", jp: "マスター FX — Resonator／BitCrush／Downsample／Drive／Tilt EQ" }
-    ],
-    repo: "https://github.com/OTODESK4193/GlitchNexus",
-    accent: "#ff3aa3"
-  },
-  {
-    id: "rhythm-matrix",
-    num: "09",
-    name: "Rhythm Matrix",
-    category: { en: "Generative Drum Sequencer", jp: "ジェネレーティブ・ドラム・シーケンサ" },
-    type: "MIDI",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "26 genre algorithms. Drop in samples, drag out MIDI.",
-      jp: "26 ジャンル・アルゴリズム。サンプルを入れて、MIDI を引き出す。"
-    },
-    description: {
-      en: "Originally built as a personal tool to speed up my own production workflow — turned out to be a powerful and inspiring generative sequencer, so I'm sharing it for free.",
-      jp: "もともと自分の音楽制作ワークフローを効率化するために作った個人ツール。あまりに強力でインスピレーションを引き出すジェネレーティブシーケンサーになったので、完全無料で公開しました。"
-    },
-    features: [
-      { en: "26 genre algorithms — UK Drill / Breakcore / Amapiano / Techno / Math Rock etc.", jp: "26 ジャンルアルゴリズム — UK Drill／Breakcore／Amapiano／Techno／Math Rock 他" },
-      { en: "Polyrhythm + Euclidean matrix w/ humanized ghost notes", jp: "ポリリズム ＋ ユークリッド・マトリクス、人間味あるゴーストノート" },
-      { en: "Per-track complexity & entropy control", jp: "トラックごとの複雑度／エントロピー制御" },
-      { en: "Drag & drop .wav / .mp3 / .aif into 8 tracks", jp: "8 トラックへ .wav／.mp3／.aif をドラッグ＆ドロップ" },
-      { en: "MIDI drag-out — drop patterns straight onto DAW timeline", jp: "MIDI ドラッグアウト — DAW タイムラインへ直接ドロップ" },
-      { en: "Lightweight UI — smooth even with many instances", jp: "軽量 UI — 複数インスタンスでもスムーズ" }
-    ],
-    repo: "https://github.com/OTODESK4193/OTODESK-Rhythm-Matrix",
-    accent: "#7bff8a"
-  },
-  {
-    id: "multi-oto",
-    num: "10",
-    name: "MULTI-OTO",
-    category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
-    type: "Effect",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Up to 128 cascaded multiband compressors. Yes, really.",
-      jp: "最大 128 段のマルチバンド・カスケード。本当に。"
-    },
-    description: {
-      en: "An open-source, extreme multiband dynamics & saturation VST3. Cascade up to 128 multiband compression nodes in series — built for Color Bass, Riddim and Neurofunk, where you need microscopic textures, infinite spectral sweeps, and phase-dispersion glitch artifacts that standard dynamics can't reach.",
-      jp: "オープンソースの極限マルチバンド・ダイナミクス／サチュレーション VST3。最大 128 段のマルチバンドコンプを直列にカスケード可能。Color Bass、Riddim、Neurofunk 向けに、微小なテクスチャの抽出、無限のスペクトル・スイープ、位相分散グリッチなど、通常のダイナミクスでは到達できない領域を狙う。"
-    },
-    features: [
-      { en: "Cascade 2 / 4 / 8 / 16 / 32 / 64 / 128 OTT nodes", jp: "カスケード段数 2／4／8／16／32／64／128 を選択" },
-      { en: "True OTT engine — upward + downward compression", jp: "真の OTT エンジン — アップワード／ダウンワード両対応" },
-      { en: "RMS envelopes — no ripple even at 128×", jp: "RMS エンベロープ — 128 倍でもリップル歪なし" },
-      { en: "Upward range cap +36 dB — no runaway", jp: "アップワード上限 +36dB — 暴走防止" },
-      { en: "Micro-dither at −144 dB — tails evolve forever", jp: "マイクロディザ −144dB — テール永続進化" },
-      { en: "Color Phase — uncompensated LR crossovers for glitch", jp: "Color Phase — 非補正 LR クロスオーバーでグリッチ生成" },
-      { en: "Pre-Drive ADAA saturation (Drive / Odd / Even)", jp: "Pre-Drive ADAA サチュレーション (Drive／Odd／Even)" },
-      { en: "AVX2 SIMD — 8 samples in parallel, real-time safe", jp: "AVX2 SIMD — 8 サンプル並列、リアルタイムセーフ" },
-      { en: "Zero heap alloc during playback", jp: "再生中ヒープアロケーション完全ゼロ" },
-      { en: "JP & EN PDF user manuals included", jp: "日本語／英語 PDF マニュアル同梱" }
-    ],
-    repo: "https://github.com/OTODESK4193/MULTI-OTO",
-    accent: "#ff2d6f"
-  },
-  {
-    id: "chimera-filter",
-    num: "11",
-    name: "CHIMERA Filter",
-    category: { en: "4-Head Morphing Filter", jp: "4 ヘッド・モーフィング・フィルタ" },
-    type: "Effect",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Four filter heads. Twenty-one models. One morph knob.",
-      jp: "4 つのフィルターヘッド、21 種類のモデル、1 つの MORPH ノブ。"
-    },
-    description: {
-      en: "An innovative morphing filter plugin with 4 independent filter heads (A/B/C/D), each selecting from 21 filter types. The MORPH knob smoothly transitions between all four.",
-      jp: "4 つの独立フィルターヘッド (A／B／C／D) を搭載した革新的なモーフィングフィルタ。各ヘッドは 21 種類のフィルタータイプから選択でき、MORPH ノブで 4 つを滑らかに行き来できます。"
-    },
-    features: [
-      { en: "4-head morphing architecture — smooth crossfade across all", jp: "4 ヘッド・モーフィング・アーキテクチャ — 全フィルタを滑らかにクロスフェード" },
-      { en: "21 filter types — SVF / Moog / TB-303-style etc.", jp: "21 種フィルタータイプ — SVF／Moog／TB-303 風 他" },
-      { en: "6 physical models — apply physical sim to the morph", jp: "6 種物理モード — モーフ動作に物理シミュ適用" },
-      { en: "Color Mode — polyphonic tonal generation via self-oscillation", jp: "Color モード — 自己発振によるポリフォニック楽音生成" },
-      { en: "1× / 2× / 4× oversampling", jp: "オーバーサンプリング 1×／2×／4×" },
-      { en: "Built-in output limiter", jp: "内蔵リミッタ — 出力保護" }
-    ],
-    repo: "https://github.com/OTODESK4193/CHIMERA_Filter",
-    accent: "#00d4ff"
-  },
-  {
-    id: "chordmatrix",
-    num: "12",
-    name: "ChordMatrix",
-    category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
-    type: "MIDI",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "Viterbi-optimized voice leading. 90 presets. 55 scales.",
-      jp: "Viterbi 最適化ボイスリーディング、90 プリセット、55 スケール。"
-    },
-    description: {
-      en: "An advanced algorithmic MIDI chord sequencer driven by Music Set Theory. Treats harmony not as static blocks but as a continuous topological space, modeling pro keyboard performance via a global Viterbi algorithm — automating voice leading, avoiding avoid-notes, and creating smooth modulation lines across 90 presets and 55 musical scales.",
-      jp: "Music Set Theory に基づく高度なアルゴリズム MIDI コード・シーケンサ。和声を静的なブロックではなく連続的な位相空間として扱い、Viterbi アルゴリズムでプロのキーボード演奏をモデル化。90 プリセット ／ 55 スケールにわたるボイスリーディング自動化と滑らかな転調を実現します。"
-    },
-    features: [
-      { en: "Global Viterbi voice-leading optimization", jp: "Viterbi アルゴリズムによるグローバル・ボイスリーディング最適化" },
-      { en: "5 OPTIMIZE personas — Balance / Melody / Bass / Cluster / Alt", jp: "5 種 OPTIMIZE ペルソナ — Balance／Melody／Bass／Cluster／Alt" },
-      { en: "Context-aware modulation engine — Pivot / SubV7 / vii°7", jp: "コンテキスト認識転調エンジン — Pivot／SubV7／vii°7" },
-      { en: "Neo-Riemannian transforms (P, L, R)", jp: "Neo-Riemannian 変換 (P, L, R)" },
-      { en: "Target-aware AI combo suggestions (ii°-V7♭9 etc.)", jp: "ターゲット認識 AI コンボ提案 (ii°-V7♭9 等)" },
-      { en: "Self-evolving tension (♭9 / ♭13 auto-selection)", jp: "自己進化テンション生成 (♭9 ／ ♭13 自動選択)" },
-      { en: "90 presets · 55 scales (Diatonic / Bebop / Symmetrical / World)", jp: "90 プリセット ・ 55 スケール (教会旋法／Bebop／対称／世界の音階)" },
-      { en: "Lock-free double-buffered DSP, zero heap alloc", jp: "Lock-Free ダブルバッファ DSP、ヒープアロケーションゼロ" },
-      { en: "VBlank-driven UI sync, AVX2 SIMD", jp: "VBlank 駆動 UI 同期、AVX2 SIMD" },
-      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
-    ],
-    repo: "https://github.com/OTODESK4193/ChordMatrix",
-    accent: "#b76cff"
-  },
-  {
-    id: "basslinematrix",
-    num: "13",
-    name: "BassLineMatrix",
-    category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
-    type: "MIDI",
-    year: "2026",
-    version: "1.0",
-    status: "Released",
-    tagline: {
-      en: "23 genres of DNA. Drop a chord, get a bassline.",
-      jp: "23 ジャンルの DNA。コードを置けば、ベースラインが生まれる。"
-    },
-    description: {
-      en: "An open-source algorithmic MIDI sequencer with a built-in synthesizer. Instantly conjure everything from hypnotic Melodic Techno rolling basses and aggressive Drum & Bass neuro-lines to soulful Neo-Soul walks and deeply syncopated Amapiano log-drums — all based on deeply researched genre DNA.",
-      jp: "オープンソースのアルゴリズム MIDI シーケンサ＆内蔵シンセ。Melodic Techno のローリングベース、Drum & Bass のニューロライン、Neo-Soul のウォーキング、Amapiano のログドラムまで、徹底的にリサーチされたジャンル DNA から瞬時に生成します。"
-    },
-    features: [
-      { en: "23 genre DNA algorithms — Techno / DnB / Trap / Amapiano / Neo-Soul …", jp: "23 ジャンル DNA — Techno／DnB／Trap／Amapiano／Neo-Soul 他" },
-      { en: "Per-genre velocity / swing / note-length / glide profiles", jp: "ジャンルごとのベロシティ／スウィング／ノート長／グライドプロファイル" },
-      { en: "4 independent slots — seamless A/B/C/D switching", jp: "4 独立スロット — シームレス A／B／C／D 切替" },
-      { en: "Time-sig / bars (up to 8) / Complexity / Entropy / Auto-Glide", jp: "拍子／小節数 (最大 8) ／ Complexity ／ Entropy ／ Auto-Glide" },
-      { en: "40 scales + Chord Mode (15 qualities w/ inversions)", jp: "40 スケール ＋ Chord モード (15 種コード＆転回)" },
-      { en: "Built-in TPT / ZDF synthesizer — analog-like, phase-warp free", jp: "内蔵 TPT／ZDF シンセ — アナログ風、位相ワープなし" },
-      { en: "Mono truncation + variable glide + staccato gating", jp: "Mono トランケート ＋ 可変グライド ＋ スタッカートゲート" },
-      { en: "MIDI drag & drop — Bass + Chord sequences to DAW timeline", jp: "MIDI ドラッグ＆ドロップ — Bass ＋ Chord シーケンスを DAW へ直接" },
-      { en: "Lock-free double-buffered DSP, AVX2-optimized", jp: "Lock-Free ダブルバッファ DSP、AVX2 最適化" },
-      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
-    ],
-    repo: "https://github.com/OTODESK4193/BassLineMatrix",
-    accent: "#ffb347"
-  },
-  {
     id: "next-gen-kick-2",
-    num: "15",
+    num: "01",
     name: "NEXT GEN KICK 2",
     category: { en: "Professional Kick & Percussion Synthesizer", jp: "プロフェッショナル・キック＆パーカッション・シンセ" },
     type: "Instrument",
@@ -480,15 +39,262 @@ window.PLUGINS = [
     accent: "#ffd166"
   },
   {
+    id: "picosampler",
+    num: "02",
+    name: "PicoSampler",
+    category: { en: "8-Slot / 32-Voice Creative Sampler", jp: "8スロット・32ボイス・クリエイティブサンプラー" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "picosampler.html",
+    downloadUrl: "https://github.com/OTODESK4193/PicoSampler",
+    sourceUrl: "https://github.com/OTODESK4193/PicoSampler",
+    screenshot: "screenshots/picosampler-main.jpg",
+    tagline: {
+      en: "A creative, intuitive sampler. Sample-accurate editing that never fights you.",
+      jp: "クリエイティブな簡易サンプラー。サブピクセル単位の精密エディットとスケールアルペジエイター。"
+    },
+    description: {
+      en: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。",
+      jp: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。"
+    },
+    features: [
+      { en: "8 slots × 32 voices — Single, Layer, and Random playback modes", jp: "8スロット × 32ボイス — Single / Layer / Random 再生モード" },
+      { en: "Continuous parameters & zero-crossing snap at 100,000× zoom", jp: "連続パラメータ ＆ 10万倍ズーム対応ゼロクロススナップ" },
+      { en: "Signalsmith Time-Stretch — 49 anchor buffers spanning -24 to +24 semitones", jp: "Signalsmith タイムストレッチ — -24〜+24半音の49アンカーバッファ" },
+      { en: "Auto-slice transient detection & smart distribution", jp: "自動スライス過渡音検出 ＆ ゼロクロス境界面分割" },
+      { en: "13-pattern Arpeggiator & 17-scale Scale Quantizer", jp: "13パターン・アルペジエイター ＆ 17スケール・クオンタイザー" },
+      { en: "16-slot Modulation Matrix & 5-slot drag-to-reorder FX rack", jp: "16スロット ModMatrix ＆ 自由に並び替え可能な5スロットFXラック" }
+    ],
+    repo: "https://github.com/OTODESK4193/PicoSampler",
+    accent: "#00e5a0"
+  },
+  {
+    id: "spectra8",
+    num: "03",
+    name: "SPECTRA8",
+    category: { en: "Dual Engine Polyphonic Vocoder", jp: "デュアルエンジン・ポリフォニックVocoder" },
+    type: "Effect/Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "spectra8.html",
+    downloadUrl: "https://github.com/OTODESK4193/SPECTRA8",
+    sourceUrl: "https://github.com/OTODESK4193/SPECTRA8",
+    screenshot: "screenshots/spectra8-vocoder.jpg",
+    tagline: {
+      en: "An innovative vocoder is born! Dual engines, Wavetables, and scale quantization.",
+      jp: "革新的なVocoderが誕生！8ボイスポリフォニック、Wavetable、ModMatrix搭載の変態仕様。"
+    },
+    description: {
+      en: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。",
+      jp: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。"
+    },
+    features: [
+      { en: "Dual engines: Filterbank (8–48 bands) & LPC (order 8–16 speech model)", jp: "デュアルエンジン: Filterbank (8〜48バンド) ＆ LPC (8〜16次モデル)" },
+      { en: "8-voice polyphonic carrier with PolyBLEP & Custom Wavetable support", jp: "PolyBLEP ＆ カスタムWavetable対応8ボイス・ポリフォニックキャリア" },
+      { en: "3 morph modes: Bend, Sync, and Vowel Formant filtering", jp: "3種のMorph機能 (Bend / Sync / Vowel)" },
+      { en: "MPM pitch tracker & 20-scale pitch quantizer (auto-tune)", jp: "MPMピッチトラッカー ＆ 20スケール対応オートチューン" },
+      { en: "Spectral Resonator with Chord/MIDI/Free modes & Shimmer", jp: "Chord / MIDI / Free モード＆シュマー搭載 Spectral Resonator" },
+      { en: "320-band constant-Q spectrum analyzer", jp: "320バンド Constant-Q スペクトラム・アナライザ" }
+    ],
+    repo: "https://github.com/OTODESK4193/SPECTRA8",
+    accent: "#b76cff"
+  },
+  {
+    id: "granular",
+    num: "04",
+    name: "Granular",
+    category: { en: "24-Voice Granular Synthesizer", jp: "24ボイス・グラニュラー・シンセサイザー" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "granular.html",
+    downloadUrl: "https://github.com/OTODESK4193/Granular",
+    sourceUrl: "https://github.com/OTODESK4193/Granular",
+    screenshot: "screenshots/granular-main.jpg",
+    tagline: {
+      en: "Harmony meets chaos. Post-modulation scale quantization keeps grains in tune.",
+      jp: "カオスと調和の実現。24ボイスグラニュラー。好きなサンプルを粒状にして音を再構築。"
+    },
+    description: {
+      en: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。",
+      jp: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。"
+    },
+    features: [
+      { en: "24 voices × up to 100 grains (1200 grain CPU budget)", jp: "24ボイス × 各最大100グレイン (最大1200グレイン予算)" },
+      { en: "Post-modulation scale quantizer across 17 scales", jp: "変調後に適用される17スケール対応ピッチクオンタイザー" },
+      { en: "P-SYNC pitch-synchronous grain firing for noise playable pitch", jp: "ノイズも音程化する P-SYNC ピッチ同期グレイン発音" },
+      { en: "Note-tuned TONE comb resonator & Hermite 4-point interpolation", jp: "ノート音程同調 TONE コムレゾネーター ＆ 4点エルミート補間" },
+      { en: "Dot-matrix waveform display colored by frequency content", jp: "周波数成分に応じたカラーリングドットマトリクス波形表示" },
+      { en: "16-slot modulation matrix & 5-slot FX rack", jp: "16スロット ModMatrix ＆ 5スロット FXラック" }
+    ],
+    repo: "https://github.com/OTODESK4193/Granular",
+    accent: "#ff2d75"
+  },
+  {
+    id: "lift-x",
+    num: "05",
+    name: "LIFT-X",
+    category: { en: "Riser-Dedicated Synthesizer — 31 Envelopes", jp: "ライザー特化型シンセサイザー — 31マルチENV" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "lift-x.html",
+    downloadUrl: "https://github.com/OTODESK4193/LIFT-X",
+    sourceUrl: "https://github.com/OTODESK4193/LIFT-X",
+    screenshot: "screenshots/liftx-main.jpg",
+    tagline: {
+      en: "A mind-blowing riser plugin driven by 31 envelopes linked on one playhead.",
+      jp: "31個のエンベロープが連動する驚愕のライザープラグイン。音程と展開を完璧に制御。"
+    },
+    description: {
+      en: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
+      jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。"
+    },
+    features: [
+      { en: "31 multi-point envelope curves evaluated on a single playhead", jp: "1つのプレイヘッドに同期連動する31個の多点エンベロープカーブ" },
+      { en: "Absolute pitch risers (Start Key → End Key range per OSC)", jp: "どの鍵盤でも確実に狙った音階範囲を上昇する絶対ピッチ構造" },
+      { en: "Scale Quantize across 70 scales for stepped, in-key climbs", jp: "70スケール対応スケールクオンタイズによるステップ上昇" },
+      { en: "3 OSCs (w/ custom Wavetables) + 7-voice unison & 3 noise types", jp: "3 OSC (カスタムWavetable対応) ＋ 7ボイスユニゾン ＆ 3種ノイズ" },
+      { en: "4 TPT SVF filters & 5-slot FX rack with per-source routing", jp: "4つの TPT SVF フィルター ＆ ソース別ルーティング対応 5スロット FX" },
+      { en: "Instant WAV export — drag recorded riser straight into DAW", jp: "ワンクリック WAV 書き出し — DAWタイムラインへ直接ドラッグ" }
+    ],
+    repo: "https://github.com/OTODESK4193/LIFT-X",
+    accent: "#ff8a3c"
+  },
+  {
+    id: "wavetable",
+    num: "06",
+    name: "Wavetable",
+    category: { en: "Polyphonic Wavetable Synth — 3 Morph Slots", jp: "ポリフォニック・ウェーブテーブル・シンセ" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "wavetable.html",
+    downloadUrl: "https://github.com/OTODESK4193/Wavetable",
+    sourceUrl: "https://github.com/OTODESK4193/Wavetable",
+    screenshot: "screenshots/wavetable-main.jpg",
+    tagline: {
+      en: "This might be a monster. 3 Morph slots, Color Engine, OTT & Soothe inside.",
+      jp: "これはモンスターかもしれない。3Morphスロット、Colorエンジン、OTT/Soothe搭載。"
+    },
+    description: {
+      en: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
+      jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!"
+    },
+    features: [
+      { en: "Wavetable OSC with 3 Morph slots × 19 spectral processing modes", jp: "19の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
+      { en: "Dual multi-mode filters (9 types) with serial/parallel routing", jp: "9タイプ対応デュアルマルチモードフィルター (直列/並列切り替え)" },
+      { en: "Deep Modulation — 3 LFOs, 2 MSEGs (32 nodes), 3 Mod Envelopes, 18-slot matrix", jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット ModMatrix" },
+      { en: "IR-based Color Engine with 8 tone types & Learn mode", jp: "8タイプの音色IR ＆ 演奏学習機能を備えた Color エンジン" },
+      { en: "3-band OTT compressor & 12-band Soothe resonance suppressor", jp: "3バンド OTT コンプレッサー ＆ 12バンド Soothe レゾナンス抑制" },
+      { en: "70-scale Pitch Quantizer & 10 switchable color themes", jp: "70スケール対応ピッチクオンタイザー ＆ 10種のカラーテーマ" }
+    ],
+    repo: "https://github.com/OTODESK4193/Wavetable",
+    accent: "#00d4ff"
+  },
+  {
+    id: "ambience",
+    num: "07",
+    name: "Ambience",
+    category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
+    type: "Effect",
+    year: "2026",
+    version: "1.1.0",
+    status: "Released",
+    comingSoon: false,
+    featured: false,
+    featureUrl: "ambience.html",
+    screenshot: "screenshots/ambience.jpg",
+    screenshotPro: "assets/ambience-screenshot-2.jpg",
+    tagline: {
+      en: "World-class halls in 16 channels of FDN. Free.",
+      jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
+    },
+    description: {
+      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 21 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall and more — at zero cost.",
+      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall など 21 種の名空間プリセットを、無料で。"
+    },
+    features: [
+      { en: "16-channel FDN with FWHT feedback matrix", jp: "FWHT 帰還行列の 16ch FDN" },
+      { en: "7 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL", jp: "7 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL" },
+      { en: "21 factory presets (Abbey Road, Musikverein, Carnegie etc.)", jp: "21 ファクトリプリセット (Abbey Road、Musikverein、Carnegie 他)" },
+      { en: "10-band Välimäki-Liski GEQ absorption per channel", jp: "チャンネルごとの 10 バンド Välimäki-Liski GEQ 吸収" },
+      { en: "ISM-based Early Reflections w/ per-algorithm tuning", jp: "ISM ベース Early Reflections (アルゴリズムごとに最適化)" },
+      { en: "ADAA Saturator — Warm / Tape / Tube / Hard", jp: "ADAA サチュレータ — Warm／Tape／Tube／Hard" },
+      { en: "Real-time D50 / C50 / C80 / EDT readouts", jp: "リアルタイム D50 ／ C50 ／ C80 ／ EDT 計測表示" },
+      { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
+      { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
+    ],
+    repo: "https://github.com/OTODESK4193/Ambience1.0.1",
+    accent: "#ff8a3c"
+  },
+  {
+    id: "quad-morph",
+    num: "08",
+    name: "Quad Morph Filter",
+    category: { en: "28-Model Real-Time Morphing Filter", jp: "28モデル・リアルタイムモーフィング・フィルター" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0.0",
+    status: "Released",
+    comingSoon: false,
+    featured: true,
+    featureUrl: "quad-morph.html",
+    downloadUrl: "https://github.com/OTODESK4193/QuadMorphFilter/releases/",
+    sourceUrl: "https://github.com/OTODESK4193/QuadMorphFilter",
+    screenshot: "screenshots/quad-morph.jpg",
+    tagline: {
+      en: "Dance, Filters! Command every spatial frequency.",
+      jp: "踊れ、フィルター！あらゆる空間周波数を支配する。"
+    },
+    description: {
+      en: "A high-performance VST3 plugin featuring 28 meticulously modeled filter algorithms that morph together in real-time on an XY pad. Moog Ladder, TB-303, Z-Plane 2D Morph, Bode Frequency Shifter — all morphable with 19 LFO waveforms, real-time frequency response visualization, and equal-power blending.",
+      jp: "28個のハンドクラフトされたフィルターモデルをリアルタイムでXYパッドでモーフィング。Moog Ladder、TB-303、Z-Plane 2D Morph、Bode Frequency Shifterを、19種LFO、周波数応答リアルタイム表示、イコールパワーブレンドで操調する高性能VST3。"
+    },
+    features: [
+      { en: "28 handcrafted filter models — Ladder / SVF / Analog / Digital / Spectral", jp: "28個のハンドクラフト・フィルター — Ladder／SVF／Analog／Digital／Spectral" },
+      { en: "Real-time 4-way XY morphing with equal-power blending", jp: "リアルタイム4ウェイXYモーフィング (イコールパワーブレンド)" },
+      { en: "4 morph blend algorithms — Equal Power / Linear / Smoothstep / Radial", jp: "4種ブレンドアルゴリズム — Equal Power／Linear／Smoothstep／Radial" },
+      { en: "19 LFO waveforms + 5 modulation engines (LFO1-5)", jp: "19種LFO ＋ 5種モジュレーション・エンジン (LFO1-5)" },
+      { en: "Live frequency response graph (1024-point FFT)", jp: "リアルタイム周波数応答グラフ (1024ポイントFFT)" },
+      { en: "4× oversampling, ADAA anti-aliasing", jp: "4倍オーバーサンプリング、ADAA アンチエイリアシング" },
+      { en: "Envelope Follower — sidechain-style input tracking", jp: "Envelope Follower — サイドチェーン式入力追従" },
+      { en: "Hand-drawn LFO recording on morph pad", jp: "モーフパッド上での手書きLFO記録" }
+    ],
+    repo: "https://github.com/OTODESK4193/QuadMorphFilter",
+    accent: "#00d9ff"
+  },
+  {
     id: "anatomy",
-    num: "14",
+    num: "09",
     name: "ANATOMY",
     category: { en: "Transient / Tonal Separation Sampler", jp: "過渡音/音色 分離サンプラー" },
     type: "Sampler",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
     version: "1.0",
-    status: "Coming Soon",
+    status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "anatomy.html",
@@ -503,7 +309,7 @@ window.PLUGINS = [
       en: "Real-time transient/tonal separation engine using mathematically lossless cos\u00b2 crossfade. Three independent signal lanes \u2014 Transient, Tonal, Full Mix \u2014 each with pitch, gain, shape controls and 6-slot FX chains.",
       jp: "数学的に完璧な cos\u00b2 クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。トランジェント・トーン・フルミックスの 3 レーンに独立ピッチ/ゲイン/シェイプ制御と 6 スロットエフェクトチェーン。"
     },
-    bullets: [
+    features: [
       { en: "Lossless cos\u00b2 crossfade separation \u2014 transient + tonal = original, zero artefacts", jp: "エネルギー損失ゼロの cos\u00b2 分離" },
       { en: "3 independent lanes \u00d7 6-slot FX chains each (18 total)", jp: "3 レーン \u00d7 6 エフェクトチェーン（合計 18）" },
       { en: "Drag & drop WAV loading \u2014 auto-analyzed and separated", jp: "WAV ドラッグ&ドロップ → 自動分析・分離" },
@@ -516,7 +322,7 @@ window.PLUGINS = [
   },
   {
     id: "lowcut-police",
-    num: "16",
+    num: "10",
     name: "LowCut Police",
     category: { en: "Minimum-Phase IIR Highpass + Ultra-High-Res Analyzer", jp: "ミニマムフェーズ IIR ハイパス＋超高解像度アナライザー" },
     type: "Effect",
@@ -548,6 +354,345 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/HighPrecisionEQ",
     accent: "#ff6b4a"
+  },
+  {
+    id: "basssynth",
+    num: "11",
+    name: "BassSynth",
+    category: { en: "Next-Gen Wavetable Bass Synthesizer", jp: "次世代ウェーブテーブル・ベース・シンセ" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "1.0.2",
+    status: "Released",
+    comingSoon: false,
+    featured: false,
+    downloadUrl: "https://github.com/OTODESK4193/BassSynth/releases",
+    sourceUrl: "https://github.com/OTODESK4193/BassSynth",
+    screenshot: "screenshots/basssynth.jpg",
+    tagline: {
+      en: "Crushing low end meets crystalline top textures.",
+      jp: "圧倒的な低域と、結晶のような高域のテクスチャ。"
+    },
+    description: {
+      en: "A next-generation wavetable bass synthesizer built in C++ and JUCE for modern electronic music producers. Combines crushing low end with crystal-clear top textures in an intuitive Ableton-style dark UI.",
+      jp: "C++ と JUCE で構築された次世代ウェーブテーブル・ベース・シンセ。圧倒的な低域とクリスタルクリアな高域を、直感的な Ableton スタイルのダーク UI で操作できます。"
+    },
+    features: [
+      { en: "10 factory morphing tables (64-frame, zero-latency)", jp: "10 種ファクトリーモーフィングテーブル (64 フレーム / ゼロレイテンシ)" },
+      { en: "Custom .wav wavetable import w/ band-limited interp", jp: "カスタム .wav インポート (帯域制限補間)" },
+      { en: "13 spectral morph modes across A / B / C slots", jp: "A / B / C スロット × 13 モーフモード" },
+      { en: "Color IR Engine — auto chord-learning convolution", jp: "Color IR エンジン — MIDI コード自動学習 → IR 生成" },
+      { en: "Sparkle Arp — harmony-aware high-freq arpeggiator", jp: "Sparkle Arp — 学習コードに連動する高周波アルペジエータ" },
+      { en: "Dual state-variable filter (serial / parallel)", jp: "デュアル状態可変フィルタ (直列／並列)" },
+      { en: "MSEG × 2 + 3 LFO + 3 mod envelopes", jp: "MSEG × 2 ＋ LFO × 3 ＋ Mod Env × 3" },
+      { en: "10-slot modulation matrix", jp: "10 スロット・モジュレーション・マトリクス" },
+      { en: "True OTT + Soothe-style resonance suppressor", jp: "真の OTT ＋ Soothe スタイル共振抑制" },
+      { en: "Zero-latency brickwall peak limiter", jp: "ゼロレイテンシ・ブリックウォール・リミッタ" }
+    ],
+    repo: "https://github.com/OTODESK4193/BassSynth",
+    accent: "#00d4ff"
+  },
+  {
+    id: "neoto-pre",
+    num: "12",
+    name: "NEOTO Pre",
+    category: { en: "Analog-Modeled Preamp & Transformer Saturator", jp: "アナログモデリング・プリアンプ／トランス・サチュレータ" },
+    type: "Effect",
+    year: "2026",
+    version: "1.1.0",
+    status: "Released",
+    tagline: {
+      en: "Physical modeling of magnetic hysteresis. Not waveshaping.",
+      jp: "磁気ヒステリシスの物理モデリング。ただの波形整形ではない。"
+    },
+    description: {
+      en: "An open-source, finely-tuned analog-modeled preamp & transformer saturation plugin. Built on rigorous DSP and physical modeling of magnetic hysteresis and discrete component behavior — not static waveshapers — with state-of-the-art anti-aliasing.",
+      jp: "オープンソースの精密なアナログモデリング・プリアンプ／トランスサチュレーション・プラグイン。静的な波形整形器ではなく、磁気ヒステリシスと個別部品挙動の物理モデリング、最先端のアンチエイリアシングを組み合わせています。"
+    },
+    features: [
+      { en: "6 preamp models — API / Neve / Vintage Tube / SSL / Modern 1&2", jp: "6 種プリアンプ — API / Neve / Vintage Tube / SSL / Modern 1&2" },
+      { en: "Independent input & output transformer selection", jp: "入力／出力トランスを独立選択" },
+      { en: "6 transformer models — Nickel / Steel / Iron / Amorphous / Carnhill / Cinemag", jp: "6 種トランス — Nickel / Steel / Iron / Amorphous / Carnhill / Cinemag" },
+      { en: "Jiles-Atherton & Tellinen hysteresis models", jp: "Jiles-Atherton ＋ Tellinen ヒステリシスモデル" },
+      { en: "Drive & Character — even/odd harmonic balance", jp: "Drive ＆ Character — 偶数／奇数倍音バランス" },
+      { en: "Color & Air — transformer-specific biquad shelves", jp: "Color ＆ Air — トランス専用バイカッドシェルフ" },
+      { en: "Aging — dynamic HP/LP for component wear", jp: "Aging — 動的 HP/LP で経年劣化シミュレート" }
+    ],
+    repo: "https://github.com/OTODESK4193/NEOTO_Pre",
+    accent: "#ff7a3a"
+  },
+  {
+    id: "lumina",
+    num: "13",
+    name: "LUMINA",
+    category: { en: "Spectral Dynamics", jp: "スペクトル・ダイナミクス" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Psychoacoustic precision. Surgical, not broad.",
+      jp: "心理音響モデルによる外科的精度。広帯域には頼らない。"
+    },
+    description: {
+      en: "An open-source next-gen spectral dynamics & glitch resynthesizer. Combines a high-resolution Kaiser-Bessel WOLA STFT engine with a 24-band Bark-scale psychoacoustic masking model for absolute precision in resonance control, harmonic/percussive manipulation, and dynamic spatial depth.",
+      jp: "オープンソースの次世代スペクトル・ダイナミクス／グリッチ・リシンセサイザー。高解像度 Kaiser-Bessel WOLA STFT エンジンと 24 バンド Bark スケール心理音響マスキングモデルを組み合わせ、共鳴制御・ハーモニック/パーカッシブ操作・空間表現で絶対的な精度を実現。"
+    },
+    features: [
+      { en: "24-band Bark-scale mutual masking — only suppresses clashing freqs", jp: "24 バンド Bark スケール相互マスキング — 衝突周波数のみ抑制" },
+      { en: "TPT zero-delay-feedback envelope follower (artifact-free)", jp: "TPT ゼロ遅延フィードバック・エンベロープ追従" },
+      { en: "Harmonic / Percussive Source Separation (HPSS)", jp: "Harmonic / Percussive Source Separation (HPSS)" },
+      { en: "Spectral flux onset detection, alloc-free", jp: "スペクトル・フラックス onset 検出 (割当なし)" },
+      { en: "Intelligent Auto-band — finds optimal crossovers", jp: "Intelligent Auto-band — 最適クロスオーバー自動検出" },
+      { en: "M/S Width + Schroeder all-pass decoherence", jp: "M/S Width ＋ Schroeder オールパス・デコヒーレンス" },
+      { en: "TPT Linkwitz-Riley crossover — phase-coherent, zero latency stack", jp: "TPT Linkwitz-Riley クロスオーバー — 位相整合・レイテンシ蓄積なし" },
+      { en: "Pro mode — independent HPSS/M-S/band-link control", jp: "Pro モード — HPSS／M-S／バンドリンク独立制御" }
+    ],
+    repo: "https://github.com/OTODESK4193/LUMINA",
+    accent: "#9be7ff"
+  },
+  {
+    id: "next-gen-kick",
+    num: "14",
+    name: "NEXT GEN KICK",
+    category: { en: "Professional Kick Drum Synthesizer", jp: "プロフェッショナル・キックドラム・シンセ" },
+    type: "Instrument",
+    year: "2026",
+    version: "1.2.1",
+    status: "Released",
+    tagline: {
+      en: "Attack, Body, Sub — synthesized, not sampled.",
+      jp: "アタック、ボディ、サブを合成で組み立てる。"
+    },
+    description: {
+      en: "A professional kick drum synthesizer plugin. PolyBLEP oscillators apply anti-aliasing at waveform generation, with up to 8x oversampling and TPT filters for excellent phase response.",
+      jp: "プロフェッショナル・キックドラム・シンセ。PolyBLEP オシレータが波形生成段階でアンチエイリアシングを適用、最大 8 倍オーバーサンプリングと位相特性に優れた TPT フィルタを搭載。"
+    },
+    features: [
+      { en: "3-layer engine — Attack / Body / Sub", jp: "3 層エンジン — Attack ／ Body ／ Sub" },
+      { en: "PolyBLEP anti-aliased oscillators", jp: "PolyBLEP アンチエイリアシング・オシレータ" },
+      { en: "Up to 8× oversampling (Ultra mode)", jp: "最大 8 倍オーバーサンプリング (Ultra モード)" },
+      { en: "TPT filters — topology-preserving, phase-accurate", jp: "TPT フィルタ — 位相特性に優れた構造保存型" },
+      { en: "11 saturation models w/ ADAA — soft-tan / hard-clip / triode / tape / wavefold / JFET / BJT / exciter etc.", jp: "11 種サチュレーション (ADAA 適用)" },
+      { en: "Physical modeling — Bessel membrane theory", jp: "物理モデリング — Bessel 関数膜理論応用" },
+      { en: "Per-layer interference visualizer", jp: "レイヤー間干渉ビジュアライザ" },
+      { en: "Look-ahead limiter (transient-preserving)", jp: "ルックアヘッド・リミッタ (トランジェント保持)" },
+      { en: "Detailed Japanese PDF manual included", jp: "詳細な日本語 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/next-gen-kick",
+    accent: "#ffd166"
+  },
+  {
+    id: "otodesk-sampler",
+    num: "10",
+    name: "Otodesk Sampler",
+    category: { en: "Advanced Multi-Slot Sampler", jp: "高度なマルチスロット・サンプラー" },
+    type: "Instrument",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Eight slots. Pitch-detected, time-stretched, modulated.",
+      jp: "8 スロット。自動キー検出、タイムストレッチ、モジュレーション完備。"
+    },
+    description: {
+      en: "An advanced sampler plugin designed for the modern production workflow. Multi-slot playback, intelligent pitch detection, real-time time-stretching and a deep modulation/effects system — all optimized for Ableton Live.",
+      jp: "現代の音楽制作ワークフロー向けに設計された高度なサンプラー。マルチスロット再生、インテリジェントなピッチ検出、リアルタイム・タイムストレッチ、深いモジュレーション／エフェクトシステム搭載。Ableton Live に最適化。"
+    },
+    features: [
+      { en: "8 independent sample slots, layerable", jp: "8 つの独立サンプルスロット (レイヤー可)" },
+      { en: "Intelligent pitch detection — auto root key", jp: "インテリジェント・ピッチ検出 — ルートキー自動判定" },
+      { en: "RubberBand-integrated time-stretching", jp: "RubberBand 統合タイムストレッチ" },
+      { en: "Zero-cross loop detection w/ crossfade automation", jp: "ゼロクロス検出ループ ＋ クロスフェード・オートメーション" },
+      { en: "3 LFOs per slot → 13+ targets", jp: "スロットごと 3 LFO → 13 種以上のターゲット" },
+      { en: "4 FX slots — Ring Mod / Phantom Delay / Freeze / Hall Reverb / Limiter", jp: "4 エフェクトスロット — Ring Mod／Phantom Delay／Freeze／Hall Reverb／Limiter" },
+      { en: "Aegis Limiter — adaptive soft-clip protection", jp: "Aegis Limiter — 適応型ソフトクリップ保護" },
+      { en: "Material detection — auto-optimized processing", jp: "マテリアル検出 — サンプル自動分析" }
+    ],
+    repo: "https://github.com/OTODESK4193/OtodeskSampler",
+    accent: "#c2b5ff"
+  },
+  {
+    id: "glitchnexus",
+    num: "11",
+    name: "GlitchNexus",
+    category: { en: "Instant IDM Machine — Controlled Destruction", jp: "即席 IDM マシン — 制御された破壊" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Controlled destruction. Rhythmic integrity intact.",
+      jp: "制御された破壊。リズムの整合性はそのまま。"
+    },
+    description: {
+      en: "Not just a random noise generator — an instant IDM machine that transforms simple loops into complex, evolving textures while preserving rhythmic integrity.",
+      jp: "ただのランダムノイズジェネレータではない。シンプルなループを複雑で変化に富んだテクスチャに変換しながら、リズムの整合性を維持する即席 IDM マシン。"
+    },
+    features: [
+      { en: "Hi-fi granular engine — Density / Spread / Direction", jp: "高忠実度グラニュラーエンジン — Density ／ Spread ／ Direction" },
+      { en: "4 window shapes — triangular / sine / square / saw", jp: "4 種ウィンドウ — 三角／正弦／矩形／鋸歯" },
+      { en: "X-Mod engine — Spectral wavefolder / AM diode-ring / FM delay-line", jp: "X-Mod エンジン — Spectral wavefolder／AM diode-ring／FM delay-line" },
+      { en: "16-step sequencer w/ Mute / Trigger / Freeze / Random / Stutter states", jp: "16 ステップシーケンサ — Mute／Trigger／Freeze／Random／Stutter" },
+      { en: "Musical Random — safe randomization, never breaks gain staging", jp: "Musical Random — ゲインを壊さない安全ランダマイズ" },
+      { en: "Dual visualizer — Ghost Horizon (in/out overlay) & Grain Scanner", jp: "デュアル・ビジュアライザ — Ghost Horizon ＋ Grain Scanner" },
+      { en: "Master FX — Resonator / BitCrush / Downsample / Drive / Tilt EQ", jp: "マスター FX — Resonator／BitCrush／Downsample／Drive／Tilt EQ" }
+    ],
+    repo: "https://github.com/OTODESK4193/GlitchNexus",
+    accent: "#ff3aa3"
+  },
+  {
+    id: "rhythm-matrix",
+    num: "12",
+    name: "Rhythm Matrix",
+    category: { en: "Generative Drum Sequencer", jp: "ジェネレーティブ・ドラム・シーケンサ" },
+    type: "MIDI",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "26 genre algorithms. Drop in samples, drag out MIDI.",
+      jp: "26 ジャンル・アルゴリズム。サンプルを入れて、MIDI を引き出す。"
+    },
+    description: {
+      en: "Originally built as a personal tool to speed up my own production workflow — turned out to be a powerful and inspiring generative sequencer, so I'm sharing it for free.",
+      jp: "もともと自分の音楽制作ワークフローを効率化するために作った個人ツール。あまりに強力でインスピレーションを引き出すジェネレーティブシーケンサーになったので、完全無料で公開しました。"
+    },
+    features: [
+      { en: "26 genre algorithms — UK Drill / Breakcore / Amapiano / Techno / Math Rock etc.", jp: "26 ジャンルアルゴリズム — UK Drill／Breakcore／Amapiano／Techno／Math Rock 他" },
+      { en: "Polyrhythm + Euclidean matrix w/ humanized ghost notes", jp: "ポリリズム ＋ ユークリッド・マトリクス、人間味あるゴーストノート" },
+      { en: "Per-track complexity & entropy control", jp: "トラックごとの複雑度／エントロピー制御" },
+      { en: "Drag & drop .wav / .mp3 / .aif into 8 tracks", jp: "8 トラックへ .wav／.mp3／.aif をドラッグ＆ドロップ" },
+      { en: "MIDI drag-out — drop patterns straight onto DAW timeline", jp: "MIDI ドラッグアウト — DAW タイムラインへ直接ドロップ" },
+      { en: "Lightweight UI — smooth even with many instances", jp: "軽量 UI — 複数インスタンスでもスムーズ" }
+    ],
+    repo: "https://github.com/OTODESK4193/OTODESK-Rhythm-Matrix",
+    accent: "#7bff8a"
+  },
+  {
+    id: "multi-oto",
+    num: "13",
+    name: "MULTI-OTO",
+    category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Up to 128 cascaded multiband compressors. Yes, really.",
+      jp: "最大 128 段のマルチバンド・カスケード。本当に。"
+    },
+    description: {
+      en: "An open-source, extreme multiband dynamics & saturation VST3. Cascade up to 128 multiband compression nodes in series — built for Color Bass, Riddim and Neurofunk, where you need microscopic textures, infinite spectral sweeps, and phase-dispersion glitch artifacts that standard dynamics can't reach.",
+      jp: "オープンソースの極限マルチバンド・ダイナミクス／サチュレーション VST3。最大 128 段のマルチバンドコンプを直列にカスケード可能。Color Bass、Riddim、Neurofunk 向けに、微小なテクスチャの抽出、無限のスペクトル・スイープ、位相分散グリッチなど、通常のダイナミクスでは到達できない領域を狙う。"
+    },
+    features: [
+      { en: "Cascade 2 / 4 / 8 / 16 / 32 / 64 / 128 OTT nodes", jp: "カスケード段数 2／4／8／16／32／64／128 を選択" },
+      { en: "True OTT engine — upward + downward compression", jp: "真の OTT エンジン — アップワード／ダウンワード両対応" },
+      { en: "RMS envelopes — no ripple even at 128×", jp: "RMS エンベロープ — 128 倍でもリップル歪なし" },
+      { en: "Upward range cap +36 dB — no runaway", jp: "アップワード上限 +36dB — 暴走防止" },
+      { en: "Micro-dither at −144 dB — tails evolve forever", jp: "マイクロディザ −144dB — テール永続進化" },
+      { en: "Color Phase — uncompensated LR crossovers for glitch", jp: "Color Phase — 非補正 LR クロスオーバーでグリッチ生成" },
+      { en: "Pre-Drive ADAA saturation (Drive / Odd / Even)", jp: "Pre-Drive ADAA サチュレーション (Drive／Odd／Even)" },
+      { en: "AVX2 SIMD — 8 samples in parallel, real-time safe", jp: "AVX2 SIMD — 8 サンプル並列、リアルタイムセーフ" },
+      { en: "Zero heap alloc during playback", jp: "再生中ヒープアロケーション完全ゼロ" },
+      { en: "JP & EN PDF user manuals included", jp: "日本語／英語 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/MULTI-OTO",
+    accent: "#ff2d6f"
+  },
+  {
+    id: "chimera-filter",
+    num: "14",
+    name: "CHIMERA Filter",
+    category: { en: "4-Head Morphing Filter", jp: "4 ヘッド・モーフィング・フィルタ" },
+    type: "Effect",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Four filter heads. Twenty-one models. One morph knob.",
+      jp: "4 つのフィルターヘッド、21 種類のモデル、1 つの MORPH ノブ。"
+    },
+    description: {
+      en: "An innovative morphing filter plugin with 4 independent filter heads (A/B/C/D), each selecting from 21 filter types. The MORPH knob smoothly transitions between all four.",
+      jp: "4 つの独立フィルターヘッド (A／B／C／D) を搭載した革新的なモーフィングフィルタ。各ヘッドは 21 種類のフィルタータイプから選択でき、MORPH ノブで 4 つを滑らかに行き来できます。"
+    },
+    features: [
+      { en: "4-head morphing architecture — smooth crossfade across all", jp: "4 ヘッド・モーフィング・アーキテクチャ — 全フィルタを滑らかにクロスフェード" },
+      { en: "21 filter types — SVF / Moog / TB-303-style etc.", jp: "21 種フィルタータイプ — SVF／Moog／TB-303 風 他" },
+      { en: "6 physical models — apply physical sim to the morph", jp: "6 種物理モード — モーフ動作に物理シミュ適用" },
+      { en: "Color Mode — polyphonic tonal generation via self-oscillation", jp: "Color モード — 自己発振によるポリフォニック楽音生成" },
+      { en: "1× / 2× / 4× oversampling", jp: "オーバーサンプリング 1×／2×／4×" },
+      { en: "Built-in output limiter", jp: "内蔵リミッタ — 出力保護" }
+    ],
+    repo: "https://github.com/OTODESK4193/CHIMERA_Filter",
+    accent: "#00d4ff"
+  },
+  {
+    id: "chordmatrix",
+    num: "15",
+    name: "ChordMatrix",
+    category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
+    type: "MIDI",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "Viterbi-optimized voice leading. 90 presets. 55 scales.",
+      jp: "Viterbi 最適化ボイスリーディング、90 プリセット、55 スケール。"
+    },
+    description: {
+      en: "An advanced algorithmic MIDI chord sequencer driven by Music Set Theory. Treats harmony not as static blocks but as a continuous topological space, modeling pro keyboard performance via a global Viterbi algorithm — automating voice leading, avoiding avoid-notes, and creating smooth modulation lines across 90 presets and 55 musical scales.",
+      jp: "Music Set Theory に基づく高度なアルゴリズム MIDI コード・シーケンサ。和声を静的なブロックではなく連続的な位相空間として扱い、Viterbi アルゴリズムでプロのキーボード演奏をモデル化。90 プリセット ／ 55 スケールにわたるボイスリーディング自動化と滑らかな転調を実現します。"
+    },
+    features: [
+      { en: "Global Viterbi voice-leading optimization", jp: "Viterbi アルゴリズムによるグローバル・ボイスリーディング最適化" },
+      { en: "5 OPTIMIZE personas — Balance / Melody / Bass / Cluster / Alt", jp: "5 種 OPTIMIZE ペルソナ — Balance／Melody／Bass／Cluster／Alt" },
+      { en: "Context-aware modulation engine — Pivot / SubV7 / vii°7", jp: "コンテキスト認識転調エンジン — Pivot／SubV7／vii°7" },
+      { en: "Neo-Riemannian transforms (P, L, R)", jp: "Neo-Riemannian 変換 (P, L, R)" },
+      { en: "Target-aware AI combo suggestions (ii°-V7♭9 etc.)", jp: "ターゲット認識 AI コンボ提案 (ii°-V7♭9 等)" },
+      { en: "Self-evolving tension (♭9 / ♭13 auto-selection)", jp: "自己進化テンション生成 (♭9 ／ ♭13 自動選択)" },
+      { en: "90 presets · 55 scales (Diatonic / Bebop / Symmetrical / World)", jp: "90 プリセット ・ 55 スケール (教会旋法／Bebop／対称／世界の音階)" },
+      { en: "Lock-free double-buffered DSP, zero heap alloc", jp: "Lock-Free ダブルバッファ DSP、ヒープアロケーションゼロ" },
+      { en: "VBlank-driven UI sync, AVX2 SIMD", jp: "VBlank 駆動 UI 同期、AVX2 SIMD" },
+      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/ChordMatrix",
+    accent: "#b76cff"
+  },
+  {
+    id: "basslinematrix",
+    num: "16",
+    name: "BassLineMatrix",
+    category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
+    type: "MIDI",
+    year: "2026",
+    version: "1.0",
+    status: "Released",
+    tagline: {
+      en: "23 genres of DNA. Drop a chord, get a bassline.",
+      jp: "23 ジャンルの DNA。コードを置けば、ベースラインが生まれる。"
+    },
+    description: {
+      en: "An open-source algorithmic MIDI sequencer with a built-in synthesizer. Instantly conjure everything from hypnotic Melodic Techno rolling basses and aggressive Drum & Bass neuro-lines to soulful Neo-Soul walks and deeply syncopated Amapiano log-drums — all based on deeply researched genre DNA.",
+      jp: "オープンソースのアルゴリズム MIDI シーケンサ＆内蔵シンセ。Melodic Techno のローリングベース、Drum & Bass のニューロライン、Neo-Soul のウォーキング、Amapiano のログドラムまで、徹底的にリサーチされたジャンル DNA から瞬時に生成します。"
+    },
+    features: [
+      { en: "23 genre DNA algorithms — Techno / DnB / Trap / Amapiano / Neo-Soul …", jp: "23 ジャンル DNA — Techno／DnB／Trap／Amapiano／Neo-Soul 他" },
+      { en: "Per-genre velocity / swing / note-length / glide profiles", jp: "ジャンルごとのベロシティ／スウィング／ノート長／グライドプロファイル" },
+      { en: "4 independent slots — seamless A/B/C/D switching", jp: "4 独立スロット — シームレス A／B／C／D 切替" },
+      { en: "Time-sig / bars (up to 8) / Complexity / Entropy / Auto-Glide", jp: "拍子／小節数 (最大 8) ／ Complexity ／ Entropy ／ Auto-Glide" },
+      { en: "40 scales + Chord Mode (15 qualities w/ inversions)", jp: "40 スケール ＋ Chord モード (15 種コード＆転回)" },
+      { en: "Built-in TPT / ZDF synthesizer — analog-like, phase-warp free", jp: "内蔵 TPT／ZDF シンセ — アナログ風、位相ワープなし" },
+      { en: "Mono truncation + variable glide + staccato gating", jp: "Mono トランケート ＋ 可変グライド ＋ スタッカートゲート" },
+      { en: "MIDI drag & drop — Bass + Chord sequences to DAW timeline", jp: "MIDI ドラッグ＆ドロップ — Bass ＋ Chord シーケンスを DAW へ直接" },
+      { en: "Lock-free double-buffered DSP, AVX2-optimized", jp: "Lock-Free ダブルバッファ DSP、AVX2 最適化" },
+      { en: "Bilingual PDF manual (JP / EN) included", jp: "日英 PDF マニュアル同梱" }
+    ],
+    repo: "https://github.com/OTODESK4193/BassLineMatrix",
+    accent: "#ffb347"
   }
 ];
 
