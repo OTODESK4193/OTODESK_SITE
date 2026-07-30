@@ -43,8 +43,8 @@
     .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
     .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
-    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+    .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
     .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
     .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
 
@@ -119,9 +119,12 @@
     </p>
 
     <div class="hero-actions">
-      <a href="https://github.com/OTODESK4193/SPECTRA8" target="_blank" rel="noreferrer" class="btn-main">
-        GitHub Source (Private) ↗
-      </a>
+      <span class="btn-disabled">
+        Download (Coming Soon)
+      </span>
+      <span class="btn-disabled">
+        GitHub Source (Private)
+      </span>
       <a href="index.html#gallery" class="btn-sub">
         全プラグイン一覧を見る
       </a>
@@ -172,41 +175,51 @@
 
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/spectra8-carrier.jpg" alt="Carrier Synth & Wavetable" />
+        <img src="screenshots/spectra8-vocoder.jpg" alt="Vocoder Engine & Main Panel" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">8ボイス・ポリフォニック Carrier シンセ</div>
-        <div class="showcase-desc">8ボイスポリフォニックの内部Carrierシンセサイザー。Saw/Square/Triangleといった基本波形に加えて、任意のWavetableを読み込み、3つのMorphスロットでスペクトル加工が可能です。</div>
-      </div>
-    </div>
-
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/spectra8-formant.jpg" alt="Formant & Filterbank" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">フォルマントシフト ＆ デュアルボコーダー</div>
+        <div class="showcase-title">ボコーダーメインエンジン ＆ フォルマント制御</div>
         <div class="showcase-desc">FilterBank (8〜48 bands) と LPC (order 8〜16) をリアルタイム切替。フォルマントコントロール（±12半音）と母音フィルター（A-E-I-O-U）により、声質や性別表現を自由自在に変更。</div>
       </div>
     </div>
 
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/spectra8-resonator.jpg" alt="Spectral Resonator" />
+        <img src="screenshots/spectra8-excitation.jpg" alt="Carrier Synth & Excitation" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">スペクトラル・レゾネーター</div>
-        <div class="showcase-desc">入力信号に弦のような美しい倍音共鳴を付加するレゾネーター。コード入力・MIDI追従・フリーモードを搭載し、Shimmerエフェクトと組み合わせて幻想的なテクスチャを生成します。</div>
+        <div class="showcase-title">8ボイス・ポリフォニック Carrier ＆ エキサイテーション</div>
+        <div class="showcase-desc">8ボイスポリフォニックの内部Carrierシンセサイザー。Saw/Square/Triangleといった基本波形に加えて、任意のWavetableを読み込み、3つのMorphスロットでスペクトル加工が可能です。</div>
       </div>
     </div>
 
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/spectra8-spectrum.jpg" alt="320-Band Spectrum Analyzer" />
+        <img src="screenshots/spectra8-modmatrix.jpg" alt="Modulation Matrix" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">320バンド Constant-Q スペクトラム・アナライザ</div>
+        <div class="showcase-title">モジュレーション・マトリクス</div>
+        <div class="showcase-desc">LFOやエンベロープ等のモジュレーションソースから、Carrierピッチ、フォルマント、FilterBankのゲイン等に縦横無尽にアクセス可能。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-bandseq.jpg" alt="Bands EQ & Spectral Analyzer" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">バンドEQ ＆ スペクトラム・アナライザ</div>
         <div class="showcase-desc">入力 Modulator と Carrier の倍音構造をリアルタイムで高精度に描画。各バンドのゲイン調整やフォルマント変形がひと目で把握できます。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/spectra8-fx.jpg" alt="5-Slot FX Engine" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">5スロット FXエンジン</div>
+        <div class="showcase-desc">Drive, Gate, Chorus, Reverb などの高品質エフェクトにより、ボコーダー音をスタジオクオリティへとブラッシュアップ。</div>
       </div>
     </div>
   </section>

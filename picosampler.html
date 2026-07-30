@@ -43,8 +43,8 @@
     .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
     .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
-    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+    .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
     .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
     .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
 
@@ -119,9 +119,12 @@
     </p>
 
     <div class="hero-actions">
-      <a href="https://github.com/OTODESK4193/PicoSampler" target="_blank" rel="noreferrer" class="btn-main">
-        GitHub Source (Private) ↗
-      </a>
+      <span class="btn-disabled">
+        Download (Coming Soon)
+      </span>
+      <span class="btn-disabled">
+        GitHub Source (Private)
+      </span>
       <a href="index.html#gallery" class="btn-sub">
         全プラグイン一覧を見る
       </a>
@@ -172,21 +175,21 @@
 
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/picosampler-wave.jpg" alt="Waveform & Slice" />
+        <img src="screenshots/picosampler-main.jpg" alt="Main Interface & 8-Slot Sampler" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">精密波形編集 ＆ 自動スライス</div>
-        <div class="showcase-desc">10万倍ズームに対応した波形表示。過渡音検出（Auto-slice）とゼロクロススナップにより、クリックノイズを発生させずに完璧なサンプル切り出し・ループポイント設定が行えます。</div>
+        <div class="showcase-title">メインインターフェース ＆ 8スロット サンプラー</div>
+        <div class="showcase-desc">8つのスロットに自由に音声を割り当て、Single / Layer / Random のマルチプレイバックを集中コントロール。10万倍ズームとゼロクロススナップにより、超高精度な波形編集を実現。</div>
       </div>
     </div>
 
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/picosampler-arp.jpg" alt="Arpeggiator & Scale Quantizer" />
+        <img src="screenshots/picosampler-arpfilter.jpg" alt="Arp & Filter Section" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">アルペジエイター ＆ スケールクオンタイズ</div>
-        <div class="showcase-desc">Up / Down / Random などの13パターンアルペジエイターと、Major, Pentatonic, Dorian などの17種類のスケールクオンタイズを搭載。どんなアブストラクトな素材も音楽的フレーズへ昇華。</div>
+        <div class="showcase-title">アルペジエイター ＆ フィルターセクション</div>
+        <div class="showcase-desc">Up / Down / Random などの13パターンアルペジエイターと、17種類のスケールクオンタイズ、TPT SVFフィルターモデルを組み合わせ、どんな素材も音楽的フレーズへと昇華。</div>
       </div>
     </div>
 
@@ -207,6 +210,16 @@
       <div class="showcase-info">
         <div class="showcase-title">自由な順序で組める 5スロット FXラック</div>
         <div class="showcase-desc">10アルゴリズムのサチュレーション、アンサンブルコーラス、テープディレイ、フリーズ、シマーリバーブ。ドラッグ＆ドロップでエフェクト順序を即座に変更可能。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
+        <img src="screenshots/picosampler-config.jpg" alt="Config Section" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">コンフィグ ＆ システム設定</div>
+        <div class="showcase-desc">各種エンジンプロファイルの設定やシステム設定をスムーズに調整可能。直感的なダークテーマUIで快適なアサインワークフローを提供。</div>
       </div>
     </div>
   </section>

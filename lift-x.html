@@ -43,8 +43,8 @@
     .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
     .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; }
-    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+    .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
     .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
     .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
 
@@ -119,9 +119,12 @@
     </p>
 
     <div class="hero-actions">
-      <a href="https://github.com/OTODESK4193/LIFT-X" target="_blank" rel="noreferrer" class="btn-main">
-        GitHub Source (Private) ↗
-      </a>
+      <span class="btn-disabled">
+        Download (Coming Soon)
+      </span>
+      <span class="btn-disabled">
+        GitHub Source (Private)
+      </span>
       <a href="index.html#gallery" class="btn-sub">
         全プラグイン一覧を見る
       </a>
@@ -172,6 +175,16 @@
 
     <div class="showcase-item">
       <div class="showcase-img">
+        <img src="screenshots/liftx-main.jpg" alt="LIFT-X Main Panel & Playhead" />
+      </div>
+      <div class="showcase-info">
+        <div class="showcase-title">メインパネル ＆ 31カーブ統合コントロール</div>
+        <div class="showcase-desc">単一のプレイヘッド（LIFT）によって制御されるメイン合成エンジン。3オシレーターのWavetable設定、ノイズジェネレーター、マスターリバース、WAVドラッグ生成が一体化。</div>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="showcase-img">
         <img src="screenshots/liftx-oscenv.jpg" alt="31 Multi-Point Curve Editor" />
       </div>
       <div class="showcase-info">
@@ -205,8 +218,8 @@
         <img src="screenshots/liftx-preset.jpg" alt="Config & 70 Scale Quantizer" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">70種類のスケールクオンタイズ ＆ リバース機能</div>
-        <div class="showcase-desc">モード、日本古風（平調子・岩戸等）、ワールド、コードトーンなど70スケールを完備。「REVERSE」ボタン1つで31のカーブすべてを逆再生し、ダウンナーへ反転。</div>
+        <div class="showcase-title">70種類のスケールクオンタイズ ＆ プリセットブラウザ</div>
+        <div class="showcase-desc">モード、日本古風（平調子・岩戸等）、ワールド、コードトーンなど70スケールを完備。11カテゴリのファクトリープリセットブラウザを内蔵。</div>
       </div>
     </div>
   </section>

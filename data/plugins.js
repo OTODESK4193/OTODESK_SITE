@@ -2,8 +2,183 @@
 // All plugins: Windows / VST3 only. Ableton Live verified. Other DAWs unverified.
 window.PLUGINS = [
   {
-    id: "next-gen-kick-2",
+    id: "picosampler",
     num: "01",
+    name: "PicoSampler",
+    category: { en: "8-Slot / 32-Voice Creative Sampler", jp: "8スロット・32ボイス・クリエイティブサンプラー" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "picosampler.html",
+    downloadUrl: "https://github.com/OTODESK4193/PicoSampler/releases",
+    sourceUrl: "https://github.com/OTODESK4193/PicoSampler",
+    screenshot: "screenshots/picosampler-main.jpg",
+    tagline: {
+      en: "A creative, intuitive sampler. Sample-accurate editing that never fights you.",
+      jp: "クリエイティブな簡易サンプラー。サブピクセル単位の精密エディットとスケールアルペジエイター。"
+    },
+    description: {
+      en: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。",
+      jp: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。"
+    },
+    features: [
+      { en: "8 slots × 32 voices — Single, Layer, and Random playback modes", jp: "8スロット × 32ボイス — Single / Layer / Random 再生モード" },
+      { en: "Continuous parameters & zero-crossing snap at 100,000× zoom", jp: "連続パラメータ ＆ 10万倍ズーム対応ゼロクロススナップ" },
+      { en: "Signalsmith Time-Stretch — 49 anchor buffers spanning -24 to +24 semitones", jp: "Signalsmith タイムストレッチ — -24〜+24半音の49アンカーバッファ" },
+      { en: "Auto-slice transient detection & smart distribution", jp: "自動スライス過渡音検出 ＆ ゼロクロス境界面分割" },
+      { en: "13-pattern Arpeggiator & 17-scale Scale Quantizer", jp: "13パターン・アルペジエイター ＆ 17スケール・クオンタイザー" },
+      { en: "16-slot Modulation Matrix & 5-slot drag-to-reorder FX rack", jp: "16スロット ModMatrix ＆ 自由に並び替え可能な5スロットFXラック" }
+    ],
+    repo: "https://github.com/OTODESK4193/PicoSampler",
+    accent: "#00e5a0"
+  },
+  {
+    id: "spectra8",
+    num: "02",
+    name: "SPECTRA8",
+    category: { en: "Dual Engine Polyphonic Vocoder", jp: "デュアルエンジン・ポリフォニックVocoder" },
+    type: "Effect/Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "spectra8.html",
+    downloadUrl: "https://github.com/OTODESK4193/SPECTRA8/releases",
+    sourceUrl: "https://github.com/OTODESK4193/SPECTRA8",
+    screenshot: "screenshots/spectra8-vocoder.jpg",
+    tagline: {
+      en: "An innovative vocoder is born! Dual engines, Wavetables, and scale quantization.",
+      jp: "革新的なVocoderが誕生！8ボイスポリフォニック、Wavetable、ModMatrix搭載の変態仕様。"
+    },
+    description: {
+      en: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。",
+      jp: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。"
+    },
+    features: [
+      { en: "Dual engines: Filterbank (8–48 bands) & LPC (order 8–16 speech model)", jp: "デュアルエンジン: Filterbank (8〜48バンド) ＆ LPC (8〜16次モデル)" },
+      { en: "8-voice polyphonic carrier with PolyBLEP & Custom Wavetable support", jp: "PolyBLEP ＆ カスタムWavetable対応8ボイス・ポリフォニックキャリア" },
+      { en: "3 morph modes: Bend, Sync, and Vowel Formant filtering", jp: "3種のMorph機能 (Bend / Sync / Vowel)" },
+      { en: "MPM pitch tracker & 20-scale pitch quantizer (auto-tune)", jp: "MPMピッチトラッカー ＆ 20スケール対応オートチューン" },
+      { en: "Spectral Resonator with Chord/MIDI/Free modes & Shimmer", jp: "Chord / MIDI / Free モード＆シュマー搭載 Spectral Resonator" },
+      { en: "320-band constant-Q spectrum analyzer", jp: "320バンド Constant-Q スペクトラム・アナライザ" }
+    ],
+    repo: "https://github.com/OTODESK4193/SPECTRA8",
+    accent: "#b76cff"
+  },
+  {
+    id: "granular",
+    num: "03",
+    name: "Granular",
+    category: { en: "24-Voice Granular Synthesizer", jp: "24ボイス・グラニュラー・シンセサイザー" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "granular.html",
+    downloadUrl: "https://github.com/OTODESK4193/Granular/releases",
+    sourceUrl: "https://github.com/OTODESK4193/Granular",
+    screenshot: "screenshots/granular-main.jpg",
+    tagline: {
+      en: "Harmony meets chaos. Post-modulation scale quantization keeps grains in tune.",
+      jp: "カオスと調和の実現。24ボイスグラニュラー。好きなサンプルを粒状にして音を再構築。"
+    },
+    description: {
+      en: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。",
+      jp: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。"
+    },
+    features: [
+      { en: "24 voices × up to 100 grains (1200 grain CPU budget)", jp: "24ボイス × 各最大100グレイン (最大1200グレイン予算)" },
+      { en: "Post-modulation scale quantizer across 17 scales", jp: "変調後に適用される17スケール対応ピッチクオンタイザー" },
+      { en: "P-SYNC pitch-synchronous grain firing for noise playable pitch", jp: "ノイズも音程化する P-SYNC ピッチ同期グレイン発音" },
+      { en: "Note-tuned TONE comb resonator & Hermite 4-point interpolation", jp: "ノート音程同調 TONE コムレゾネーター ＆ 4点エルミート補間" },
+      { en: "Dot-matrix waveform display colored by frequency content", jp: "周波数成分に応じたカラーリングドットマトリクス波形表示" },
+      { en: "16-slot modulation matrix & 5-slot FX rack", jp: "16スロット ModMatrix ＆ 5スロット FXラック" }
+    ],
+    repo: "https://github.com/OTODESK4193/Granular",
+    accent: "#ff2d75"
+  },
+  {
+    id: "lift-x",
+    num: "04",
+    name: "LIFT-X",
+    category: { en: "Riser-Dedicated Synthesizer — 31 Envelopes", jp: "ライザー特化型シンセサイザー — 31マルチENV" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "lift-x.html",
+    downloadUrl: "https://github.com/OTODESK4193/LIFT-X/releases",
+    sourceUrl: "https://github.com/OTODESK4193/LIFT-X",
+    screenshot: "screenshots/liftx-main.jpg",
+    tagline: {
+      en: "A mind-blowing riser plugin driven by 31 envelopes linked on one playhead.",
+      jp: "31個のエンベロープが連動する驚愕のライザープラグイン。音程と展開を完璧に制御。"
+    },
+    description: {
+      en: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
+      jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。"
+    },
+    features: [
+      { en: "31 multi-point envelope curves evaluated on a single playhead", jp: "1つのプレイヘッドに同期連動する31個の多点エンベロープカーブ" },
+      { en: "Absolute pitch risers (Start Key → End Key range per OSC)", jp: "どの鍵盤でも確実に狙った音階範囲を上昇する絶対ピッチ構造" },
+      { en: "Scale Quantize across 70 scales for stepped, in-key climbs", jp: "70スケール対応スケールクオンタイズによるステップ上昇" },
+      { en: "3 OSCs (w/ custom Wavetables) + 7-voice unison & 3 noise types", jp: "3 OSC (カスタムWavetable対応) ＋ 7ボイスユニゾン ＆ 3種ノイズ" },
+      { en: "4 TPT SVF filters & 5-slot FX rack with per-source routing", jp: "4つの TPT SVF フィルター ＆ ソース別ルーティング対応 5スロット FX" },
+      { en: "Instant WAV export — drag recorded riser straight into DAW", jp: "ワンクリック WAV 書き出し — DAWタイムラインへ直接ドラッグ" }
+    ],
+    repo: "https://github.com/OTODESK4193/LIFT-X",
+    accent: "#ff8a3c"
+  },
+  {
+    id: "wavetable",
+    num: "05",
+    name: "Wavetable",
+    category: { en: "Polyphonic Wavetable Synth — 3 Morph Slots", jp: "ポリフォニック・ウェーブテーブル・シンセ" },
+    type: "Instrument",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
+    year: "2026",
+    version: "v1.0.0 (Coming Soon)",
+    status: "ComingSoon",
+    comingSoon: true,
+    featured: false,
+    featureUrl: "wavetable.html",
+    downloadUrl: "https://github.com/OTODESK4193/Wavetable/releases",
+    sourceUrl: "https://github.com/OTODESK4193/Wavetable",
+    screenshot: "screenshots/wavetable-main.jpg",
+    tagline: {
+      en: "This might be a monster. 3 Morph slots, Color Engine, OTT & Soothe inside.",
+      jp: "これはモンスターかもしれない。3Morphスロット、Colorエンジン、OTT/Soothe搭載。"
+    },
+    description: {
+      en: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
+      jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!"
+    },
+    features: [
+      { en: "Wavetable OSC with 3 Morph slots × 19 spectral processing modes", jp: "19の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
+      { en: "Dual multi-mode filters (9 types) with serial/parallel routing", jp: "9タイプ対応デュアルマルチモードフィルター (直列/並列切り替え)" },
+      { en: "Deep Modulation — 3 LFOs, 2 MSEGs (32 nodes), 3 Mod Envelopes, 18-slot matrix", jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット ModMatrix" },
+      { en: "IR-based Color Engine with 8 tone types & Learn mode", jp: "8タイプの音色IR ＆ 演奏学習機能を備えた Color エンジン" },
+      { en: "3-band OTT compressor & 12-band Soothe resonance suppressor", jp: "3バンド OTT コンプレッサー ＆ 12バンド Soothe レゾナンス抑制" },
+      { en: "70-scale Pitch Quantizer & 10 switchable color themes", jp: "70スケール対応ピッチクオンタイザー ＆ 10種のカラーテーマ" }
+    ],
+    repo: "https://github.com/OTODESK4193/Wavetable",
+    accent: "#00d4ff"
+  },
+  {
+    id: "next-gen-kick-2",
+    num: "06",
     name: "NEXT GEN KICK 2",
     category: { en: "Professional Kick & Percussion Synthesizer", jp: "プロフェッショナル・キック＆パーカッション・シンセ" },
     type: "Instrument",
@@ -37,181 +212,6 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/NextGenKick2",
     accent: "#ffd166"
-  },
-  {
-    id: "picosampler",
-    num: "02",
-    name: "PicoSampler",
-    category: { en: "8-Slot / 32-Voice Creative Sampler", jp: "8スロット・32ボイス・クリエイティブサンプラー" },
-    type: "Instrument",
-    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
-    year: "2026",
-    version: "v1.0.0 (Coming Soon)",
-    status: "ComingSoon",
-    comingSoon: true,
-    featured: false,
-    featureUrl: "picosampler.html",
-    downloadUrl: "https://github.com/OTODESK4193/PicoSampler",
-    sourceUrl: "https://github.com/OTODESK4193/PicoSampler",
-    screenshot: "screenshots/picosampler-main.jpg",
-    tagline: {
-      en: "A creative, intuitive sampler. Sample-accurate editing that never fights you.",
-      jp: "クリエイティブな簡易サンプラー。サブピクセル単位の精密エディットとスケールアルペジエイター。"
-    },
-    description: {
-      en: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。",
-      jp: "8SLOTに配置した音をランダムに再生したり、スケールクオンタイズされたアルペジエイターを使い、アナタの想像力を解放します。49アンカーのタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。"
-    },
-    features: [
-      { en: "8 slots × 32 voices — Single, Layer, and Random playback modes", jp: "8スロット × 32ボイス — Single / Layer / Random 再生モード" },
-      { en: "Continuous parameters & zero-crossing snap at 100,000× zoom", jp: "連続パラメータ ＆ 10万倍ズーム対応ゼロクロススナップ" },
-      { en: "Signalsmith Time-Stretch — 49 anchor buffers spanning -24 to +24 semitones", jp: "Signalsmith タイムストレッチ — -24〜+24半音の49アンカーバッファ" },
-      { en: "Auto-slice transient detection & smart distribution", jp: "自動スライス過渡音検出 ＆ ゼロクロス境界面分割" },
-      { en: "13-pattern Arpeggiator & 17-scale Scale Quantizer", jp: "13パターン・アルペジエイター ＆ 17スケール・クオンタイザー" },
-      { en: "16-slot Modulation Matrix & 5-slot drag-to-reorder FX rack", jp: "16スロット ModMatrix ＆ 自由に並び替え可能な5スロットFXラック" }
-    ],
-    repo: "https://github.com/OTODESK4193/PicoSampler",
-    accent: "#00e5a0"
-  },
-  {
-    id: "spectra8",
-    num: "03",
-    name: "SPECTRA8",
-    category: { en: "Dual Engine Polyphonic Vocoder", jp: "デュアルエンジン・ポリフォニックVocoder" },
-    type: "Effect/Instrument",
-    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
-    year: "2026",
-    version: "v1.0.0 (Coming Soon)",
-    status: "ComingSoon",
-    comingSoon: true,
-    featured: false,
-    featureUrl: "spectra8.html",
-    downloadUrl: "https://github.com/OTODESK4193/SPECTRA8",
-    sourceUrl: "https://github.com/OTODESK4193/SPECTRA8",
-    screenshot: "screenshots/spectra8-vocoder.jpg",
-    tagline: {
-      en: "An innovative vocoder is born! Dual engines, Wavetables, and scale quantization.",
-      jp: "革新的なVocoderが誕生！8ボイスポリフォニック、Wavetable、ModMatrix搭載の変態仕様。"
-    },
-    description: {
-      en: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。",
-      jp: "8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用することも可能。2種類（FilterBank/LPC）のVocoderを切り替え可能。ModMatrixやスケールクオンタイズも搭載した変態仕様。アナタの想像力をスクラップ＆ビルドします。"
-    },
-    features: [
-      { en: "Dual engines: Filterbank (8–48 bands) & LPC (order 8–16 speech model)", jp: "デュアルエンジン: Filterbank (8〜48バンド) ＆ LPC (8〜16次モデル)" },
-      { en: "8-voice polyphonic carrier with PolyBLEP & Custom Wavetable support", jp: "PolyBLEP ＆ カスタムWavetable対応8ボイス・ポリフォニックキャリア" },
-      { en: "3 morph modes: Bend, Sync, and Vowel Formant filtering", jp: "3種のMorph機能 (Bend / Sync / Vowel)" },
-      { en: "MPM pitch tracker & 20-scale pitch quantizer (auto-tune)", jp: "MPMピッチトラッカー ＆ 20スケール対応オートチューン" },
-      { en: "Spectral Resonator with Chord/MIDI/Free modes & Shimmer", jp: "Chord / MIDI / Free モード＆シュマー搭載 Spectral Resonator" },
-      { en: "320-band constant-Q spectrum analyzer", jp: "320バンド Constant-Q スペクトラム・アナライザ" }
-    ],
-    repo: "https://github.com/OTODESK4193/SPECTRA8",
-    accent: "#b76cff"
-  },
-  {
-    id: "granular",
-    num: "04",
-    name: "Granular",
-    category: { en: "24-Voice Granular Synthesizer", jp: "24ボイス・グラニュラー・シンセサイザー" },
-    type: "Instrument",
-    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
-    year: "2026",
-    version: "v1.0.0 (Coming Soon)",
-    status: "ComingSoon",
-    comingSoon: true,
-    featured: false,
-    featureUrl: "granular.html",
-    downloadUrl: "https://github.com/OTODESK4193/Granular",
-    sourceUrl: "https://github.com/OTODESK4193/Granular",
-    screenshot: "screenshots/granular-main.jpg",
-    tagline: {
-      en: "Harmony meets chaos. Post-modulation scale quantization keeps grains in tune.",
-      jp: "カオスと調和の実現。24ボイスグラニュラー。好きなサンプルを粒状にして音を再構築。"
-    },
-    description: {
-      en: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。",
-      jp: "24ボイスのグラニュラーシンセサイザー。好きなサンプルを粒状にして音を再構築します。ベースがPADになったり、声がベースになったり。使い方次第でアナタの想像力を異次元へと拡張します。"
-    },
-    features: [
-      { en: "24 voices × up to 100 grains (1200 grain CPU budget)", jp: "24ボイス × 各最大100グレイン (最大1200グレイン予算)" },
-      { en: "Post-modulation scale quantizer across 17 scales", jp: "変調後に適用される17スケール対応ピッチクオンタイザー" },
-      { en: "P-SYNC pitch-synchronous grain firing for noise playable pitch", jp: "ノイズも音程化する P-SYNC ピッチ同期グレイン発音" },
-      { en: "Note-tuned TONE comb resonator & Hermite 4-point interpolation", jp: "ノート音程同調 TONE コムレゾネーター ＆ 4点エルミート補間" },
-      { en: "Dot-matrix waveform display colored by frequency content", jp: "周波数成分に応じたカラーリングドットマトリクス波形表示" },
-      { en: "16-slot modulation matrix & 5-slot FX rack", jp: "16スロット ModMatrix ＆ 5スロット FXラック" }
-    ],
-    repo: "https://github.com/OTODESK4193/Granular",
-    accent: "#ff2d75"
-  },
-  {
-    id: "lift-x",
-    num: "05",
-    name: "LIFT-X",
-    category: { en: "Riser-Dedicated Synthesizer — 31 Envelopes", jp: "ライザー特化型シンセサイザー — 31マルチENV" },
-    type: "Instrument",
-    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
-    year: "2026",
-    version: "v1.0.0 (Coming Soon)",
-    status: "ComingSoon",
-    comingSoon: true,
-    featured: false,
-    featureUrl: "lift-x.html",
-    downloadUrl: "https://github.com/OTODESK4193/LIFT-X",
-    sourceUrl: "https://github.com/OTODESK4193/LIFT-X",
-    screenshot: "screenshots/liftx-main.jpg",
-    tagline: {
-      en: "A mind-blowing riser plugin driven by 31 envelopes linked on one playhead.",
-      jp: "31個のエンベロープが連動する驚愕のライザープラグイン。音程と展開を完璧に制御。"
-    },
-    description: {
-      en: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
-      jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。"
-    },
-    features: [
-      { en: "31 multi-point envelope curves evaluated on a single playhead", jp: "1つのプレイヘッドに同期連動する31個の多点エンベロープカーブ" },
-      { en: "Absolute pitch risers (Start Key → End Key range per OSC)", jp: "どの鍵盤でも確実に狙った音階範囲を上昇する絶対ピッチ構造" },
-      { en: "Scale Quantize across 70 scales for stepped, in-key climbs", jp: "70スケール対応スケールクオンタイズによるステップ上昇" },
-      { en: "3 OSCs (w/ custom Wavetables) + 7-voice unison & 3 noise types", jp: "3 OSC (カスタムWavetable対応) ＋ 7ボイスユニゾン ＆ 3種ノイズ" },
-      { en: "4 TPT SVF filters & 5-slot FX rack with per-source routing", jp: "4つの TPT SVF フィルター ＆ ソース別ルーティング対応 5スロット FX" },
-      { en: "Instant WAV export — drag recorded riser straight into DAW", jp: "ワンクリック WAV 書き出し — DAWタイムラインへ直接ドラッグ" }
-    ],
-    repo: "https://github.com/OTODESK4193/LIFT-X",
-    accent: "#ff8a3c"
-  },
-  {
-    id: "wavetable",
-    num: "06",
-    name: "Wavetable",
-    category: { en: "Polyphonic Wavetable Synth — 3 Morph Slots", jp: "ポリフォニック・ウェーブテーブル・シンセ" },
-    type: "Instrument",
-    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
-    year: "2026",
-    version: "v1.0.0 (Coming Soon)",
-    status: "ComingSoon",
-    comingSoon: true,
-    featured: false,
-    featureUrl: "wavetable.html",
-    downloadUrl: "https://github.com/OTODESK4193/Wavetable",
-    sourceUrl: "https://github.com/OTODESK4193/Wavetable",
-    screenshot: "screenshots/wavetable-main.jpg",
-    tagline: {
-      en: "This might be a monster. 3 Morph slots, Color Engine, OTT & Soothe inside.",
-      jp: "これはモンスターかもしれない。3Morphスロット、Colorエンジン、OTT/Soothe搭載。"
-    },
-    description: {
-      en: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
-      jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!"
-    },
-    features: [
-      { en: "Wavetable OSC with 3 Morph slots × 19 spectral processing modes", jp: "19の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
-      { en: "Dual multi-mode filters (9 types) with serial/parallel routing", jp: "9タイプ対応デュアルマルチモードフィルター (直列/並列切り替え)" },
-      { en: "Deep Modulation — 3 LFOs, 2 MSEGs (32 nodes), 3 Mod Envelopes, 18-slot matrix", jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット ModMatrix" },
-      { en: "IR-based Color Engine with 8 tone types & Learn mode", jp: "8タイプの音色IR ＆ 演奏学習機能を備えた Color エンジン" },
-      { en: "3-band OTT compressor & 12-band Soothe resonance suppressor", jp: "3バンド OTT コンプレッサー ＆ 12バンド Soothe レゾナンス抑制" },
-      { en: "70-scale Pitch Quantizer & 10 switchable color themes", jp: "70スケール対応ピッチクオンタイザー ＆ 10種のカラーテーマ" }
-    ],
-    repo: "https://github.com/OTODESK4193/Wavetable",
-    accent: "#00d4ff"
   },
   {
     id: "ambience",

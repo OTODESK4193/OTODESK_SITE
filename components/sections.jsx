@@ -118,10 +118,10 @@ function Hero({ lang }) {
       },
       shots: [
         { label: "Main Sampler", file: "screenshots/picosampler-main.jpg" },
-        { label: "Waveform View", file: "screenshots/picosampler-wave.jpg" },
-        { label: "Arp & Quantize", file: "screenshots/picosampler-arp.jpg" },
+        { label: "Arp & Filter", file: "screenshots/picosampler-arpfilter.jpg" },
         { label: "Mod Matrix", file: "screenshots/picosampler-mod.jpg" },
-        { label: "FX Rack", file: "screenshots/picosampler-fx.jpg" }
+        { label: "FX Rack", file: "screenshots/picosampler-fx.jpg" },
+        { label: "Config", file: "screenshots/picosampler-config.jpg" }
       ]
     },
     2: {
@@ -138,10 +138,10 @@ function Hero({ lang }) {
       },
       shots: [
         { label: "Vocoder Engine", file: "screenshots/spectra8-vocoder.jpg" },
-        { label: "Carrier Synth", file: "screenshots/spectra8-carrier.jpg" },
-        { label: "Formant Filter", file: "screenshots/spectra8-formant.jpg" },
-        { label: "Resonator", file: "screenshots/spectra8-resonator.jpg" },
-        { label: "Spectrum", file: "screenshots/spectra8-spectrum.jpg" }
+        { label: "Excitation", file: "screenshots/spectra8-excitation.jpg" },
+        { label: "Mod Matrix", file: "screenshots/spectra8-modmatrix.jpg" },
+        { label: "Bands EQ", file: "screenshots/spectra8-bandseq.jpg" },
+        { label: "FX Engine", file: "screenshots/spectra8-fx.jpg" }
       ]
     },
     3: {
