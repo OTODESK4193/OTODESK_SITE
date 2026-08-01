@@ -389,11 +389,11 @@ function IndexList({ lang, plugins, onSelect }) {
     <section id="index" className="section index-section">
       <div className="section-head">
         <Reveal>
-          <div className="eyebrow">— {C.sections.index[lang]} / 17</div>
+          <div className="eyebrow">— {C.sections.index[lang]} / {plugins.length}</div>
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="section-title">
-            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>17</span>個の<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>Thirteen plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>all hand-built.</span></>}
+            {lang === "jp" ? <>ぜんぶ自作の<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>{plugins.length}</span>個の<span className="hl-accent" style={{ "--hl": "#5fb89f" }}>音響道具</span>。</> : <>All {plugins.length} plugins,<br /><span className="hl-accent" style={{ "--hl": "#5fb89f" }}>hand-built from scratch.</span></>}
           </h2>
         </Reveal>
       </div>

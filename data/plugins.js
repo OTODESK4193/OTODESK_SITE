@@ -485,7 +485,7 @@ window.PLUGINS = [
   },
   {
     id: "otodesk-sampler",
-    num: "10",
+    num: "15",
     name: "Otodesk Sampler",
     category: { en: "Advanced Multi-Slot Sampler", jp: "高度なマルチスロット・サンプラー" },
     type: "Instrument",
@@ -515,7 +515,7 @@ window.PLUGINS = [
   },
   {
     id: "glitchnexus",
-    num: "11",
+    num: "16",
     name: "GlitchNexus",
     category: { en: "Instant IDM Machine — Controlled Destruction", jp: "即席 IDM マシン — 制御された破壊" },
     type: "Effect",
@@ -544,7 +544,7 @@ window.PLUGINS = [
   },
   {
     id: "rhythm-matrix",
-    num: "12",
+    num: "17",
     name: "Rhythm Matrix",
     category: { en: "Generative Drum Sequencer", jp: "ジェネレーティブ・ドラム・シーケンサ" },
     type: "MIDI",
@@ -572,7 +572,7 @@ window.PLUGINS = [
   },
   {
     id: "multi-oto",
-    num: "13",
+    num: "18",
     name: "MULTI-OTO",
     category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
     type: "Effect",
@@ -604,7 +604,7 @@ window.PLUGINS = [
   },
   {
     id: "chimera-filter",
-    num: "14",
+    num: "19",
     name: "CHIMERA Filter",
     category: { en: "4-Head Morphing Filter", jp: "4 ヘッド・モーフィング・フィルタ" },
     type: "Effect",
@@ -632,7 +632,7 @@ window.PLUGINS = [
   },
   {
     id: "chordmatrix",
-    num: "15",
+    num: "20",
     name: "ChordMatrix",
     category: { en: "Algorithmic MIDI Chord Sequencer", jp: "アルゴリズム MIDI コード・シーケンサ" },
     type: "MIDI",
@@ -664,7 +664,7 @@ window.PLUGINS = [
   },
   {
     id: "basslinematrix",
-    num: "16",
+    num: "21",
     name: "BassLineMatrix",
     category: { en: "Algorithmic Bassline Sequencer + Synth", jp: "アルゴリズム・ベースライン・シーケンサ ＋ シンセ" },
     type: "MIDI",
@@ -693,6 +693,39 @@ window.PLUGINS = [
     ],
     repo: "https://github.com/OTODESK4193/BassLineMatrix",
     accent: "#ffb347"
+  },
+  {
+    id: "scoreviewer",
+    num: "22",
+    name: "ScoreViewer",
+    category: { en: "Real-time MIDI Score Display for Ableton Live", jp: "Ableton Live専用 リアルタイムMIDI譜面表示デバイス" },
+    type: "Max for Live",
+    platform: { en: "Windows / Max for Live", jp: "Windows / Max for Live" },
+    year: "2026",
+    version: "1.0.0",
+    status: "Released",
+    comingSoon: false,
+    featured: false,
+    featureUrl: "scoreviewer.html",
+    downloadUrl: "https://github.com/OTODESK4193/ScoreViewer/releases",
+    sourceUrl: "https://github.com/OTODESK4193/ScoreViewer",
+    screenshot: "screenshots/score-viewer.jpg",
+    tagline: {
+      en: "Real-time score display for Ableton Live.",
+      jp: "Ableton Live用 リアルタイムMIDI譜面表示デバイス。"
+    },
+    description: {
+      en: "LiveScoreViewer is a Max for Live device that displays MIDI clip contents in musical notation in real time. Select or play a MIDI clip — notation renders instantly with chords, rests, dotted notes, beaming, and tuplets.",
+      jp: "LiveScoreViewer は、MIDIクリップの内容をリアルタイムに五線譜表記でビジュアル表示する Max for Live デバイス。MIDIクリップを選択・演奏すると、和音・休符・付点・連符を含む楽譜が即座に描画されます。"
+    },
+    features: [
+      { en: "Real-time MIDI clip score display in Ableton Live", jp: "Ableton Live 上でのリアルタイム MIDI クリップ五線譜表示" },
+      { en: "Automatic chord, rest, dotted note & beaming rendering", jp: "和音・休符・付点・連符の自動五線譜描画" },
+      { en: "Lightweight Max for Live device architecture", jp: "軽量な Max for Live デバイス構造" },
+      { en: "Free & open-source on GitHub", jp: "完全無料 ＆ GitHubオープンソース" }
+    ],
+    repo: "https://github.com/OTODESK4193/ScoreViewer",
+    accent: "#00e5a0"
   }
 ];
 
@@ -703,8 +736,8 @@ window.COPY = {
     jp: "物足りないなら、自分で作る。"
   },
   heroSub: {
-    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 17 acoustic tools. Windows · Ableton Live.",
-    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。17個の音響道具。Windows ・ Ableton Live 専用。"
+    en: "Open-source VST3 plugins + Max for Live devices, hand-built in C++ and JUCE. 22 acoustic tools. Windows · Ableton Live.",
+    jp: "C++ と JUCE でハンドビルドした、オープンソースの VST3 プラグイン ＋ Max for Live デバイス。22個の音響道具。Windows ・ Ableton Live 専用。"
   },
   compatNote: {
     en: "Windows / VST3 only · Built and tested for Ableton Live · Other DAWs unverified · macOS / AU not supported",
