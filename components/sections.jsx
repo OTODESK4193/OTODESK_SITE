@@ -493,6 +493,7 @@ function PluginCard({ plugin, lang, index }) {
         </Reveal>
 
         <Reveal delay={0.35} className="pc-meta">
+          <MetaRow k={lang === "jp" ? "バージョン" : "Version"} v={"v" + plugin.version} />
           <MetaRow k={lang === "jp" ? "形式" : "Format"} v="VST3" />
           <MetaRow k={lang === "jp" ? "OS" : "OS"} v="Windows" />
           <MetaRow k={lang === "jp" ? "動作確認" : "Tested on"} v="Ableton Live" />
@@ -945,6 +946,22 @@ function Featured({ lang, plugin }) {
 // =========================================================
 function NewsSection({ lang }) {
   var newsItems = [
+  {
+    id: "picosampler-v1-1-0",
+    badge: { jp: "VST3 · 8/1 UPDATE!", en: "VST3 · UPDATE 8/1" },
+    date: "2026.08.01",
+    title: { jp: "PicoSampler v1.1.0 リリース！", en: "PicoSampler v1.1.0 Update Released!" },
+    sub: { jp: "PicoSampler — MODアサイン拡張・カテゴリーツリー表示・スロット別FadeIn/Out対応", en: "PicoSampler — Expanded MOD Destinations, Category Tree UI & Slot FadeIn/Out" },
+    excerpt: {
+      jp: "本日2026/8/1にPicoSampler v1.1.0を配信開始！MODアサイン先の大幅拡充とカテゴリーツリー化で視認性を劇的改善。スロット毎のFadeIn/Out調整やStart/Endマーカーロジック修復、Config画面のバージョン表記など安定性・堅牢性を向上しました。",
+      en: "PicoSampler v1.1.0 released on 2026/8/1! Expanded MOD destinations with categorized tree view, per-slot FadeIn/Out controls, improved Start/End marker logic, and Config version info."
+    },
+    img: "screenshots/picosampler-main.jpg",
+    url: "picosampler.html",
+    accent: "#00e5a0",
+    isNew: true,
+    comingSoon: false
+  },
   {
     id: "next-gen-kick-2",
     badge: { jp: "VST3 · 7/11 リリース！", en: "VST3 · RELEASED 7/11" },

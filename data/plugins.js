@@ -9,7 +9,7 @@ window.PLUGINS = [
     type: "Instrument",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
-    version: "1.0.0",
+    version: "1.1.0",
     status: "Released",
     comingSoon: false,
     featured: false,
