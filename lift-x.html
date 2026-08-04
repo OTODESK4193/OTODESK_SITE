@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LIFT-X — OTODESK | Riser-Dedicated Synthesizer — 31 Envelopes</title>
+  <title>LIFT-X — OTODESK | Riser-Dedicated Synthesizer — 41 Envelopes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -41,10 +41,13 @@
     .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
     .hero-title { font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 24px; color: var(--accent); }
     .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
-    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 720px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
     
-    .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; box-shadow: 0 0 20px rgba(255, 138, 60, 0.3); }
+    .btn-primary:hover { background: #ffa05c; border-color: #ffa05c; transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px solid var(--rule); background: var(--bg2); transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--dim2); background: var(--bg3); }
     .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
     .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
 
@@ -113,9 +116,9 @@
       VST3 · COMING SOON 2026
     </div>
     <h1 class="hero-title">LIFT-X</h1>
-    <div class="hero-copy">31個のエンベロープが連動する驚愕のライザープラグイン</div>
+    <div class="hero-copy">ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である。</div>
     <p class="hero-desc">
-      ライザーは単なる音量エンベロープではない——31個のカーブが同時に躍動する音楽的展開である。3×OSC、1×NOISE、4×Filter、5×FXの全パラメーターを単一のプレイヘッドで統合制御。全6モジュールのスクリーンショットで全貌を公開。
+      LIFT-X は、トランジション表現の常識を覆すライザー特化型 VST3 シンセサイザー。オシレーター・フィルター・FXの全自動化パラメーターに41個の独立多点カーブを完備し、単一の進行軸（LIFT）で統率。画期的な REPEAT ×1–32、70スケールクオンタイズ、Vowel / Comb フィルター、Beat Stutter、そして DAW 直結の WAV ドラッグ機能を搭載。
     </p>
 
     <div class="hero-actions">
@@ -131,7 +134,7 @@
     </div>
 
     <div class="hero-shot-main">
-      <img src="screenshots/liftx-main.jpg" alt="LIFT-X Main Interface" />
+      <img src="screenshots/liftx-main.jpg" alt="LIFT-X Main Interface v1.0.0" />
     </div>
   </header>
 
@@ -140,28 +143,38 @@
   <!-- FEATURES -->
   <section class="section">
     <div class="section-eyebrow">// Key Features</div>
-    <h2 class="section-h">展開のカーブを描くだけ。トランジション構築の完成形。</h2>
+    <h2 class="section-h">展開のカーブを描くだけ。トランジション構築の完全回答。</h2>
 
     <div class="feat-grid">
       <div class="feat-card">
-        <div class="feat-num">01 / 31 CURVES</div>
-        <div class="feat-title">1 プレイヘッド × 31 カーブ</div>
-        <div class="feat-desc">ピッチ、レベル、デチューン、ノイズ、フィルターカットオフ、FXパラメータ。あらゆる自動化要素が1つの進行軸（LIFT）に完全同期連動。</div>
+        <div class="feat-num">01 / 41 MULTI-POINT CURVES</div>
+        <div class="feat-title">1 プレイヘッド × 41 カーブ</div>
+        <div class="feat-desc">ピッチ、レベル、デチューン、ステレオ幅、PAN、ノイズ、4×フィルターCutoff/Res、14×FXパラメータ全41個が単一の軸に完全同期。最大128ポイント、ベジェ曲線で自在にカーブを描写。</div>
       </div>
       <div class="feat-card">
-        <div class="feat-num">02 / ABSOLUTE PITCH</div>
-        <div class="feat-title">Start Key → End Key 絶対ピッチ</div>
-        <div class="feat-desc">MIDIノートはトリガーに過ぎません。どの鍵盤を押しても、設定した Start Key から End Key の目的音階へ寸分違わず正確に上昇。</div>
+        <div class="feat-num">02 / REPEAT ×1–32</div>
+        <div class="feat-title">カーブ単位のリピート（LFO化）</div>
+        <div class="feat-desc">各カーブに独立して ×1〜32 のリピート数を設定可能。1回の描画で16分音符ゲートやテンポ同期のワブル（Wobble）エフェクトをモジュール追加なしで即座に構築。</div>
       </div>
       <div class="feat-card">
-        <div class="feat-num">03 / 70 SCALES</div>
+        <div class="feat-num">03 / ABSOLUTE PITCH & REVERSE</div>
+        <div class="feat-title">絶対ピッチ ＆ 1ボタン反転</div>
+        <div class="feat-desc">Start Key → End Key（オシレーターごと）の指定範囲へ正確に上昇。どの鍵盤を押しても狙った音階へ着地。1ボタンで41全カーブを逆再生する REVERSE（ライザー ↔ ダウンナー）を搭載。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 / 70 SCALE QUANTIZE</div>
         <div class="feat-title">70スケール対応 Scale Quantize</div>
-        <div class="feat-desc">ピッチスイープを任意キーのスケール音へスナップ。滑らかな滑空ライザーから、階段状にステップ上昇する音楽的なライザーへ即座に変貌。</div>
+        <div class="feat-desc">ピッチスイープを任意キーのスケール音へ自動スナップ。滑らかな滑空ライザーから、階梯状（メロディック）にステップ上昇する音楽的なライザーへ即座に変貌。</div>
       </div>
       <div class="feat-card">
-        <div class="feat-num">04 / WAV CAPTURE & ROUTING</div>
-        <div class="feat-title">WAVドラッグ ＆ ソース別ルーティング</div>
-        <div class="feat-desc">生成されたライザーをそのままDAWへWAVドラッグ＆ドロップ。4フィルター＆5FXは各ソース（OSC 1〜3, Noise）ごとに通過/バイパスを個別指定可能。</div>
+        <div class="feat-num">05 / VOWEL & COMB FILTERS</div>
+        <div class="feat-title">Vowel ＆ Comb フィルター搭載</div>
+        <div class="feat-desc">人声フォルマントを再現する VOWEL（"aa-eh-ee" と喋るライザー）や、ノイズに音程を与えてスケール演奏させるフィードバック・レゾネーター COMB を含む 4 フィルター × 6 タイプ。</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">06 / BEAT STUTTER & WAV DRAG</div>
+        <div class="feat-title">Beat Stutter ＆ WAV ドラッグ</div>
+        <div class="feat-desc">テンポ同期ビートリピート Beat Stutter 搭載の 5 スロット FX ラック。生成音は -90 dBFS サイレンス検出で完全録音し、DAW タイムラインへ 32-bit float WAV を直接ドラッグ＆ドロップ！</div>
       </div>
     </div>
   </section>
@@ -171,7 +184,7 @@
   <!-- SCREENSHOT GALLERY (6 IMAGES) -->
   <section class="section">
     <div class="section-eyebrow">// Visual Walkthrough (全6画面)</div>
-    <h2 class="section-h">LIFT-X の全6モジュールと詳細仕様</h2>
+    <h2 class="section-h">LIFT-X v1.0.0 の全6モジュールと詳細仕様</h2>
 
     <!-- 1. Main -->
     <div class="showcase-item">
@@ -179,19 +192,19 @@
         <img src="screenshots/liftx-main.jpg" alt="LIFT-X Main Panel & Playhead" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">01. メインパネル ＆ 31カーブ統合コントロール</div>
-        <div class="showcase-desc">単一のプレイヘッド（LIFT）によって制御されるメイン合成エンジン。3オシレーターのWavetable設定、ノイズジェネレーター、マスターリバース、WAVドラッグ生成が一体化。</div>
+        <div class="showcase-title">01. メインパネル ＆ 41カーブ統合コントロール</div>
+        <div class="showcase-desc">単一のプレイヘッド（LIFT）によって制御されるメイン合成エンジン。3オシレーター（Wavetable対応）、ノイズジェネレーター、音名表示 PITCH RAIL、マスターリバース、WAVドラッグ生成部が一体化。</div>
       </div>
     </div>
 
     <!-- 2. OSCEnv -->
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/liftx-oscenv.jpg" alt="31 Multi-Point Curve Editor" />
+        <img src="screenshots/liftx-oscenv.jpg" alt="41 Multi-Point Curve Editor" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">02. 多点ベジェ・エンベロープ・エディター</div>
-        <div class="showcase-desc">各カーブ最大128ポイント。ベジェテンションハンドルで自由な曲線を自由自在にカーブ描写。28種類のプリセット（Exp, Log, Steps, Saw, Pulse等）を内蔵。</div>
+        <div class="showcase-title">02. 41多点ベジェ・エンベロープ・エディター</div>
+        <div class="showcase-desc">各カーブ最大128ポイント。ベジェテンションハンドルで曲線を自由描写。47種類の形状プリセット（Basic, Curved, Shape, Steps, Saw/Gate, Pulse, Motion, Random）および REPEAT ×1–32、SNAP グリッドを完備。</div>
       </div>
     </div>
 
@@ -201,41 +214,41 @@
         <img src="screenshots/liftx-filter.jpg" alt="Per-Source Filter Matrix" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">03. 4 ZDF/TPT フィルターマトリクス</div>
-        <div class="showcase-desc">Cytomicスタイルの台形統合TPT SVF（LP/HP/BP/Notch）。OSC 1〜3およびNoiseに対し、フィルターごとに通過・バイパスを独立マトリクス制御。</div>
+        <div class="showcase-title">03. 4 ZDF/TPT フィルターマトリクス (Vowel / Comb)</div>
+        <div class="showcase-desc">Cytomicスタイルの台形統合TPT SVF（LP/HP/BP/Notch）に加え、人声フォルマント VOWEL、音階共振器 COMB を搭載。OSC 1〜3およびNoiseに対し、フィルターごとに通過・バイパスを独立マトリクス制御。</div>
       </div>
     </div>
 
     <!-- 4. FX -->
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/liftx-fx.jpg" alt="5-Slot FX Suite" />
+        <img src="screenshots/liftx-fx.jpg" alt="5-Slot FX Suite with Beat Stutter" />
       </div>
       <div class="showcase-info">
         <div class="showcase-title">04. ソース別ルーティング付き 5スロット FXラック</div>
-        <div class="showcase-desc">Saturation (10 ADAA algo), Chorus, Delay, Reverb, Ducking。効果ごとにサブベースだけリバーブから除外するなどの柔軟なソースルーティングを実現。</div>
+        <div class="showcase-desc">Saturation (10 ADAA algo), Chorus, Delay, Reverb (Shimmer), Ducking, Beat Stutter。効果ごとにサブベースだけリバーブから除外するなどの柔軟なソースルーティングを実現。14個のFXパラメータがカーブ変調対応。</div>
       </div>
     </div>
 
     <!-- 5. Preset -->
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/liftx-preset.jpg" alt="Config & 70 Scale Quantizer" />
+        <img src="screenshots/liftx-preset.jpg" alt="134 Factory Presets & 70 Scale Quantizer" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">05. 70種類のスケールクオンタイズ ＆ プリセットブラウザ</div>
-        <div class="showcase-desc">モード、日本古風（平調子・岩戸等）、ワールド、コードトーンなど70スケールを完備。11カテゴリのファクトリープリセットブラウザを内蔵。</div>
+        <div class="showcase-title">05. 134 ファクトリープリセット ＆ ブラウザ</div>
+        <div class="showcase-desc">11カテゴリ（EDM, Trance, Bass, Techno, Cinematic, Downer, Scale Riser, Dubstep, DnB, Hardstyle, Ambient）にわたる134プリセットを内蔵。音楽的ランダマイズ RANDOM ＆ 音色微調整 MUTATE 機能を搭載。</div>
       </div>
     </div>
 
     <!-- 6. Config -->
     <div class="showcase-item">
       <div class="showcase-img">
-        <img src="screenshots/liftx-config.jpg" alt="System Config & Audio Engines" />
+        <img src="screenshots/liftx-config.jpg" alt="System Config & 10 Color Themes" />
       </div>
       <div class="showcase-info">
-        <div class="showcase-title">06. システムコンフィグ ＆ エンジン設定</div>
-        <div class="showcase-desc">ライザー再生時間（1/32 Bar 〜 16 Bars）やマニュアルLIFTダイヤルの応答性、バッファキャプチャ品質の設定を直感的にカスタマイズ。</div>
+        <div class="showcase-title">06. システムコンフィグ ＆ 10カラーテーマ</div>
+        <div class="showcase-desc">70スケール・クオンタイズ、Key Follow（Fixed / Follow Start / Follow End）、10種のカラーテーマ（Midnight, Sakura, Ocean, Forest, Sunset, Mono, Neon, Vaporwave, Amber, Arctic）、ブリックウォール・リミッター設定。</div>
       </div>
     </div>
   </section>
@@ -259,47 +272,77 @@
       <tbody>
         <tr>
           <td>Envelope System</td>
-          <td>31 Curves / 1 Playhead</td>
+          <td>41 Curves / 1 Playhead</td>
           <td>1/32 to 16 Bars / Manual</td>
-          <td>Auto/Manual, Reverse, 128 Points/Curve</td>
+          <td>Auto/Manual, REVERSE, REPEAT ×1–32, 128 Points/Curve, 47 Presets</td>
         </tr>
         <tr>
           <td>Oscillators</td>
           <td>3 OSCs + Noise</td>
           <td>6 Waves (Sine/Tri/Sq/Saw/FM/Wavetable)</td>
-          <td>7-Voice Unison, 3 Noise Types (White/Pink/Brown)</td>
+          <td>7-Voice Unison, 3 Noise Types (White/Pink/Brown), Custom Wavetables</td>
         </tr>
         <tr>
           <td>Pitch Control</td>
           <td>Start Key → End Key</td>
           <td>C-2 to G8 / 70 Scales</td>
-          <td>絶対ピッチ制御・スケールスナップ・Coarseオフセット</td>
+          <td>絶対ピッチ制御・スケールスナップ・SWAP・PITCH RAIL音名表示・Key Follow</td>
         </tr>
         <tr>
           <td>Filters</td>
           <td>4 TPT SVF Filters</td>
-          <td>LP / HP / BP / Notch</td>
-          <td>各ソース独立パス/バイパスルーティング</td>
+          <td>LP / HP / BP / Notch / Vowel / Comb</td>
+          <td>各ソース独立パス/バイパスルーティング (16 instances), Cutoff/Res カーブ連動</td>
         </tr>
         <tr>
           <td>FX Engine</td>
           <td>5 Reorderable Slots</td>
-          <td>Sat / Chorus / Delay / Reverb / Ducking</td>
-          <td>ソース別独立エフェクトアサイン・WAVキャプチャ</td>
+          <td>Sat (10 ADAA) / Chorus / Delay / Reverb / Ducking / Beat Stutter</td>
+          <td>ソース別独立エフェクトアサイン・14パラメータ カーブ連動</td>
+        </tr>
+        <tr>
+          <td>Capture & Export</td>
+          <td>Riser Capture Buffer</td>
+          <td>-90 dBFS / Up to 60 sec</td>
+          <td>32-bit float WAV Drag & Drop / NORM (-0.3 dBFS) ノーマライズ</td>
+        </tr>
+        <tr>
+          <td>Presets & Config</td>
+          <td>134 Factory Presets</td>
+          <td>11 Categories / 10 Themes</td>
+          <td>RANDOM / MUTATE / BAR Lock / 10 Color Themes / Resizable 50%–200%</td>
         </tr>
       </tbody>
     </table>
 
     <div class="section-eyebrow" style="margin-top: 48px;">// Signal Flow</div>
     <div class="flow-box">
-MIDI Trigger ──► Transport Sync / Manual LIFT ──► [Evaluate 31 Curves]
-                                                        │
-┌─ OSC 1 (Wavetable) ─┐                                 ▼
-├─ OSC 2 (Wavetable) ─┼─► [4× Filter Matrix] ──► [5-Slot FX Suite]
-├─ OSC 3 (Wavetable) ─┤   (Per-source pass)     (Per-source route)
-└─ Noise Generator ───┘                                 │
-                                                        ▼
-[DAW WAV Drag] ◄── [Riser Capture Buffer] ◄── [Limiter] ◄── [Master Output]
+MIDI note (trigger only)
+   │
+   ├─ Transport sync (PPQ) ──► Progress 0→1 over BARS
+   │                              │
+   │                    LIFT (AUTO=Progress / MANUAL=knob)
+   │                              │  × REVERSE → 1-pos
+   │                              ▼
+   │                    ┌── 41 curves evaluated at one playhead ──┐
+   │                    │   (each with its own REPEAT ×1–32)       │
+   │                    │                                          │
+   ▼                    ▼                                          ▼
+OSC 1 ─ wavetable ─ unison ─┐                            Filter cutoff/res
+OSC 2 ─ wavetable ─ unison ─┤─ per-source filter routing        FX params
+OSC 3 ─ wavetable ─ unison ─┤   (4 filters × 4 sources)         Pan
+Noise ─ band-pass ──────────┘   LP/HP/BP/Notch/Vowel/Comb
+   │
+   ▼
+Per-source pan (equal power) ──► 4 separate source buses
+   │
+   ▼
+FX chain (5 slots, per-effect source routing)
+   │   Saturation / Chorus / Delay / Reverb / Ducking / Beat Stutter
+   ▼
+Bus sum ──► Master gain ──► Safety clip ──► Brick-wall limiter ──► Output
+                                                     │
+                                                     └─► Riser capture → WAV drag
     </div>
   </section>
 
@@ -308,9 +351,9 @@ MIDI Trigger ──► Transport Sync / Manual LIFT ──► [Evaluate 31 Curve
     <div class="license-box">
       <div class="license-title">LICENCE & CREDITS</div>
       <div class="license-text">
-        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されます。<br />
-        GUI / DSP フレームワークには <strong>JUCE 8</strong> を使用しています。<br />
-        Developer: @kijyoumusic (OTODESK)
+        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されています。<br />
+        GUI / DSP フレームワークには <strong>JUCE 8.0.x</strong> を使用しています。<br />
+        Developer: @kijyoumusic (OTODESK) · Target DAW: Ableton Live 11 / 12
       </div>
     </div>
   </section>

@@ -171,19 +171,20 @@ function Hero({ lang }) {
       url: "lift-x.html",
       color: "#ff8a3c",
       copy: {
-        jp: "31個のエンベロープが連動する驚愕のライザープラグイン",
-        en: "A Mind-Blowing Riser Plugin Driven by 31 Envelopes"
+        jp: "ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である",
+        en: "A Riser is Not an Envelope — It is 41 Envelopes Moving Together"
       },
       desc: {
-        jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
-        en: "3× OSCs (w/ custom wavetables), 1× Noise, 4× Filters, 5× FX. Command 31 multi-envelopes to translate your imagination into production-ready risers."
+        jp: "3×OSC（カスタムWavetable対応）、1×NOISE、4×Filter（Vowel/Comb搭載）、5×FX（Beat Stutter搭載）。41個のマルチENVにREPEAT ×1–32、絶対ピッチ、70スケールクオンタイズ、DAW直結WAVドラッグを凝縮。",
+        en: "3× OSCs, 1× Noise, 4× Filters (Vowel/Comb), 5× FX (Beat Stutter). 41 multi-envelopes with REPEAT x1-32, absolute pitch, 70-scale quantize & DAW WAV drag."
       },
       shots: [
         { label: "Main Panel", file: "screenshots/liftx-main.jpg" },
+        { label: "Curve Editor", file: "screenshots/liftx-oscenv.jpg" },
         { label: "Filter Matrix", file: "screenshots/liftx-filter.jpg" },
         { label: "FX Suite", file: "screenshots/liftx-fx.jpg" },
-        { label: "OSC Envelopes", file: "screenshots/liftx-oscenv.jpg" },
-        { label: "Presets", file: "screenshots/liftx-preset.jpg" }
+        { label: "Presets", file: "screenshots/liftx-preset.jpg" },
+        { label: "Config & Themes", file: "screenshots/liftx-config.jpg" }
       ]
     },
     5: {

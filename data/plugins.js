@@ -110,7 +110,7 @@ window.PLUGINS = [
     id: "lift-x",
     num: "04",
     name: "LIFT-X",
-    category: { en: "Riser-Dedicated Synthesizer — 31 Envelopes", jp: "ライザー特化型シンセサイザー — 31マルチENV" },
+    category: { en: "Riser-Dedicated Synthesizer — 41 Envelopes", jp: "ライザー特化型シンセサイザー — 41マルチENV" },
     type: "Instrument",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
@@ -123,20 +123,20 @@ window.PLUGINS = [
     sourceUrl: "https://github.com/OTODESK4193/LIFT-X",
     screenshot: "screenshots/liftx-main.jpg",
     tagline: {
-      en: "A mind-blowing riser plugin driven by 31 envelopes linked on one playhead.",
-      jp: "31個のエンベロープが連動する驚愕のライザープラグイン。音程と展開を完璧に制御。"
+      en: "A riser is not an envelope — it is forty-one envelopes moving together.",
+      jp: "ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である。"
     },
     description: {
-      en: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。",
-      jp: "3×OSC（カスタムWavetableも設定可）、1×NOISE、4×Filter、そして5つのFX。31個のマルチENVを使い自在にコントロールすることができます。アナタの想像力を使える音に変換します。"
+      en: "41 multi-point envelope curves evaluated on a single playhead. Features REPEAT x1-32 curve LFOs, absolute-pitch Start->End keys, 70-scale quantize, Vowel & Comb filters, Beat Stutter FX, 134 factory presets, and DAW WAV drag export.",
+      jp: "1つの進行軸（LIFT）に同期連動する41個の多点エンベロープ。カーブ単位のリピート（REPEAT ×1–32）、絶対ピッチ、70スケールクオンタイズ、Vowel/Combフィルター、Beat Stutter、134ファクトリープリセット、DAW直結WAVドラッグを搭載。"
     },
     features: [
-      { en: "31 multi-point envelope curves evaluated on a single playhead", jp: "1つのプレイヘッドに同期連動する31個の多点エンベロープカーブ" },
-      { en: "Absolute pitch risers (Start Key → End Key range per OSC)", jp: "どの鍵盤でも確実に狙った音階範囲を上昇する絶対ピッチ構造" },
+      { en: "41 multi-point envelope curves evaluated on a single playhead", jp: "1つの進行軸に完全同期連動する41個の多点エンベロープカーブ" },
+      { en: "REPEAT ×1–32 per curve — instant tempo-synced LFO & gates", jp: "カーブ単位の REPEAT ×1–32 — テンポ同期LFOやゲートを即座に構築" },
+      { en: "Absolute pitch risers (Start Key → End Key) & 1-button REVERSE", jp: "絶対ピッチ構造 (Start→End) ＆ 全カーブ反転 REVERSE ボタン" },
       { en: "Scale Quantize across 70 scales for stepped, in-key climbs", jp: "70スケール対応スケールクオンタイズによるステップ上昇" },
-      { en: "3 OSCs (w/ custom Wavetables) + 7-voice unison & 3 noise types", jp: "3 OSC (カスタムWavetable対応) ＋ 7ボイスユニゾン ＆ 3種ノイズ" },
-      { en: "4 TPT SVF filters & 5-slot FX rack with per-source routing", jp: "4つの TPT SVF フィルター ＆ ソース別ルーティング対応 5スロット FX" },
-      { en: "Instant WAV export — drag recorded riser straight into DAW", jp: "ワンクリック WAV 書き出し — DAWタイムラインへ直接ドラッグ" }
+      { en: "Vowel & Comb filters + 4-filter per-source routing matrix", jp: "Vowel(人声) ＆ Comb(音階共振) フィルター含む 4フィルターマトリクス" },
+      { en: "5-slot FX rack with Beat Stutter, 10 ADAA saturations & WAV drag", jp: "Beat Stutter ＆ 10 ADAA サチュレーション搭載 5スロット FX ＆ WAV ドラッグ" }
     ],
     repo: "https://github.com/OTODESK4193/LIFT-X",
     accent: "#ff8a3c"
