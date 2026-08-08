@@ -938,8 +938,8 @@ function Featured({ lang, plugin }) {
           </Reveal>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
 // =========================================================
@@ -947,6 +947,22 @@ function Featured({ lang, plugin }) {
 // =========================================================
 function NewsSection({ lang }) {
   var newsItems = [
+  {
+    id: "multi-oto-v1-1-0",
+    badge: { jp: "VST3 · 8/8 リリース！", en: "VST3 · RELEASED 8/8" },
+    date: "2026.08.08",
+    title: { jp: "MULTI-OTO v1.1.0 リリース！", en: "MULTI-OTO v1.1.0 Released!" },
+    sub: { jp: "8スロットModMatrix・ステージ別独立クロスオーバー・音楽的RANDOM", en: "8-Slot ModMatrix, Independent Stage Crossovers, Musical RANDOM" },
+    excerpt: {
+      jp: "本日2026/8/8にMULTI-OTO v1.1.0を公開！4 LFO＋EnvFollow＋Driftによる8スロットModMatrix（LFO間変調対応）、ステージ別独立クロスオーバー＆メーター直感ドラッグ操作、ゲイン破綻を防ぐ音楽的RANDOM、30ファクトリープリセット、無音化バグ解消、およびノブ直径倍大のGUI刷新を導入しました！",
+      en: "MULTI-OTO v1.1.0 released on 2026/8/8! Features an 8-slot ModMatrix with LFO self-modulation, independent per-stage crossovers with on-meter dragging, musical RANDOM button, 30 factory presets, silence bug fixes, and a doubled-size UI redesign."
+    },
+    img: "screenshots/multi-oto.jpg",
+    url: "plugin.html?id=multi-oto",
+    accent: "#ff2d6f",
+    isNew: true,
+    comingSoon: false
+  },
   {
     id: "picosampler-v1-1-0",
     badge: { jp: "VST3 · 8/1 UPDATE!", en: "VST3 · UPDATE 8/1" },
@@ -1234,4 +1250,4 @@ function GalleryCard({ plugin, lang }) {
 
 }
 
-Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, Featured });
+Object.assign(window, { Header, Hero, IndexList, CatalogDetail, PluginCard, Features, About, Footer, Featured, NewsSection, PluginGallery });

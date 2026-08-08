@@ -576,28 +576,29 @@ window.PLUGINS = [
     name: "MULTI-OTO",
     category: { en: "Extreme Multiband Dynamics & Saturation", jp: "極限マルチバンド・ダイナミクス／サチュレーション" },
     type: "Effect",
+    platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
-    version: "1.0",
+    version: "1.1.0",
     status: "Released",
+    comingSoon: false,
+    downloadUrl: "https://github.com/OTODESK4193/MULTI-OTO/releases",
+    sourceUrl: "https://github.com/OTODESK4193/MULTI-OTO",
+    screenshot: "screenshots/multi-oto.jpg",
     tagline: {
-      en: "Up to 128 cascaded multiband compressors. Yes, really.",
-      jp: "最大 128 段のマルチバンド・カスケード。本当に。"
+      en: "Up to 128 cascaded multiband compressors with Modulation Matrix.",
+      jp: "最大 128 段カスケード ＋ モジュレーション・マトリクス搭載の極限ダイナミクス。"
     },
     description: {
-      en: "An open-source, extreme multiband dynamics & saturation VST3. Cascade up to 128 multiband compression nodes in series — built for Color Bass, Riddim and Neurofunk, where you need microscopic textures, infinite spectral sweeps, and phase-dispersion glitch artifacts that standard dynamics can't reach.",
-      jp: "オープンソースの極限マルチバンド・ダイナミクス／サチュレーション VST3。最大 128 段のマルチバンドコンプを直列にカスケード可能。Color Bass、Riddim、Neurofunk 向けに、微小なテクスチャの抽出、無限のスペクトル・スイープ、位相分散グリッチなど、通常のダイナミクスでは到達できない領域を狙う。"
+      en: "Cascade up to 128 multiband compression nodes in series. Version 1.1.0 introduces an 8-slot Modulation Matrix with LFO self-modulation, independent per-stage crossovers, musical RANDOM, 30 factory presets, silence bug fixes, and a doubled-size redesigned UI.",
+      jp: "最大128段のマルチバンドコンプを直列カスケード。v1.1.0では8スロットModMatrix（LFO間変調対応）、ステージ別独立クロスオーバー、音楽的RANDOM、30ファクトリープリセット、無音化バグ解消、倍大GUI刷新を導入。"
     },
     features: [
-      { en: "Cascade 2 / 4 / 8 / 16 / 32 / 64 / 128 OTT nodes", jp: "カスケード段数 2／4／8／16／32／64／128 を選択" },
-      { en: "True OTT engine — upward + downward compression", jp: "真の OTT エンジン — アップワード／ダウンワード両対応" },
-      { en: "RMS envelopes — no ripple even at 128×", jp: "RMS エンベロープ — 128 倍でもリップル歪なし" },
-      { en: "Upward range cap +36 dB — no runaway", jp: "アップワード上限 +36dB — 暴走防止" },
-      { en: "Micro-dither at −144 dB — tails evolve forever", jp: "マイクロディザ −144dB — テール永続進化" },
-      { en: "Color Phase — uncompensated LR crossovers for glitch", jp: "Color Phase — 非補正 LR クロスオーバーでグリッチ生成" },
-      { en: "Pre-Drive ADAA saturation (Drive / Odd / Even)", jp: "Pre-Drive ADAA サチュレーション (Drive／Odd／Even)" },
-      { en: "AVX2 SIMD — 8 samples in parallel, real-time safe", jp: "AVX2 SIMD — 8 サンプル並列、リアルタイムセーフ" },
-      { en: "Zero heap alloc during playback", jp: "再生中ヒープアロケーション完全ゼロ" },
-      { en: "JP & EN PDF user manuals included", jp: "日本語／英語 PDF マニュアル同梱" }
+      { en: "Cascade 2 / 4 / 8 / 16 / 32 / 64 / 128 OTT nodes in series", jp: "最大 128 段のマルチバンドコンプをカスケード直列処理" },
+      { en: "8-slot Modulation Matrix — 4 LFOs, Env Follow, Drift to 30 targets & LFO rate mod", jp: "8スロット ModMatrix — 4 LFO ＋ EnvFollow ＋ Drift（LFO速度相互変調対応）" },
+      { en: "Independent per-stage crossovers with on-meter dragging", jp: "ステージ別独立クロスオーバー ＆ メーター直感ドラッグ操作" },
+      { en: "Musical RANDOM button — rerolls main parameters without breaking gain", jp: "音楽的 RANDOM ボタン — ゲイン破綻を起こさないスマートランダマイズ" },
+      { en: "30 factory presets & 10 color themes with redesigned doubled-size UI", jp: "30 ファクトリープリセット ＆ 10 カラーテーマ ＆ 倍大GUI刷新" },
+      { en: "Silence bug & smoother fixes with AVX2 SIMD 8-lane acceleration", jp: "無音化バグ・パラメーター応答完全修復 ＆ AVX2 SIMD 8レーン並列加速" }
     ],
     repo: "https://github.com/OTODESK4193/MULTI-OTO",
     accent: "#ff2d6f"
