@@ -256,31 +256,30 @@ window.PLUGINS = [
     category: { en: "28-Model Real-Time Morphing Filter", jp: "28モデル・リアルタイムモーフィング・フィルター" },
     type: "Effect",
     year: "2026",
-    version: "1.0.0",
+    version: "1.1.0",
     status: "Released",
     comingSoon: false,
     featured: true,
     featureUrl: "quad-morph.html",
     downloadUrl: "https://github.com/OTODESK4193/QuadMorphFilter/releases/",
     sourceUrl: "https://github.com/OTODESK4193/QuadMorphFilter",
-    screenshot: "screenshots/quad-morph.jpg",
+    screenshot: "screenshots/quad-morph.jpg?v=1.1.0",
     tagline: {
       en: "Dance, Filters! Command every spatial frequency.",
       jp: "踊れ、フィルター！あらゆる空間周波数を支配する。"
     },
     description: {
-      en: "A high-performance VST3 plugin featuring 28 meticulously modeled filter algorithms that morph together in real-time on an XY pad. Moog Ladder, TB-303, Z-Plane 2D Morph, Bode Frequency Shifter — all morphable with 19 LFO waveforms, real-time frequency response visualization, and equal-power blending.",
-      jp: "28個のハンドクラフトされたフィルターモデルをリアルタイムでXYパッドでモーフィング。Moog Ladder、TB-303、Z-Plane 2D Morph、Bode Frequency Shifterを、19種LFO、周波数応答リアルタイム表示、イコールパワーブレンドで操調する高性能VST3。"
+      en: "Version 1.1.0 update! Massive usability & audio quality upgrades with 200 factory presets and a rebuilt FILTER / MOD / OUT tabbed UI. 28 handcrafted filter models (Moog Ladder, TB-303, Z-Plane, Bode) morphable in real time on an XY pad with 19 LFO waveforms and 10 color themes.",
+      jp: "v1.1.0大型アップデート！使いやすさと音質が向上し、200種類のファクトリープリセットを新搭載。FILTER / MOD / OUT のタブ構成へUIを全面刷新。28個のハンドクラフト・フィルター（Moog, TB-303, Z-Plane, Bode等）を19種LFOと10カラーテーマで操る最高峰モーフィングフィルター。"
     },
     features: [
+      { en: "200 factory presets included — massive expansion of production-ready patches", jp: "200種類のファクトリープリセット標準搭載 — 即戦力サウンドを大量追加" },
       { en: "28 handcrafted filter models — Ladder / SVF / Analog / Digital / Spectral", jp: "28個のハンドクラフト・フィルター — Ladder／SVF／Analog／Digital／Spectral" },
+      { en: "Rebuilt FILTER / MOD / OUT tabbed UI layout & 10 color themes", jp: "FILTER / MOD / OUT タブ構成UIへ刷新 ＆ 10カラーテーマ切り替え" },
       { en: "Real-time 4-way XY morphing with equal-power blending", jp: "リアルタイム4ウェイXYモーフィング (イコールパワーブレンド)" },
-      { en: "4 morph blend algorithms — Equal Power / Linear / Smoothstep / Radial", jp: "4種ブレンドアルゴリズム — Equal Power／Linear／Smoothstep／Radial" },
-      { en: "19 LFO waveforms + 5 modulation engines (LFO1-5)", jp: "19種LFO ＋ 5種モジュレーション・エンジン (LFO1-5)" },
-      { en: "Live frequency response graph (1024-point FFT)", jp: "リアルタイム周波数応答グラフ (1024ポイントFFT)" },
-      { en: "4× oversampling, ADAA anti-aliasing", jp: "4倍オーバーサンプリング、ADAA アンチエイリアシング" },
-      { en: "Envelope Follower — sidechain-style input tracking", jp: "Envelope Follower — サイドチェーン式入力追従" },
-      { en: "Hand-drawn LFO recording on morph pad", jp: "モーフパッド上での手書きLFO記録" }
+      { en: "19 LFO waveforms + 5 modulation engines (LFO1-5) + hand-drawn LFO", jp: "19種LFO ＋ 5種モジュレーション・エンジン ＋ 手書きLFO記録" },
+      { en: "Expanded live frequency response graph with compressed dB axis", jp: "描画領域を拡大したリアルタイム周波数応答グラフ (dB軸対数圧縮)" },
+      { en: "4× oversampling, ADAA anti-aliasing & Automatic Gain Compensation", jp: "4倍オーバーサンプリング、ADAA アンチエイリアス ＆ AGC音量補正" }
     ],
     repo: "https://github.com/OTODESK4193/QuadMorphFilter",
     accent: "#00d9ff"

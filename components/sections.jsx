@@ -948,6 +948,22 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
+    id: "quad-morph-v1-1-0",
+    badge: { jp: "VST3 · 8/9 UPDATE!", en: "VST3 · UPDATE 8/9" },
+    date: "2026.08.09",
+    title: { jp: "Quad Morph Filter v1.1.0 リリース！", en: "Quad Morph Filter v1.1.0 Update Released!" },
+    sub: { jp: "使いやすさと音質が向上!! 200プリセットを用意しました。", en: "Enhanced Usability & Sound Quality — 200 Presets Included!" },
+    excerpt: {
+      jp: "本日2026/8/9にQuad Morph Filter v1.1.0を公開！使いやすさと音質が向上!! 200種類のファクトリープリセットを用意しました。FILTER / MOD / OUT のタブ構成UIへ全面刷新し、周波数応答グラフ表示域の拡大や10カラーテーマ切替に対応しました。",
+      en: "Quad Morph Filter v1.1.0 released on 2026/8/9! Enhanced usability & audio quality with 200 production-ready factory presets. Features a rebuilt FILTER / MOD / OUT tabbed UI, expanded frequency response graph, and 10 color themes."
+    },
+    img: "screenshots/quad-morph.jpg?v=1.1.0",
+    url: "quad-morph.html",
+    accent: "#00d9ff",
+    isNew: true,
+    comingSoon: false
+  },
+  {
     id: "multi-oto-v1-1-0",
     badge: { jp: "VST3 · 8/8 リリース！", en: "VST3 · RELEASED 8/8" },
     date: "2026.08.08",
