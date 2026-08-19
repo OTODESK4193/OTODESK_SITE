@@ -948,6 +948,22 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
+    id: "ambience-v1-2-0",
+    badge: { jp: "VST3 · 8/19 UPDATE!", en: "VST3 · UPDATE 8/19" },
+    date: "2026.08.19",
+    title: { jp: "Ambience v1.2.0 \"No Compromise\" リリース！", en: "Ambience v1.2.0 \"No Compromise\" Update Released!" },
+    sub: { jp: "リアルタイムスペクトラムアナライザー・エルミート3次補間・真のステレオPreDelay搭載！", en: "Real-time Spectrum Analyzer, Hermite 3rd-Order Interpolation & True Stereo Pre-Delay!" },
+    excerpt: {
+      jp: "本日2026/8/19にAmbience v1.2.0を公開！Lock-freeリアルタイムスペクトラムアナライザー（Dry/Wet二層表示）、拡散限界の拡張、FDNループのエルミート3次補間によるシルキーなテール復元、Mid/Side分離前の真のステレオPre-Delay、64-sampleオーディオレートパラメータスムージング、高精度1024pt Sine-LUTコーラスLFO、および64-bit倍精度GEQフィルターを新搭載！",
+      en: "Ambience v1.2.0 released on 2026/8/19! Features a Lock-free real-time frequency spectrum overlay (Dry/Wet dual view), expanded diffusion limits, Hermite 3rd-order interpolation for silky transparent reverb tails, True Stereo Pre-Delay, 64-sample audio-rate parameter smoothing, high-precision 1024-pt Sine-LUT Chorus LFO, and 64-bit double precision GEQ filters."
+    },
+    img: "screenshots/ambience.jpg",
+    url: "ambience.html",
+    accent: "#ff8a3c",
+    isNew: true,
+    comingSoon: false
+  },
+  {
     id: "quad-morph-v1-1-0",
     badge: { jp: "VST3 · 8/9 UPDATE!", en: "VST3 · UPDATE 8/9" },
     date: "2026.08.09",
@@ -1062,7 +1078,7 @@ function NewsSection({ lang }) {
     id: "ambience",
     badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
     date: "2026.06.13",
-    title: { jp: "Ambience v1.1.0 リリース。", en: "Ambience v1.1.0 Released." },
+    title: { jp: "Ambience v1.2.0 リリース。", en: "Ambience v1.2.0 Released." },
     sub: { jp: "PreDelay 修正・金属系アーティファクト解消・音質向上\n動画公開！！", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
     excerpt: {
       jp: "PreDelay が DSP に正しく反映されないバグを修正。長い DecayTime で為が付いた金属系リンギングも解消。コーラス LFO・3段オールパス・ Thiran補間により、テールの密度と貧乏テクスチャが大幅向上。",

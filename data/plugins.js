@@ -220,7 +220,7 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
     year: "2026",
-    version: "1.1.0",
+    version: "1.2.0",
     status: "Released",
     comingSoon: false,
     featured: false,
