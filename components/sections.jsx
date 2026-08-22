@@ -948,6 +948,22 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
+    id: "anatomy-v1-1-0",
+    badge: { jp: "VST3 · 8/22 UPDATE!", en: "VST3 · UPDATE 8/22" },
+    date: "2026.08.22",
+    title: { jp: "ANATOMY v1.1.0 リリース！", en: "ANATOMY v1.1.0 \"Granular Modern\" Update Released!" },
+    sub: { jp: "4レーン化（Layer追加）・エルミート補間ピッチ＆トランジェントエンジン・リミッター強化！", en: "4-Lane Architecture, Hermite Pitch/Transient Engine & Limiter Overhaul!" },
+    excerpt: {
+      jp: "本日2026/8/22にANATOMY v1.1.0を公開！Pitch/Gain制御を備えた第4の「Layer」レーン新設、4点エルミート3次補間＋4タップHann位相分散による超高精度Granularピッチ、ソフトニー飽和保護付きステレオリンク過渡音トラッカー、IN GAIN/MODE(Limit/Clip)切替付きLimiter、マルチインスタンスやDAW終了時のクラッシュ修正などを導入！",
+      en: "ANATOMY v1.1.0 released on 2026/8/22! Introduces a 4th 'Layer' lane with Pitch/Gain control, high-precision pitch shifting with 4-point Hermite cubic interpolation & 4-tap Hann granular rotation, stereo-linked dual-branch Transient Shaper, Limiter with IN GAIN & Limit/Clip MODE switch, and multi-instance stability fixes."
+    },
+    img: "screenshots/anatomy.jpg?v=1.1.0",
+    url: "anatomy.html",
+    accent: "#c084fc",
+    isNew: true,
+    comingSoon: false
+  },
+  {
     id: "ambience-v1-2-0",
     badge: { jp: "VST3 · 8/19 UPDATE!", en: "VST3 · UPDATE 8/19" },
     date: "2026.08.19",
@@ -1027,22 +1043,7 @@ function NewsSection({ lang }) {
     isNew: true,
     comingSoon: false
   },
-  {
-    id: "anatomy",
-    badge: { jp: "VST3 · 6/21公開", en: "VST3 · 6/21 RELEASED" },
-    date: "2026.06.21",
-    title: { jp: "サンプルを解剖しませんか？", en: "Dissect Your Samples." },
-    sub: { jp: "ANATOMY — リアルタイム過渡音/音色分離エンジン", en: "ANATOMY — Real-time Transient / Tonal Separation Engine" },
-    excerpt: {
-      jp: "読み込んだオーディオを cos² クロスフェードでトランジェント・トーン・フルミックスの 3 レーンにエネルギー損失ゼロで分離。各レーンに独立ピッチ/ゲインと 6 スロットエフェクトチェーン。サンプルの構造そのものを解剖する、まったく新しい発想のサンプラー。6/21公開（動画も公開）。",
-      en: "Splits any audio into Transient, Tonal, and Full Mix lanes via lossless cos\u00b2 crossfade \u2014 zero energy loss, zero overlap artefacts. 6 FX chains per lane, independent pitch & gain. A sampler that dissects the anatomy of sound."
-    },
-    img: "screenshots/anatomy.jpg",
-    url: "anatomy.html",
-    accent: "#c084fc",
-    isNew: true,
-    comingSoon: false
-  },
+
   {
     id: "lowcut-police",
     badge: { jp: "VST3 · 7/4 リリース！", en: "VST3 · RELEASED 7/4" },

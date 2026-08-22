@@ -288,33 +288,33 @@ window.PLUGINS = [
     id: "anatomy",
     num: "09",
     name: "ANATOMY",
-    category: { en: "Transient / Tonal Separation Sampler", jp: "過渡音/音色 分離サンプラー" },
+    category: { en: "4-Lane Transient / Tonal Separation Sampler", jp: "4レーン 過渡音/音色 分離サンプラー" },
     type: "Sampler",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
-    version: "1.0",
+    version: "1.1.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "anatomy.html",
     downloadUrl: "https://github.com/OTODESK4193/ANATOMY/releases",
     sourceUrl: "https://github.com/OTODESK4193/ANATOMY",
-    screenshot: "screenshots/anatomy.jpg",
+    screenshot: "screenshots/anatomy.jpg?v=1.1.0",
     tagline: {
       en: "Dissect your samples.",
       jp: "サンプルを解剖しませんか？"
     },
     description: {
-      en: "Real-time transient/tonal separation engine using mathematically lossless cos\u00b2 crossfade. Three independent signal lanes \u2014 Transient, Tonal, Full Mix \u2014 each with pitch, gain, shape controls and 6-slot FX chains.",
-      jp: "数学的に完璧な cos\u00b2 クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。トランジェント・トーン・フルミックスの 3 レーンに独立ピッチ/ゲイン/シェイプ制御と 6 スロットエフェクトチェーン。"
+      en: "Real-time transient/tonal separation engine using mathematically lossless cos\u00b2 crossfade. 4-lane architecture (Transient, Tonal, Layer, Full Mix) with Hermite cubic granular pitch shifter, dual-branch transient shaper, and 6-slot FX chains per lane.",
+      jp: "数学的に完璧な cos\u00b2 クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。Transient / Tonal / Layer / Full Mix の 4 レーン構成、エルミート3次補間ピッチ＆トランジェントエンジン、各レーン 6 スロットエフェクトチェーンを搭載。"
     },
     features: [
-      { en: "Lossless cos\u00b2 crossfade separation \u2014 transient + tonal = original, zero artefacts", jp: "エネルギー損失ゼロの cos\u00b2 分離" },
-      { en: "3 independent lanes \u00d7 6-slot FX chains each (18 total)", jp: "3 レーン \u00d7 6 エフェクトチェーン（合計 18）" },
-      { en: "Drag & drop WAV loading \u2014 auto-analyzed and separated", jp: "WAV ドラッグ&ドロップ → 自動分析・分離" },
-      { en: "Custom sample replacement per lane (Transient / Tonal browser)", jp: "レーンごとのカスタムサンプル置換" },
-      { en: "Tone Offset slider \u2014 fill gaps or create intentional overlaps", jp: "トーンオフセットスライダー（\u00b1500ms）" },
-      { en: "Waveform zoom up to 32\u00d7 for precise transient inspection", jp: "波形ズーム 最大 32\u00d7" }
+      { en: "4-lane architecture (Transient, Tonal, Layer, Full Mix) with independent pitch & gain", jp: "4 レーン構成（Transient / Tonal / Layer / Full Mix）独立ピッチ＆ゲイン" },
+      { en: "Lossless cos\u00b2 crossfade separation \u2014 zero energy loss, zero artefacts", jp: "エネルギー損失ゼロの cos\u00b2 分離" },
+      { en: "Hermite cubic granular pitch shifter & stereo-linked dual-branch transient shaper", jp: "4点エルミート3次補間Granularピッチ ＆ デュアルブランチ過渡音シェイパー" },
+      { en: "Upgraded Limiter with IN GAIN (0~+24dB) & Limit / Clip MODE switch", jp: "IN GAIN（0〜+24dB）＆ Limit / Clip モード切替付きリミッター" },
+      { en: "Custom sample replacement & Tonal Offset slider (\u00b1500ms)", jp: "レーンごとのカスタムサンプル置換 ＆ トーンオフセットスライダー（\u00b1500ms）" },
+      { en: "Waveform zoom up to 32\u00d7 & per-lane lock-free stem export", jp: "最大 32\u00d7 波形ズーム ＆ レーン別ロックフリー Stem エクスポート" }
     ],
     repo: "https://github.com/OTODESK4193/ANATOMY",
     accent: "#c084fc"

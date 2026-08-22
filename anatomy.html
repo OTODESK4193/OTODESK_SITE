@@ -63,29 +63,44 @@
     .section-h { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 48px; }
     .divider { border: none; border-top: 1px solid var(--rule); max-width: 1080px; margin: 0 auto; }
 
-    /* 3-LANE CONCEPT */
-    .concept-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 64px; }
-    .lane-card { padding: 36px 28px; position: relative; overflow: hidden; }
+    /* 4-LANE CONCEPT */
+    .concept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 64px; }
+    .lane-card { padding: 32px 24px; position: relative; overflow: hidden; }
     .lane-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .lane-card.transient { background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.15); }
     .lane-card.transient::before { background: var(--cyan); }
     .lane-card.tonal { background: rgba(232,121,249,0.05); border: 1px solid rgba(232,121,249,0.15); }
     .lane-card.tonal::before { background: var(--magenta); }
+    .lane-card.layer { background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.15); }
+    .lane-card.layer::before { background: #00e5a0; }
     .lane-card.full { background: rgba(192,132,252,0.05); border: 1px solid rgba(192,132,252,0.15); }
     .lane-card.full::before { background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
     .lane-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; margin-bottom: 16px; }
     .lane-card.transient .lane-label { color: var(--cyan); }
     .lane-card.tonal .lane-label { color: var(--magenta); }
+    .lane-card.layer .lane-label { color: #00e5a0; }
     .lane-card.full .lane-label { background: linear-gradient(90deg, var(--cyan), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .lane-title { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-    .lane-body { font-size: 14px; color: var(--dim); line-height: 1.7; }
+    .lane-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .lane-body { font-size: 13px; color: var(--dim); line-height: 1.7; }
     .lane-wave { height: 40px; margin: 20px 0 0; position: relative; overflow: hidden; opacity: 0.6; }
     .lane-wave svg { width: 100%; height: 100%; }
+
+    /* CHANGELOG */
+    .changelog-box { background: var(--bg2); border: 1px solid var(--rule); padding: 40px; }
+    .changelog-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 32px; border-bottom: 1px solid var(--rule); padding-bottom: 16px; }
+    .changelog-ver { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent); }
+    .changelog-date { font-family: var(--mono); font-size: 13px; color: var(--dim); }
+    .changelog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .changelog-col-title { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .changelog-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .changelog-list li { font-size: 13px; line-height: 1.7; color: var(--ink); padding-left: 14px; position: relative; }
+    .changelog-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; }
 
     /* EQUATION */
     .equation { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 32px; background: var(--bg2); border: 1px solid var(--rule); font-family: var(--mono); font-size: 16px; flex-wrap: wrap; gap: 16px; }
     .eq-cyan { color: var(--cyan); }
     .eq-mag { color: var(--magenta); }
+    .eq-layer { color: #00e5a0; }
     .eq-op { color: var(--dim); }
     .eq-result { color: var(--ink); }
     .eq-note { font-size: 11px; color: var(--dim); margin-top: 8px; letter-spacing: 0.05em; }
@@ -139,11 +154,15 @@
     @media (max-width: 768px) {
       .nav { padding: 16px 24px; }
       .hero-content, .section { padding-left: 24px; padding-right: 24px; }
-      .concept-grid { grid-template-columns: 1fr; }
+      .concept-grid { grid-template-columns: 1fr 1fr; }
+      .changelog-grid { grid-template-columns: 1fr; }
       .fx-grid { grid-template-columns: 1fr; }
       .workflow-steps { grid-template-columns: 1fr 1fr; }
       .specs-grid { grid-template-columns: 1fr; }
       .equation { font-size: 13px; }
+    }
+    @media (max-width: 480px) {
+      .concept-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -196,13 +215,13 @@
     return (
       <section className="hero">
         <div className="hero-bg">
-          <img src="screenshots/anatomy.jpg" alt="ANATOMY UI" />
+          <img src="screenshots/anatomy.jpg?v=1.1.0" alt="ANATOMY UI" />
           <div className="hero-bg-grad"></div>
         </div>
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot"></span>
-            {lang === "jp" ? "VST3 · 6/21 公開" : "VST3 · RELEASED 6/21"}
+            {lang === "jp" ? "VST3 · 8/22 UPDATE!" : "VST3 · UPDATE 8/22"}
           </div>
           <h1 className="hero-title">
             {lang === "jp"
@@ -212,8 +231,8 @@
           </h1>
           <p className="hero-sub">
             {lang === "jp"
-              ? "過渡音と音色を数学的に完璧に分離し、それぞれを独立したエフェクトチェーンで加工する。まったく新しい発想のサンプラー。"
-              : "Mathematically perfect transient/tonal separation. Independent effect chains per lane. A sampler that dissects the anatomy of sound."}
+              ? "過渡音と音色を数学的に完璧に分離し、それぞれを独立したエフェクトチェーンで加工する。4レーン構成へと進化したまったく新しい発想のサンプラー。"
+              : "Mathematically perfect transient/tonal separation. 4-lane architecture with independent effect chains per lane. A sampler that dissects the anatomy of sound."}
           </p>
           <div className="hero-cta-row" style={{ marginBottom: "48px" }}>
             <a href="https://github.com/OTODESK4193/ANATOMY/releases" target="_blank" rel="noreferrer" className="btn-dl">{lang === "jp" ? "ダウンロード" : "Download"} →</a>
@@ -224,7 +243,7 @@
             <div className="hero-meta-item">PLATFORM <span>Windows 64-bit</span></div>
             <div className="hero-meta-item">HOST <span>Ableton Live</span></div>
             <div className="hero-meta-item">LICENSE <span>AGPLv3</span></div>
-            <div className="hero-meta-item">VERSION <span>v1.0.0</span></div>
+            <div className="hero-meta-item">VERSION <span>v1.1.0</span></div>
           </div>
         </div>
       </section>
@@ -237,8 +256,8 @@
         <div className="section-eyebrow">— 01 / {lang === "jp" ? "コアコンセプト" : "CORE CONCEPT"}</div>
         <h2 className="section-h">
           {lang === "jp"
-            ? <><span style={{ color: "var(--cyan)" }}>cos²</span> クロスフェード分離</>
-            : <><span style={{ color: "var(--cyan)" }}>cos²</span> Crossfade Separation</>}
+            ? <><span style={{ color: "var(--cyan)" }}>cos²</span> クロスフェード ＆ 4レーン分離</>
+            : <><span style={{ color: "var(--cyan)" }}>cos²</span> Crossfade & 4-Lane Separation</>}
         </h2>
 
         <div className="concept-grid">
@@ -253,6 +272,16 @@
             <div className="lane-title">{lang === "jp" ? "持続音" : "Sustain"}</div>
             <div className="lane-body">{lang === "jp" ? "倍音・持続・音高のある成分。音の厚みと音色と減衰。" : "Sustained harmonic content — body, tone, and decay."}</div>
             <div className="lane-wave"><TonalWave color="var(--magenta)" /></div>
+          </div>
+          <div className="lane-card layer">
+            <div className="lane-label">LAYER LANE</div>
+            <div className="lane-title">{lang === "jp" ? "レイヤー" : "Layer"}</div>
+            <div className="lane-body">{lang === "jp" ? "v1.1.0新設。独立Pitch/Gain制御を備えた第4レーンでサウンドデザインを拡張。" : "New in v1.1.0. 4th lane with Pitch/Gain controls for deeper sound design."}</div>
+            <div className="lane-wave">
+              <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+                <path stroke="#00e5a0" strokeWidth="1.5" fill="none" d="M0,20 Q15,4 30,20 Q45,36 60,20 Q75,4 90,20 Q105,36 120,20 Q135,4 150,20 Q165,36 180,20 Q190,12 200,20" />
+              </svg>
+            </div>
           </div>
           <div className="lane-card full">
             <div className="lane-label">FULL MIX LANE</div>
@@ -271,8 +300,10 @@
           <span className="eq-cyan">TRANSIENT</span>
           <span className="eq-op">+</span>
           <span className="eq-mag">TONAL</span>
+          <span className="eq-op">+</span>
+          <span className="eq-layer">LAYER</span>
           <span className="eq-op">=</span>
-          <span className="eq-result">ORIGINAL INPUT</span>
+          <span className="eq-result">FULL MIX</span>
           <div style={{ width: "100%", textAlign: "center" }}>
             <div className="eq-note">{lang === "jp" ? "エネルギー損失ゼロ・オーバーラップアーティファクトゼロを数学的に保証" : "Mathematically guaranteed zero energy loss and zero overlap artefacts"}</div>
           </div>
@@ -290,7 +321,7 @@
         <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#0d0d12", border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}>
           <iframe
             width="100%" height="100%"
-            src="https://www.youtube.com/embed/SJVZsBOG1pk?rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/eWfDeOArrfU?rel=0&modestbranding=1"
             title="ANATOMY Demo"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -306,11 +337,12 @@
     return (
       <div className="screenshot-section">
         <div className="screenshot-wrap">
-          <img src="screenshots/anatomy.jpg" alt="ANATOMY Plugin UI" />
+          <img src="screenshots/anatomy.jpg?v=1.1.0" alt="ANATOMY Plugin UI" />
           <div className="screenshot-caption">
             <div className="sc-cap-item"><span>{lang === "jp" ? "上段" : "Top"}</span> — {lang === "jp" ? "全コントロールとFULL MIXプレビュー" : "All controls + Full Mix 2-color preview"}</div>
             <div className="sc-cap-item"><span style={{ color: "var(--cyan)" }}>CYAN</span> — {lang === "jp" ? "トランジェント成分" : "Transient component"}</div>
             <div className="sc-cap-item"><span style={{ color: "var(--magenta)" }}>MAGENTA</span> — {lang === "jp" ? "トーン成分" : "Tonal component"}</div>
+            <div className="sc-cap-item"><span style={{ color: "#00e5a0" }}>GREEN</span> — {lang === "jp" ? "Layerレーン" : "Layer component"}</div>
             <div className="sc-cap-item"><span>{lang === "jp" ? "右パネル" : "Right panel"}</span> — {lang === "jp" ? "レーン別エフェクトラック" : "Per-lane effect rack"}</div>
           </div>
         </div>
@@ -322,7 +354,7 @@
     var steps = [
       { n: "01", t: { jp: "ロード", en: "Load" }, b: { jp: "WAVファイルをウィンドウにドラッグ＆ドロップ。自動で分析・分離。", en: "Drag & drop any WAV onto the plugin window. Auto-analyzed and separated instantly." } },
       { n: "02", t: { jp: "成形", en: "Shape" }, b: { jp: "Click Hold・Fade-In・Pitch・Gainを調整して分離特性を精密に制御。", en: "Adjust Click Hold, Fade-In, Pitch & Gain to sculpt the separation behaviour." } },
-      { n: "03", t: { jp: "加工", en: "Process" }, b: { jp: "3レーン×6エフェクトで、各成分を独立してサチュレーション・圧縮・ノイズ付加。", en: "Apply up to 6 FX per lane — saturation, dynamics, noise — independently." } },
+      { n: "03", t: { jp: "加工", en: "Process" }, b: { jp: "4レーン×6エフェクトで、各成分を独立してサチュレーション・圧縮・ノイズ付加。", en: "Apply up to 6 FX per lane — saturation, dynamics, noise — independently." } },
       { n: "04", t: { jp: "エクスポート", en: "Export" }, b: { jp: "EXPORTボタンで各レーンをWAVで書き出し。DAWにドラッグ＆ドロップで即時利用。", en: "Export each lane as WAV — drag directly into your DAW or sampler." } }
     ];
     return (
@@ -363,16 +395,16 @@
         body: { jp: "バススタイルのRMSコンプレッサー。Threshold・Ratio・Attack・Release・Makeup。", en: "Bus-style feed-forward RMS compressor. Soft-knee. Threshold, Ratio, Attack, Release, Makeup." },
         params: ["THR", "RATIO", "ATK", "REL", "MAKEUP", "DEPTH"] },
       { n: "06", name: "Limiter", cat: lang === "jp" ? "ダイナミクス" : "Dynamics",
-        body: { jp: "透明性の高いブリックウォールリミッター。調整可能なCeiling。Dry/Wetパラレルブレンド。", en: "Transparent brick-wall peak limiter. Adjustable ceiling. Parallel dry/wet blend." },
-        params: ["CEILING", "DRY/WET"] }
+        body: { jp: "透明性の高いブリックウォールリミッター。IN GAINノブ（0〜+24dB）とMODE切替（Limit / Clip）。", en: "Transparent brick-wall peak limiter with IN GAIN knob (0~+24dB) & MODE switch (Limit / Clip)." },
+        params: ["IN GAIN", "MODE", "CEILING", "DRY/WET"] }
     ];
     return (
       <div className="section" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">— 03 / {lang === "jp" ? "エフェクト" : "EFFECTS"}</div>
         <h2 className="section-h">
           {lang === "jp"
-            ? <>6エフェクト × 3レーン <span style={{ color: "var(--accent)", fontSize: "0.7em" }}>= 18チェーン</span></>
-            : <>6 FX × 3 Lanes <span style={{ color: "var(--accent)", fontSize: "0.7em" }}>= 18 Chains</span></>}
+            ? <>6エフェクト × 4レーン <span style={{ color: "var(--accent)", fontSize: "0.7em" }}>= 24スロット</span></>
+            : <>6 FX × 4 Lanes <span style={{ color: "var(--accent)", fontSize: "0.7em" }}>= 24 Slots</span></>}
         </h2>
         <div className="fx-grid">
           {fx.map(function(f) {
@@ -399,9 +431,9 @@
   function Features({ lang }) {
     var feats = [
       { icon: "⚡", t: { jp: "DAWプロジェクト保存", en: "DAW Project Save" }, b: { jp: "ロードしたオーディオ・エフェクト状態・トリム位置をDAWプロジェクトと共に自動保存・復元。", en: "All audio data, FX states, and trim positions save and restore automatically with your DAW project." } },
-      { icon: "🔍", t: { jp: "波形ズーム 最大32×", en: "Waveform Zoom 32×" }, b: { jp: "3つの波形表示すべてで最大32倍まで拡大。短いトランジェントの精密な確認が可能。", en: "All three waveforms zoom up to 32×, expanding from the left edge for intuitive transient inspection." } },
+      { icon: "🔍", t: { jp: "波形ズーム 最大32×", en: "Waveform Zoom 32×" }, b: { jp: "波形表示すべてで最大32倍まで拡大。短いトランジェントの精密な確認が可能。", en: "All waveforms zoom up to 32×, expanding from the left edge for intuitive transient inspection." } },
       { icon: "↔", t: { jp: "トーンオフセット ±500ms", en: "Tonal Offset ±500ms" }, b: { jp: "ピッチシフトで生じるギャップをトーン再生位置のずらしで埋める。左右対称スキューで±50ms精密制御。", en: "Shift tonal playback start position to close pitch-shift gaps or create intentional overlaps." } },
-      { icon: "📁", t: { jp: "カスタムサンプル置換", en: "Custom Sample Replacement" }, b: { jp: "トランジェントまたはトーンレーンを独自のサンプルに置き換え。Resetで元の分離信号に戻る。", en: "Replace the separated transient or tonal component with your own custom sample. Reset to restore." } }
+      { icon: "📁", t: { jp: "カスタムサンプル置換", en: "Custom Sample Replacement" }, b: { jp: "各レーンを独自のサンプルに置き換え。Resetで元の分離信号に戻る。", en: "Replace separated components with your own custom sample. Reset to restore." } }
     ];
     return (
       <div className="section" style={{ paddingTop: 0 }}>
@@ -422,6 +454,67 @@
     );
   }
 
+  function Changelog({ lang }) {
+    var v110Features = [
+      { jp: "4レーン・アーキテクチャ：新たに独立したPitch/Gain制御を持つ「Layer」レーンを追加。FullMix、Transient、Tonalと合わせた4レーン構成へ拡張。", en: "4 Lane Architecture: Introduced a new Layer lane with Pitch/Gain control, expanding sound design capabilities alongside FullMix, Transient, and Tonal lanes." },
+      { jp: "Limiter IN GAIN ノブ：天井スレッショルドへと信号をドライブするIN GAINノブ（0.0dB〜+24.0dB）を追加。", en: "Limiter IN GAIN: Added an IN GAIN knob (0.0dB to +24.0dB) to drive signals into the ceiling threshold." },
+      { jp: "Limiter MODE 切替 (Limit / Clip)：透明なピーク削減を行うLimitモードと、瞬間的なソフトニー・ウェーブシェイピングで力強いパンチを得るClipモードを選択可能。", en: "Limiter MODE switch (Limit / Clip): Limit provides transparent peak reduction; Clip provides instantaneous soft-knee waveshaping and aggressive punch." }
+    ];
+    var v110DSP = [
+      { jp: "エルミート3次補間 ＆ Hann位相分散Granularピッチ：ピッチシフト処理を4点エルミート3次補間および4タップHann位相分散グラニュラー回転へ刷新。エイリアシングやコムフィルタ歪みを徹底排除。", en: "Hermite Cubic Interpolation & Hann Granular Pitch: Upgraded pitch shifting to 4-point Hermite cubic interpolation and 4-tap Hann phase-distributed granular rotation, eliminating aliasing and comb-filtering distortions." },
+      { jp: "高精度過渡音シェイパー：Transient Shaperをソフトニー飽和保護付きステレオリンク・デュアルブランチトラッカーへ刷新。", en: "Precision Transient Engine: Upgraded Transient Shaper to stereo-linked dual-branch tracker with soft-knee saturation protection." }
+    ];
+    var v110Fixes = [
+      { jp: "マルチインスタンス同期クラッシュ修正：ExportRecordingCoreの状態同期不具合を解消。", en: "Multi-instance crash fix: Resolved critical multi-instance crash in ExportRecordingCore state synchronization." },
+      { jp: "DAW終了時クラッシュ修正：不正なLookAndFeelポインタ破棄によるクラッシュを解消。", en: "DAW shutdown crash fix: Fixed DAW shutdown crash caused by illegal LookAndFeel pointer destruction." },
+      { jp: "GUI＆描画挙動の改善：UIカラーおよび各レーンの描画挙動をブラッシュアップ。", en: "GUI & Rendering: Improved UI colors and lane rendering behavior." }
+    ];
+
+    return (
+      <div className="section" style={{ paddingTop: 0 }}>
+        <hr className="divider" style={{ marginBottom: "96px", maxWidth: "none" }} />
+        <div className="section-eyebrow">— 05 / {lang === "jp" ? "更新履歴" : "CHANGELOG"}</div>
+        <h2 className="section-h">
+          {lang === "jp"
+            ? <><span style={{ color: "var(--accent)" }}>v1.1.0</span> (Granular Style Modern Edition)</>
+            : <>v1.1.0 <span style={{ color: "var(--accent)" }}>(Granular Style Modern Edition)</span></>}
+        </h2>
+        <div className="changelog-box">
+          <div className="changelog-header">
+            <span className="changelog-ver">ANATOMY v1.1.0</span>
+            <span className="changelog-date">2026.08.22</span>
+          </div>
+          <div className="changelog-grid">
+            <div>
+              <div className="changelog-col-title" style={{ color: "#00e5a0" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</div>
+              <ul className="changelog-list" style={{ marginBottom: "32px" }}>
+                {v110Features.map(function(item, idx) {
+                  return <li key={idx} style={{ borderLeft: "2px solid #00e5a044" }}>{item[lang]}</li>;
+                })}
+              </ul>
+
+              <div className="changelog-col-title" style={{ color: "#ff6b6b" }}>🐛 {lang === "jp" ? "安定性 ＆ 修正" : "Fixes & Stability"}</div>
+              <ul className="changelog-list">
+                {v110Fixes.map(function(item, idx) {
+                  return <li key={idx} style={{ borderLeft: "2px solid #ff6b6b44" }}>{item[lang]}</li>;
+                })}
+              </ul>
+            </div>
+
+            <div>
+              <div className="changelog-col-title" style={{ color: "#22d3ee" }}>⚡ {lang === "jp" ? "DSP ＆ 音質向上" : "DSP & Audio Engine"}</div>
+              <ul className="changelog-list">
+                {v110DSP.map(function(item, idx) {
+                  return <li key={idx} style={{ borderLeft: "2px solid #22d3ee44" }}>{item[lang]}</li>;
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   function Specs({ lang }) {
     var sys = [
       { k: "OS", v: "Windows 10 / 11 (64-bit)" },
@@ -432,16 +525,16 @@
       { k: "LICENSE", v: "AGPLv3 — Free" }
     ];
     var dsp = [
-      { k: lang === "jp" ? "分離アルゴリズム" : "Separation", v: "cos² Crossfade (time-domain)" },
-      { k: lang === "jp" ? "エフェクト合計" : "Total FX slots", v: "18 (6 × 3 lanes)" },
-      { k: lang === "jp" ? "ピッチシフト" : "Pitch shift", v: "±12 semitones (granular)" },
+      { k: lang === "jp" ? "分離アルゴリズム" : "Separation", v: "cos² Crossfade + 4 Lanes" },
+      { k: lang === "jp" ? "エフェクト合計" : "Total FX slots", v: "24 (6 × 4 lanes)" },
+      { k: lang === "jp" ? "ピッチシフト" : "Pitch shift", v: "±12 st (4-pt Hermite Granular)" },
       { k: lang === "jp" ? "波形ズーム" : "Waveform zoom", v: "up to 32×" },
       { k: "Tonal Offset", v: "−500ms … +500ms" },
       { k: lang === "jp" ? "スレッドモデル" : "Thread model", v: "Lock-free, zero alloc on audio thread" }
     ];
     return (
       <div className="section" style={{ paddingTop: 0 }}>
-        <div className="section-eyebrow">— 05 / {lang === "jp" ? "仕様" : "SPECIFICATIONS"}</div>
+        <div className="section-eyebrow">— 06 / {lang === "jp" ? "仕様" : "SPECIFICATIONS"}</div>
         <h2 className="section-h">{lang === "jp" ? "動作環境 & 技術仕様" : "System Requirements & Tech Specs"}</h2>
         <div className="specs-grid">
           <div className="spec-group">
@@ -461,11 +554,11 @@
     return (
       <div className="cta-section">
         <div className="cta-inner">
-          <div className="cta-soon-badge">RELEASED 6/21</div>
+          <div className="cta-soon-badge">v1.1.0 UPDATED</div>
           <h2 className="cta-title">
             {lang === "jp"
-              ? <><span style={{ color: "var(--accent)" }}>6/21</span>公開。</>
-              : <>Released <span style={{ color: "var(--accent)" }}>6/21.</span></>}
+              ? <><span style={{ color: "var(--accent)" }}>v1.1.0</span> 公開中。</>
+              : <>v1.1.0 <span style={{ color: "var(--accent)" }}>Available Now.</span></>}
           </h2>
           <p className="cta-sub">
             {lang === "jp"
@@ -506,6 +599,7 @@
         <Workflow lang={lang} />
         <Effects lang={lang} />
         <Features lang={lang} />
+        <Changelog lang={lang} />
         <Specs lang={lang} />
         <CTA lang={lang} />
         <PageFooter lang={lang} />
