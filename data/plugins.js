@@ -220,29 +220,31 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
     year: "2026",
-    version: "1.2.0",
+    version: "1.2.1",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg",
-    screenshotPro: "assets/ambience-screenshot-2.jpg",
+    screenshot: "screenshots/ambience.jpg?v=1.2.1",
+    screenshotPro: "assets/ambience-screenshot-2.jpg?v=1.2.1",
     tagline: {
       en: "World-class halls in 16 channels of FDN. Free.",
       jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
     },
     description: {
-      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 21 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall and more — at zero cost.",
-      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall など 21 種の名空間プリセットを、無料で。"
+      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 22 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall, Inchindown and more — at zero cost.",
+      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall、Inchindown など 22 種の名空間プリセットを、無料で。"
     },
     features: [
       { en: "16-channel FDN with FWHT feedback matrix", jp: "FWHT 帰還行列の 16ch FDN" },
-      { en: "7 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL", jp: "7 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL" },
-      { en: "21 factory presets (Abbey Road, Musikverein, Carnegie etc.)", jp: "21 ファクトリプリセット (Abbey Road、Musikverein、Carnegie 他)" },
+      { en: "8 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL · INCHINDOWN", jp: "8 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL ／ INCHINDOWN" },
+      { en: "22 factory presets (Abbey Road, Musikverein, Carnegie, Inchindown etc.)", jp: "22 ファクトリプリセット (Abbey Road、Musikverein、Carnegie、Inchindown 他)" },
+      { en: "Zero-metallic diffusion (Dual Golden-Ratio LFOs + 3-Stage SAPF)", jp: "ゼロ・メタリック拡散（Dual Golden-Ratio LFO ＋ 3段直列SAPF）" },
       { en: "10-band Välimäki-Liski GEQ absorption per channel", jp: "チャンネルごとの 10 バンド Välimäki-Liski GEQ 吸収" },
       { en: "ISM-based Early Reflections w/ per-algorithm tuning", jp: "ISM ベース Early Reflections (アルゴリズムごとに最適化)" },
-      { en: "ADAA Saturator — Warm / Tape / Tube / Hard", jp: "ADAA サチュレータ — Warm／Tape／Tube／Hard" },
-      { en: "Real-time D50 / C50 / C80 / EDT readouts", jp: "リアルタイム D50 ／ C50 ／ C80 ／ EDT 計測表示" },
+      { en: "ADAA Saturator & FDN Asymmetric Micro-Saturation", jp: "ADAA サチュレータ ＆ FDN 非対称マイクロサチュレーション" },
+      { en: "10 dynamic color themes, Smart Preset REVERT & SEND mode", jp: "10 カラーテーマ切替、スマートプリセット REVERT、SEND モード" },
+      { en: "Real-time D50 / C50 / C80 / EDT readouts & Decay Time HUD", jp: "リアルタイム音響指標計測 ＆ ディケイタイム HUD 表示" },
       { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
       { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
     ],

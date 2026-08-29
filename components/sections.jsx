@@ -948,6 +948,22 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
+    id: "ambience-v1-2-1",
+    badge: { jp: "VST3 · 8/29 UPDATE!", en: "VST3 · UPDATE 8/29" },
+    date: "2026.08.29",
+    title: { jp: "Ambience v1.2.1 アップデート！", en: "Ambience v1.2.1 Update Released!" },
+    sub: { jp: "メジャーアップデート級の音質改善！！ 新アルゴリズム「Inchindown」搭載！！", en: "Major Sound Quality Upgrade!! New Algorithm \"Inchindown\" Added!!" },
+    excerpt: {
+      jp: "・新しいスクショへ修正\n・メジャーアップデート級の音質改善！！\n・新アルゴリズム「Inchindown」（超ロングリバーブ）搭載！！",
+      en: "• Updated UI screenshots\n• Major sound quality upgrade!!\n• New algorithm \"Inchindown\" (ultra-long reverb) added!!"
+    },
+    img: "screenshots/ambience.jpg?v=1.2.1",
+    url: "ambience.html",
+    accent: "#ff8a3c",
+    isNew: true,
+    comingSoon: false
+  },
+  {
     id: "anatomy-v1-1-0",
     badge: { jp: "VST3 · 8/22 UPDATE!", en: "VST3 · UPDATE 8/22" },
     date: "2026.08.22",
@@ -960,22 +976,6 @@ function NewsSection({ lang }) {
     img: "screenshots/anatomy.jpg?v=1.1.0",
     url: "anatomy.html",
     accent: "#c084fc",
-    isNew: true,
-    comingSoon: false
-  },
-  {
-    id: "ambience-v1-2-0",
-    badge: { jp: "VST3 · 8/19 UPDATE!", en: "VST3 · UPDATE 8/19" },
-    date: "2026.08.19",
-    title: { jp: "Ambience v1.2.0 \"No Compromise\" リリース！", en: "Ambience v1.2.0 \"No Compromise\" Update Released!" },
-    sub: { jp: "リアルタイムスペクトラムアナライザー・エルミート3次補間・真のステレオPreDelay搭載！", en: "Real-time Spectrum Analyzer, Hermite 3rd-Order Interpolation & True Stereo Pre-Delay!" },
-    excerpt: {
-      jp: "本日2026/8/19にAmbience v1.2.0を公開！Lock-freeリアルタイムスペクトラムアナライザー（Dry/Wet二層表示）、拡散限界の拡張、FDNループのエルミート3次補間によるシルキーなテール復元、Mid/Side分離前の真のステレオPre-Delay、64-sampleオーディオレートパラメータスムージング、高精度1024pt Sine-LUTコーラスLFO、および64-bit倍精度GEQフィルターを新搭載！",
-      en: "Ambience v1.2.0 released on 2026/8/19! Features a Lock-free real-time frequency spectrum overlay (Dry/Wet dual view), expanded diffusion limits, Hermite 3rd-order interpolation for silky transparent reverb tails, True Stereo Pre-Delay, 64-sample audio-rate parameter smoothing, high-precision 1024-pt Sine-LUT Chorus LFO, and 64-bit double precision GEQ filters."
-    },
-    img: "screenshots/ambience.jpg",
-    url: "ambience.html",
-    accent: "#ff8a3c",
     isNew: true,
     comingSoon: false
   },
@@ -1076,21 +1076,6 @@ function NewsSection({ lang }) {
     isNew: true
   },
   {
-    id: "ambience",
-    badge: { jp: "VST3 · UPDATE", en: "VST3 · UPDATE" },
-    date: "2026.06.13",
-    title: { jp: "Ambience v1.2.0 リリース。", en: "Ambience v1.2.0 Released." },
-    sub: { jp: "PreDelay 修正・金属系アーティファクト解消・音質向上\n動画公開！！", en: "PreDelay fix, metallic artefact fix, FDN quality upgrade" },
-    excerpt: {
-      jp: "PreDelay が DSP に正しく反映されないバグを修正。長い DecayTime で為が付いた金属系リンギングも解消。コーラス LFO・3段オールパス・ Thiran補間により、テールの密度と貧乏テクスチャが大幅向上。",
-      en: "PreDelay now correctly feeds both ER and FDN paths. Metallic ringing at long decay times resolved via DC blocker + micro-saturation. Chorus LFO, 3-stage allpass, and Thiran interpolation deliver richer, more organic tails."
-    },
-    img: "screenshots/ambience.jpg",
-    url: "ambience.html",
-    accent: "#ff8a3c",
-    isNew: true
-  },
-  {
     id: "quad-morph",
     badge: { jp: "VST3 \u00b7 \u516c\u958b\u4e2d", en: "VST3 \u00b7 RELEASED" },
     date: "2026.06",
@@ -1179,7 +1164,7 @@ function NewsCard({ item, lang, size }) {
             <time className="news-card-date">{item.date}</time>
           </div>
           <h3 className="news-card-title">{item.title[lang]}</h3>
-          {size === "large" && <p className="news-card-excerpt" style={{ fontSize: "20px" }}>{item.excerpt[lang]}</p>}
+          {size === "large" && <p className="news-card-excerpt" style={{ fontSize: "20px", whiteSpace: "pre-line" }}>{item.excerpt[lang]}</p>}
           <p className="news-card-sub" style={{ fontSize: "20px" }}>{item.sub[lang]}</p>
           {!item.hideLink &&
           <a href={item.url} className="news-card-cta">

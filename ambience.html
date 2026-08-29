@@ -17,10 +17,10 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script src="data/plugins.js"></script>
-<script type="text/babel" src="components/visual.jsx"></script>
-<script type="text/babel" src="components/counters.jsx"></script>
-<script type="text/babel" src="components/sections.jsx"></script>
+<script src="data/plugins.js?v=1.2.1"></script>
+<script type="text/babel" src="components/visual.jsx?v=1.2.1"></script>
+<script type="text/babel" src="components/counters.jsx?v=1.2.1"></script>
+<script type="text/babel" src="components/sections.jsx?v=1.2.1"></script>
 
 <script type="text/babel" data-presets="env,react">
 const LANG_KEY = "otodesk_lang";
@@ -155,7 +155,7 @@ function AmbHero({ lang }) {
         </p>
 
         <div className="amb-hero-meta">
-          <div><span className="ahm-k">PLUGIN</span> Ambience v1.2.0</div>
+          <div><span className="ahm-k">PLUGIN</span> Ambience v1.2.1</div>
           <div><span className="ahm-k">TYPE</span> Algorithmic Reverb</div>
           <div><span className="ahm-k">FORMAT</span> VST3 · Windows</div>
           <div><span className="ahm-k">LICENSE</span> GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
@@ -175,7 +175,7 @@ function AmbHero({ lang }) {
             }}
           >
             <span className="br-dot" />
-            {lang === "jp" ? "ダウンロード v1.2.0" : "Download v1.2.0"}
+            {lang === "jp" ? "ダウンロード v1.2.1" : "Download v1.2.1"}
             <span className="arrow">↓</span>
           </a>
           <a
@@ -200,7 +200,7 @@ function AmbHero({ lang }) {
       </div>
 
       <div className="amb-hero-shot">
-        <img src="assets/ambience-screenshot-1.jpg" alt="Ambience UI" />
+        <img src="assets/ambience-screenshot-1.jpg?v=1.2.1" alt="Ambience UI" />
       </div>
     </section>
   );
@@ -270,8 +270,8 @@ function Pitch({ lang }) {
 function Numbers({ lang }) {
   const items = [
     { n: "16", k: lang === "jp" ? "FDN チャンネル" : "FDN channels", s: "Feedback Delay Network" },
-    { n: "21", k: lang === "jp" ? "ファクトリプリセット" : "factory presets", s: "Abbey Road · Musikverein · Carnegie" },
-    { n: "7", k: lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms", s: "ROOM · HALL · PLATE · SPRING · GOLDFOIL" },
+    { n: "22", k: lang === "jp" ? "ファクトリプリセット" : "factory presets", s: "Abbey Road · Musikverein · Inchindown" },
+    { n: "8", k: lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms", s: "ROOM · HALL · PLATE · SPRING · GOLDFOIL · INCHINDOWN" },
     { n: "10", k: lang === "jp" ? "バンド GEQ 吸収" : "band GEQ absorption", s: "Välimäki-Liski WLS" },
     { n: "4", k: lang === "jp" ? "ADAA サチュレーション" : "ADAA saturation modes", s: "Warm · Tape · Tube · Hard" },
     { n: "0", k: lang === "jp" ? "オーディオスレッド確保" : "audio-thread allocations", s: lang === "jp" ? "完全リアルタイムセーフ" : "fully real-time safe" }
@@ -317,12 +317,12 @@ function Engine({ lang }) {
         </article>
 
         <article className="amb-card">
-          <div className="amb-card-k">7 ALGORITHMS</div>
-          <h3>{lang === "jp" ? "ROOM・HALL・PLATE・SPRING・GOLDFOIL" : "ROOM · HALL · PLATE · SPRING · GOLDFOIL"}</h3>
+          <div className="amb-card-k">8 ALGORITHMS</div>
+          <h3>{lang === "jp" ? "ROOM・HALL・PLATE・SPRING・GOLDFOIL・INCHINDOWN" : "ROOM · HALL · PLATE · SPRING · GOLDFOIL · INCHINDOWN"}</h3>
           <p>
             {lang === "jp" ?
-              "ROOM1／ROOM2／HALL1／HALL2／PLATE／SPRING／GOLDFOIL ── それぞれが独立したトポロジカル・ルーティング、Allpass 係数、ER パターンを持ち、完全に別の音色キャラクタを供給します。" :
-              "ROOM1 / ROOM2 / HALL1 / HALL2 / PLATE / SPRING / GOLDFOIL — each algorithm uses a distinct topological routing, Allpass gain structure, and early-reflection pattern. Seven completely different reverb characters."
+              "ROOM1／ROOM2／HALL1／HALL2／PLATE／SPRING／GOLDFOIL／INCHINDOWN ── それぞれが独立したトポロジカル・ルーティング、Allpass 係数、ER パターンを持ち、完全に別の音色キャラクタを供給します。新搭載「INCHINDOWN」は最長112秒の減衰時間を誇る巨大地下貯油タンクをモデリング。" :
+              "ROOM1 / ROOM2 / HALL1 / HALL2 / PLATE / SPRING / GOLDFOIL / INCHINDOWN — each algorithm uses a distinct topological routing, Allpass gain structure, and early-reflection pattern. The new 'INCHINDOWN' models a colossal underground oil tank with decay times up to 112 seconds."
             }
           </p>
         </article>
@@ -350,12 +350,12 @@ function Engine({ lang }) {
         </article>
 
         <article className="amb-card">
-          <div className="amb-card-k">BANDLIMITED LFO</div>
-          <h3>{lang === "jp" ? "16 本の独立 LFO 変調" : "16 independent LFOs"}</h3>
+          <div className="amb-card-k">ZERO-METALLIC LFO</div>
+          <h3>{lang === "jp" ? "16ch 黄金比 LFO ＆ 3段直列 SAPF" : "16-ch Golden-Ratio LFO & 3-Stage SAPF"}</h3>
           <p>
             {lang === "jp" ?
-              "16 本の FDN チャンネルそれぞれに、独立した帯域制限ノイズ LFO を配置。黄金比 Weyl 列で初期化し、互いに非同期で非周期的なモジュレーションを保証します。" :
-              "Each of the 16 FDN channels is modulated by an independent bandlimited-noise LFO, initialized via a Golden-Ratio Weyl sequence to guarantee mutually asynchronous, non-periodic motion."
+              "16本のFDNチャンネルそれぞれに非同期Dual Golden-Ratio LFOと3段直列Allpass位相スミアリングを配置。金属的リンギングや定常波を根絶し、超高透明度の残響テールを実現。" :
+              "16-channel asynchronous Dual Golden-Ratio LFOs with 3-stage serial Allpass phase smearing, completely eliminating metallic ringing and standing waves for an ultra-transparent tail."
             }
           </p>
         </article>
@@ -386,19 +386,19 @@ function ProMode({ lang }) {
           </h2>
           <p>
             {lang === "jp" ?
-              "PRO ボタンひとつで、31 Hz から 16 kHz までの 10 バンド RT60 倍率、Low ／ Mid ／ High の Tilt EQ、4 種サチュレーションタイプ選択が解放されます。" :
-              "One PRO button unlocks per-band RT60 multipliers from 31 Hz to 16 kHz, Low / Mid / High Tilt EQ, and saturation type selection."
+              "PRO ボタンひとつで、31 Hz から 16 kHz までの 10 バンド RT60 倍率、Low ／ Mid ／ High の Tilt EQ、4 種サチュレーションタイプ選択、そして10種のダイナミックカラーテーマ切替が解放されます。" :
+              "One PRO button unlocks per-band RT60 multipliers from 31 Hz to 16 kHz, Low / Mid / High Tilt EQ, saturation type selection, and 10 dynamic color themes."
             }
           </p>
           <p>
             {lang === "jp" ?
-              "リアルタイム RT60 グラフは、HF Damping や LF Absorption の効果も含めた「実効カーブ」をオレンジ、プリセット参照値をグレーで重ねて表示。グラフを見ながら音を作れます。" :
-              "The live RT60 graph overlays the effective curve (orange — including HF Damping & LF Absorption) on top of the preset reference (gray). Mix by looking, not just by listening."
+              "リアルタイム RT60 グラフは、HF Damping や LF Absorption の効果も含めた「実効カーブ」をオレンジ、プリセット参照値をグレーで重ねて表示。スマートな REVERT 機能で編集内容を1クリックで元通りに復元できます。" :
+              "The live RT60 graph overlays the effective curve (orange) on top of the preset reference (gray). Smart REVERT function restores original preset settings with a single click."
             }
           </p>
         </div>
         <div className="amb-pro-shot">
-          <img src="assets/ambience-screenshot-2.jpg" alt="Pro Mode" />
+          <img src="assets/ambience-screenshot-2.jpg?v=1.2.1" alt="Pro Mode" />
         </div>
       </div>
     </section>
@@ -427,18 +427,19 @@ function Presets({ lang }) {
     { algo: "SPRING", name: "Deep Tank", ref: "AKG BX-20 style deep spring" },
     { algo: "GOLDFOIL", name: "Gothic Cathedral", ref: "Cologne Cathedral reference" },
     { algo: "GOLDFOIL", name: "Stone Chamber", ref: "Stone underground chamber" },
-    { algo: "GOLDFOIL", name: "Infinite Space", ref: "Synthetic infinite ambient" }
+    { algo: "GOLDFOIL", name: "Infinite Space", ref: "Synthetic infinite ambient" },
+    { algo: "INCHINDOWN", name: "Inchindown", ref: "Inchindown Oil Tanks, Scotland (112s decay)" }
   ];
   return (
     <section className="amb-section amb-presets">
       <div className="amb-eyebrow">— 05 / {lang === "jp" ? "プリセット" : "Presets"}</div>
       <h2 className="amb-h2">
-        {lang === "jp" ? (<>21 の<span className="amb-h">伝説の空間</span>。</>) : (<>21 <span className="amb-h">legendary spaces</span>.</>)}
+        {lang === "jp" ? (<>22 の<span className="amb-h">伝説の空間</span>。</>) : (<>22 <span className="amb-h">legendary spaces</span>.</>)}
       </h2>
       <p className="amb-lead">
         {lang === "jp" ?
-          "実在する世界の名ホール／スタジオ／プレート／スプリングをモデル化。すべて含まれており、追加購入はありません。" :
-          "Every world-class hall, studio, plate and spring you'd wish for — modeled and included. No DLC. No upgrades."
+          "実在する世界の名ホール／スタジオ／プレート／スプリング／巨大地下タンクをモデル化。すべて含まれており、追加購入はありません。" :
+          "Every world-class hall, studio, plate, spring and colossal subterranean tank modeled and included. No DLC. No upgrades."
         }
       </p>
       <div className="amb-preset-grid">
@@ -597,7 +598,7 @@ function CTA({ lang }) {
           }}
         >
           <span className="br-dot" />
-          {lang === "jp" ? "ダウンロード v1.2.0" : "Download v1.2.0"}
+          {lang === "jp" ? "ダウンロード v1.2.1" : "Download v1.2.1"}
           <span className="arrow">↓</span>
         </a>
         <DownloadChip pluginId="ambience" lang={lang} />
@@ -610,6 +611,91 @@ function CTA({ lang }) {
 }
 
 function Changelog({ lang }) {
+  const [activeTab, setActiveTab] = React.useState("v1.2.1");
+
+  const v121SoundQuality = [
+    {
+      title: { jp: "ゼロ・メタリック拡散（Dual Golden-Ratio LFO & 3段直列SAPF）", en: "Zero-Metallic Diffusion (Dual Golden-Ratio LFOs & 3-Stage SAPF)" },
+      desc: {
+        jp: "16チャンネル非同期Dual Golden-Ratio LFOと3段直列オールパス位相スミアリングを完全統合。高域コード（B5〜E6等）や鋭い打楽器トランジェントでの金属的リンギング、フラッターエコー、定常波を根絶し、極上のシルキーかつ高透明度な残響テールを実現。",
+        en: "Fully integrated 16-channel asynchronous Dual Golden-Ratio LFOs with 3-stage serial Allpass phase smearing, completely eliminating metallic ringing, flutter echoes, and standing waves on high-register chords (e.g. B5–E6) and sharp percussive transients for a silky, ultra-transparent reverb tail."
+      }
+    },
+    {
+      title: { jp: "非対称マイクロサチュレーション＆倍音の温かみ", en: "Asymmetric Micro-Saturation & Harmonic Warmth" },
+      desc: {
+        jp: "16ch FDN帰還ループ内にソフトニー非対称マイクロサチュレーション（偶数/奇数次倍音ブレンド）を組み込み、冷たいデジタルリミットサイクルを抑制。アナログ級の深み、濃密さ、空気吸収感を付与。",
+        en: "Embedded soft-knee asymmetric micro-saturation (precise even/odd harmonic blending) within the 16-channel FDN feedback loop, suppressing cold digital limit cycles and delivering analog-grade depth, lushness, and air absorption."
+      }
+    },
+    {
+      title: { jp: "新アルゴリズム「Inchindown」（超ロングリバーブ）搭載", en: "Colossal Subterranean Resonance (\"Inchindown\")" },
+      desc: {
+        jp: "最長112秒のディケイタイムを誇る世界記録の地下貯油タンク「Inchindown」アルゴリズムを新搭載。圧倒的な低域共鳴（31 Hz〜125 Hz）と広大な音響包囲感を提供。",
+        en: "Added the world-record holding Inchindown Oil Tanks algorithm with decay times up to 112 seconds, featuring immense low-frequency resonance (31 Hz–125 Hz) and vast spatial envelopment."
+      }
+    },
+    {
+      title: { jp: "シームレスなISM初期反射音の結合", en: "Seamless ISM Early Reflection Coupling" },
+      desc: {
+        jp: "アルゴリズム専用の12タップImage Source Method（ISM）初期反射音と周波数依存の境界吸収フィルターを結合し、位相打ち消しのない極めて自然な空間深度を達成。",
+        en: "Coupled algorithm-specific 12-tap Image Source Method (ISM) early reflections with frequency-dependent boundary absorption filters, achieving natural spatial depth without phase cancellation."
+      }
+    },
+    {
+      title: { jp: "22種類の音響キャリブレーション済みファクトリープリセット", en: "22 Acoustically Calibrated Factory Presets" },
+      desc: {
+        jp: "世界的なコンサートホールやスタジオ、ヴィンテージ空間のプリセットを完全再設計。マルチバンドRT60プロファイルの最適化とDry 0dB / Wet -12dBの統一ゲインステージングを実施。",
+        en: "Completely re-engineered all factory presets (including iconic concert halls, tracking rooms, and vintage chambers) with optimized multi-band RT60 profiles and unified Dry 0 dB / Wet -12 dB gain staging."
+      }
+    }
+  ];
+
+  const v121Architecture = [
+    {
+      title: { jp: "10種類のダイナミックカラーテーマ（THEMEセレクター）", en: "10 Dynamic Color Themes (THEME Selector)" },
+      desc: {
+        jp: "Proモードに10種のハイコントラストテーマ（Cyber Neon [デフォルト], Solar Flare, Matrix Glow, Vaporwave, Dark Amber, Nordic Frost, Deep Purple, Midnight, Blood Moon, Monochrome）を新設。リアルタイムにベクターUIが変化。",
+        en: "Added a THEME selector in Pro Mode featuring 10 distinct two-tone contrast themes (Cyber Neon [default], Solar Flare, Matrix Glow, Vaporwave, Dark Amber, Nordic Frost, Deep Purple, Midnight, Blood Moon, Monochrome) with real-time vector UI updates."
+      }
+    },
+    {
+      title: { jp: "スマートプリセット管理＆REVERT機能", en: "Smart Preset Management & REVERT Function" },
+      desc: {
+        jp: "プリセット編集追跡（*表示）と、元のプリセット設定へ即座に戻す専用の「REVERT」ボタンを新設。SAVE / REVERT / LOAD / DELETE の4ボタングループを整備。",
+        en: "Added real-time preset edit tracking (* indicator) and a dedicated 1-click REVERT button to instantly restore original preset settings. Redesigned toolbar with SAVE, REVERT, LOAD, DELETE."
+      }
+    },
+    {
+      title: { jp: "コントロール強化（SEND / PANIC / LOCK）", en: "Control Enhancements (SEND / PANIC / LOCK)" },
+      desc: {
+        jp: "Auxバス用SENDモードボタン（Dry -60dB / Wet 0dB）、緊急ミュート用PANICボタン、パラメータ誤操作防止LOCKボタンを追加。",
+        en: "Added SEND mode button (Dry -60 dB / Wet 0 dB for aux bus), PANIC emergency mute button, and LOCK parameter freeze button."
+      }
+    },
+    {
+      title: { jp: "Scalable GUI（UIリサイズ対応）", en: "Scalable GUI (80%–150%)" },
+      desc: {
+        jp: "80%から150%までアスペクト比を維持したまま滑らかにベクターGUIの拡大縮小が可能。",
+        en: "Smooth vector GUI resizing from 80% to 150% with fixed aspect ratio."
+      }
+    },
+    {
+      title: { jp: "リアルタイム・ディケイタイム表示", en: "Real-Time Decay Time Readout" },
+      desc: {
+        jp: "ノブ操作に応じて動的に更新される高視認性ディケイタイム表示（DECAY TIME: XX.X s）を搭載。",
+        en: "High-visibility single-line readout (DECAY TIME: XX.X s) updated dynamically with knob movements."
+      }
+    },
+    {
+      title: { jp: "極限のDSPパフォーマンス最適化", en: "DSP Performance Optimization" },
+      desc: {
+        jp: "代数的ダッキング最適化、整数遅延バイパス（readInt）、ループ不変量の事前キャッシュ、GUI FFT非稼働時のアイドリング停止によりCPU負荷を最小化。",
+        en: "Algebraic ducking optimization, integer delay bypass (readInt), invariant loop caching, and inactive GUI FFT idling for maximum CPU efficiency."
+      }
+    }
+  ];
+
   const v120Features = [
     { jp: "リアルタイムスペクトラムアナライザー：Lock-freeリアルタイム周波数スペクトラム・オーバーレイ（Dry:グレー / Wet:ブルー）。RT60ビジュアライザーに対数マッピング。", en: "Real-time Spectrum Analyzer: Lock-free real-time frequency spectrum overlay (showing both Dry & Wet in gray/blue) mapped logarithmically." },
     { jp: "拡散限界の拡張：発振を起こさずに濃密な後期残響を得るため、最大拡散限界を拡張。", en: "Expanded Diffusion limits: Increased maximum diffusion limits for denser late reverberation without self-oscillation." }
@@ -629,37 +715,116 @@ function Changelog({ lang }) {
 
   return (
     <section className="amb-section amb-changelog">
-      <div className="amb-eyebrow">— 09 / {lang === "jp" ? "v1.2.0 アップデート内容" : "v1.2.0 Changelog"}</div>
-      <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-        {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.2.0</span> "No Compromise" アップデート</> : <>v1.2.0 <span style={{ color: "#ff8a3c" }}>"No Compromise" Update</span></>}
-      </h2>
-      <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.19</p>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
-        <div>
-          <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-            {v120Features.map((b, i) => (
-              <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>{b[lang]}</li>
-            ))}
-          </ul>
-
-          <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff6b6b", fontFamily: "var(--mono)", marginTop: "28px", marginBottom: "16px", textTransform: "uppercase" }}>🐛 {lang === "jp" ? "バグ修正" : "Bug Fixes"}</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-            {v120Bugs.map((b, i) => (
-              <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff6b6b44" }}>{b[lang]}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00d4ff", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>⚡ {lang === "jp" ? "DSP 最適化 (No Compromise)" : "DSP Optimizations"}</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-            {v120DSP.map((m, i) => (
-              <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00d4ff44" }}>{m[lang]}</li>
-            ))}
-          </ul>
-        </div>
+      <div className="amb-eyebrow">— 09 / {lang === "jp" ? "アップデート履歴" : "Changelog"}</div>
+      
+      <div style={{ display: "flex", gap: "12px", marginBottom: "28px" }}>
+        <button
+          onClick={() => setActiveTab("v1.2.1")}
+          style={{
+            padding: "8px 18px",
+            fontFamily: "var(--mono)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            border: activeTab === "v1.2.1" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
+            background: activeTab === "v1.2.1" ? "#ff8a3c22" : "transparent",
+            color: activeTab === "v1.2.1" ? "#ff8a3c" : "var(--dim)",
+            cursor: "pointer",
+            borderRadius: "4px"
+          }}
+        >
+          v1.2.1 (Latest)
+        </button>
+        <button
+          onClick={() => setActiveTab("v1.2.0")}
+          style={{
+            padding: "8px 18px",
+            fontFamily: "var(--mono)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            border: activeTab === "v1.2.0" ? "1px solid #00d4ff" : "1px solid var(--rule-faint)",
+            background: activeTab === "v1.2.0" ? "#00d4ff22" : "transparent",
+            color: activeTab === "v1.2.0" ? "#00d4ff" : "var(--dim)",
+            cursor: "pointer",
+            borderRadius: "4px"
+          }}
+        >
+          v1.2.0
+        </button>
       </div>
+
+      {activeTab === "v1.2.1" && (
+        <div>
+          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
+            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.2.1</span> 音質改善 ＆ Inchindown アップデート</> : <>v1.2.1 <span style={{ color: "#ff8a3c" }}>Sound Quality & Inchindown Update</span></>}
+          </h2>
+          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.29</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
+                ✨ {lang === "jp" ? "劇的な音質改善 (Sound Quality)" : "Dramatic Sound Quality Improvements"}
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+                {v121SoundQuality.map((item, i) => (
+                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
+                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
+                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
+                🚀 {lang === "jp" ? "新機能 ＆ アーキテクチャ" : "New Features & Architecture"}
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+                {v121Architecture.map((item, i) => (
+                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>
+                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
+                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === "v1.2.0" && (
+        <div>
+          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
+            {lang === "jp" ? <><span style={{ color: "#00d4ff" }}>v1.2.0</span> "No Compromise" アップデート</> : <>v1.2.0 <span style={{ color: "#00d4ff" }}>"No Compromise" Update</span></>}
+          </h2>
+          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.19</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+                {v120Features.map((b, i) => (
+                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>{b[lang]}</li>
+                ))}
+              </ul>
+
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff6b6b", fontFamily: "var(--mono)", marginTop: "28px", marginBottom: "16px", textTransform: "uppercase" }}>🐛 {lang === "jp" ? "バグ修正" : "Bug Fixes"}</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+                {v120Bugs.map((b, i) => (
+                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff6b6b44" }}>{b[lang]}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00d4ff", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>⚡ {lang === "jp" ? "DSP 最適化 (No Compromise)" : "DSP Optimizations"}</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+                {v120DSP.map((m, i) => (
+                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00d4ff44" }}>{m[lang]}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
