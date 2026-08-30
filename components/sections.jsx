@@ -948,16 +948,16 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
-    id: "ambience-v1-2-1",
-    badge: { jp: "VST3 · 8/29 UPDATE!", en: "VST3 · UPDATE 8/29" },
-    date: "2026.08.29",
-    title: { jp: "Ambience v1.2.1 アップデート！", en: "Ambience v1.2.1 Update Released!" },
-    sub: { jp: "メジャーアップデート級の音質改善！！ 新アルゴリズム「Inchindown」搭載！！", en: "Major Sound Quality Upgrade!! New Algorithm \"Inchindown\" Added!!" },
+    id: "ambience-v1-3-0",
+    badge: { jp: "VST3 · 8/30 UPDATE!", en: "VST3 · UPDATE 8/30" },
+    date: "2026.08.30",
+    title: { jp: "Ambience v1.3.0 緊急アップデート！", en: "Ambience v1.3.0 Update Released!" },
+    sub: { jp: "更なる音質改善（ノイズ低減・残響テールの更なるシルキー化）＆ 安定性の向上・クラッシュ防止！", en: "Further Sound Quality Improvements (Noise Reduction, Silkier Tails) & Enhanced Stability!" },
     excerpt: {
-      jp: "・新しいスクショへ修正\n・メジャーアップデート級の音質改善！！\n・新アルゴリズム「Inchindown」（超ロングリバーブ）搭載！！",
-      en: "• Updated UI screenshots\n• Major sound quality upgrade!!\n• New algorithm \"Inchindown\" (ultra-long reverb) added!!"
+      jp: "・更なる音質改善（ノイズ低減、よりシルキーな残響テール）\n・安定性の向上とクラッシュ防止対策",
+      en: "• Further sound quality improvements (noise reduction, silkier reverb tail)\n• Enhanced stability and crash prevention"
     },
-    img: "screenshots/ambience.jpg?v=1.2.1",
+    img: "screenshots/ambience.jpg?v=1.3.0",
     url: "ambience.html",
     accent: "#ff8a3c",
     isNew: true,

@@ -17,10 +17,10 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script src="data/plugins.js?v=1.2.1"></script>
-<script type="text/babel" src="components/visual.jsx?v=1.2.1"></script>
-<script type="text/babel" src="components/counters.jsx?v=1.2.1"></script>
-<script type="text/babel" src="components/sections.jsx?v=1.2.1"></script>
+<script src="data/plugins.js?v=1.3.0"></script>
+<script type="text/babel" src="components/visual.jsx?v=1.3.0"></script>
+<script type="text/babel" src="components/counters.jsx?v=1.3.0"></script>
+<script type="text/babel" src="components/sections.jsx?v=1.3.0"></script>
 
 <script type="text/babel" data-presets="env,react">
 const LANG_KEY = "otodesk_lang";
@@ -155,7 +155,7 @@ function AmbHero({ lang }) {
         </p>
 
         <div className="amb-hero-meta">
-          <div><span className="ahm-k">PLUGIN</span> Ambience v1.2.1</div>
+          <div><span className="ahm-k">PLUGIN</span> Ambience v1.3.0</div>
           <div><span className="ahm-k">TYPE</span> Algorithmic Reverb</div>
           <div><span className="ahm-k">FORMAT</span> VST3 · Windows</div>
           <div><span className="ahm-k">LICENSE</span> GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
@@ -175,7 +175,7 @@ function AmbHero({ lang }) {
             }}
           >
             <span className="br-dot" />
-            {lang === "jp" ? "ダウンロード v1.2.1" : "Download v1.2.1"}
+            {lang === "jp" ? "ダウンロード v1.3.0" : "Download v1.3.0"}
             <span className="arrow">↓</span>
           </a>
           <a
@@ -200,7 +200,7 @@ function AmbHero({ lang }) {
       </div>
 
       <div className="amb-hero-shot">
-        <img src="assets/ambience-screenshot-1.jpg?v=1.2.1" alt="Ambience UI" />
+        <img src="assets/ambience-screenshot-1.jpg?v=1.3.0" alt="Ambience UI" />
       </div>
     </section>
   );
@@ -398,7 +398,7 @@ function ProMode({ lang }) {
           </p>
         </div>
         <div className="amb-pro-shot">
-          <img src="assets/ambience-screenshot-2.jpg?v=1.2.1" alt="Pro Mode" />
+          <img src="assets/ambience-screenshot-2.jpg?v=1.3.0" alt="Pro Mode" />
         </div>
       </div>
     </section>
@@ -598,7 +598,7 @@ function CTA({ lang }) {
           }}
         >
           <span className="br-dot" />
-          {lang === "jp" ? "ダウンロード v1.2.1" : "Download v1.2.1"}
+          {lang === "jp" ? "ダウンロード v1.3.0" : "Download v1.3.0"}
           <span className="arrow">↓</span>
         </a>
         <DownloadChip pluginId="ambience" lang={lang} />
@@ -611,7 +611,24 @@ function CTA({ lang }) {
 }
 
 function Changelog({ lang }) {
-  const [activeTab, setActiveTab] = React.useState("v1.2.1");
+  const [activeTab, setActiveTab] = React.useState("v1.3.0");
+
+  const v130Items = [
+    {
+      title: { jp: "更なる音質改善（ノイズ低減 ＆ 残響テールのシルキー化）", en: "Further Sound Quality Improvements" },
+      desc: {
+        jp: "内部ノイズフロアの徹底的な抑制と、高音域および減衰時における残響テールの更なるシルキー・透明化処理を施しました。",
+        en: "Further sound quality improvements including thorough noise reduction and silkier, more transparent reverb tails."
+      }
+    },
+    {
+      title: { jp: "安定性の向上 ＆ クラッシュ防止（緊急メンテナンス）", en: "Enhanced Stability & Crash Prevention" },
+      desc: {
+        jp: "特定条件下での動作安定性を強化し、DAWセッションにおける潜在的なクラッシュや不具合を防止する安全対策を適用しました。",
+        en: "Enhanced stability and robust crash prevention safeguards across various DAW host environments."
+      }
+    }
+  ];
 
   const v121SoundQuality = [
     {
@@ -719,6 +736,22 @@ function Changelog({ lang }) {
       
       <div style={{ display: "flex", gap: "12px", marginBottom: "28px" }}>
         <button
+          onClick={() => setActiveTab("v1.3.0")}
+          style={{
+            padding: "8px 18px",
+            fontFamily: "var(--mono)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            border: activeTab === "v1.3.0" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
+            background: activeTab === "v1.3.0" ? "#ff8a3c22" : "transparent",
+            color: activeTab === "v1.3.0" ? "#ff8a3c" : "var(--dim)",
+            cursor: "pointer",
+            borderRadius: "4px"
+          }}
+        >
+          v1.3.0 (Latest)
+        </button>
+        <button
           onClick={() => setActiveTab("v1.2.1")}
           style={{
             padding: "8px 18px",
@@ -732,7 +765,7 @@ function Changelog({ lang }) {
             borderRadius: "4px"
           }}
         >
-          v1.2.1 (Latest)
+          v1.2.1
         </button>
         <button
           onClick={() => setActiveTab("v1.2.0")}
@@ -751,6 +784,41 @@ function Changelog({ lang }) {
           v1.2.0
         </button>
       </div>
+
+      {activeTab === "v1.3.0" && (
+        <div>
+          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
+            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.3.0</span> 緊急メンテナンス ＆ 音質改善アップデート</> : <>v1.3.0 <span style={{ color: "#ff8a3c" }}>Hotfix & Sound Quality Update</span></>}
+          </h2>
+          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.30</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
+                ✨ {lang === "jp" ? "更なる音質改善 (Sound Quality)" : "Sound Quality Improvements"}
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+                <li style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
+                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{v130Items[0].title[lang]}</strong>
+                  <span style={{ color: "var(--dim)" }}>{v130Items[0].desc[lang]}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
+                🛡️ {lang === "jp" ? "安定性の向上 ＆ クラッシュ防止" : "Stability & Crash Prevention"}
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+                <li style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>
+                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{v130Items[1].title[lang]}</strong>
+                  <span style={{ color: "var(--dim)" }}>{v130Items[1].desc[lang]}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {activeTab === "v1.2.1" && (
         <div>

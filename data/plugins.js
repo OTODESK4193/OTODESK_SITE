@@ -220,13 +220,13 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
     type: "Effect",
     year: "2026",
-    version: "1.2.1",
+    version: "1.3.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg?v=1.2.1",
-    screenshotPro: "assets/ambience-screenshot-2.jpg?v=1.2.1",
+    screenshot: "screenshots/ambience.jpg?v=1.3.0",
+    screenshotPro: "assets/ambience-screenshot-2.jpg?v=1.3.0",
     tagline: {
       en: "World-class halls in 16 channels of FDN. Free.",
       jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
