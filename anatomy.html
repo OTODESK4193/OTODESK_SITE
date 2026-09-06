@@ -215,13 +215,13 @@
     return (
       <section className="hero">
         <div className="hero-bg">
-          <img src="screenshots/anatomy.jpg?v=1.1.0" alt="ANATOMY UI" />
+          <img src="screenshots/anatomy.jpg?v=1.2.0" alt="ANATOMY UI" />
           <div className="hero-bg-grad"></div>
         </div>
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot"></span>
-            {lang === "jp" ? "VST3 · 8/22 UPDATE!" : "VST3 · UPDATE 8/22"}
+            {lang === "jp" ? "VST3 · 9/6 UPDATE!" : "VST3 · UPDATE 9/6"}
           </div>
           <h1 className="hero-title">
             {lang === "jp"
@@ -231,11 +231,11 @@
           </h1>
           <p className="hero-sub">
             {lang === "jp"
-              ? "過渡音と音色を数学的に完璧に分離し、それぞれを独立したエフェクトチェーンで加工する。4レーン構成へと進化したまったく新しい発想のサンプラー。"
-              : "Mathematically perfect transient/tonal separation. 4-lane architecture with independent effect chains per lane. A sampler that dissects the anatomy of sound."}
+              ? "過渡音と音色を数学的に完璧に分離し、それぞれを独立したエフェクトチェーンで加工する。4レーン構成 ＆ 2段カスケード「OTT×2」へと進化した新世代サンプラー。"
+              : "Mathematically perfect transient/tonal separation with Dual-Stage OTT×2 dynamics. 4-lane architecture with independent effect chains per lane."}
           </p>
           <div className="hero-cta-row" style={{ marginBottom: "48px" }}>
-            <a href="https://github.com/OTODESK4193/ANATOMY/releases" target="_blank" rel="noreferrer" className="btn-dl">{lang === "jp" ? "ダウンロード" : "Download"} →</a>
+            <a href="https://github.com/OTODESK4193/ANATOMY/releases" target="_blank" rel="noreferrer" className="btn-dl">{lang === "jp" ? "ダウンロード v1.2.0" : "Download v1.2.0"} →</a>
             <a href="https://github.com/OTODESK4193/ANATOMY" target="_blank" rel="noreferrer" className="btn-src">{lang === "jp" ? "ソースコード" : "Source"} →</a>
           </div>
           <div className="hero-meta">
@@ -243,7 +243,7 @@
             <div className="hero-meta-item">PLATFORM <span>Windows 64-bit</span></div>
             <div className="hero-meta-item">HOST <span>Ableton Live</span></div>
             <div className="hero-meta-item">LICENSE <span>AGPLv3</span></div>
-            <div className="hero-meta-item">VERSION <span>v1.1.0</span></div>
+            <div className="hero-meta-item">VERSION <span>v1.2.0</span></div>
           </div>
         </div>
       </section>
@@ -337,7 +337,7 @@
     return (
       <div className="screenshot-section">
         <div className="screenshot-wrap">
-          <img src="screenshots/anatomy.jpg?v=1.1.0" alt="ANATOMY Plugin UI" />
+          <img src="screenshots/anatomy.jpg?v=1.2.0" alt="ANATOMY Plugin UI" />
           <div className="screenshot-caption">
             <div className="sc-cap-item"><span>{lang === "jp" ? "上段" : "Top"}</span> — {lang === "jp" ? "全コントロールとFULL MIXプレビュー" : "All controls + Full Mix 2-color preview"}</div>
             <div className="sc-cap-item"><span style={{ color: "var(--cyan)" }}>CYAN</span> — {lang === "jp" ? "トランジェント成分" : "Transient component"}</div>
@@ -455,6 +455,16 @@
   }
 
   function Changelog({ lang }) {
+    var [activeTab, setActiveTab] = React.useState("v1.2.0");
+
+    var v120Features = [
+      { jp: "2段カスケード OTT×2 アーキテクチャ：MULTI-OTO の DSP エンジンを移植。Stage 1 ＆ Stage 2 の直列カスケード処理、4次 Linkwitz-Riley クロスオーバー、AVX2 SIMD 高速 RMS 検出、バンド別ダイナミクス、Align Phase モードを完全統合。", en: "Dual-Stage OTT×2 Architecture: Ported MULTI-OTO DSP engine with cascaded Stage 1 & Stage 2 processing, 4th-order Linkwitz-Riley crossovers, AVX2 SIMD RMS detection, per-band dynamics, and Align Phase mode." },
+      { jp: "FX ラック ＆ UI 操作性向上：FX カード上に Stage 1 / Stage 2 専用のデュアルノブコントロールを新設。Phase Mode 選択の拡張と双方向クロスオーバーリンク同期に対応。", en: "FX Rack & UI Enhancements: Added dedicated dual-knob Stage 1 / Stage 2 controls on FX cards, expanded Phase Mode selection, and bi-directional Crossover Link synchronization." }
+    ];
+    var v120Fixes = [
+      { jp: "波形操作性 ＆ 安定性向上：スマートアンカー処理により Windows 待機カーソルのフリーズを解消。全レーンでエンドマーカーの当たり判定（hitbox）を拡大し、快適なトリム操作を実現。", en: "Waveform Interaction & Stability: Resolved Windows wait-cursor freezes via smart anchoring and widened hitboxes for end markers across all lanes." }
+    ];
+
     var v110Features = [
       { jp: "4レーン・アーキテクチャ：新たに独立したPitch/Gain制御を持つ「Layer」レーンを追加。FullMix、Transient、Tonalと合わせた4レーン構成へ拡張。", en: "4 Lane Architecture: Introduced a new Layer lane with Pitch/Gain control, expanding sound design capabilities alongside FullMix, Transient, and Tonal lanes." },
       { jp: "Limiter IN GAIN ノブ：天井スレッショルドへと信号をドライブするIN GAINノブ（0.0dB〜+24.0dB）を追加。", en: "Limiter IN GAIN: Added an IN GAIN knob (0.0dB to +24.0dB) to drive signals into the ceiling threshold." },
@@ -474,43 +484,103 @@
       <div className="section" style={{ paddingTop: 0 }}>
         <hr className="divider" style={{ marginBottom: "96px", maxWidth: "none" }} />
         <div className="section-eyebrow">— 05 / {lang === "jp" ? "更新履歴" : "CHANGELOG"}</div>
-        <h2 className="section-h">
-          {lang === "jp"
-            ? <><span style={{ color: "var(--accent)" }}>v1.1.0</span> (Granular Style Modern Edition)</>
-            : <>v1.1.0 <span style={{ color: "var(--accent)" }}>(Granular Style Modern Edition)</span></>}
-        </h2>
-        <div className="changelog-box">
-          <div className="changelog-header">
-            <span className="changelog-ver">ANATOMY v1.1.0</span>
-            <span className="changelog-date">2026.08.22</span>
-          </div>
-          <div className="changelog-grid">
-            <div>
-              <div className="changelog-col-title" style={{ color: "#00e5a0" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</div>
-              <ul className="changelog-list" style={{ marginBottom: "32px" }}>
-                {v110Features.map(function(item, idx) {
-                  return <li key={idx} style={{ borderLeft: "2px solid #00e5a044" }}>{item[lang]}</li>;
-                })}
-              </ul>
-
-              <div className="changelog-col-title" style={{ color: "#ff6b6b" }}>🐛 {lang === "jp" ? "安定性 ＆ 修正" : "Fixes & Stability"}</div>
-              <ul className="changelog-list">
-                {v110Fixes.map(function(item, idx) {
-                  return <li key={idx} style={{ borderLeft: "2px solid #ff6b6b44" }}>{item[lang]}</li>;
-                })}
-              </ul>
-            </div>
-
-            <div>
-              <div className="changelog-col-title" style={{ color: "#22d3ee" }}>⚡ {lang === "jp" ? "DSP ＆ 音質向上" : "DSP & Audio Engine"}</div>
-              <ul className="changelog-list">
-                {v110DSP.map(function(item, idx) {
-                  return <li key={idx} style={{ borderLeft: "2px solid #22d3ee44" }}>{item[lang]}</li>;
-                })}
-              </ul>
-            </div>
-          </div>
+        
+        <div style={{ display: "flex", gap: "12px", marginBottom: "28px" }}>
+          <button
+            onClick={function() { setActiveTab("v1.2.0"); }}
+            style={{
+              padding: "8px 18px",
+              fontFamily: "var(--mono)",
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              border: activeTab === "v1.2.0" ? "1px solid var(--accent)" : "1px solid var(--border)",
+              background: activeTab === "v1.2.0" ? "rgba(192, 132, 252, 0.15)" : "transparent",
+              color: activeTab === "v1.2.0" ? "var(--accent)" : "var(--muted)",
+              cursor: "pointer",
+              borderRadius: "4px"
+            }}
+          >
+            v1.2.0 (Latest)
+          </button>
+          <button
+            onClick={function() { setActiveTab("v1.1.0"); }}
+            style={{
+              padding: "8px 18px",
+              fontFamily: "var(--mono)",
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              border: activeTab === "v1.1.0" ? "1px solid var(--cyan)" : "1px solid var(--border)",
+              background: activeTab === "v1.1.0" ? "rgba(34, 211, 238, 0.15)" : "transparent",
+              color: activeTab === "v1.1.0" ? "var(--cyan)" : "var(--muted)",
+              cursor: "pointer",
+              borderRadius: "4px"
+            }}
+          >
+            v1.1.0
+          </button>
         </div>
+
+        {activeTab === "v1.2.0" && (
+          <div className="changelog-box">
+            <div className="changelog-header">
+              <span className="changelog-ver">ANATOMY v1.2.0 (OTT×2 Dual-Stage & Workflow Upgrade)</span>
+              <span className="changelog-date">2026.09.06</span>
+            </div>
+            <div className="changelog-grid">
+              <div>
+                <div className="changelog-col-title" style={{ color: "var(--accent)" }}>⚡ {lang === "jp" ? "2段カスケード OTT×2 ＆ UI強化" : "Dual-Stage OTT×2 & UI Enhancements"}</div>
+                <ul className="changelog-list" style={{ marginBottom: "32px" }}>
+                  {v120Features.map(function(item, idx) {
+                    return <li key={idx} style={{ borderLeft: "2px solid var(--accent)" }}>{item[lang]}</li>;
+                  })}
+                </ul>
+              </div>
+              <div>
+                <div className="changelog-col-title" style={{ color: "#00e5a0" }}>🛠️ {lang === "jp" ? "波形操作性 ＆ 安定性向上" : "Waveform & Stability Improvements"}</div>
+                <ul className="changelog-list">
+                  {v120Fixes.map(function(item, idx) {
+                    return <li key={idx} style={{ borderLeft: "2px solid #00e5a0" }}>{item[lang]}</li>;
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "v1.1.0" && (
+          <div className="changelog-box">
+            <div className="changelog-header">
+              <span className="changelog-ver">ANATOMY v1.1.0 (Granular Style Modern Edition)</span>
+              <span className="changelog-date">2026.08.22</span>
+            </div>
+            <div className="changelog-grid">
+              <div>
+                <div className="changelog-col-title" style={{ color: "#00e5a0" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</div>
+                <ul className="changelog-list" style={{ marginBottom: "32px" }}>
+                  {v110Features.map(function(item, idx) {
+                    return <li key={idx} style={{ borderLeft: "2px solid #00e5a044" }}>{item[lang]}</li>;
+                  })}
+                </ul>
+
+                <div className="changelog-col-title" style={{ color: "#ff6b6b" }}>🐛 {lang === "jp" ? "安定性 ＆ 修正" : "Fixes & Stability"}</div>
+                <ul className="changelog-list">
+                  {v110Fixes.map(function(item, idx) {
+                    return <li key={idx} style={{ borderLeft: "2px solid #ff6b6b44" }}>{item[lang]}</li>;
+                  })}
+                </ul>
+              </div>
+
+              <div>
+                <div className="changelog-col-title" style={{ color: "#22d3ee" }}>⚡ {lang === "jp" ? "DSP ＆ 音質向上" : "DSP & Audio Engine"}</div>
+                <ul className="changelog-list">
+                  {v110DSP.map(function(item, idx) {
+                    return <li key={idx} style={{ borderLeft: "2px solid #22d3ee44" }}>{item[lang]}</li>;
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -554,11 +624,11 @@
     return (
       <div className="cta-section">
         <div className="cta-inner">
-          <div className="cta-soon-badge">v1.1.0 UPDATED</div>
+          <div className="cta-soon-badge">v1.2.0 UPDATED</div>
           <h2 className="cta-title">
             {lang === "jp"
-              ? <><span style={{ color: "var(--accent)" }}>v1.1.0</span> 公開中。</>
-              : <>v1.1.0 <span style={{ color: "var(--accent)" }}>Available Now.</span></>}
+              ? <><span style={{ color: "var(--accent)" }}>v1.2.0</span> 公開中。</>
+              : <>v1.2.0 <span style={{ color: "var(--accent)" }}>Available Now.</span></>}
           </h2>
           <p className="cta-sub">
             {lang === "jp"

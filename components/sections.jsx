@@ -948,32 +948,32 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
-    id: "ambience-v1-3-0",
-    badge: { jp: "VST3 · 8/30 UPDATE!", en: "VST3 · UPDATE 8/30" },
-    date: "2026.08.30",
-    title: { jp: "Ambience v1.3.0 緊急アップデート！", en: "Ambience v1.3.0 Update Released!" },
-    sub: { jp: "更なる音質改善（ノイズ低減・残響テールの更なるシルキー化）＆ 安定性の向上・クラッシュ防止！", en: "Further Sound Quality Improvements (Noise Reduction, Silkier Tails) & Enhanced Stability!" },
+    id: "ambience-v2-0-0",
+    badge: { jp: "VST3 · 9/6 UPDATE!", en: "VST3 · UPDATE 9/6" },
+    date: "2026.09.06",
+    title: { jp: "Ambience v2.0.0 メジャーアップデート！", en: "Ambience v2.0.0 Major Update Released!" },
+    sub: { jp: "SDN × FDN ハイブリッド音響エンジン・PRO 音響コントロール＆2.5Dビジュアライザー・104プリセット搭載！", en: "SDN × FDN Hybrid Engine, PRO Acoustic Controls & 2.5D Visualizer, 104 Factory Presets!" },
     excerpt: {
-      jp: "・更なる音質改善（ノイズ低減、よりシルキーな残響テール）\n・安定性の向上とクラッシュ防止対策",
-      en: "• Further sound quality improvements (noise reduction, silkier reverb tail)\n• Enhanced stability and crash prevention"
+      jp: "・SDN × FDN ハイブリッド音響エンジン＆8種の空間アルゴリズムを徹底チューニング\n・6つのPRO音響フィジカルコントロール＆2.5Dパースペクティブ空間ビジュアライザー\n・タグ／ルーム分類対応の次世代プリセットブラウザ＆104種類のファクトリープリセット",
+      en: "• SDN × FDN Hybrid Acoustic Engine & tuned 8 room topologies\n• 6 PRO Acoustic Controls & 2.5D Perspective Space Visualizer\n• Next-gen preset browser with Tag/Room filtering & 104 factory presets"
     },
-    img: "screenshots/ambience.jpg?v=1.3.0",
+    img: "screenshots/ambience.jpg?v=2.0.0",
     url: "ambience.html",
     accent: "#ff8a3c",
     isNew: true,
     comingSoon: false
   },
   {
-    id: "anatomy-v1-1-0",
-    badge: { jp: "VST3 · 8/22 UPDATE!", en: "VST3 · UPDATE 8/22" },
-    date: "2026.08.22",
-    title: { jp: "ANATOMY v1.1.0 リリース！", en: "ANATOMY v1.1.0 \"Granular Modern\" Update Released!" },
-    sub: { jp: "4レーン化（Layer追加）・エルミート補間ピッチ＆トランジェントエンジン・リミッター強化！", en: "4-Lane Architecture, Hermite Pitch/Transient Engine & Limiter Overhaul!" },
+    id: "anatomy-v1-2-0",
+    badge: { jp: "VST3 · 9/6 UPDATE!", en: "VST3 · UPDATE 9/6" },
+    date: "2026.09.06",
+    title: { jp: "ANATOMY v1.2.0 アップデート！", en: "ANATOMY v1.2.0 Update Released!" },
+    sub: { jp: "2段カスケード「OTT×2」アーキテクチャ ＆ 波形操作性向上！", en: "Dual-Stage OTT×2 Dynamics Engine & Waveform Interaction Upgrade!" },
     excerpt: {
-      jp: "本日2026/8/22にANATOMY v1.1.0を公開！Pitch/Gain制御を備えた第4の「Layer」レーン新設、4点エルミート3次補間＋4タップHann位相分散による超高精度Granularピッチ、ソフトニー飽和保護付きステレオリンク過渡音トラッカー、IN GAIN/MODE(Limit/Clip)切替付きLimiter、マルチインスタンスやDAW終了時のクラッシュ修正などを導入！",
-      en: "ANATOMY v1.1.0 released on 2026/8/22! Introduces a 4th 'Layer' lane with Pitch/Gain control, high-precision pitch shifting with 4-point Hermite cubic interpolation & 4-tap Hann granular rotation, stereo-linked dual-branch Transient Shaper, Limiter with IN GAIN & Limit/Clip MODE switch, and multi-instance stability fixes."
+      jp: "・MULTI-OTO直系の2段カスケード「OTT×2」アーキテクチャ（4次LRクロスオーバー、Align Phaseモード対応）\n・FXカード上の専用デュアルノブ操作＆双方向クロスオーバーリンク同期\n・エンドマーカー当たり判定拡大と波形操作の安定性向上（待機カーソルフリーズ解消）",
+      en: "• Dual-Stage OTT×2 Architecture (Stage 1 & 2, 4th-order LR crossovers, Align Phase mode)\n• Dedicated dual-knob controls on FX cards & bi-directional crossover linking\n• Enhanced waveform interaction, widened hitboxes & stability fixes"
     },
-    img: "screenshots/anatomy.jpg?v=1.1.0",
+    img: "screenshots/anatomy.jpg?v=1.2.0",
     url: "anatomy.html",
     accent: "#c084fc",
     isNew: true,

@@ -217,35 +217,35 @@ window.PLUGINS = [
     id: "ambience",
     num: "07",
     name: "Ambience",
-    category: { en: "Algorithmic Reverb — 16-Channel FDN", jp: "アルゴリズミック・リバーブ — 16ch FDN" },
+    category: { en: "Algorithmic Reverb — 16-Channel FDN & SDN Hybrid", jp: "アルゴリズミック・リバーブ — 16ch FDN & SDN ハイブリッド" },
     type: "Effect",
     year: "2026",
-    version: "1.3.0",
+    version: "2.0.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg?v=1.3.0",
-    screenshotPro: "assets/ambience-screenshot-2.jpg?v=1.3.0",
+    screenshot: "screenshots/ambience.jpg?v=2.0.0",
+    screenshotPro: "assets/ambience-screenshot-2.jpg?v=2.0.0",
     tagline: {
-      en: "World-class halls in 16 channels of FDN. Free.",
-      jp: "世界の名ホールを、16ch FDN に閉じ込めた。無料で。"
+      en: "World-class halls in 16 channels of FDN & SDN hybrid. Free.",
+      jp: "世界の名ホールを、16ch FDN & SDN ハイブリッドに閉じ込めた。無料で。"
     },
     description: {
-      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network. 22 factory presets modeled after Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall, Inchindown and more — at zero cost.",
-      jp: "16 チャンネル Feedback Delay Network を核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall、Inchindown など 22 種の名空間プリセットを、無料で。"
+      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network (FDN) and Spatial Decomposition Network (SDN) hybrid architecture. 104 master-calibrated factory presets across 8 room algorithms with next-gen tag browser and 6 PRO acoustic physical controls — at zero cost.",
+      jp: "16チャンネルFDNとSDN（空間分解ネットワーク）のハイブリッド音響アーキテクチャを核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。8種の空間アルゴリズム、タグ／ルーム分類対応の次世代ブラウザ、104種のマスター校正済みファクトリープリセット、6つのPRO音響フィジカルコントロールを搭載。無料で。"
     },
     features: [
-      { en: "16-channel FDN with FWHT feedback matrix", jp: "FWHT 帰還行列の 16ch FDN" },
-      { en: "8 algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL · INCHINDOWN", jp: "8 アルゴリズム — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL ／ INCHINDOWN" },
-      { en: "22 factory presets (Abbey Road, Musikverein, Carnegie, Inchindown etc.)", jp: "22 ファクトリプリセット (Abbey Road、Musikverein、Carnegie、Inchindown 他)" },
+      { en: "16-channel FDN & SDN hybrid acoustic engine", jp: "16ch FDN ＆ SDN ハイブリッド音響エンジン" },
+      { en: "8 tuned algorithms — ROOM1/2 · HALL1/2 · PLATE · SPRING · GOLDFOIL · INCHINDOWN", jp: "8 アルゴリズム徹底チューニング — ROOM1/2 ／ HALL1/2 ／ PLATE ／ SPRING ／ GOLDFOIL ／ INCHINDOWN" },
+      { en: "104 master-calibrated factory presets with Tag & Room browser", jp: "104 ファクトリプリセット（タグ／ルーム分類対応次世代ブラウザ）" },
+      { en: "6 PRO acoustic physical controls & 2.5D space visualizer", jp: "6つの PRO 音響フィジカルコントロール ＆ 2.5D 空間ビジュアライザー" },
+      { en: "Extreme decay auto-scaling up to 200s (Inchindown 112s decay)", jp: "最大200秒の対数ディケイ自動スケーリング（Inchindown 112s対応）" },
       { en: "Zero-metallic diffusion (Dual Golden-Ratio LFOs + 3-Stage SAPF)", jp: "ゼロ・メタリック拡散（Dual Golden-Ratio LFO ＋ 3段直列SAPF）" },
       { en: "10-band Välimäki-Liski GEQ absorption per channel", jp: "チャンネルごとの 10 バンド Välimäki-Liski GEQ 吸収" },
-      { en: "ISM-based Early Reflections w/ per-algorithm tuning", jp: "ISM ベース Early Reflections (アルゴリズムごとに最適化)" },
-      { en: "ADAA Saturator & FDN Asymmetric Micro-Saturation", jp: "ADAA サチュレータ ＆ FDN 非対称マイクロサチュレーション" },
+      { en: "Hermite / Farrow fractional delay & dual-state biquad crossfading", jp: "エルミート/Farrow小数遅延補間 ＆ デュアルステートクロスフェード" },
       { en: "10 dynamic color themes, Smart Preset REVERT & SEND mode", jp: "10 カラーテーマ切替、スマートプリセット REVERT、SEND モード" },
       { en: "Real-time D50 / C50 / C80 / EDT readouts & Decay Time HUD", jp: "リアルタイム音響指標計測 ＆ ディケイタイム HUD 表示" },
-      { en: "Pro Mode — 10-band RT60 multipliers + Tilt EQ", jp: "Pro モード — 10 バンド RT60 倍率 ＋ Tilt EQ" },
       { en: "Ableton-hardened — zero heap alloc, jitter-protected", jp: "Ableton 対応堅牢化 — ヒープ確保ゼロ、ジッタ保護" }
     ],
     repo: "https://github.com/OTODESK4193/Ambience1.0.1",
@@ -290,33 +290,35 @@ window.PLUGINS = [
     id: "anatomy",
     num: "09",
     name: "ANATOMY",
-    category: { en: "4-Lane Transient / Tonal Separation Sampler", jp: "4レーン 過渡音/音色 分離サンプラー" },
+    category: { en: "4-Lane Transient / Tonal Separation + Dual-Stage OTT×2", jp: "4レーン 過渡音/音色 分離 ＋ 2段カスケード OTT×2" },
     type: "Sampler",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
-    version: "1.1.0",
+    version: "1.2.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "anatomy.html",
     downloadUrl: "https://github.com/OTODESK4193/ANATOMY/releases",
     sourceUrl: "https://github.com/OTODESK4193/ANATOMY",
-    screenshot: "screenshots/anatomy.jpg?v=1.1.0",
+    screenshot: "screenshots/anatomy.jpg?v=1.2.0",
     tagline: {
-      en: "Dissect your samples.",
-      jp: "サンプルを解剖しませんか？"
+      en: "Dissect your samples with Dual-Stage OTT×2 dynamics.",
+      jp: "2段カスケード OTT×2 搭載。サンプルを極限まで解剖・強化。"
     },
     description: {
-      en: "Real-time transient/tonal separation engine using mathematically lossless cos\u00b2 crossfade. 4-lane architecture (Transient, Tonal, Layer, Full Mix) with Hermite cubic granular pitch shifter, dual-branch transient shaper, and 6-slot FX chains per lane.",
-      jp: "数学的に完璧な cos\u00b2 クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。Transient / Tonal / Layer / Full Mix の 4 レーン構成、エルミート3次補間ピッチ＆トランジェントエンジン、各レーン 6 スロットエフェクトチェーンを搭載。"
+      en: "Real-time transient/tonal separation engine using mathematically lossless cos² crossfade. 4-lane architecture (Transient, Tonal, Layer, Full Mix) featuring MULTI-OTO's cascaded Dual-Stage OTT×2 dynamics, 4-point Hermite cubic granular pitch shifter, dual-branch transient shaper, and 6-slot FX chains per lane.",
+      jp: "数学的に完璧な cos² クロスフェード分離を使用した、リアルタイム過渡音/音色分離エンジン。Transient / Tonal / Layer / Full Mix の 4 レーン構成に加え、MULTI-OTO直系の2段カスケード「OTT×2」ダイナミクス、4点エルミート3次補間ピッチ＆トランジェントエンジン、各レーン 6 スロットエフェクトチェーンを搭載。"
     },
     features: [
       { en: "4-lane architecture (Transient, Tonal, Layer, Full Mix) with independent pitch & gain", jp: "4 レーン構成（Transient / Tonal / Layer / Full Mix）独立ピッチ＆ゲイン" },
-      { en: "Lossless cos\u00b2 crossfade separation \u2014 zero energy loss, zero artefacts", jp: "エネルギー損失ゼロの cos\u00b2 分離" },
+      { en: "Dual-Stage OTT×2 Dynamics Engine (Stage 1 & 2, 4th-order LR crossovers, Align Phase)", jp: "2段カスケード「OTT×2」ダイナミクス（Stage 1 & 2、4次LRクロスオーバー、Align Phase）" },
+      { en: "Lossless cos² crossfade separation — zero energy loss, zero artefacts", jp: "エネルギー損失ゼロの cos² 分離" },
       { en: "Hermite cubic granular pitch shifter & stereo-linked dual-branch transient shaper", jp: "4点エルミート3次補間Granularピッチ ＆ デュアルブランチ過渡音シェイパー" },
+      { en: "Dedicated dual-knob Stage 1 / Stage 2 controls & bi-directional crossover link", jp: "FXカード上の専用デュアルノブ操作 ＆ 双方向クロスオーバーリンク同期" },
+      { en: "Widened marker hitboxes, smart anchoring & stability hardening", jp: "マーカー操作領域拡大、スマートアンカー ＆ 待機カーソルフリーズ解消" },
       { en: "Upgraded Limiter with IN GAIN (0~+24dB) & Limit / Clip MODE switch", jp: "IN GAIN（0〜+24dB）＆ Limit / Clip モード切替付きリミッター" },
-      { en: "Custom sample replacement & Tonal Offset slider (\u00b1500ms)", jp: "レーンごとのカスタムサンプル置換 ＆ トーンオフセットスライダー（\u00b1500ms）" },
-      { en: "Waveform zoom up to 32\u00d7 & per-lane lock-free stem export", jp: "最大 32\u00d7 波形ズーム ＆ レーン別ロックフリー Stem エクスポート" }
+      { en: "Waveform zoom up to 32× & per-lane lock-free stem export", jp: "最大 32× 波形ズーム ＆ レーン別ロックフリー Stem エクスポート" }
     ],
     repo: "https://github.com/OTODESK4193/ANATOMY",
     accent: "#c084fc"
