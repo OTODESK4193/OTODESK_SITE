@@ -948,16 +948,16 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
-    id: "ambience-v2-0-0",
-    badge: { jp: "VST3 · 9/6 UPDATE!", en: "VST3 · UPDATE 9/6" },
-    date: "2026.09.06",
-    title: { jp: "Ambience v2.0.0 メジャーアップデート！", en: "Ambience v2.0.0 Major Update Released!" },
-    sub: { jp: "SDN × FDN ハイブリッド音響エンジン・PRO 音響コントロール＆2.5Dビジュアライザー・104プリセット搭載！", en: "SDN × FDN Hybrid Engine, PRO Acoustic Controls & 2.5D Visualizer, 104 Factory Presets!" },
+    id: "ambience-v2-0-1",
+    badge: { jp: "VST3 · 9/12 UPDATE!", en: "VST3 · UPDATE 9/12" },
+    date: "2026.09.12",
+    title: { jp: "Ambience v2.0.1 メンテナンスUpdate ＆ 最新動画公開！", en: "Ambience v2.0.1 Maintenance Update & New Video Released!" },
+    sub: { jp: "最新解説動画を公開！プリセットブラウザ＆サチュレーションの不具合修正・安定性向上", en: "New Overview Video Live! Preset Browser & Saturation Bug Fixes" },
     excerpt: {
-      jp: "・SDN × FDN ハイブリッド音響エンジン＆8種の空間アルゴリズムを徹底チューニング\n・6つのPRO音響フィジカルコントロール＆2.5Dパースペクティブ空間ビジュアライザー\n・タグ／ルーム分類対応の次世代プリセットブラウザ＆104種類のファクトリープリセット",
-      en: "• SDN × FDN Hybrid Acoustic Engine & tuned 8 room topologies\n• 6 PRO Acoustic Controls & 2.5D Perspective Space Visualizer\n• Next-gen preset browser with Tag/Room filtering & 104 factory presets"
+      jp: "・YouTubeにてAmbienceの最新デモ・解説動画を公開！\n・DAWプロジェクト再ロード時のプリセット名保持・編集フラグ誤表示の修正\n・サチュレーション制御のDSP伝達修正＆全4モードのドライブ感度・等ラウドネスAGC再設計",
+      en: "• New official demo & overview video now live on YouTube!\n• Fixed preset name recall, persistence & false edit flags in DAW sessions\n• Fixed saturation DSP dispatch & re-engineered drive sensitivity with AGC across all 4 modes"
     },
-    img: "screenshots/ambience.jpg?v=2.0.0",
+    img: "assets/ambience-v2-0-1-thumb.jpg",
     url: "ambience.html",
     accent: "#ff8a3c",
     isNew: true,
