@@ -3,388 +3,1061 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wavetable — OTODESK | Polyphonic Wavetable Synth — 3 Morph Slots</title>
+  <title>Wavetable v1.1.0 — OTODESK | Polyphonic Wavetable Synthesizer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #050507;
-      --bg2: #0c0c0f;
-      --bg3: #111116;
-      --ink: #e8e6de;
-      --dim: #64635e;
-      --dim2: #888;
-      --rule: rgba(255,255,255,0.06);
+      --bg: #070709;
+      --bg2: #0e0e12;
+      --bg3: #14141a;
+      --ink: #f0eee6;
+      --dim: #706f68;
+      --dim2: #929088;
+      --rule: rgba(255, 255, 255, 0.08);
+      --rule-bright: rgba(255, 255, 255, 0.16);
       --accent: #00d4ff;
-      --accent-dim: rgba(0, 212, 255, 0.12);
-      --accent-border: rgba(0, 212, 255, 0.35);
+      --accent-glow: rgba(0, 212, 255, 0.25);
+      --accent-dim: rgba(0, 212, 255, 0.08);
+      --accent-border: rgba(0, 212, 255, 0.4);
       --mono: "Geist Mono", monospace;
-      --sans: "Geist", system-ui, sans-serif;
+      --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
 
-    /* NAV */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(5,5,7,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
-    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--dim2); }
-    .nav-logo span { color: var(--ink); }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--dim2); transition: color 0.2s; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* NAVIGATION */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: rgba(7, 7, 9, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+    }
+    .nav-brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .nav-brand-name { font-weight: 700; color: var(--ink); }
+    .nav-brand-sub { color: var(--dim2); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 12px;
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      color: var(--dim2);
+      transition: all 0.2s;
+    }
+    .lang-toggle:hover {
+      border-color: var(--dim2);
+      color: var(--ink);
+    }
+    .lang-toggle .active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .nav-back {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--dim2);
+      transition: color 0.2s;
+    }
     .nav-back:hover { color: var(--accent); }
 
     /* HERO */
-    .hero { position: relative; padding: 140px 48px 80px; max-width: 1200px; margin: 0 auto; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 24px; padding: 6px 14px; border: 1px solid var(--accent-border); background: var(--accent-dim); width: fit-content; }
-    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
-    .hero-title { font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 24px; color: var(--accent); }
-    .hero-copy { font-size: clamp(20px, 3vw, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
-    .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
-    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-    
-    .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
-    .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
-    .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
+    .hero {
+      padding: 130px 40px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-dim);
+      border-radius: 4px;
+    }
+    .hero-badge-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .hero-version {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--dim2);
+      letter-spacing: 0.08em;
+    }
 
-    .hero-shot-main { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-top: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .hero-headline {
+      font-size: clamp(48px, 8vw, 104px);
+      font-weight: 900;
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+    .hero-subheadline {
+      font-size: clamp(22px, 3.2vw, 36px);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      margin-bottom: 24px;
+      max-width: 960px;
+    }
+    .hero-paragraph {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--dim2);
+      max-width: 820px;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
 
-    /* SECTIONS */
-    .section { max-width: 1200px; margin: 0 auto; padding: 96px 48px; }
-    .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
-    .section-h { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 48px; }
-    .divider { border: none; border-top: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .btn-disabled {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dim);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rule);
+      cursor: not-allowed;
+      border-radius: 4px;
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--dim2);
+      background: rgba(255,255,255,0.03);
+    }
 
-    /* FEATURES GRID */
-    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 64px; }
-    .feat-card { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; border-radius: 4px; transition: border-color 0.2s; }
-    .feat-card:hover { border-color: rgba(255,255,255,0.15); }
-    .feat-num { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; }
-    .feat-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
-    .feat-desc { font-size: 14px; color: var(--dim2); line-height: 1.7; font-weight: 300; }
+    /* MAIN SCREENSHOT CONTAINER */
+    .hero-preview {
+      position: relative;
+      border: 1px solid var(--rule-bright);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg2);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px var(--accent-glow);
+      margin-bottom: 96px;
+    }
+    .hero-preview img {
+      width: 100%;
+      display: block;
+    }
+    .hero-preview-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: rgba(14, 14, 18, 0.95);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim2);
+    }
 
-    /* SCREENSHOT SHOWCASE */
-    .showcase-item { margin-bottom: 80px; }
-    .showcase-img { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
-    .showcase-info { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
-    .showcase-title { font-size: 24px; font-weight: 700; color: var(--accent); }
-    .showcase-desc { font-size: 14px; color: var(--dim2); line-height: 1.75; font-weight: 300; }
+    /* SECTION BASICS */
+    .section-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 40px 100px;
+    }
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .section-heading {
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+    }
+
+    /* TAB CONTROL (ABLETON STYLE) */
+    .tab-navigator {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+      scrollbar-width: thin;
+    }
+    .tab-btn {
+      padding: 12px 22px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      color: var(--dim2);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn:hover {
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      font-weight: 600;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+    .tab-tag-new {
+      padding: 2px 6px;
+      font-size: 9px;
+      border-radius: 3px;
+      background: #ff5b35;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* TAB PANEL CONTENT */
+    .tab-panel {
+      background: var(--bg2);
+      border: 1px solid var(--rule-bright);
+      border-radius: 8px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.25s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      margin-bottom: 36px;
+    }
+    .panel-meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .panel-catchphrase {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .panel-desc {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--dim2);
+      max-width: 880px;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .pill-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+    }
+    .pill-badge.highlight {
+      border-color: var(--accent-border);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .panel-image-wrap {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* SUB-TABS (MODULATION / FORMULA) */
+    .sub-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .sub-tab-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 14px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--dim2);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .sub-tab-btn:hover { color: var(--ink); }
+    .sub-tab-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* INNOVATION GRID */
+    .inno-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .inno-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      padding: 32px;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+    .inno-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .inno-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .inno-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .inno-desc {
+      font-size: 14px;
+      color: var(--dim2);
+      line-height: 1.7;
+      font-weight: 300;
+    }
 
     /* SPECS TABLE */
-    .spec-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 48px; }
-    .spec-table th, .spec-table td { padding: 14px 18px; border-bottom: 1px solid var(--rule); text-align: left; }
-    .spec-table th { font-family: var(--mono); color: var(--accent); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; background: var(--bg2); }
-    .spec-table td { color: var(--dim2); }
-    .spec-table tr:hover td { color: var(--ink); background: rgba(255,255,255,0.01); }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+    .specs-table th, .specs-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--rule);
+      text-align: left;
+    }
+    .specs-table th {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .specs-table td {
+      color: var(--dim2);
+    }
+    .specs-table tr:hover td {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.01);
+    }
 
-    /* SIGNAL FLOW BOX */
-    .flow-box { background: var(--bg2); border: 1px solid var(--rule); padding: 32px; font-family: var(--mono); font-size: 12px; color: var(--dim2); line-height: 1.8; overflow-x: auto; white-space: pre; }
+    /* SIGNAL FLOW DIAGRAM */
+    .flow-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      padding: 36px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--dim2);
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 32px;
+    }
+    .flow-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
 
-    /* LICENSE & FOOTER */
-    .license-box { background: var(--bg2); border: 1px solid var(--rule); padding: 28px; border-radius: 4px; margin-top: 64px; }
-    .license-title { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
-    .license-text { font-size: 13px; color: var(--dim2); line-height: 1.7; }
-
-    .footer { padding: 60px 48px; border-top: 1px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--rule);
+      padding: 64px 40px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--dim);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .footer-links a {
+      color: var(--dim2);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
-      .nav { padding: 16px 24px; }
-      .hero { padding: 100px 24px 60px; }
-      .section { padding: 60px 24px; }
-      .showcase-info { grid-template-columns: 1fr; gap: 12px; }
+      .site-nav { padding: 16px 20px; }
+      .hero { padding: 110px 20px 40px; }
+      .section-wrap { padding: 20px 20px 60px; }
+      .tab-panel { padding: 24px; }
+      .panel-catchphrase { font-size: 26px; }
+      .panel-desc { font-size: 15px; }
     }
   </style>
 </head>
 <body>
+<div id="root"></div>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="index.html" class="nav-logo">OTODESK <span>/ Wavetable</span></a>
-    <div class="nav-right">
-      <a href="index.html" class="nav-back">← TOPへ戻る</a>
-    </div>
-  </nav>
+<!-- React & Babel dependencies -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      VST3 · COMING SOON 2026
-    </div>
-    <h1 class="hero-title">Wavetable</h1>
-    <div class="hero-copy">これはモンスターかもしれない</div>
-    <p class="hero-desc">
-      1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。全10モジュールのスクリーンショットで全貌を公開。
-    </p>
+<script type="text/babel">
 
-    <div class="hero-actions">
-      <span class="btn-disabled">
-        Download (Coming Soon)
-      </span>
-      <span class="btn-disabled">
-        GitHub Source (Private)
-      </span>
-      <a href="index.html#gallery" class="btn-sub">
-        全プラグイン一覧を見る
-      </a>
-    </div>
+const TAB_DATA = [
+  {
+    id: "main",
+    num: "01",
+    tabLabel: { jp: "MAIN", en: "MAIN" },
+    eyebrow: { jp: "01 / オシレーター ＆ 3段 モーフィング", en: "01 / OSCILLATOR & 3 MORPH SLOTS" },
+    headline: {
+      jp: "形を変え、倍音を創る。限界のないウェーブテーブル・オシレーター。",
+      en: "ENDLESS FORMS. ZERO LIMITS."
+    },
+    subhead: {
+      jp: "19モードの変態的モーフィングと、三項演算子・論理式対応のリアルタイム数式波形生成器。",
+      en: "19-mode morphing architecture paired with a live mathematical formula synthesizer."
+    },
+    desc: {
+      jp: "単一のウェーブテーブルから、かつてないスペクトル変化を引き出す3基の独立Morphスロット。Bend、PWM、SyncからSpec Gate、Harm Shiftまで19の処理モードを同軸配置。さらにWT BROWSE内には三項演算子（? :）や4ステートMODリンクを備えた数式合成エンジン「Formula Generator」を搭載。12ボイスでも音が痩せないハイブリッド音量補償ユニゾンと即戦力サウンドを1クリック生成する「GENERATE」ボタンも完備。",
+      en: "Three independent Morph slots push a single wavetable from a pure fundamental into radically transformed spectral shapes across 19 modes (Bend, PWM, Sync, Spec Gate, Harm Shift, etc.). Built directly into the WT BROWSE panel, the Formula Generator evaluates mathematical logic—including ternary operators and 4-state MOD links—with live mini-scope visualization. Features 12-voice unison with hybrid gain compensation and the 1-click GENERATE sound designer."
+    },
+    badges: [
+      { text: "19 Morph Modes", highlight: true },
+      { text: "Formula Math Engine", highlight: true },
+      { text: "12-Voice Unison (+3.5dB)", highlight: false },
+      { text: "1-Click GENERATE", highlight: true },
+      { text: "Sub Oscillator Bus", highlight: false },
+      { text: "De-Click Micro-Crossfade", highlight: false }
+    ],
+    hasSubTabs: true,
+    subTabs: [
+      { id: "main_ui", label: { jp: "Main UI", en: "Main UI" }, img: "screenshots/wavetable-main.jpg" },
+      { id: "formula", label: { jp: "Formula Editor (数式波形生成器)", en: "Formula Generator" }, img: "screenshots/wavetable-formula.jpg" }
+    ]
+  },
+  {
+    id: "filter",
+    num: "02",
+    tabLabel: { jp: "FILTER", en: "FILTER" },
+    eyebrow: { jp: "02 / デュアル・マルチモード・フィルター", en: "02 / DUAL MULTI-MODE FILTER" },
+    headline: {
+      jp: "切れ味と温もり。直列と並列が織りなすデュアル音響彫刻。",
+      en: "SHAPE WITH PRECISION. SCULPT WITH CHARACTER."
+    },
+    subhead: {
+      jp: "Zavalishin式TPTフィルターが生む、高レゾナンスでも破綻しない極上のアナログ挙動。",
+      en: "Topology-Preserving Transform filters offering seamless resonance stability and serial/parallel flow."
+    },
+    desc: {
+      jp: "LPF/HPF/BPF/Notchに加え、伝説のMoogサウンドを再現するAnalog Ladder、A-E-I-O-Uの母音をシームレスに行き来するVowel、フィードバック付きComb+、Phaserなど、9種類のフィルターモデルを独立2系統（A/B）搭載。12dB/24dBスロープ切り替えと独立ADSRエンベロープを備え、直列（Serial）と並列（Parallel）のルーティングを可視化ダイアグラムで直感的に操れます。",
+      en: "Two independent filters (A/B) each feature 9 filter models: LPF, HPF, BPF, zero-trap Notch, Comb, Analog Ladder LPF, Vowel (formant morphing), Comb+, and Phaser. Built upon a custom Topology-Preserving Transform (TPT) core, it calculates coefficients with linear interpolation for zero CPU bottlenecks. Route in serial or parallel with a responsive visual diagram and exact DSP curve visualization."
+    },
+    badges: [
+      { text: "9 Filter Topologies", highlight: true },
+      { text: "Custom TPT Zavalishin Core", highlight: true },
+      { text: "Serial / Parallel Routing", highlight: true },
+      { text: "12dB / 24dB Slopes", highlight: false },
+      { text: "Per-Filter ADSR Envelope", highlight: false },
+      { text: "Vowel Formant Morphing", highlight: false }
+    ],
+    img: "screenshots/wavetable-filter.jpg"
+  },
+  {
+    id: "mod",
+    num: "03",
+    tabLabel: { jp: "MODULATION", en: "MODULATION" },
+    eyebrow: { jp: "03 / ディープ・モジュレーション・スイート", en: "03 / DEEP MODULATION SUITE" },
+    headline: {
+      jp: "静止しない音。すべてが有機的に絡み合うディープ・モジュレーション。",
+      en: "MUSIC IN CONTINUOUS MOTION."
+    },
+    subhead: {
+      jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット Matrix。音に生き生きとした呼吸を与える。",
+      en: "Global-clock LFOs, 32-node Bezier MSEGs, rate-scaled Envelopes, and an 18-slot matrix."
+    },
+    desc: {
+      jp: "演奏停止中も位相を見失わない「グローバル・クロック」を採用した3基のLFO（Smooth／Delay付き）、最大32ノードの多点ベジェ曲線を描く2基のMSEG（13種プリセット）、そしてA/D/R全体を一括伸縮するSpeedノブ付きの3基のMod Envelope。これら12の変調ソースを、18スロットのMatrixからオシレーター・フィルター・エフェクトまで30以上の宛先へ縦横無尽にルーティング可能です。",
+      en: "A robust modulation architecture: 3 LFOs powered by a note-independent Global Clock for perfect voice phase alignment, 2 multi-segment envelope generators (up to 32 nodes with Bezier tension and 13 presets), and 3 Mod Envelopes with unified Speed scaling. Connect up to 12 sources across 18 slots to over 30 destinations via hierarchical popup menus with dynamic white-arc knob readouts."
+    },
+    badges: [
+      { text: "Global-Clock 3× LFOs", highlight: true },
+      { text: "32-Node Bezier 2× MSEGs", highlight: true },
+      { text: "3× Mod Envelopes with Speed", highlight: false },
+      { text: "18-Slot Modulation Matrix", highlight: true },
+      { text: "Sub-Menu Tree Selectors", highlight: false },
+      { text: "Smooth & Delay Controls", highlight: false }
+    ],
+    hasSubTabs: true,
+    subTabs: [
+      { id: "lfo", label: { jp: "3× LFO", en: "3× LFO" }, img: "screenshots/wavetable-lfo.jpg" },
+      { id: "mseg", label: { jp: "2× MSEG (32ノード)", en: "2× MSEG (32 Nodes)" }, img: "screenshots/wavetable-mseg.jpg" },
+      { id: "env", label: { jp: "3× ModENV", en: "3× Mod Envelope" }, img: "screenshots/wavetable-env.jpg" },
+      { id: "matrix", label: { jp: "18-Slot Matrix", en: "18-Slot Matrix" }, img: "screenshots/wavetable-matrix.jpg" }
+    ]
+  },
+  {
+    id: "color",
+    num: "04",
+    tabLabel: { jp: "COLOR", en: "COLOR" },
+    eyebrow: { jp: "04 / IR カラーエンジン ＆ SPARKLE ARP", en: "04 / COLOR IR ENGINE & SPARKLE ARP" },
+    headline: {
+      jp: "インパルス応答が宿す、結晶の輝きと未知のテクスチャー。",
+      en: "ADD TEXTURE. IMPRINT SPACE."
+    },
+    subhead: {
+      jp: "演奏したコードから音色IRを自動学習する「LEARN」機能と、高音域を彩るSparkle Arp。",
+      en: "IR-driven physical resonance with real-time chord learning and high-frequency sparkle layering."
+    },
+    desc: {
+      jp: "シンセサイザーの枠を超えた音響テクスチャーを付加するIRベースの音色ジェネレーター。Crystal Saw、Shimmer PWM、Metallic Barなど8種類のインパルス音色を搭載。さらに、鍵盤で押さえた和音の構成音を瞬時に解析して専用のIRを自動生成する「LEARN」機能を装備。高音域に煌めくアルペジオラインを薄くレイヤーする専用の「Sparkle Arp」も備えています。",
+      en: "An acoustic impulse-response tone generator featuring 8 calibrated IR types (Crystal Saw, Shimmer PWM, Harmonic Bell, Metallic Bar, etc.). The groundbreaking LEARN button analyses played chords in real time to generate an impulse response tuned precisely to your harmony. Paired with Sparkle Arp—a dedicated micro-arpeggiator that layers shimmering high-register patterns."
+    },
+    badges: [
+      { text: "8 Calibrated Tone IRs", highlight: true },
+      { text: "Chord 'LEARN' Engine", highlight: true },
+      { text: "Sparkle Arpeggiator", highlight: true },
+      { text: "Tilt & Spread Shaping", highlight: false },
+      { text: "Independent Sub Bus Bypass", highlight: false }
+    ],
+    img: "screenshots/wavetable-color.jpg"
+  },
+  {
+    id: "dyn",
+    num: "05",
+    tabLabel: { jp: "DYNAMICS", en: "DYNAMICS" },
+    eyebrow: { jp: "05 / 統合ダイナミクス・プロセッシング", en: "05 / INTEGRATED DYNAMICS ENGINE" },
+    headline: {
+      jp: "シンセの中で完成する。3バンドOTTと12バンドSoothe共鳴抑制。",
+      en: "PUNCH, POLISH, PERFECTION."
+    },
+    subhead: {
+      jp: "追加エフェクト不要。ミックスの最前線で鳴り響く圧倒的な音圧と、徹底的な耳障り成分の除去。",
+      en: "Mix-ready loudness and surgical harshness taming directly inside the synthesizer."
+    },
+    desc: {
+      jp: "外部プラグインをインサートすることなく、シンセ内部で完璧に音圧と質感を作り込める強力なダイナミクスセクション。低・中・高域を独立してアップワード（持ち上げ）＆ダウンワード（抑え込み）圧縮する「3バンド OTT」と、耳障りな不要ピーク共鳴を全自動検知して鎮める「12バンド Soothe」を標準搭載。主音とサブベースの個別ルーティングに対応し、芯のある低音を保ちながらトップエンドを極限まで押し出します。",
+      en: "Achieve commercial loudness and pristine spectral balance without reaching for third-party plugins. The 3-band OTT compressor delivers aggressive upward and downward dynamics across adjustable crossover bands with real-time visualizers. The 12-band Soothe engine dynamically ducks frequency spikes exceeding the local spectral average. Both modules feature independent OSC/SUB routing to keep the sub foundation clean."
+    },
+    badges: [
+      { text: "3-Band OTT Compressor", highlight: true },
+      { text: "12-Band Soothe Suppressor", highlight: true },
+      { text: "OSC / SUB Independent Busses", highlight: true },
+      { text: "Real-time Spectrum Metering", highlight: false },
+      { text: "Curated Style Presets", highlight: false }
+    ],
+    img: "screenshots/wavetable-dyn.jpg"
+  },
+  {
+    id: "fx",
+    num: "06",
+    tabLabel: { jp: "FX", en: "FX RACK" },
+    eyebrow: { jp: "06 / 並び替え自在の 4スロット FX ラック", en: "06 / REORDERABLE 4-SLOT FX RACK" },
+    headline: {
+      jp: "並び替え自在の4スロットラック。ローエンドの純度を守る独立設計。",
+      en: "FREEDOM IN EVERY CHAIN."
+    },
+    subhead: {
+      jp: "Chorus, Delay, Reverb, Amp。ヘッダーのドラッグで信号順序を直感的に再構築。",
+      en: "Drag-to-reorder cards with real-time animated visuals and dedicated sub-bass bypass."
+    },
+    desc: {
+      jp: "Chorus、Delay、Reverb、Amp（キャビネットシミュレーター）の4基のエフェクトを搭載。カードのヘッダーをドラッグするだけで、シグナルチェーンの順序を瞬時に並び替えられます。各エフェクトには動作を可視化するアニメーションビジュアルを完備。さらに、サブベースを空間エフェクトからバイパスする「SUBルーティング」により、濁りのないクリアな低域と広大な空間表現を両立します。",
+      en: "A versatile 4-slot modular rack: Chorus, Delay, Reverb, and Amp (cabinet simulation). Drag any card header to reorder the signal chain on the fly. Each card features real-time animated visuals reflecting parameter responses. Dedicated OSC / SUB bus routing enables the sub oscillator to bypass spatial effects entirely, preserving low-end clarity."
+    },
+    badges: [
+      { text: "Drag-and-Drop Reordering", highlight: true },
+      { text: "Chorus · Delay · Reverb · Amp", highlight: true },
+      { text: "Live Visual Waveforms", highlight: false },
+      { text: "Sub-Bass Isolation Routing", highlight: true },
+      { text: "Instant Card Presets", highlight: false }
+    ],
+    img: "screenshots/wavetable-fx.jpg"
+  },
+  {
+    id: "arp",
+    num: "07",
+    tabLabel: { jp: "ARP (NEW)", en: "ARP (NEW)" },
+    isNew: true,
+    eyebrow: { jp: "07 / アルペジエイター ＆ 16ステップシーケンサー（v1.1.0 新機能）", en: "07 / ARPEGGIATOR & 16-STEP SEQUENCER (NEW IN V1.1.0)" },
+    headline: {
+      jp: "幾何学から生まれるグルーヴ。25パターンとユークリッド幾何学リズム。",
+      en: "RHYTHM BORN FROM GEOMETRY."
+    },
+    subhead: {
+      jp: "32ステップ・ユークリッドレーダー、5段構成シーケンサー、82スケール量子化が解き放つ無限のポリリズム。",
+      en: "25 patterns, 32-step circular Euclidean radar, 5-tier sequencer, and 82-scale quantization."
+    },
+    desc: {
+      jp: "v1.1.0の目玉となるパフォーマンス・ハブ。Up/DownからBrownian Walk、Leapfrogまで網羅する25種類のアルペジオパターン、円形レーダーで幾何学的にリズムを構築する32ステップ・ユークリッドリズム、そしてLoop長（ドラッグ指定）・Velocity・Gate/Tie・Octave（-2〜+2）・Stepを独立制御する5段構成16ステップシーケンサーを完全統合。82種類のスケール量子化とヒューマナイズにより、単なるアルペジオを超えた音楽的シーケンスを生み出します。",
+      en: "The centerpiece of v1.1.0: a complete performance workstation. Choose from 25 arpeggiator patterns, sculpt polymetric pulses with the 32-step Euclidean rhythm generator and its circular radar HUD, or build intricate grooves on the 5-tier 16-step sequencer (independent loop markers, dynamic velocity, gate/tie duration, octave shifts). Backed by an 82-scale quantizer and humanization for expressive, living sequences."
+    },
+    badges: [
+      { text: "25 Arpeggiator Patterns", highlight: true },
+      { text: "32-Step Euclidean Radar", highlight: true },
+      { text: "5-Tier 16-Step Sequencer", highlight: true },
+      { text: "82 Musical Scales", highlight: true },
+      { text: "Human Vel & Time", highlight: false },
+      { text: "SyncRND Polymetric Evolution", highlight: true }
+    ],
+    img: "screenshots/wavetable-arp.jpg"
+  },
+  {
+    id: "config",
+    num: "08",
+    tabLabel: { jp: "CONFIG", en: "CONFIG" },
+    eyebrow: { jp: "08 / 設定 ＆ システムアーキテクチャ", en: "08 / GLOBAL CONFIG & ARCHITECTURE" },
+    headline: {
+      jp: "4Kディスプレイでも一切の妥協なし。10の色彩と自在なスケーリング。",
+      en: "YOUR WORKFLOW. YOUR VIEW."
+    },
+    subhead: {
+      jp: "75%〜200%スケーラブルGUI、10色のUIテーマ、そして完全可視化されたシグナルフロー。",
+      en: "10 high-contrast vector color themes, 75%–200% sharp GUI scaling, and live signal architecture."
+    },
+    desc: {
+      jp: "あらゆる作業環境とディスプレイ解像度に最適化。75%から200%までアスペクト比を保ったまま滑らかにリサイズ可能な完全ベクター描画GUIを採用し、HiDPI / 4K環境でもカミソリのようにシャープな視認性を維持。Midnight、Sakura、Vaporwave、Arcticなど10種類のカラーテーマが全11タブ・ノブ・メーターへ即時反映。オシレーターからリミッターまでの全経路を把握できるシグナルフロー図も備えています。",
+      en: "Precision tailoring for your studio workspace. A fully vector-rendered interface scales seamlessly from 75% to 200% with fixed aspect ratio, delivering pin-sharp graphics on 4K / Retina displays. Choose between 10 dynamic color themes (Midnight, Sakura, Vaporwave, Arctic, etc.) that adapt across all 11 tabs, dials, and scopes. Complete with a live signal-flow diagram tracing your routing from source to master limiter."
+    },
+    badges: [
+      { text: "75%–200% Scalable Vector GUI", highlight: true },
+      { text: "10 Dynamic Color Themes", highlight: true },
+      { text: "Live Signal-Flow Diagram", highlight: true },
+      { text: "Source Smoothing Filter", highlight: false },
+      { text: "Master Pitch & Scale Sync", highlight: false }
+    ],
+    img: "screenshots/wavetable-config.jpg"
+  }
+];
 
-    <div class="hero-shot-main">
-      <img src="screenshots/wavetable-main.jpg" alt="Wavetable Main Interface" />
-    </div>
-  </header>
+function App() {
+  const [lang, setLang] = React.useState("jp");
+  const [activeTabId, setActiveTabId] = React.useState("main");
+  const [activeSubTab, setActiveSubTab] = React.useState({});
 
-  <hr class="divider" />
+  const activeTab = TAB_DATA.find((t) => t.id === activeTabId) || TAB_DATA[0];
 
-  <!-- FEATURES -->
-  <section class="section">
-    <div class="section-eyebrow">// Key Features</div>
-    <h2 class="section-h">圧倒的な波形加工力 ＆ 統合エフェクト・プロセッシング。</h2>
+  const handleSubTabChange = (tabId, subId) => {
+    setActiveSubTab((prev) => ({ ...prev, [tabId]: subId }));
+  };
 
-    <div class="feat-grid">
-      <div class="feat-card">
-        <div class="feat-num">01 / 3 MORPH SLOTS</div>
-        <div class="feat-title">3 Stage Morph × 18 モード</div>
-        <div class="feat-desc">Bend, PWM, Sync, Mirror, Spec Gate, Harm Shift, Form Scale など18種類の処理モードを備えた3つのMorphスロット。同一テーブルから極限まで新たな倍音を紡ぎ出します。</div>
-      </div>
-      <div class="feat-card">
-        <div class="feat-num">02 / COLOR ENGINE</div>
-        <div class="feat-title">IR-Based Color Engine</div>
-        <div class="feat-desc">インパルス応答（8タイプ）によって透明感あふれる結晶音や金属的共鳴を付加。演奏したコードから音色IRを自動学習生成する「LEARN」機能を搭載。</div>
-      </div>
-      <div class="feat-card">
-        <div class="feat-num">03 / OTT & SOOTHE</div>
-        <div class="feat-title">3-Band OTT ＆ Soothe 抑制</div>
-        <div class="feat-desc">アグレッシブなアップワード/ダウンワード3バンド圧縮「OTT」と、不快なピーク共鳴を全自動抑える12バンド共鳴抑制「Soothe」を内部に完備。</div>
-      </div>
-      <div class="feat-card">
-        <div class="feat-num">04 / DEEP MODULATION</div>
-        <div class="feat-title">3 LFO + 2 MSEG + 3 ModENV</div>
-        <div class="feat-desc">最大32ノードの多点ベジェMSEG×2、スムーズ/ディレイ付きLFO×3、スピード調整付きModENV×3。18スロットのMatrixで全パラメータを縦横無尽に変調。</div>
-      </div>
-      <div class="feat-card">
-        <div class="feat-num">05 / FORMULA GENERATOR</div>
-        <div class="feat-title">Real-time Math Wavetable Synth</div>
-        <div class="feat-desc">三項演算子（? :）や比較・論理演算子、4モード（x/X/y/Y）対応の3 MODスロットを備えた数式合成エンジン。ライブミニスコープ表示、1クリック更新＆WAV保存に対応。</div>
-      </div>
-    </div>
-  </section>
+  const currentImg = activeTab.hasSubTabs
+    ? (activeTab.subTabs.find((s) => s.id === (activeSubTab[activeTab.id] || activeTab.subTabs[0].id)) || activeTab.subTabs[0]).img
+    : activeTab.img;
 
-  <hr class="divider" />
-
-  <!-- SCREENSHOT GALLERY (11 IMAGES) -->
-  <section class="section">
-    <div class="section-eyebrow">// Visual Walkthrough (全11画面)</div>
-    <h2 class="section-h">Wavetable の全11モジュールと詳細仕様</h2>
-
-    <!-- 1. Main -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-main.jpg" alt="Wavetable Main UI & 3 Morph Slots" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">01. メイン UI ＆ 3 Morph スロット</div>
-        <div class="showcase-desc">3次元波形表示を中心としたメイン操作パネル。1オシレーターの中に独立した3つの Morph モディファイア（18モード）を同軸配置し、変態的なウェーブテーブル変調を実現。</div>
-      </div>
-    </div>
-
-    <!-- 2. Filter -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-filter.jpg" alt="Dual Multi-Mode Filter A/B" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">02. デュアル・マルチモード・フィルター (A/B)</div>
-        <div class="showcase-desc">9タイプ（LPF, HPF, BPF, Notch, Comb, Analog Ladder, Vowel, Comb+, Phaser）対応の独立2系統フィルター。直列/並列のルーティングを可視化ダイアグラムで操作。</div>
-      </div>
-    </div>
-
-    <!-- 3. Color -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-color.jpg" alt="Color Engine & Sparkle Arp" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">03. Color IR エンジン ＆ Sparkle Arp</div>
-        <div class="showcase-desc">Crystal Saw, Shimmer PWM, Harmonic Bell など8種のインパルス音色。コード学習機能「LEARN」と、高音域を華やかに彩る Sparkle Arpeggiator を搭載。</div>
-      </div>
-    </div>
-
-    <!-- 4. DYN -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-dyn.jpg" alt="3-Band OTT & Soothe Resonance Suppressor" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">04. 3-Band OTT ＆ Soothe 共鳴抑制</div>
-        <div class="showcase-desc">アグレッシブなUp/Down 3バンドコンプレッサー（OTT）と、12バンド全自動レゾネーションサプレッサー（Soothe）。主音とサブベースを個別に処理可能。</div>
-      </div>
-    </div>
-
-    <!-- 5. ENV -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-env.jpg" alt="Modulation Envelopes" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">05. 3系統 モジュレーション・エンベロープ (ModENV)</div>
-        <div class="showcase-desc">スピード（Rate）コントロールとカーブ調整を備えた3系統のADSRエンベロープ。オシレーターのMorph、Filter、FXアンプへの動的追従を実現。</div>
-      </div>
-    </div>
-
-    <!-- 6. LFO -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-lfo.jpg" alt="3 LFO Modulators" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">06. 3系統 LFO セクション</div>
-        <div class="showcase-desc">DAWテンポ同期 / フリーラン（0.02Hz〜20Hz）に対応する3基のLFO。スムーズコントロール、ディレイタイム、リリガーモードを完備。</div>
-      </div>
-    </div>
-
-    <!-- 7. MSEG -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-mseg.jpg" alt="2 Multi-Stage Envelope Generators" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">07. 2系統 多点ベジェ MSEG (最大32ノード)</div>
-        <div class="showcase-desc">最大32ノードのグラフィカル多点エンベロープエディター。ベジェハンドルによる自由なカーブ形成、ワンショット/ループ再生モードに対応。</div>
-      </div>
-      </div>
-
-    <!-- 8. MATRIX -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-matrix.jpg" alt="18-Slot Modulation Matrix" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">08. 18スロット モジュレーション・マトリクス</div>
-        <div class="showcase-desc">12ソース × 30デスティネーション。ノブ周りの白色アーク表示でリアルタイム変調を可視化。70スケール対応 Pitch Quantizer も完備。</div>
-      </div>
-    </div>
-
-    <!-- 9. FX -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-fx.jpg" alt="4-Slot Reorderable FX Rack" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">09. 並び替え自在な 4スロット FXラック</div>
-        <div class="showcase-desc">Chorus, Delay, Reverb, Amp (キャビネットシミュレーション)。ヘッダーのドラッグで並び替え可能。主音（OSC）とサブベース（SUB）の独立エフェクトアサインに対応。</div>
-      </div>
-    </div>
-
-    <!-- 10. Config -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-config.jpg" alt="Config & 10 UI Color Themes" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">10. コンフィグ ＆ 10色の UI カラーテーマ</div>
-        <div class="showcase-desc">Midnight, Cyberpunk, Vaporwave, Sakura などの10種類のデザインテーマ。システムパラメータやプリセットブラウザを直感的に切り替え。</div>
-      </div>
-    </div>
-
-    <!-- 11. Formula Editor -->
-    <div class="showcase-item">
-      <div class="showcase-img">
-        <img src="screenshots/wavetable-formula.jpg" alt="Formula Editor & Mathematical Waveform Generator" />
-      </div>
-      <div class="showcase-info">
-        <div class="showcase-title">11. 数式ウェーブテーブルエディター (Formula Generator)</div>
-        <div class="showcase-desc">
-          WT BROWSE パネル内に統合されたリアルタイム数学的ウェーブテーブル合成エンジン。三項演算子（<code>? :</code>）、比較演算子（<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>）、論理演算子（<code>&amp;&amp;</code>, <code>||</code>）を含む高度な条件付き数式評価をサポート。<br /><br />
-          4ステートのリンクモード（<b>x</b>: 位相スロープ, <b>X</b>: 位相ウィンドウ×Posリンク, <b>y</b>: 静的オフセット, <b>Y</b>: フレーム y-グラデーション）を持つ3基の <b>MOD スロット</b> により、モジュレーション演算を数式へ動的に挿入可能。波形描画用のライブ・ミニスコープ、Stock Morph プリセット適用、1クリックによるウェーブテーブル更新および WAV 保存/エクスポートに対応。
+  return (
+    <div>
+      {/* NAVIGATION */}
+      <header className="site-nav">
+        <a href="index.html" className="nav-brand">
+          <div className="nav-brand-dot"></div>
+          <span className="nav-brand-name">OTODESK</span>
+          <span className="nav-brand-sub">/ WAVETABLE</span>
+        </a>
+        <div className="nav-actions">
+          <button
+            className="lang-toggle"
+            onClick={() => setLang(lang === "jp" ? "en" : "jp")}
+            aria-label="Toggle language"
+          >
+            <span className={lang === "jp" ? "active" : ""}>JP</span>
+            <span>/</span>
+            <span className={lang === "en" ? "active" : ""}>EN</span>
+          </button>
+          <a href="index.html" className="nav-back">
+            ← {lang === "jp" ? "TOPへ戻る" : "Back to Home"}
+          </a>
         </div>
-      </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className="hero">
+        <div className="hero-meta">
+          <div className="hero-badge">
+            <div className="hero-badge-pulse"></div>
+            VST3 · COMING SOON
+          </div>
+          <span className="hero-version">VERSION 1.1.0</span>
+        </div>
+
+        <h1 className="hero-headline">WAVETABLE</h1>
+
+        <div className="hero-subheadline">
+          {lang === "jp"
+            ? "これは怪物（モンスター）かもしれない"
+            : "THIS MIGHT BE A MONSTER."}
+        </div>
+
+        <p className="hero-paragraph">
+          {lang === "jp"
+            ? "1つのテーブルから19モード×3段のMorphスロットが極限のスペクトル変調を生み出す。数式波形生成器「Formula Generator」、3バンドOTTと12バンドSootheダイナミクス、IRカラーエンジン、そしてv1.1.0で新設された幾何学ユークリッドリズム搭載のARPタブ。妥協なき音響設計と直感的なインターフェースが融合した、モンスターシンセサイザー。"
+            : "A single oscillator with three independent 19-mode Morph slots unlocks unprecedented harmonic transformations. Packed with an integrated mathematical Formula Generator, 3-band OTT and 12-band Soothe dynamics, an IR-driven Color engine, and the all-new Euclidean Arpeggiator suite in v1.1.0. Uncompromising DSP power meets modern, fast modular control."}
+        </p>
+
+        <div className="hero-buttons">
+          <span className="btn-disabled">
+            Download (Coming Soon)
+          </span>
+          <span className="btn-disabled">
+            GitHub Source (Private)
+          </span>
+          <a href="index.html#gallery" className="btn-ghost">
+            {lang === "jp" ? "全プラグイン一覧を見る" : "Browse All Plugins"} →
+          </a>
+        </div>
+
+        {/* HERO PREVIEW */}
+        <div className="hero-preview">
+          <div className="hero-preview-bar">
+            <span>WAVETABLE v1.1.0 // MAIN INTERFACE PREVIEW</span>
+            <span>1180 × 800 PX · VECTOR RENDERED</span>
+          </div>
+          <img src="screenshots/wavetable-main.jpg" alt="Wavetable Main Interface" />
+        </div>
+      </section>
+
+      {/* INTERACTIVE TAB SHOWCASE (ABLETON STYLE) */}
+      <section className="section-wrap">
+        <div className="section-eyebrow">
+          // {lang === "jp" ? "機能別 インタラクティブ・ツアー" : "FUNCTIONAL TOUR & MODULES"}
+        </div>
+        <h2 className="section-heading">
+          {lang === "jp"
+            ? "8つのモジュール。それぞれの美学と圧倒的な音響。"
+            : "Eight Powerful Modules. One Unified Instrument."}
+        </h2>
+
+        {/* TAB CONTROLS */}
+        <div className="tab-navigator">
+          {TAB_DATA.map((tab) => (
+            <button
+              key={tab.id}
+              className={`tab-btn ${activeTabId === tab.id ? "active" : ""}`}
+              onClick={() => setActiveTabId(tab.id)}
+            >
+              <span>{tab.num}</span>
+              <span>{tab.tabLabel[lang]}</span>
+              {tab.isNew && <span className="tab-tag-new">NEW</span>}
+            </button>
+          ))}
+        </div>
+
+        {/* TAB PANEL */}
+        <div className="tab-panel">
+          <div className="panel-header">
+            <div className="panel-meta">{activeTab.eyebrow[lang]}</div>
+            <h3 className="panel-catchphrase">{activeTab.headline[lang]}</h3>
+            <p className="panel-desc">{activeTab.desc[lang]}</p>
+
+            {/* BADGES */}
+            <div className="badge-group">
+              {activeTab.badges.map((b, idx) => (
+                <span
+                  key={idx}
+                  className={`pill-badge ${b.highlight ? "highlight" : ""}`}
+                >
+                  {b.text}
+                </span>
+              ))}
+            </div>
+
+            {/* SUB TABS IF MULTI-IMAGE */}
+            {activeTab.hasSubTabs && (
+              <div className="sub-tabs">
+                {activeTab.subTabs.map((st) => (
+                  <button
+                    key={st.id}
+                    className={`sub-tab-btn ${(activeSubTab[activeTab.id] || activeTab.subTabs[0].id) === st.id ? "active" : ""}`}
+                    onClick={() => handleSubTabChange(activeTab.id, st.id)}
+                  >
+                    {st.label[lang]}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* SCREENSHOT IMAGE */}
+          <div className="panel-image-wrap">
+            <img src={currentImg} alt={activeTab.headline[lang]} />
+          </div>
+        </div>
+      </section>
+
+      {/* CORE ARCHITECTURE HIGHLIGHTS */}
+      <section className="section-wrap" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">
+          // {lang === "jp" ? "独自アーキテクチャの強み" : "CORE ARCHITECTURAL HIGHLIGHTS"}
+        </div>
+        <h2 className="section-heading">
+          {lang === "jp"
+            ? "妥協なき音質と、音楽制作を加速する先端機能。"
+            : "Engineered for Sound Quality, Built for Inspiration."}
+        </h2>
+
+        <div className="inno-grid">
+          <div className="inno-card">
+            <div className="inno-num">01 / INTELLIGENT DESIGN</div>
+            <div className="inno-title">{lang === "jp" ? "1-Click GENERATE ボタン" : "1-Click Sound Generator"}</div>
+            <div className="inno-desc">
+              {lang === "jp"
+                ? "Bass、Brass、Leads、Pads、Plucksなど7カテゴリから、アコースティック原則に則った即戦力サウンドを1クリックで自動合成。音量バランスや位相の破綻がありません。"
+                : "Generate production-grade patches across 7 instrument categories with disciplined acoustic safeguards for mono low-end and sweet-spot OTT bounds."}
+            </div>
+          </div>
+
+          <div className="inno-card">
+            <div className="inno-num">02 / MATHEMATICAL SYNTHESIS</div>
+            <div className="inno-title">{lang === "jp" ? "数式波形生成器 (Formula Generator)" : "Formula Math Generator"}</div>
+            <div className="inno-desc">
+              {lang === "jp"
+                ? "三項演算子（? :）や比較・論理式に対応した数式パーサー。4ステートのMODスロットにより変調を数式に動的結合し、独自のWavetableをリアルタイムに生成・保存できます。"
+                : "Create custom wavetables using math expressions with ternary logic, conditional operators, and 4-state MOD injection slots with real-time waveform scope export."}
+            </div>
+          </div>
+
+          <div className="inno-card">
+            <div className="inno-num">03 / TRANSIENT PROTECTION</div>
+            <div className="inno-title">{lang === "jp" ? "マイクロ・クロスフェード デクリック" : "Zero-Click Micro-Crossfading"}</div>
+            <div className="inno-desc">
+              {lang === "jp"
+                ? "ノートオン時、波形周期境界、およびアルペジオステップの切り替わりにレイテンシーゼロの微小クロスフェードを適用。アタックの鋭さを損なわずに不快なクリックを完全排除。"
+                : "Zero-latency micro-crossfades across note attacks, cycle transitions, and arp steps eliminate harsh clicks while maintaining razor-sharp transient bite."}
+            </div>
+          </div>
+
+          <div className="inno-card">
+            <div className="inno-num">04 / MUSICAL HARMONY</div>
+            <div className="inno-title">{lang === "jp" ? "82スケール クオンタイザー" : "82 Musical Scale Quantizer"}</div>
+            <div className="inno-desc">
+              {lang === "jp"
+                ? "西洋音階、ペンタトニック、日本伝統音階（平調子・陰旋・岩戸等）、対称音階を完備。マスターピッチとアルペジオノートが選択した音階へ正確にリアルタイム吸着します。"
+                : "Snaps master pitch and arpeggiated melodies to 82 global scales—including traditional Japanese scales, symmetric modes, and chord tones—with live note mapping."}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PARAMETER & SIGNAL FLOW SPECS */}
+      <section className="section-wrap" style={{ paddingTop: 0 }}>
+        <div className="section-eyebrow">
+          // {lang === "jp" ? "仕様 ＆ シグナルフロー" : "SPECIFICATIONS & SIGNAL ARCHITECTURE"}
+        </div>
+        <h2 className="section-heading">
+          {lang === "jp" ? "システム・スペック リファレンス" : "Technical Specifications"}
+        </h2>
+
+        <table className="specs-table">
+          <thead>
+            <tr>
+              <th>{lang === "jp" ? "モジュール" : "MODULE"}</th>
+              <th>{lang === "jp" ? "仕様・パラメーター" : "SPECIFICATION"}</th>
+              <th>{lang === "jp" ? "概要・詳細" : "DETAILS"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Wavetable OSC</td>
+              <td>1 WT OSC + 3 Morph Slots × 19 Modes</td>
+              <td>13 Factory Tables, Formula Generator (Math Synth), 12-Voice Unison (+3.5dB Boost), FM Modulation</td>
+            </tr>
+            <tr>
+              <td>Sub Oscillator</td>
+              <td>Sine / Saw / Pulse / Triangle</td>
+              <td>Dedicated Level, Pitch, and independent bus routing to bypass spatial effects and coloring</td>
+            </tr>
+            <tr>
+              <td>Dual Filter</td>
+              <td>Dual Multi-Mode Filter (A / B)</td>
+              <td>9 Types (LPF/HPF/BPF/Notch/Comb/Ladder/Vowel/Comb+/Phaser), Serial/Parallel routing, 12/24dB, Dedicated ADSR</td>
+            </tr>
+            <tr>
+              <td>Modulation</td>
+              <td>3 LFO + 2 MSEG + 3 ModENV + 18-Slot Matrix</td>
+              <td>Global-Clock LFOs (Smooth/Delay), 32-node Bezier MSEGs with 13 presets, ModENV with Speed scaling, 12 src × 30+ dst</td>
+            </tr>
+            <tr>
+              <td>Color Engine</td>
+              <td>IR-Based Tone Generator + Sparkle Arp</td>
+              <td>8 Impulse Responses (Crystal, Metallic, Shimmer, etc.), Chord LEARN feature, High-frequency Sparkle Arp</td>
+            </tr>
+            <tr>
+              <td>Dynamics</td>
+              <td>3-Band OTT + 12-Band Soothe</td>
+              <td>Upward/Downward multiband compression, real-time resonance ducking, OSC/SUB independent routing</td>
+            </tr>
+            <tr>
+              <td>FX Rack</td>
+              <td>Reorderable 4-Slot Rack</td>
+              <td>Chorus, Delay, Reverb, Amp (Cabinet Sim), Drag-to-reorder, live visuals, Sub-bass isolation</td>
+            </tr>
+            <tr>
+              <td>Arpeggiator (v1.1.0)</td>
+              <td>25 Arp Patterns + 32-Step Euclidean + 16-Step Seq</td>
+              <td>Euclidean radar HUD, 5-tier 16-step sequencer (Loop/Vel/Gate/Tie/Oct), 82 scales, Human Vel/Time</td>
+            </tr>
+            <tr>
+              <td>System & GUI</td>
+              <td>JUCE 8 / Vector UI</td>
+              <td>75%–200% scalable interface, 10 color themes (Midnight, Sakura, Vaporwave, etc.), 1-Click GENERATE</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* ASCII FLOW DIAGRAM */}
+        <div className="flow-card">
+<span className="flow-highlight">[SIGNAL ARCHITECTURE]</span>
+
+WT OSC  ──► <span className="flow-highlight">[3× Morph A/B/C]</span> ──► [Dist / Shaper] ──► <span className="flow-highlight">[Dual Filter A/B]</span> ──► [Color IR] ───────┐
+Sub OSC ──────────────────────────────────────────────────────────────────────────┘ (OSC / SUB Bus)
+                                                                                          │
+                                                                                          ▼
+[Master Out] ◄── [Limiter] ◄── [Gain] ◄── <span className="flow-highlight">[4-Slot FX Rack]</span> ◄── <span className="flow-highlight">[DYN: OTT + Soothe]</span>
+                                               (Chorus/Delay/Reverb/Amp)     (3-Band + 12-Band)
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="footer-links">
+          <a href="index.html">TOP</a>
+          <a href="index.html#gallery">PLUGINS</a>
+          <a href="https://github.com/OTODESK4193" target="_blank" rel="noreferrer">GITHUB</a>
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          WAVETABLE — Research-Grade Polyphonic Wavetable Synthesizer for Windows / VST3
+        </div>
+        <div style={{ color: "var(--dim)" }}>
+          Built with JUCE 8 · Licensed under GNU AGPLv3 · Developed by @kijyoumusic (OTODESK)
+        </div>
+      </footer>
     </div>
-  </section>
+  );
+}
 
-  <hr class="divider" />
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
-  <!-- SPECS -->
-  <section class="section">
-    <div class="section-eyebrow">// Parameter Reference</div>
-    <h2 class="section-h">仕様 ＆ パラメーターリファレンス</h2>
-
-    <table class="spec-table">
-      <thead>
-        <tr>
-          <th>カテゴリ</th>
-          <th>パラメーター</th>
-          <th>範囲</th>
-          <th>概要</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Oscillator & Morph</td>
-          <td>1 WT OSC + Sub</td>
-          <td>3 Morph Slots × 19 Modes</td>
-          <td>13 Factory Tables, 12-Voice Unison, 5 Detune Modes</td>
-        </tr>
-        <tr>
-          <td>Wave Generation</td>
-          <td>Formula Generator</td>
-          <td>Math Expression / 3 MOD Slots (x/X/y/Y)</td>
-          <td>三項演算子/論理式対応のリアルタイム数式波形合成, 4ステートMODリンク, Stock Morph プリセット, WAV保存/エクスポート</td>
-        </tr>
-        <tr>
-          <td>Filter System</td>
-          <td>Dual Filter (A/B)</td>
-          <td>9 Types (LP/HP/BP/Comb/Ladder/Vowel/Phaser)</td>
-          <td>Serial / Parallel Routing, 12/24 dB Slopes</td>
-        </tr>
-        <tr>
-          <td>Dynamics Engine</td>
-          <td>OTT + Soothe</td>
-          <td>3-Band Comp & 12-Band Resonance Suppressor</td>
-          <td>OSC/SUB 独立バスルーティング</td>
-        </tr>
-        <tr>
-          <td>Modulators</td>
-          <td>LFO × 3 / MSEG × 2 / ENV × 3</td>
-          <td>18 Matrix Slots (Uni/Bi)</td>
-          <td>32 Nodes MSEG, Continuous LFO Smooth & Delay</td>
-        </tr>
-        <tr>
-          <td>Color & FX</td>
-          <td>Color IR Engine + 4 FX</td>
-          <td>Chorus / Delay / Reverb / Amp</td>
-          <td>IR Learn 機能, 70 Scale Quantizer, 10 UI Themes</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="section-eyebrow" style="margin-top: 48px;">// Signal Flow</div>
-    <div class="flow-box">
-WT OSC ──► [Morph A/B/C] ──► [Dist/Shaper] ──► [Dual Filter A/B] ──► [Color IR Engine]
-Sub OSC ─────────────────────────────────────────────────────────────┘
-                                                                            │
-                                                                            ▼
-[Master Out] ◄── [Limiter] ◄── [Master Gain] ◄── [4-Slot FX] ◄── [DYN: OTT + Soothe]
-    </div>
-  </section>
-
-  <!-- LICENSE -->
-  <section class="section" style="padding-top: 0;">
-    <div class="license-box">
-      <div class="license-title">LICENCE & CREDITS</div>
-      <div class="license-text">
-        本プロジェクトは <strong>GNU Affero General Public License v3.0 (AGPLv3)</strong> のもとでオープンソース公開されます。<br />
-        GUI / DSP フレームワークには <strong>JUCE 8</strong> を使用しています。DSPエンジンは OTODESK の <strong>BassSynth</strong> を継承・進化させた構造となっています。<br />
-        Developer: @kijyoumusic (OTODESK)
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div>OTODESK — Creative Audio Tools for Windows / VST3</div>
-  </footer>
-
+</script>
 </body>
 </html>

@@ -192,18 +192,20 @@ function Hero({ lang }) {
       url: "wavetable.html",
       color: "#00d4ff",
       copy: {
-        jp: "これはモンスターかもしれない",
-        en: "This Might Be a Monster"
+        jp: "これは怪物（モンスター）かもしれない",
+        en: "This Might Be a Monster."
       },
       desc: {
-        jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
-        en: "1× OSC with 3-stage morphing, exclusive Color Engine, built-in OTT and Soothe. Assign custom wavetables and deep modulation (3× LFO, 2× MSEG, 3× ENV) to revolutionize your bass, leads, plucks, stabs, and pads!!"
+        jp: "1×OSCに19モード×3段のMorphスロット、数式波形生成器、Colorエンジン、3バンドOTT＆Soothe。さらにv1.1.0で25パターン・32ステップ幾何学ユークリッドリズム搭載のARPタブを新設。",
+        en: "1× OSC with 3-stage morphing across 19 modes, math formula generator, Color engine, 3-band OTT & Soothe, and an all-new 32-step Euclidean ARP in v1.1.0."
       },
       shots: [
         { label: "Wavetable Main", file: "screenshots/wavetable-main.jpg" },
+        { label: "Euclidean ARP", file: "screenshots/wavetable-arp.jpg" },
         { label: "Filter Section", file: "screenshots/wavetable-filter.jpg" },
-        { label: "FX Engine", file: "screenshots/wavetable-fx.jpg" },
         { label: "Color Engine", file: "screenshots/wavetable-color.jpg" },
+        { label: "FX Engine", file: "screenshots/wavetable-fx.jpg" },
+        { label: "Dynamics (OTT)", file: "screenshots/wavetable-dyn.jpg" },
         { label: "Mod Matrix", file: "screenshots/wavetable-matrix.jpg" }
       ]
     }

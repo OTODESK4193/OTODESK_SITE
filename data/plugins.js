@@ -145,11 +145,11 @@ window.PLUGINS = [
     id: "wavetable",
     num: "05",
     name: "Wavetable",
-    category: { en: "Polyphonic Wavetable Synth — 3 Morph Slots", jp: "ポリフォニック・ウェーブテーブル・シンセ" },
+    category: { en: "Polyphonic Wavetable Synth — 3 Morphs & Euclidean Arp", jp: "ポリフォニック・ウェーブテーブル・シンセ — 3 Morph ＆ ユークリッドARP" },
     type: "Instrument",
     platform: { en: "Windows / VST3", jp: "Windows / VST3" },
     year: "2026",
-    version: "v1.0.0 (Coming Soon)",
+    version: "v1.1.0 (Coming Soon)",
     status: "ComingSoon",
     comingSoon: true,
     featured: false,
@@ -158,20 +158,22 @@ window.PLUGINS = [
     sourceUrl: "https://github.com/OTODESK4193/Wavetable",
     screenshot: "screenshots/wavetable-main.jpg",
     tagline: {
-      en: "This might be a monster. 3 Morph slots, Color Engine, OTT & Soothe inside.",
-      jp: "これはモンスターかもしれない。3Morphスロット、Colorエンジン、OTT/Soothe搭載。"
+      en: "This might be a monster. 3 Morph slots, Color engine, OTT & Soothe, and 32-step Euclidean Arp.",
+      jp: "これは怪物（モンスター）かもしれない。3Morphスロット、Colorエンジン、OTT/Soothe、32ステップ幾何学ユークリッドARP搭載。"
     },
     description: {
-      en: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!",
-      jp: "1×OSCに3つのMorphing。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！カスタムWavetableの追加や各種Mod（3×LFO、2×MSEG、3×ENV）を駆使し様々なパラメーターにアサインが可能。Bass、Lead、Pluck、Stab、Padなど、アナタの想像力に革命を!!"
+      en: "1×OSCに3つのMorphing（19モード）。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！v1.1.0では25パターン・32ステップ幾何学ユークリッドリズム・5段構成16ステップシーケンサーを備えた強力なARPタブを新設。数式波形生成器「Formula Generator」や即戦力サウンドを1クリック生成する「GENERATE」ボタンも搭載した次世代モンスターシンセ。",
+      jp: "1×OSCに3つのMorphing（19モード）。他社シンセでは見かけないColorエンジン、OTTやSOOTHEも標準搭載！v1.1.0では25パターン・32ステップ幾何学ユークリッドリズム・5段構成16ステップシーケンサーを備えた強力なARPタブを新設。数式波形生成器「Formula Generator」や即戦力サウンドを1クリック生成する「GENERATE」ボタンも搭載した次世代モンスターシンセ。"
     },
     features: [
-      { en: "Wavetable OSC with 3 Morph slots × 18 spectral processing modes", jp: "18の処理モードを備えた3つの Morph スロット付き Wavetable OSC" },
+      { en: "Wavetable OSC with 3 Morph slots × 19 modes & Formula Generator", jp: "19モード対応 3段 Morph スロット ＆ 数式波形生成器 (Formula Generator)" },
+      { en: "Arpeggiator & 16-Step Sequencer — 25 patterns & 32-step Euclidean rhythm", jp: "ARP ＆ 16ステップシーケンサー (25パターン ＆ 32ステップ幾何学ユークリッドリズム)" },
       { en: "Dual multi-mode filters (9 types) with serial/parallel routing", jp: "9タイプ対応デュアルマルチモードフィルター (直列/並列切り替え)" },
-      { en: "Deep Modulation — 3 LFOs, 2 MSEGs (32 nodes), 3 Mod Envelopes, 18-slot matrix", jp: "3 LFO ＋ 2 MSEG ＋ 3 ModENV ＋ 18スロット ModMatrix" },
-      { en: "IR-based Color Engine with 8 tone types & Learn mode", jp: "8タイプの音色IR ＆ 演奏学習機能を備えた Color エンジン" },
+      { en: "Deep Modulation — 3 LFOs (Global Clock), 2 MSEGs (32 nodes), 3 Envs, 18-slot Matrix", jp: "3 LFO (グローバルクロック) ＋ 2 MSEG (32ノード) ＋ 3 ModENV ＋ 18スロット Matrix" },
+      { en: "IR-based Color Engine with 8 tone types, Chord Learn & Sparkle Arp", jp: "8タイプ音色IR ＆ 和音学習 (LEARN) ＆ Sparkle Arp 搭載 Color エンジン" },
       { en: "3-band OTT compressor & 12-band Soothe resonance suppressor", jp: "3バンド OTT コンプレッサー ＆ 12バンド Soothe レゾナンス抑制" },
-      { en: "70-scale Pitch Quantizer & 10 switchable color themes", jp: "70スケール対応ピッチクオンタイザー ＆ 10種のカラーテーマ" }
+      { en: "82-scale Quantizer, 10 UI color themes & 75%–200% scalable GUI", jp: "82スケール対応クオンタイザー ＆ 10種カラーテーマ ＆ 75〜200%スケーラブルGUI" },
+      { en: "1-Click GENERATE button & Hybrid Gain Compensation 12-voice unison", jp: "即戦力サウンド自動生成「GENERATE」ボタン ＆ 音量補償付き12ボイスユニゾン" }
     ],
     repo: "https://github.com/OTODESK4193/Wavetable",
     accent: "#00d4ff"
