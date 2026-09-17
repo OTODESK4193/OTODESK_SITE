@@ -950,14 +950,14 @@ function Featured({ lang, plugin }) {
 function NewsSection({ lang }) {
   var newsItems = [
   {
-    id: "ambience-v2-0-1",
-    badge: { jp: "VST3 · 9/12 UPDATE!", en: "VST3 · UPDATE 9/12" },
-    date: "2026.09.12",
-    title: { jp: "Ambience v2.0.1 メンテナンスUpdate ＆ 最新動画公開！", en: "Ambience v2.0.1 Maintenance Update & New Video Released!" },
-    sub: { jp: "最新解説動画を公開！プリセットブラウザ＆サチュレーションの不具合修正・安定性向上", en: "New Overview Video Live! Preset Browser & Saturation Bug Fixes" },
+    id: "ambience-v2-0-2",
+    badge: { jp: "VST3 · 9/17 UPDATE!", en: "VST3 · UPDATE 9/17" },
+    date: "2026.09.17",
+    title: { jp: "Ambience v2.0.2 メンテナンスUpdate！", en: "Ambience v2.0.2 Maintenance Update Released!" },
+    sub: { jp: "安定性・堅牢性の向上 ＆ CPU最適化", en: "Improved Robustness, Stability & CPU Optimization" },
     excerpt: {
-      jp: "・YouTubeにてAmbienceの最新デモ・解説動画を公開！\n・DAWプロジェクト再ロード時のプリセット名保持・編集フラグ誤表示の修正\n・サチュレーション制御のDSP伝達修正＆全4モードのドライブ感度・等ラウドネスAGC再設計",
-      en: "• New official demo & overview video now live on YouTube!\n• Fixed preset name recall, persistence & false edit flags in DAW sessions\n• Fixed saturation DSP dispatch & re-engineered drive sensitivity with AGC across all 4 modes"
+      jp: "・安定性・堅牢性の向上\n・CPU最適化",
+      en: "• Improved robustness and stability across host DAWs\n• CPU optimization for lighter DSP processing"
     },
     img: "assets/ambience-v2-0-1-thumb.jpg",
     url: "ambience.html",

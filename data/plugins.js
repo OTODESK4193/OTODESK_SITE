@@ -222,13 +222,13 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN & SDN Hybrid", jp: "アルゴリズミック・リバーブ — 16ch FDN & SDN ハイブリッド" },
     type: "Effect",
     year: "2026",
-    version: "2.0.1",
+    version: "2.0.2",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg?v=2.0.1",
-    screenshotPro: "assets/ambience-screenshot-2.jpg?v=2.0.1",
+    screenshot: "screenshots/ambience.jpg?v=2.0.2",
+    screenshotPro: "assets/ambience-screenshot-2.jpg?v=2.0.2",
     tagline: {
       en: "World-class halls in 16 channels of FDN & SDN hybrid. Free.",
       jp: "世界の名ホールを、16ch FDN & SDN ハイブリッドに閉じ込めた。無料で。"

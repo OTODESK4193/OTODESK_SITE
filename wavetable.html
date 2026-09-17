@@ -752,7 +752,16 @@ const TAB_DATA = [
 ];
 
 function App() {
-  const [lang, setLang] = React.useState("jp");
+  const [lang, setLang] = React.useState(() => {
+    return localStorage.getItem("otodesk-lang") || localStorage.getItem("otodesk_lang") || "jp";
+  });
+  const updateLang = (newLang) => {
+    setLang(newLang);
+    try {
+      localStorage.setItem("otodesk-lang", newLang);
+      localStorage.setItem("otodesk_lang", newLang);
+    } catch (e) {}
+  };
   const [activeTabId, setActiveTabId] = React.useState("main");
   const [activeSubTab, setActiveSubTab] = React.useState({});
 
@@ -778,7 +787,7 @@ function App() {
         <div className="nav-actions">
           <button
             className="lang-toggle"
-            onClick={() => setLang(lang === "jp" ? "en" : "jp")}
+            onClick={() => updateLang(lang === "jp" ? "en" : "jp")}
             aria-label="Toggle language"
           >
             <span className={lang === "jp" ? "active" : ""}>JP</span>

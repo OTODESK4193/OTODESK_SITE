@@ -17,10 +17,10 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script src="data/plugins.js?v=2.0.1"></script>
-<script type="text/babel" src="components/visual.jsx?v=2.0.1"></script>
-<script type="text/babel" src="components/counters.jsx?v=2.0.1"></script>
-<script type="text/babel" src="components/sections.jsx?v=2.0.1"></script>
+<script src="data/plugins.js?v=2.0.2"></script>
+<script type="text/babel" src="components/visual.jsx?v=2.0.2"></script>
+<script type="text/babel" src="components/counters.jsx?v=2.0.2"></script>
+<script type="text/babel" src="components/sections.jsx?v=2.0.2"></script>
 
 <script type="text/babel" data-presets="env,react">
 const LANG_KEY = "otodesk_lang";
@@ -102,12 +102,20 @@ function CountNumber({ value, pad }) {
 
 
 function useLang() {
-  const [lang, setLang] = React.useState(() => localStorage.getItem(LANG_KEY) || "jp");
-  const set = (v) => { setLang(v); localStorage.setItem(LANG_KEY, v); };
+  const [lang, setLang] = React.useState(() => {
+    return localStorage.getItem("otodesk-lang") || localStorage.getItem(LANG_KEY) || "jp";
+  });
+  const set = (v) => {
+    setLang(v);
+    try {
+      localStorage.setItem("otodesk-lang", v);
+      localStorage.setItem(LANG_KEY, v);
+    } catch (e) {}
+  };
   return [lang, set];
 }
 
-function AmbHero({ lang }) {
+function AmbHero({ lang, setLang }) {
   const [parallax, setParallax] = React.useState(0);
   React.useEffect(() => {
     const onScroll = () => setParallax(Math.min(1, window.scrollY / 700));
@@ -155,7 +163,7 @@ function AmbHero({ lang }) {
         </p>
 
         <div className="amb-hero-meta">
-          <div><span className="ahm-k">PLUGIN</span> Ambience v2.0.1</div>
+          <div><span className="ahm-k">PLUGIN</span> Ambience v2.0.2</div>
           <div><span className="ahm-k">TYPE</span> Algorithmic Reverb</div>
           <div><span className="ahm-k">FORMAT</span> VST3 · Windows</div>
           <div><span className="ahm-k">LICENSE</span> GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
@@ -175,7 +183,7 @@ function AmbHero({ lang }) {
             }}
           >
             <span className="br-dot" />
-            {lang === "jp" ? "ダウンロード v2.0.1" : "Download v2.0.1"}
+            {lang === "jp" ? "ダウンロード v2.0.2" : "Download v2.0.2"}
             <span className="arrow">↓</span>
           </a>
           <a
@@ -184,14 +192,14 @@ function AmbHero({ lang }) {
             rel="noreferrer"
             className="btn-ghost amb-src"
           >
-            {lang === "jp" ? "ソースコード" : "Source"} <span className="arrow">↗</span>
+            GitHub <span className="arrow">↗</span>
           </a>
           <DownloadChip pluginId="ambience" lang={lang} />
-          <button className="lang-toggle amb-lang" onClick={() => {
-            const newLang = lang === "jp" ? "en" : "jp";
-            localStorage.setItem(LANG_KEY, newLang);
-            location.reload();
-          }}>
+          <button
+            className="amb-lang-btn"
+            onClick={() => setLang(lang === "en" ? "jp" : "en")}
+            aria-label="Toggle language"
+          >
             <span className={lang === "en" ? "on" : ""}>EN</span>
             <span className="sep">/</span>
             <span className={lang === "jp" ? "on" : ""}>JP</span>
@@ -200,7 +208,7 @@ function AmbHero({ lang }) {
       </div>
 
       <div className="amb-hero-shot">
-        <img src="assets/ambience-screenshot-1.jpg?v=2.0.1" alt="Ambience UI" />
+        <img src="assets/ambience-screenshot-1.jpg?v=2.0.2" alt="Ambience UI" />
       </div>
     </section>
   );
@@ -398,7 +406,7 @@ function ProMode({ lang }) {
           </p>
         </div>
         <div className="amb-pro-shot">
-          <img src="assets/ambience-screenshot-2.jpg?v=2.0.1" alt="Pro Mode" />
+          <img src="assets/ambience-screenshot-2.jpg?v=2.0.2" alt="Pro Mode" />
         </div>
       </div>
     </section>
@@ -598,7 +606,7 @@ function CTA({ lang }) {
           }}
         >
           <span className="br-dot" />
-          {lang === "jp" ? "ダウンロード v2.0.1" : "Download v2.0.1"}
+          {lang === "jp" ? "ダウンロード v2.0.2" : "Download v2.0.2"}
           <span className="arrow">↓</span>
         </a>
         <DownloadChip pluginId="ambience" lang={lang} />
@@ -611,7 +619,24 @@ function CTA({ lang }) {
 }
 
 function Changelog({ lang }) {
-  const [activeTab, setActiveTab] = React.useState("v2.0.1");
+  const [activeTab, setActiveTab] = React.useState("v2.0.2");
+
+  const v202Items = [
+    {
+      title: { jp: "安定性・堅牢性の向上", en: "Improved Robustness and Stability" },
+      desc: {
+        jp: "各種DAWセッションにおける動作の安定性と堅牢性を向上させました。",
+        en: "Enhanced overall stability and robustness across various DAW host environments."
+      }
+    },
+    {
+      title: { jp: "CPU最適化", en: "CPU Optimization" },
+      desc: {
+        jp: "内部DSP処理およびリソース消費を最適化し、CPU負荷を低減しました。",
+        en: "Optimized internal DSP calculations to minimize CPU load and resource utilization."
+      }
+    }
+  ];
 
   const v201BugFixes = [
     {
@@ -808,6 +833,22 @@ function Changelog({ lang }) {
       
       <div style={{ display: "flex", gap: "12px", marginBottom: "28px" }}>
         <button
+          onClick={() => setActiveTab("v2.0.2")}
+          style={{
+            padding: "8px 18px",
+            fontFamily: "var(--mono)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            border: activeTab === "v2.0.2" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
+            background: activeTab === "v2.0.2" ? "#ff8a3c22" : "transparent",
+            color: activeTab === "v2.0.2" ? "#ff8a3c" : "var(--dim)",
+            cursor: "pointer",
+            borderRadius: "4px"
+          }}
+        >
+          v2.0.2 (Latest)
+        </button>
+        <button
           onClick={() => setActiveTab("v2.0.1")}
           style={{
             padding: "8px 18px",
@@ -821,7 +862,7 @@ function Changelog({ lang }) {
             borderRadius: "4px"
           }}
         >
-          v2.0.1 (Latest)
+          v2.0.1
         </button>
         <button
           onClick={() => setActiveTab("v2.0.0")}
@@ -888,6 +929,29 @@ function Changelog({ lang }) {
           v1.2.0
         </button>
       </div>
+
+      {activeTab === "v2.0.2" && (
+        <div>
+          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
+            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v2.0.2</span> メンテナンスアップデート（安定性・堅牢性の向上・CPU最適化）</> : <>v2.0.2 <span style={{ color: "#ff8a3c" }}>Maintenance Update (Stability, Robustness & CPU Optimization)</span></>}
+          </h2>
+          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.09.17</p>
+
+          <div style={{ maxWidth: "800px", marginBottom: "40px" }}>
+            <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
+              🛠️ {lang === "jp" ? "アップデート内容" : "Update Details"}
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+              {v202Items.map((item, i) => (
+                <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
+                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
+                  <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
 
       {activeTab === "v2.0.1" && (
         <div>
@@ -1064,10 +1128,10 @@ function Changelog({ lang }) {
 }
 
 function App() {
-  const [lang] = useLang();
+  const [lang, setLang] = useLang();
   return (
     <div className="amb-root">
-      <AmbHero lang={lang} />
+      <AmbHero lang={lang} setLang={setLang} />
       <Pitch lang={lang} />
       <Numbers lang={lang} />
       <Engine lang={lang} />
