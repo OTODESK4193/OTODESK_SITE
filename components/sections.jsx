@@ -130,6 +130,8 @@ function Hero({ lang }) {
       name: "SPECTRA8",
       url: "spectra8.html",
       color: "#b76cff",
+      badge: "VST3 · RELEASED 2026.9.23",
+      status: "Released",
       copy: {
         jp: "革新的なVocoderが誕生！",
         en: "An Innovative Vocoder Is Born!"
@@ -268,8 +270,8 @@ function Hero({ lang }) {
 
             <p className="hero-teaser-sub">
               {lang === "jp"
-                ? "PicoSampler (2026.7.30 本日公開！) · SPECTRA8 · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグイン。順次公開中！"
-                : "PicoSampler (Released 2026.7.30!) · SPECTRA8 · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins releasing sequentially!"}
+                ? "PicoSampler (2026.7.30 公開) · SPECTRA8 (2026.9.23 本日公開！) · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグイン。順次公開中！"
+                : "PicoSampler (Released) · SPECTRA8 (Released 2026.9.23!) · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins releasing sequentially!"}
             </p>
 
             <div className="hero-actions">
@@ -949,6 +951,22 @@ function Featured({ lang, plugin }) {
 // =========================================================
 function NewsSection({ lang }) {
   var newsItems = [
+  {
+    id: "spectra8-v1-0-0",
+    badge: { jp: "VST3 · 9/23 リリース！", en: "VST3 · RELEASED 9/23" },
+    date: "2026.09.23",
+    title: { jp: "SPECTRA8 v1.0.0 本日リリース！", en: "SPECTRA8 v1.0.0 Released Today!" },
+    sub: { jp: "FilterBank ＆ LPC デュアルエンジン搭載ポリフォニックVocoder", en: "Dual Engine Polyphonic Vocoder with FilterBank & LPC" },
+    excerpt: {
+      jp: "本日2026/9/23にSPECTRA8 v1.0.0を公開！8ボイス・ポリフォニックCarrier、カスタムWavetable対応、6スロット/60宛先ModMatrix、10モデルADAAサチュレーターやMIDI追従レゾネーターを含む5スロットFXチェーン、150プリセットを搭載した革新的Vocoderが誕生しました！",
+      en: "SPECTRA8 v1.0.0 released on 2026/9/23! An innovative vocoder featuring an 8-voice polyphonic carrier with custom wavetable support, 60-destination ModMatrix, 5-slot FX chain with 10 ADAA saturation models & MIDI tracking resonator, and 150 factory presets!"
+    },
+    img: "assets/spectra8-thumbnail.jpg",
+    url: "spectra8.html",
+    accent: "#b76cff",
+    isNew: true,
+    comingSoon: false
+  },
   {
     id: "ambience-v2-0-2",
     badge: { jp: "VST3 · 9/17 UPDATE!", en: "VST3 · UPDATE 9/17" },

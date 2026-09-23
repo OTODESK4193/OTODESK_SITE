@@ -44,9 +44,14 @@
     .hero-desc { font-size: 16px; color: var(--dim2); max-width: 680px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
     
+    .btn-main { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #000; background: var(--accent); border: 1px solid var(--accent); transition: all 0.2s; cursor: pointer; text-decoration: none; }
+    .btn-main:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-dim); color: #000; }
     .btn-disabled { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--dim); background: rgba(255,255,255,0.03); border: 1px solid var(--rule); cursor: not-allowed; opacity: 0.6; pointer-events: none; }
     .btn-sub { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--mono); font-size: 13px; color: var(--dim2); border: 1px solid var(--rule); transition: all 0.2s; }
     .btn-sub:hover { color: var(--ink); border-color: var(--dim2); }
+
+    .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #0d0d12; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
     .hero-shot-main { border: 1px solid var(--rule); background: var(--bg2); border-radius: 4px; overflow: hidden; margin-top: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
 
@@ -110,7 +115,7 @@
   <header class="hero">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      VST3 · COMING SOON 2026
+      VST3 · RELEASED 2026.9.23
     </div>
     <h1 class="hero-title">SPECTRA8</h1>
     <div class="hero-copy">革新的なVocoderが誕生！</div>
@@ -119,12 +124,15 @@
     </p>
 
     <div class="hero-actions">
-      <span class="btn-disabled">
-        Download (Coming Soon)
-      </span>
-      <span class="btn-disabled">
-        GitHub Source (Private)
-      </span>
+      <a href="https://github.com/OTODESK4193/SPECTRA8/releases" target="_blank" rel="noreferrer" class="btn-main">
+        Download v1.0.0 (VST3) ↓
+      </a>
+      <a href="https://github.com/OTODESK4193/SPECTRA8" target="_blank" rel="noreferrer" class="btn-sub">
+        GitHub Source ↗
+      </a>
+      <a href="https://youtu.be/B6zf_JjsJb8" target="_blank" rel="noreferrer" class="btn-sub">
+        YouTube 紹介動画 ↗
+      </a>
       <a href="index.html#gallery" class="btn-sub">
         全プラグイン一覧を見る
       </a>
@@ -134,6 +142,22 @@
       <img src="screenshots/spectra8-vocoder.jpg" alt="SPECTRA8 Vocoder Interface" />
     </div>
   </header>
+
+  <hr class="divider" />
+
+  <!-- DEMO VIDEO -->
+  <section class="section">
+    <div class="section-eyebrow">// Demo Video</div>
+    <h2 class="section-h">紹介動画 (Introduction Video)</h2>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/B6zf_JjsJb8?rel=0&modestbranding=1"
+        title="SPECTRA8 Introduction Demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
 
   <hr class="divider" />
 
