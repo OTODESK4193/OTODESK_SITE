@@ -172,6 +172,8 @@ function Hero({ lang }) {
       name: "LIFT-X",
       url: "lift-x.html",
       color: "#ff8a3c",
+      badge: "VST3 · RELEASED 2026.10.4",
+      status: "Released",
       copy: {
         jp: "ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である",
         en: "A Riser is Not an Envelope — It is 41 Envelopes Moving Together"
@@ -270,8 +272,8 @@ function Hero({ lang }) {
 
             <p className="hero-teaser-sub">
               {lang === "jp"
-                ? "PicoSampler (2026.7.30 公開) · SPECTRA8 (2026.9.23 本日公開！) · Granular · LIFT-X · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグイン。順次公開中！"
-                : "PicoSampler (Released) · SPECTRA8 (Released 2026.9.23!) · Granular · LIFT-X · Wavetable —— Five next-generation creative plugins releasing sequentially!"}
+                ? "PicoSampler (2026.7.30 公開) · SPECTRA8 (2026.9.23 公開) · LIFT-X (2026.10.4 本日公開！) · Granular · Wavetable —— 次世代の音楽制作を刺激する5つの新しいプラグイン。順次公開中！"
+                : "PicoSampler (Released) · SPECTRA8 (Released) · LIFT-X (Released 2026.10.4!) · Granular · Wavetable —— Five next-generation creative plugins releasing sequentially!"}
             </p>
 
             <div className="hero-actions">
@@ -951,6 +953,22 @@ function Featured({ lang, plugin }) {
 // =========================================================
 function NewsSection({ lang }) {
   var newsItems = [
+  {
+    id: "lift-x-v1-0-1",
+    badge: { jp: "VST3 · 10/4 公開！", en: "VST3 · RELEASED 10/4" },
+    date: "2026.10.04",
+    title: { jp: "LIFT-X v1.0.1 本日公開！", en: "LIFT-X v1.0.1 Released Today!" },
+    sub: { jp: "ライザー特化型シンセサイザー — 41マルチENV ＆ REPEAT ×1-32", en: "Riser-Dedicated Synthesizer — 41 Multi-Point Envelopes & REPEAT x1-32" },
+    excerpt: {
+      jp: "本日2026/10/4にLIFT-X v1.0.1を公開！単一の進行軸（LIFT）に同期連動する41個の多点エンベロープ、カーブ単位のリピート（REPEAT ×1–32）、絶対ピッチ、70スケールクオンタイズ、Vowel/Combフィルター、Beat Stutter、134ファクトリープリセット、DAW直結WAVドラッグを搭載したライザー特化型シンセです！",
+      en: "LIFT-X v1.0.1 released on 2026/10/4! A dedicated riser synthesizer featuring 41 multi-point envelopes evaluated on a single playhead, REPEAT x1-32 per-curve LFO, absolute-pitch Start->End keys, 70-scale quantize, Vowel & Comb filters, Beat Stutter FX, 134 presets, and DAW WAV drag export!"
+    },
+    img: "assets/liftx-thumbnail.jpg",
+    url: "lift-x.html",
+    accent: "#ff8a3c",
+    isNew: true,
+    comingSoon: false
+  },
   {
     id: "spectra8-v1-0-0",
     badge: { jp: "VST3 · 9/23 リリース！", en: "VST3 · RELEASED 9/23" },
