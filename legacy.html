@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>LEGACY RELEASES // OTODESK DSP Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#5c4037",
+            "inverse-surface": "#2f3131",
+            "inverse-on-surface": "#f1f1f1",
+            "outline": "#907065",
+            "outline-variant": "#e5beb2",
+            "primary": "#a63500",
+            "on-primary": "#ffffff",
+            "primary-container": "#d04400",
+            "on-primary-container": "#fffbff",
+            "secondary": "#5f5e5e",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#e5e2e1",
+            "on-secondary-container": "#656464",
+            "tertiary": "#5c5c5c",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          borderRadius: {
+            DEFAULT: "0px",
+            sm: "0px",
+            md: "0px",
+            lg: "0px",
+            xl: "0px",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "margin": "1.5rem",
+            "margin-lg": "2.5rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary selection:text-on-primary">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high">
+    <div class="h-16 w-full px-gutter-lg flex items-center justify-between">
+      <div class="flex items-center gap-space-lg">
+        <a class="flex items-center gap-space-sm group" href="index.html">
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
+          <span class="font-headline-sm text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
+          <span class="font-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-semibold tracking-widest hidden sm:inline-block">DSP</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-space-xs">
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="index.html#plugins">Plugins</a>
+          <button onclick="openSoundModal()" class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+            Sound
+            <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+          </button>
+          <a class="font-label-lg uppercase px-space-md py-space-sm transition-colors bg-primary text-on-primary font-bold" href="legacy.html">Legacy</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">BLOG</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="about.html">ABOUT</a>
+        </nav>
+      </div>
+      <div>
+        <a href="index.html" class="font-label-sm uppercase px-space-md py-1.5 bg-on-surface text-surface hover:bg-primary transition-colors font-bold tracking-wider flex items-center gap-1">
+          <span>現行プラグイン一覧</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="w-full bg-surface min-h-screen pt-16">
+    <div class="flex flex-col w-full">
+
+      <!-- HEADER HERO SECTION -->
+      <div class="relative w-full overflow-hidden bg-surface-container-lowest border-b border-surface-container-high">
+        <!-- Ableton Subtle DAW Timeline Background Texture -->
+        <div class="absolute inset-0 pointer-events-none opacity-[0.06] select-none" style="background-image: url('assets/ableton-bg.jpg'); background-repeat: repeat; background-size: 1200px auto;"></div>
+        
+        <div class="relative px-gutter-lg pt-space-xl pb-space-lg max-w-7xl mx-auto flex flex-col gap-space-md">
+          <!-- Status Breadcrumb -->
+          <div class="flex items-center gap-space-sm font-label-md text-label-md text-primary tracking-widest uppercase">
+            <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            <span>ARCHIVE // DEPRECATED RELEASES</span>
+            <span class="text-tertiary">/</span>
+            <span class="text-secondary font-bold">VAULT 2023-2024</span>
+          </div>
+
+          <!-- Main Title & Description -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+            <div>
+              <h1 class="font-headline-xl text-3xl sm:text-5xl uppercase tracking-tight text-on-surface font-extrabold">
+                LEGACY RELEASES
+              </h1>
+              <p class="font-body-md text-body-md text-secondary mt-space-xs max-w-2xl leading-relaxed">
+                過去バージョン・開発終了プラグインの保管庫。最新OSでの積極的メンテナンスは終了していますが、全ソースコードとビルド済みバイナリをGitHubにてオープンソース（OSS / フリーウェア）として公開しています。
+              </p>
+            </div>
+            <!-- Quick Stat Module -->
+            <div class="flex items-center gap-space-xs bg-surface-container-low p-space-sm border border-surface-container flex-shrink-0">
+              <div class="flex flex-col px-space-sm">
+                <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED RELEASES</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface font-bold">12 PLUGINS</span>
+              </div>
+              <div class="w-px h-8 bg-surface-container-high"></div>
+              <div class="flex flex-col px-space-sm">
+                <span class="font-label-sm text-label-sm text-tertiary uppercase">DISTRIBUTION</span>
+                <span class="font-headline-sm text-headline-sm text-primary font-bold">PUBLIC / 0.00 USD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Matrix Bar (Ableton Transport Strip Style) -->
+          <div class="w-full bg-surface-container px-space-md py-space-xs flex flex-wrap items-center justify-between gap-space-sm font-label-md text-label-md border border-surface-container-high">
+            <div class="flex flex-wrap items-center gap-space-md text-on-surface">
+              <span class="bg-primary text-on-primary px-space-xs py-0.5 tracking-wider font-semibold">ARCHIVES</span>
+              <span class="text-secondary">REPO: github.com/OTODESK4193</span>
+              <span class="text-secondary">FORMAT: VST3 / WIN</span>
+              <span class="text-on-surface font-bold">100% FREE &amp; OPEN SOURCE</span>
+            </div>
+            <div class="flex items-center gap-space-md text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span>UNMAINTAINED // USE AT YOUR OWN RISK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER & SORT BAR -->
+      <div class="relative px-gutter-lg py-space-md bg-surface">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-xs border border-surface-container">
+          <div class="flex flex-wrap items-center gap-1" id="filter-buttons">
+            <button class="filter-btn active bg-on-surface text-surface font-label-md text-label-md px-space-sm py-1.5 uppercase transition-none font-bold" data-filter="all">
+              ALL ARCHIVES (12)
+            </button>
+            <button class="filter-btn bg-surface-container text-on-surface font-label-md text-label-md px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="synth">
+              SYNTH &amp; SAMPLER (3)
+            </button>
+            <button class="filter-btn bg-surface-container text-on-surface font-label-md text-label-md px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="dynamics">
+              DYNAMICS &amp; PRE (3)
+            </button>
+            <button class="filter-btn bg-surface-container text-on-surface font-label-md text-label-md px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="fx">
+              FILTER &amp; FX (2)
+            </button>
+            <button class="filter-btn bg-surface-container text-on-surface font-label-md text-label-md px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="utility">
+              UTILITY &amp; MIDI (4)
+            </button>
+          </div>
+          <div class="flex items-center gap-space-sm font-label-sm text-label-sm text-tertiary px-space-sm">
+            <span>SORT: CHRONOLOGICAL</span>
+            <span>●</span>
+            <span>STATUS: FROZEN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN PLUGIN ARCHIVE CATALOG GRID (12 PLUGINS) -->
+      <div class="relative px-gutter-lg pb-space-xl">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="plugin-grid">
+
+          <!-- Entry 01: LowCut Police (Dynamics) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="dynamics">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.2.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // UTILITY</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/LowCutPolice.jpg" alt="LowCut Police GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">LowCut Police</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                不要な超低域・DCオフセットを急峻にカットするリサーチグレード・ローカットフィルター。スピーカー保護とヘッドルームの最大化を支援。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">ZERO LATENCY</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="lowcut-police.html">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/LowCutPolice/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 02: BassSynth (Synth) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="synth">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2023]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // SYNTH</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/basssynth.jpg" alt="BassSynth GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">BassSynth</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                アナログモデリングによるファットなサブベース・ベースライン専用シンセサイザー。PolyBLEPオシレータとLadderフィルターを搭載。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">POLYBLEP</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=basssynth">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/BassSynth/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 03: NEOTO Pre (Dynamics) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="dynamics">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.2 // 2023]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // PREAMP</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/neoto-pre.jpg" alt="NEOTO Pre GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">NEOTO Pre</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                ヴィンテージ真空管プリアンプの倍音と暖かみを付加するサチュレーション・プロセッサー。繊細なカラーリングから力強いドライブまで。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">TUBE SAT</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=neoto-pre">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/NEOTO-Pre/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 04: LUMINA (Dynamics & Pre に移動) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="dynamics">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.1.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // DYNAMICS</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/lumina.jpg" alt="LUMINA GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">LUMINA</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                きらびやかな倍音と透明感のあるサウンドスケープを描くアンビエント・シンセサイザー。シマーリバーブと広大な音響空間。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">SHIMMER</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=lumina">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/LUMINA/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 05: NEXT GEN KICK (初代) (Synth) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="synth">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // KICK</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/next-gen-kick.jpg" alt="NEXT GEN KICK GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">NEXT GEN KICK (初代)</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                初代NEXT GEN KICK。高速エンベロープとピッチベンドによる先鋭的エレクトロニックキックジェネレーター。現行NextGenKick2の前身。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">ZERO LATENCY</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=next-gen-kick">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/NEXT-GEN-KICK/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 06: Otodesk Sampler (Synth/Sampler) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="synth">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v0.9.5 // 2023]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // SAMPLER</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/otodesk-sampler.jpg" alt="Otodesk Sampler GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">Otodesk Sampler</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                PicoSamplerの前身となった初期サンプラー。ドラッグ＆ドロップ再生と直感的な波形スライス機能を備えた原点。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">SLICER</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=otodesk-sampler">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/OtodeskSampler/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 07: GlitchNexus (FX) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="fx">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // FX</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/glitchnexus.jpg" alt="GlitchNexus GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">GlitchNexus</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                リアルタイム・バッファリピート、リバース、ビットクラッシュを連鎖させるグリッチFXプロセッサー。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">GLITCH/REPEAT</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=glitchnexus">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/GlitchNexus/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 08: Rhythm Matrix (Utility/MIDI) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="utility">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.1 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // SEQUENCER</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/rhythm-matrix.jpg" alt="Rhythm Matrix GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">Rhythm Matrix</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                ポリリズムや幾何学ユークリッドリズムを視覚的にプログラミングする多機能リズムシーケンサー・MIDIツール。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3 / MIDI</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">EUCLIDEAN</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=rhythm-matrix">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/RhythmMatrix/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 09: CHIMERA Filter (FX) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="fx">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // FILTER</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/chimera-filter.jpg" alt="CHIMERA Filter GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">CHIMERA Filter</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                多重レゾナンスと異形カーブを生成するハイブリッド・マルチモードフィルター。Quad Morph Filterの初期実験モデル。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">MULTI-RESONANCE</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=chimera-filter">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/CHIMERA-Filter/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 10: ChordMatrix (Utility/MIDI) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="utility">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // MIDI</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/chordmatrix.jpg" alt="ChordMatrix GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">ChordMatrix</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                1キーで多彩なボイシング・テンションコードを出力するコード進行支援MIDIツール。スケール・モード・反転配置に対応。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3 / MIDI</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">SMART VOICING</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=chordmatrix">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/ChordMatrix/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 11: BassLineMatrix (Utility/MIDI) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="utility">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // MIDI</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/basslinematrix.jpg" alt="BassLineMatrix GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">BassLineMatrix</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                アシッドベースやファンキーなベースラインを自動生成するアシスタントMIDIツール。スライド・アクセント・スケール固定。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3 / MIDI</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">ACID GENERATOR</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="plugin.html?id=basslinematrix">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/BassLineMatrix/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Entry 12: ScoreViewer (Utility) -->
+          <article class="plugin-card flex flex-col bg-surface-container-low p-space-md border border-surface-container transition-colors hover:bg-surface-container" data-category="utility">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-sm py-1">
+              <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider">[v1.0.0 // 2024]</span>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ARCHIVED // VIEWER</span>
+            </div>
+            <div class="bg-surface-container-lowest my-space-sm p-1 border border-surface-container h-44 overflow-hidden flex items-center justify-center">
+              <img src="screenshots/score-viewer.jpg" alt="ScoreViewer GUI" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex flex-col gap-space-xs flex-grow">
+              <div class="flex items-baseline justify-between">
+                <h2 class="font-headline-sm text-lg text-on-surface uppercase tracking-tight font-bold">ScoreViewer</h2>
+                <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5">LEGACY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-secondary line-clamp-3">
+                DAW再生と同期してMIDIノート・五線譜・コードネームをリアルタイム表示するスコアビューア。配信や学習に最適。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1 my-space-sm font-label-sm text-label-sm">
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">VST3 / MIDI</span>
+              <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5">WIN 10/11</span>
+              <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5">REALTIME SCORE</span>
+            </div>
+            <div class="flex items-center gap-space-xs pt-space-xs">
+              <a class="flex-1 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md py-2 uppercase text-center font-bold transition-none flex items-center justify-center gap-1" href="scoreviewer.html">
+                <span>詳細</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+              <a class="bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md px-3 py-2 uppercase text-center transition-none flex items-center gap-1" href="https://github.com/OTODESK4193/ScoreViewer/releases" target="_blank" rel="noopener noreferrer">
+                <span>DL</span>
+                <span class="material-symbols-outlined text-sm">download</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- TECHNICAL NOTE & SYSTEM NOTICE STRIP -->
+      <div class="px-gutter-lg pb-space-xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch justify-between gap-space-md bg-surface-container p-space-lg border border-surface-container-high">
+          <div class="flex items-start gap-space-md max-w-3xl">
+            <span class="material-symbols-outlined text-primary text-2xl select-none flex-shrink-0">warning</span>
+            <div class="flex flex-col gap-space-xs">
+              <div class="flex items-center gap-space-sm">
+                <span class="font-label-lg text-label-lg text-on-surface font-bold uppercase tracking-wider">SYSTEM NOTICE // DEPRECATION POLICY</span>
+                <span class="bg-surface-container-highest text-tertiary px-1.5 py-0.5 font-label-sm text-label-sm uppercase">END OF LIFE</span>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                レガシービルドは現在メンテナンスを終了しています。最新OSやDAW環境での動作保証はありません。現行のアクティブサポート対応モジュールは『PLUGINS』ページをご確認ください。
+              </p>
+              <div class="font-label-sm text-label-sm text-tertiary mt-1 flex flex-wrap items-center gap-space-md uppercase">
+                <span>NO ACTIVE WARRANTY</span>
+                <span>●</span>
+                <span>100% OPEN SOURCE ON GITHUB</span>
+                <span>●</span>
+                <span>BUILD AT YOUR OWN RISK</span>
+              </div>
+            </div>
+          </div>
+          <!-- Clean Return CTA Button -->
+          <div class="flex flex-col justify-center sm:items-end flex-shrink-0">
+            <a class="bg-primary text-on-primary hover:bg-on-surface font-label-lg text-label-lg px-space-lg py-3 uppercase tracking-wider font-bold transition-colors flex items-center justify-center gap-space-sm" href="index.html#plugins">
+              <span>現行プラグイン一覧を見る (PLUGINS)</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+            <span class="font-label-sm text-label-sm text-tertiary mt-space-xs uppercase text-right">RETURN TO CURRENT CATALOG</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.02)] border-t border-surface-container-high mt-space-xl">
+    <div class="w-full max-w-7xl mx-auto px-gutter-lg py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex items-center gap-space-md">
+        <img src="assets/circle-logo-white.png" alt="OTODESK Circular Logo" class="w-14 h-14 object-contain filter drop-shadow-sm flex-shrink-0" />
+        <div class="flex flex-col gap-space-xs text-left">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-headline-sm text-xl uppercase tracking-tight text-on-surface font-bold">OTODESK</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-secondary">I'm Playing Music On The Desk</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-center my-space-md md:my-0 flex-shrink-0">
+        <img src="assets/header-logo-white.png" alt="OTODESK Header Logo" class="h-10 md:h-12 w-auto object-contain" />
+      </div>
+      <div class="flex flex-col md:items-end gap-space-xs font-label-md text-label-md uppercase text-on-surface-variant text-center md:text-right">
+        <div class="flex items-center gap-space-md">
+          <span class="text-secondary">FORMATS: VST3 / Ableton Live</span>
+          <span class="text-on-surface font-bold">© 2026 OTODESK</span>
+        </div>
+        <span class="font-label-sm text-label-sm text-secondary">OPEN-SOURCE AUDIO DSP // ALL RIGHTS RESERVED</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SOUND MODAL -->
+  <div id="soundModal" class="fixed inset-0 z-50 flex items-center justify-center bg-on-surface/50 backdrop-blur-sm hidden">
+    <div class="bg-surface-container-lowest border border-surface-container-high p-space-xl max-w-md w-full mx-4 shadow-2xl flex flex-col gap-space-md">
+      <div class="flex items-center justify-between border-b border-surface-container-high pb-space-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary inline-block"></span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">SYSTEM NOTICE</span>
+        </div>
+        <button onclick="closeSoundModal()" class="text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-xl font-bold uppercase text-on-surface mb-2">SOUND // 準備中</h3>
+        <p class="font-body-md text-sm text-secondary leading-relaxed">
+          OTODESKの音楽ページは現在準備中です。<br />
+          開発者による楽曲や音響作品を公開予定です。お楽しみに！
+        </p>
+      </div>
+      <div class="pt-space-xs flex justify-end">
+        <button onclick="closeSoundModal()" class="px-space-lg py-2 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md uppercase font-bold transition-colors">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT FOR INSTANT FILTERING -->
+  <script>
+    function openSoundModal() {
+      document.getElementById('soundModal').classList.remove('hidden');
+    }
+    function closeSoundModal() {
+      document.getElementById('soundModal').classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.plugin-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+
+          // Update active button state
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-on-surface', 'text-surface', 'font-bold');
+            b.classList.add('bg-surface-container', 'text-on-surface');
+          });
+          btn.classList.add('bg-on-surface', 'text-surface', 'font-bold');
+          btn.classList.remove('bg-surface-container', 'text-on-surface');
+
+          // Filter card display
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

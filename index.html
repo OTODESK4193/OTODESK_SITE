@@ -1,89 +1,1161 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OTODESK_Official_Site | VST Plugins</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles/main.css" />
-</head>
-<body style="font-family: -apple-system; background-color: rgba(244, 172, 31, 0.184)">
-<div id="root"></div>
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-<script src="data/plugins.js?v=2.0.2"></script>
-<script type="text/babel" src="tweaks-panel.jsx?v=2.0.2"></script>
-<script type="text/babel" src="components/visual.jsx?v=2.0.2"></script>
-<script type="text/babel" src="components/counters.jsx?v=2.0.2"></script>
-<script type="text/babel" src="components/sections.jsx?v=2.0.2"></script>
-
-<script type="text/babel" data-presets="env,react">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "light",
-  "accent": "#ff5b35",
-  "lang": "jp"
-}/*EDITMODE-END*/;
-
-function App() {
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [lang, setLang] = React.useState(tweaks.lang);
-
-  React.useEffect(() => {
-    document.body.classList.toggle("theme-dark", tweaks.theme === "dark");
-    document.documentElement.style.setProperty("--accent", tweaks.accent);
-  }, [tweaks.theme, tweaks.accent]);
-
-  React.useEffect(() => {
-    setLang(tweaks.lang);
-  }, [tweaks.lang]);
-
-  const onSelect = (id) => {
-    const plugin = window.PLUGINS.find((p) => p.id === id);
-    if (plugin) {
-      window.location.href = plugin.featureUrl || ("plugin.html?id=" + id);
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>OTODESK // Precision DSP Audio Plugins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
     }
-  };
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#5c4037",
+            "inverse-surface": "#2f3131",
+            "inverse-on-surface": "#f1f1f1",
+            "outline": "#907065",
+            "outline-variant": "#e5beb2",
+            "primary": "#a63500",
+            "on-primary": "#ffffff",
+            "primary-container": "#d04400",
+            "on-primary-container": "#fffbff",
+            "secondary": "#5f5e5e",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#e5e2e1",
+            "on-secondary-container": "#656464",
+            "tertiary": "#5c5c5c",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          borderRadius: {
+            DEFAULT: "0px",
+            sm: "0px",
+            md: "0px",
+            lg: "0px",
+            xl: "0px",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "margin": "1.5rem",
+            "margin-lg": "2.5rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary selection:text-on-primary">
 
-  const updateLang = (l) => {
-    setLang(l);
-    setTweak("lang", l);
-  };
+  <!-- HEADER NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high">
+    <div class="h-16 w-full px-gutter-lg flex items-center justify-between">
+      <div class="flex items-center gap-space-lg">
+        <a class="flex items-center gap-space-sm group" href="index.html">
+          <!-- 白色ロゴ（外枠なし） -->
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
+          <span class="font-headline-sm text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
+          <span class="font-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-semibold tracking-widest hidden sm:inline-block">DSP</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-space-xs">
+          <a class="font-label-lg uppercase px-space-md py-space-sm transition-colors bg-primary text-on-primary font-bold" href="#plugins">Plugins</a>
+          <button onclick="openSoundModal()" class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+            Sound
+            <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+          </button>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="legacy.html">Legacy</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">BLOG</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="about.html">ABOUT</a>
+        </nav>
+      </div>
+      <div></div>
+    </div>
+  </header>
 
-  return (
-    <>
-      <Header lang={lang} setLang={updateLang} />
-      <main>
-        <Hero lang={lang} />
-        <NewsSection lang={lang} />
-        <PluginGallery lang={lang} />
-        <About lang={lang} />
-      </main>
-      <Footer lang={lang} />
+  <!-- MAIN WRAPPER -->
+  <main class="w-full pt-16 bg-surface min-h-screen">
+    <div class="flex flex-col w-full text-on-surface">
 
-      <TweaksPanel title="Tweaks">
-        <TweakSection label="Theme" />
-        <TweakRadio label="Mode" value={tweaks.theme}
-          options={["light","dark"]}
-          onChange={(v) => setTweak("theme", v)} />
-        <TweakSection label="Accent" />
-        <TweakColor label="Color" value={tweaks.accent}
-          options={["#00d4ff","#ff5b35","#c8ff00","#a78bfa","#ff3aa3"]}
-          onChange={(v) => setTweak("accent", v)} />
-        <TweakSection label="Language" />
-        <TweakRadio label="Lang" value={tweaks.lang}
-          options={["jp","en"]}
-          onChange={(v) => setTweak("lang", v)} />
-      </TweaksPanel>
-    </>
-  );
-}
+      <!-- FLOATING STICKY SIDEBAR INDEX (RIGHT FIXED) - 10 PLUGINS -->
+      <aside class="fixed right-3 md:right-8 top-1/2 -translate-y-1/2 z-40 transition-transform duration-300" id="suite-nav">
+        <div class="relative bg-surface-container-lowest/95 backdrop-blur-md shadow-xl border border-surface-container-high p-space-md w-64 hidden xl:flex flex-col gap-space-sm text-left">
+          <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary flex items-center gap-1.5 font-bold">
+              <span class="w-2 h-2 bg-primary inline-block"></span>
+              SYS//INDEX (10)
+            </span>
+            <span class="font-label-sm text-label-sm text-secondary">RACK v2.8</span>
+          </div>
+          <nav class="flex flex-col gap-0.5 text-left font-label-md text-label-md" id="sidebar-links">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-01" data-target="plugin-01">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">01</span> PicoSampler</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">SMP</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-02" data-target="plugin-02">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">02</span> SPECTRA8</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">VOC</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-03" data-target="plugin-03">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">03</span> Granular</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-04" data-target="plugin-04">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">04</span> LIFT-X</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">MST</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-05" data-target="plugin-05">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">05</span> Wavetable</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-06" data-target="plugin-06">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">06</span> NextGenKick2</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">KCK</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-07" data-target="plugin-07">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">07</span> Ambience</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">REV</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-08" data-target="plugin-08">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">08</span> QuadMorphFilter</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">FLT</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-09" data-target="plugin-09">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">09</span> Anatomy</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">TON</span>
+            </a>
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-10" data-target="plugin-10">
+              <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">10</span> MULTI-OTO</span>
+              <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">DYN</span>
+            </a>
+          </nav>
+          <div class="pt-space-xs border-t border-surface-container-high flex items-center justify-between text-secondary">
+            <span class="font-label-sm text-label-sm">ALL 10 SUITE</span>
+            <a class="font-label-sm text-label-sm text-primary font-bold hover:underline" href="legacy.html">ARCHIVE (12) →</a>
+          </div>
+        </div>
+        <!-- Mobile Toggle Button -->
+        <a class="xl:hidden flex items-center justify-center w-11 h-11 bg-primary text-on-primary shadow-lg font-headline-sm" href="#plugins" title="プラグイン一覧へ">
+          <span class="material-symbols-outlined text-xl">tune</span>
+        </a>
+      </aside>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-</script>
+      <!-- HERO SECTION WITH ABLETON ARRANGEMENT VIEW BACKGROUND (MORE VIVID & ZOOMED FOR CLEAR WAVEFORMS) -->
+      <section class="w-full max-w-7xl mx-auto px-gutter sm:px-gutter-lg pt-space-xl pb-space-xl flex flex-col items-center text-center relative overflow-hidden">
+        
+        <!-- Ableton Background Overlay (波形・クリップがはっきり見えるように拡大＆濃度UP) -->
+        <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+          <img src="assets/ableton-bg.jpg" 
+               class="w-full h-full object-cover object-[center_30%] scale-150 md:scale-135 opacity-75 filter contrast-115" 
+               alt="Ableton Arrangement View" />
+          <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(249, 249, 249, 0.4) 0%, rgba(249, 249, 249, 0.65) 55%, #f9f9f9 100%);"></div>
+          <div class="absolute inset-0 border-b border-surface-container-high"></div>
+        </div>
+
+        <!-- Top Emblem & Header Banner Grid (白ロゴを外枠なしで直接配置) -->
+        <div class="w-full flex flex-col md:flex-row items-center justify-center gap-space-lg mb-space-lg relative z-10">
+          <!-- 丸ロゴ白（黒枠なし） -->
+          <img alt="OTODESK Emblem" class="w-32 h-32 md:w-36 md:h-36 object-contain filter drop-shadow-sm transition-transform duration-500 hover:rotate-45 flex-shrink-0" src="assets/circle-logo-white.png" />
+          
+          <!-- ヘッダーロゴ白（黒枠なし） -->
+          <div class="max-w-xl text-left flex flex-col gap-space-xs">
+            <img alt="OTODESK Header Banner" class="w-full max-w-md h-auto object-contain filter drop-shadow-sm" src="assets/header-logo-white.png" />
+            <div class="flex items-center gap-2 text-xs font-label-sm text-secondary uppercase tracking-widest pl-1 font-semibold">
+              <span>DESIGNED BY OTODESK</span>
+              <span>•</span>
+              <span class="text-primary font-bold">PRECISION DSP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Headline & Catchphrase -->
+        <div class="max-w-4xl flex flex-col items-center gap-space-md relative z-10">
+          <h1 class="font-headline-xl text-3xl sm:text-5xl md:text-6xl uppercase tracking-tighter text-on-surface font-extrabold leading-tight drop-shadow-sm">
+            触れた瞬間、想像力を解き放つ。
+          </h1>
+          <p class="font-headline-sm text-sm sm:text-base md:text-lg uppercase tracking-wide text-primary font-bold drop-shadow-sm">
+            PRECISION DSP SUITE // ARCHITECTURAL SOUND DESIGN FOR FORWARD MUSICIANS.
+          </p>
+          <p class="font-body-md text-body-md text-secondary max-w-2xl leading-relaxed bg-surface/70 backdrop-blur-xs p-2 rounded-xs">
+            50近いオッサンが、AIを使い独学で辿り着いた創造の境地。<br class="hidden sm:inline" />
+            無駄な装飾を削ぎ落とし、あなたのイマジネーションを直感的に音へと変えるツールを作っています。
+          </p>
+
+          <!-- Quick Telemetry Bar -->
+          <div class="flex flex-wrap items-center justify-center gap-space-xs sm:gap-space-sm pt-space-sm font-label-md text-label-md uppercase text-secondary">
+            <div class="flex items-center gap-1.5 px-space-sm py-1 bg-surface-container/90 backdrop-blur-xs border border-surface-container-high shadow-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span>Ableton Live 動作確認済み</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-space-sm py-1 bg-surface-container/90 backdrop-blur-xs border border-surface-container-high shadow-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span>WINDOWS 11</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-space-sm py-1 bg-surface-container/90 backdrop-blur-xs border border-surface-container-high shadow-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span>VST3</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-space-sm py-1 bg-surface-container/90 backdrop-blur-xs border border-surface-container-high shadow-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span class="font-bold text-on-surface">100% FREE</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-space-sm py-1 bg-surface-container/90 backdrop-blur-xs border border-surface-container-high shadow-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span class="text-primary font-bold">100％自己責任</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- 10 PLUGINS EDITORIAL SUITE SHOWCASE -->
+      <!-- ======================================================== -->
+      <div id="gallery" class="scroll-mt-24"></div>
+      <div class="w-full max-w-7xl mx-auto px-gutter sm:px-gutter-lg flex flex-col gap-space-xl my-space-lg" id="plugins">
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 01: PicoSampler (Left Text, Right Visual) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-01">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Text Column -->
+            <div class="lg:col-span-6 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">01</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-01 // CREATIVE SAMPLER</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">PicoSampler</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">直感のサンプリング。サブピクセル単位の精密エディット。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                8つのSLOTに配置した音をランダム再生したり、スケールクオンタイズされたアルペジエイターを使って想像力を解放するクリエイティブ・サンプラー。49アンカーのSignalsmithタイムストレッチ、3モデルフィルター、16スロットModMatrix、5スロットFXラックを凝縮。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ENGINE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">8-Slot / 32-Voice</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">STRETCH</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">49 Anchors</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">QUANTIZE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">16 Scales ARP</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">FORMAT</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">WIN / VST3</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="picosampler.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/PicoSampler/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+            <!-- Visual Column (B案: スクリーンショットGUI) -->
+            <div class="lg:col-span-6 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  GUI TELEMETRY // 8-SLOT WAVEFORM MATRIX
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.1.0 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/picosampler-main.jpg" alt="PicoSampler Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>ZERO-CROSSING SNAP: 100,000x</span>
+                <span>FX: 5-SLOT DRAG RACK</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 02: SPECTRA8 (Alternate: Left Visual, Right Text) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-02">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Visual Column (Left) -->
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  SPECTRAL VOCAL SYNTHESIZER MATRIX
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.0.0 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/spectra8-vocoder.jpg" alt="SPECTRA8 Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>ANALYZER: 320-BAND CONST-Q</span>
+                <span>CARRIER: 8-VOICE POLYBLEP</span>
+              </div>
+            </div>
+            <!-- Text Column (Right) -->
+            <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">02</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-02 // POLYPHONIC VOCODER</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">SPECTRA8</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">革新のVocoder。Wavetable・スケールクオンタイズ搭載の変態仕様。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                8ボイスでコントロール可能なポリフォニックVocoder。基本波形のほかに任意のWavetableを使用可能。FilterBankとLPCの2種類を切り替え可能。ModMatrixやオートチューン（20スケール対応）も搭載し、声やドラムを異次元のシンセ音へと解体・再構築します。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ENGINES</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Filterbank / LPC</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">CARRIER</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">8-Voice Wavetable</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">AUTOTUNE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">20 Scales MPM</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ANALYZER</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">320-Band Const-Q</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="spectra8.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/SPECTRA8/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 03: Granular (未公開 / Coming Soon) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-03">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Text Column -->
+            <div class="lg:col-span-6 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">03</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-03 // GRANULAR SYNTHESIZER</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-space-sm mb-1">
+                  <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface font-bold">Granular</h2>
+                  <span class="px-2 py-0.5 bg-primary text-on-primary font-label-sm text-label-sm uppercase font-bold">COMING SOON</span>
+                </div>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">カオスと調和の実現。24ボイス・グラニュラー。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                好きなサンプルを粒状（グレイン）に分解して音を再構築する24ボイスのグラニュラー・シンセサイザー。ベースがPADになり、声がベースになる。P-SYNCピッチ同期発音と16スケール対応クオンタイザーが、カオスな粒子を調和のとれた音楽へと束ねます。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">VOICES</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">24v / 1200 Grains</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">SCALE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">16 Scales Quant</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">FIRING</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">P-SYNC Pitch Lock</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">STATUS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">COMING SOON</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="granular.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>プレビューを見る</span>
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                </a>
+                <button disabled class="px-space-lg py-space-sm bg-surface-container-high text-secondary cursor-not-allowed font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>COMING SOON</span>
+                  <span class="material-symbols-outlined text-sm">lock</span>
+                </button>
+              </div>
+            </div>
+            <!-- Visual Column (B案: スクリーンショットGUI) -->
+            <div class="lg:col-span-6 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  GRAIN CLUSTER // MULTI-VOICE DISPERSION
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">DEVELOPMENT BUILD</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/granular-main.jpg" alt="Granular Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>INTERPOLATION: HERMITE 4-POINT</span>
+                <span>TONE: COMB RESONATOR</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 04: LIFT-X (Alternate: Left Visual, Right Text) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-04">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Visual Column (Left) -->
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  41-CURVE MULTI-POINT ENVELOPE RIG
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.0.1 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/liftx-main.jpg" alt="LIFT-X Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>PRESETS: 134 MASTER RIGS</span>
+                <span>EXPORT: DIRECT DAW DRAG</span>
+              </div>
+            </div>
+            <!-- Text Column (Right) -->
+            <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">04</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-04 // RISER SYNTHESIZER</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">LIFT-X</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                1つの進行軸に41個の多点エンベロープカーブが同期連動するライザー特化型シンセサイザー。REPEAT ×1-32のLFO同期、絶対ピッチ指定（Start→End）、70スケール対応クオンタイズ、Vowel＆Combフィルター、Beat Stutter FXを網羅。完成したビルドアップはDAWへ直接WAVドラッグ書き出し可能。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ENVELOPES</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">41 Linked Curves</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">LFO REPEAT</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">x1 - x32 Synced</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">SCALES</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">70 Quantize Keys</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">FX RACK</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">Stutter / 10 ADAA</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="lift-x.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/LIFT-X/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 05: Wavetable (未公開 / Coming Soon) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-05">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Text Column -->
+            <div class="lg:col-span-6 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">05</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-05 // WAVETABLE SYNTHESIZER</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-space-sm mb-1">
+                  <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface font-bold">Wavetable</h2>
+                  <span class="px-2 py-0.5 bg-primary text-on-primary font-label-sm text-label-sm uppercase font-bold">COMING SOON</span>
+                </div>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">波形が語る、無限の音色進化。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                19モード対応の3段Morphスロットと数式波形生成器（Formula Generator）を搭載した次世代ウェーブテーブル・シンセサイザー。32ステップ幾何学ユークリッドリズムシーケンサー、直列/並列切り替え可能なデュアル9タイプフィルター、32ノードMSEG、IR音色エンジンを統合。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">OSCILLATOR</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">3-Morph / 19 Modes</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">SEQUENCER</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">32-Step Euclidean</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">MODULATION</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">2 MSEG (32 Nodes)</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">STATUS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">COMING SOON</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="wavetable.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>プレビューを見る</span>
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                </a>
+                <button disabled class="px-space-lg py-space-sm bg-surface-container-high text-secondary cursor-not-allowed font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>COMING SOON</span>
+                  <span class="material-symbols-outlined text-sm">lock</span>
+                </button>
+              </div>
+            </div>
+            <!-- Visual Column (B案: スクリーンショットGUI) -->
+            <div class="lg:col-span-6 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  FORMULA GENERATOR &amp; 3-STAGE MORPH
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">DEVELOPMENT BUILD</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/wavetable-main.jpg" alt="Wavetable Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>FILTERS: DUAL 9-TYPE SERIAL/PARALLEL</span>
+                <span>COLOR: 8-TYPE IR ENGINE</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 06: NextGenKick2 (Alternate: Left Visual, Right Text) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-06">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Visual Column (Left) -->
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  3-LAYER KICK ARCHITECTURE DISPLAY
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v2.0.0 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/NextGenKick2Main.jpg" alt="NEXT GEN KICK 2 Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>ANALYZER: 480-BAND HUD</span>
+                <span>EXPORT: DIRECT DAW DRAG</span>
+              </div>
+            </div>
+            <!-- Text Column (Right) -->
+            <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">06</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-06 // KICK SYNTHESIZER</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">NEXT GEN KICK 2</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">最強のキックシンセ降臨。AI対話7ヶ月のノウハウを凝縮した最高傑作。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                初代から7ヶ月、AIアシスト開発の全教訓を結晶させた究極のキック専用シンセ。Attack / Body / Subの3層レイヤー構造、多点ベジェエンベロープ、10種類のADAAサチュレーション、基音ピッチ自動検知の480バンド・スペクトラム・アナライザを搭載。ゼロレイテンシでどんなキックも自在に彫刻。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">LAYERS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Attack / Body / Sub</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ENVELOPE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Multi-Point Bezier</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ANALYZER</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">480-Band Pitch HUD</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">PRESETS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">70 Factory Rigs</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="next-gen-kick-2.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/NEXT-GEN-KICK-2/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 07: Ambience (Left Text, Right Visual) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-07">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Text Column -->
+            <div class="lg:col-span-6 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">07</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-07 // HYBRID ALGORITHMIC REVERB</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">Ambience</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">世界の名ホールを、16ch FDN &amp; SDN ハイブリッドに閉じ込めた。無料で。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                16チャンネルFDN（Feedback Delay Network）とSDN（空間分解ネットワーク）のハイブリッド音響アーキテクチャを核に据えたリサーチグレードのリバーブ。8種の空間アルゴリズム、104種のマスター校正済みプリセット、6つのPRO音響フィジカルコントロール、最大200秒の対数ディケイを無料提供。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">CHANNELS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">16-Ch FDN + SDN</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">ALGORITHMS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">8 Physical Models</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">DECAY TIME</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Log Up to 200s</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">PRESETS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">104 Master Rigs</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="ambience.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/Ambience/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+            <!-- Visual Column (B案: スクリーンショットGUI) -->
+            <div class="lg:col-span-6 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  2.5D ACOUSTIC SPACE MATRIX &amp; HUD
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v2.0.2 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/ambience.jpg" alt="Ambience Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>ACOUSTICS: D50 / C50 / C80 / EDT</span>
+                <span>DIFFUSION: ZERO-METALLIC</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 08: QuadMorphFilter (Alternate: Left Visual, Right Text) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-08">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Visual Column (Left) -->
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  4-WAY REALTIME XY MORPHING PAD
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.1.0 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/quad-morph-main.jpg" alt="Quad Morph Filter Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>OVERSAMPLE: 4X ADAA</span>
+                <span>MODULATION: 19 LFO WAVEFORMS</span>
+              </div>
+            </div>
+            <!-- Text Column (Right) -->
+            <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">08</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-08 // MORPHING FILTER</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">Quad Morph Filter</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">踊れ、フィルター！あらゆる空間周波数を支配する。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                v1.1.0大型アップデート！使いやすさと音質が向上し、200種類のファクトリープリセットを新搭載。FILTER / MOD / OUTのタブ構成へ全面刷新。Moog Ladder、TB-303、Z-Plane、Bodeを含む28種類のハンドクラフト・フィルターをXYパッドでリアルタイムにモーフィング。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">MODELS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">28 Handcrafted</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">CONTROL</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Realtime XY Morph</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">MODULATION</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">5 LFO Engines</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">PRESETS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">200 Patches</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="quad-morph.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/QuadMorphFilter/releases/" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 09: Anatomy (Left Text, Right Visual) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-09">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Text Column -->
+            <div class="lg:col-span-6 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">09</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-09 // TRANSIENT / TONAL SEPARATION</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">ANATOMY</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">2段カスケード OTT×2 搭載。サンプルを極限まで解剖・強化。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                数学的損失ゼロのcos²クロスフェードを用いたリアルタイム過渡音/音色分離エンジン。Transient、Tonal、Layer、Full Mixの4レーン構成に、MULTI-OTO直系の2段カスケードDual-Stage OTT×2ダイナミクス、4点エルミートGranularピッチシフター、独立6スロットFXチェーンを完全統合。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">SEPARATION</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Lossless cos² 4-Lane</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">DYNAMICS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Dual-Stage OTT x2</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">PITCH SHIFT</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Hermite Cubic</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">STEM EXPORT</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">Lock-Free WAV</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="anatomy.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/ANATOMY/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+            <!-- Visual Column (B案: スクリーンショットGUI) -->
+            <div class="lg:col-span-6 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  4-LANE DECONSTRUCTION &amp; OTTx2 TELEMETRY
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.2.0 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/anatomy.jpg" alt="ANATOMY Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>ZOOM: UP TO 32x WAVEFORM</span>
+                <span>LIMITER: IN-GAIN / DUAL MODE</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PLUGIN 10: MULTI-OTO (Alternate: Left Visual, Right Text) -->
+        <!-- ==================================================== -->
+        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            <!-- Visual Column (Left) -->
+            <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-primary inline-block"></span>
+                  3-BAND DYNAMICS &amp; UP/DOWN COMPRESSION
+                </span>
+                <span class="font-label-sm text-label-sm text-secondary">v1.0.3 // ACTIVE</span>
+              </div>
+              <div class="w-full bg-on-surface overflow-hidden border border-surface-container-high group relative">
+                <img src="screenshots/multi-oto.jpg" alt="MULTI-OTO Interface" class="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div class="flex justify-between font-label-sm text-label-sm text-secondary pt-1">
+                <span>SPLIT: LINKWITZ-RILEY 4TH ORDER</span>
+                <span>DRIVE: INDEPENDENT SATURATION</span>
+              </div>
+            </div>
+            <!-- Text Column (Right) -->
+            <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col gap-space-md">
+              <div class="flex items-baseline gap-space-md">
+                <span class="font-headline-xl text-5xl text-primary font-bold select-none leading-none">10</span>
+                <span class="font-label-md text-label-md uppercase tracking-widest text-secondary">SL-10 // MULTIBAND COMP &amp; SAT</span>
+              </div>
+              <div>
+                <h2 class="font-headline-lg text-3xl md:text-4xl uppercase tracking-tight text-on-surface mb-space-xs font-bold">MULTI-OTO</h2>
+                <p class="font-headline-sm text-base md:text-lg text-primary font-bold">3バンド・マルチバンド・ダイナミクス。OTTの真価を解放する。</p>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                低・中・高の3帯域を独立コントロールするマルチバンド・コンプレッション＆サチュレーション。上方向・下方向のデュアルコンプレッションで音圧と迫力を極限まで高め、ANATOMYのダイナミクスエンジンの礎となったプラグイン。
+              </p>
+              <!-- Metadata Specs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs py-space-sm border-t border-b border-surface-container text-left">
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">BANDS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">3-Band Split (LR 4th)</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">DYNAMICS</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Up / Down Dual Comp</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">DRIVE</span>
+                  <span class="font-body-sm text-body-sm font-bold text-on-surface">Per-Band ADAA</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-secondary block">FORMAT</span>
+                  <span class="font-body-sm text-body-sm font-bold text-primary">WIN / VST3</span>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                <a href="plugin.html?id=multi-oto" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>詳細を見る</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/MULTI-OTO/releases" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+                  <span>DL (GITHUB)</span>
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- LEGACY ARCHIVE BANNER / LINK -->
+      <!-- ======================================================== -->
+      <section class="w-full max-w-7xl mx-auto px-gutter sm:px-gutter-lg my-space-lg">
+        <div class="bg-surface-container p-space-lg md:p-space-xl border border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-lg">
+          <div class="flex flex-col gap-space-xs max-w-2xl text-left">
+            <div class="flex items-center gap-2 font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">
+              <span class="w-2 h-2 bg-primary inline-block"></span>
+              ARCHIVE // 12 DEPRECATED &amp; EARLY RELEASES
+            </div>
+            <h3 class="font-headline-md text-2xl font-bold uppercase tracking-tight text-on-surface">
+              過去の全プラグインは「Legacy」ページで保管中
+            </h3>
+            <p class="font-body-md text-body-md text-secondary leading-relaxed">
+              LowCut Police、BassSynth、NEOTO Pre、LUMINA、初代NEXT GEN KICK、Otodesk Samplerなど、過去に開発した12個のプラグインは全ソースコード・ビルドと共にアーカイブされています。
+            </p>
+          </div>
+          <a href="legacy.html" class="px-space-xl py-space-md bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2 flex-shrink-0">
+            <span>Legacy アーカイブを見る</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- MISSION STATEMENT & CAUTION SECTION -->
+      <!-- ======================================================== -->
+      <section class="w-full max-w-7xl mx-auto px-gutter sm:px-gutter-lg my-space-xl" id="about">
+        <div class="bg-on-surface text-surface p-space-lg sm:p-space-xl shadow-xl flex flex-col gap-space-xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-primary/20 pointer-events-none filter blur-3xl"></div>
+          
+          <div class="flex flex-col lg:flex-row items-start justify-between gap-space-xl z-10">
+            <div class="flex flex-col gap-space-md max-w-3xl text-left">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-0.5 font-bold tracking-wider">ALL FREE</span>
+                <span class="font-label-sm text-label-sm uppercase bg-surface/10 text-surface px-space-sm py-0.5 border border-surface/20 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>Ableton Live 動作確認済み
+                </span>
+                <span class="font-label-sm text-label-sm text-surface-dim uppercase">MISSION STATEMENT</span>
+              </div>
+              <h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl tracking-tight text-surface leading-tight font-bold">
+                OTODESKはDTMerに寄り添い、クリエイティブを加速させるツールを無料で提供します。
+              </h2>
+              <p class="font-headline-sm text-sm sm:text-base text-primary font-bold tracking-wide uppercase">
+                OTODESK STANDS WITH MUSIC CREATORS — ACCELERATING PURE CREATIVITY, COMPLETELY FREE.
+              </p>
+              <p class="font-body-md text-body-md text-surface-dim leading-relaxed">
+                営利目的ではなく、音響物理学と数学的探求への純粋な情熱から生まれたDSPコレクション。プラグインは全てオープンかつ無償で利用可能。サブスクリプションも課金ロックも存在しません。制作の衝動を遮る障害を取り払い、あなたのイマジネーションを直接スピーカーへと解き放ちます。
+              </p>
+              <div class="flex flex-wrap gap-space-xs pt-space-xs text-xs font-label-sm text-surface-dim">
+                <span class="px-2 py-1 bg-surface/10">01 PicoSampler</span>
+                <span class="px-2 py-1 bg-surface/10">02 SPECTRA8</span>
+                <span class="px-2 py-1 bg-surface/10">03 Granular</span>
+                <span class="px-2 py-1 bg-surface/10">04 LIFT-X</span>
+                <span class="px-2 py-1 bg-surface/10">05 Wavetable</span>
+                <span class="px-2 py-1 bg-surface/10">06 NextGenKick2</span>
+                <span class="px-2 py-1 bg-surface/10">07 Ambience</span>
+                <span class="px-2 py-1 bg-surface/10">08 QuadMorphFilter</span>
+                <span class="px-2 py-1 bg-surface/10">09 Anatomy</span>
+                <span class="px-2 py-1 bg-surface/10">10 MULTI-OTO</span>
+              </div>
+            </div>
+
+            <!-- Free Badge & About Action -->
+            <div class="flex flex-col items-start lg:items-end gap-space-md text-left lg:text-right flex-shrink-0 z-10 w-full lg:w-auto">
+              <div class="flex flex-col items-start lg:items-end">
+                <span class="font-label-sm text-label-sm text-surface-dim uppercase tracking-wider">LICENSE STATUS</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-headline-xl text-5xl text-primary font-bold leading-none">¥0</span>
+                  <span class="font-label-lg text-label-lg text-surface uppercase font-bold">FREEWARE / OSS</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-surface-dim mt-1">NO SUBSCRIPTIONS // 100% OPEN &amp; FREE</span>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-space-sm w-full lg:w-auto">
+                <a href="about.html" class="px-space-lg py-space-sm bg-surface text-on-surface hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg uppercase font-bold text-center flex items-center justify-center gap-2">
+                  <span>開発者について (ABOUT)</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193" target="_blank" rel="noopener noreferrer" class="px-space-lg py-space-sm bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-label-lg uppercase font-bold text-center flex items-center justify-center gap-2">
+                  <span>GITHUB リポジトリ</span>
+                  <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Disclaimer / 免責事項 -->
+          <div class="w-full border-t border-surface/20 pt-space-md z-10 flex flex-col gap-space-xs font-label-sm text-label-sm" id="bundle">
+            <div class="flex items-center gap-2 text-primary font-bold tracking-wider uppercase">
+              <span class="material-symbols-outlined text-lg leading-none">warning</span>
+              <span>CAUTION // 免責事項 // DISCLAIMER</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md text-surface-dim font-body-sm leading-relaxed">
+              <p class="border-l border-primary/40 pl-space-xs">
+                スピーカーや耳（聴覚）の保護のため、Masterトラックには必ずリミッター（Limiter）をご使用ください。本サイトで提供されるプラグインの使用によって生じた聴覚障害、機材の破損、データ損失等のあらゆる損害に関して、作者およびOTODESKは一切の責任を負いません。
+              </p>
+              <p class="border-l border-surface/20 pl-space-xs">
+                CAUTION &amp; DISCLAIMER: To protect your hearing and audio monitoring equipment, always insert a limiter on your master output. The creators and OTODESK assume no liability or responsibility for any direct or indirect damage, equipment failure, hearing injury, or data loss arising from the use of these plugins. Use at your own risk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER (ロゴ外枠なしで直接配置) -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.02)] border-t border-surface-container-high mt-space-xl">
+    <div class="w-full max-w-7xl mx-auto px-gutter-lg py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex items-center gap-space-md">
+        <!-- 丸ロゴ白（外枠なし） -->
+        <img src="assets/circle-logo-white.png" alt="OTODESK Circular Logo" class="w-14 h-14 object-contain filter drop-shadow-sm flex-shrink-0" />
+        <div class="flex flex-col gap-space-xs text-left">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-headline-sm text-xl uppercase tracking-tight text-on-surface font-bold">OTODESK</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-secondary">I'm Playing Music On The Desk</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-center my-space-md md:my-0 flex-shrink-0">
+        <!-- ヘッダーロゴ白（外枠なし） -->
+        <img src="assets/header-logo-white.png" alt="OTODESK Header Logo" class="h-12 md:h-14 w-auto object-contain" />
+      </div>
+      <div class="flex flex-col md:items-end gap-space-xs font-label-md text-label-md uppercase text-on-surface-variant text-center md:text-right">
+        <div class="flex items-center gap-space-md">
+          <span class="text-secondary">FORMATS: VST3 / Ableton Live</span>
+          <span class="text-on-surface font-bold">© 2026 OTODESK</span>
+        </div>
+        <span class="font-label-sm text-label-sm text-secondary">OPEN-SOURCE AUDIO DSP // ALL RIGHTS RESERVED</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SOUND MODAL (音楽ページ準備中) -->
+  <div id="soundModal" class="fixed inset-0 z-50 flex items-center justify-center bg-on-surface/50 backdrop-blur-sm hidden">
+    <div class="bg-surface-container-lowest border border-surface-container-high p-space-xl max-w-md w-full mx-4 shadow-2xl flex flex-col gap-space-md">
+      <div class="flex items-center justify-between border-b border-surface-container-high pb-space-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary inline-block"></span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">SYSTEM NOTICE</span>
+        </div>
+        <button onclick="closeSoundModal()" class="text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-xl font-bold uppercase text-on-surface mb-2">SOUND // 準備中</h3>
+        <p class="font-body-md text-sm text-secondary leading-relaxed">
+          OTODESKの音楽ページは現在準備中です。<br />
+          開発者による楽曲や音響作品を公開予定です。お楽しみに！
+        </p>
+      </div>
+      <div class="pt-space-xs flex justify-end">
+        <button onclick="closeSoundModal()" class="px-space-lg py-2 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md uppercase font-bold transition-colors">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT FOR SIDEBAR SYNC & MODALS -->
+  <script>
+    function openSoundModal() {
+      document.getElementById('soundModal').classList.remove('hidden');
+    }
+    function closeSoundModal() {
+      document.getElementById('soundModal').classList.add('hidden');
+    }
+
+    // Floating Sidebar Active Sync (10 plugins)
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      const sections = Array.from(sidebarItems).map(item => {
+        const id = item.getAttribute('data-target');
+        return document.getElementById(id);
+      }).filter(Boolean);
+
+      function updateActiveSidebar() {
+        const scrollPos = window.scrollY + 250;
+        let activeIndex = 0;
+
+        sections.forEach((sec, idx) => {
+          if (sec.offsetTop <= scrollPos) {
+            activeIndex = idx;
+          }
+        });
+
+        sidebarItems.forEach((item, idx) => {
+          if (idx === activeIndex) {
+            item.classList.add('bg-surface-container', 'text-primary', 'font-bold', 'border-l-2', 'border-primary');
+          } else {
+            item.classList.remove('bg-surface-container', 'text-primary', 'font-bold', 'border-l-2', 'border-primary');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveSidebar);
+      updateActiveSidebar();
+    });
+  </script>
 </body>
 </html>

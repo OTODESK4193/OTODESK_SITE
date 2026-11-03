@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>ABOUT // OTODESK DSP Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#5c4037",
+            "inverse-surface": "#2f3131",
+            "inverse-on-surface": "#f1f1f1",
+            "outline": "#907065",
+            "outline-variant": "#e5beb2",
+            "primary": "#a63500",
+            "on-primary": "#ffffff",
+            "primary-container": "#d04400",
+            "on-primary-container": "#fffbff",
+            "secondary": "#5f5e5e",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#e5e2e1",
+            "on-secondary-container": "#656464",
+            "tertiary": "#5c5c5c",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          borderRadius: {
+            DEFAULT: "0px",
+            sm: "0px",
+            md: "0px",
+            lg: "0px",
+            xl: "0px",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "margin": "1.5rem",
+            "margin-lg": "2.5rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary selection:text-on-primary">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high">
+    <div class="h-16 w-full px-gutter-lg flex items-center justify-between">
+      <div class="flex items-center gap-space-lg">
+        <a class="flex items-center gap-space-sm group" href="index.html">
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
+          <span class="font-headline-sm text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
+          <span class="font-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-semibold tracking-widest hidden sm:inline-block">DSP</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-space-xs">
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="index.html#plugins">Plugins</a>
+          <button onclick="openSoundModal()" class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+            Sound
+            <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+          </button>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="legacy.html">Legacy</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">BLOG</a>
+          <a class="font-label-lg uppercase px-space-md py-space-sm transition-colors bg-primary text-on-primary font-bold" href="about.html">ABOUT</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="w-full bg-surface min-h-screen pt-24 pb-space-xl">
+    <div class="max-w-4xl mx-auto px-gutter sm:px-gutter-lg flex flex-col gap-space-xl">
+
+      <!-- Breadcrumb & Header -->
+      <div class="flex flex-col gap-space-xs border-b border-surface-container-high pb-space-lg">
+        <div class="flex items-center gap-space-sm font-label-md text-label-md text-primary tracking-widest uppercase font-bold">
+          <span class="w-2 h-2 bg-primary inline-block"></span>
+          <span>MANIFESTO // THE CREATOR</span>
+        </div>
+        <h1 class="font-headline-xl text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-on-surface">
+          ABOUT OTODESK
+        </h1>
+        <p class="font-body-md text-sm text-secondary uppercase font-semibold">
+          市販プラグインは物足りない。だから自分で作っただけ。
+        </p>
+      </div>
+
+      <!-- Developer Story Article -->
+      <article class="bg-surface-container-lowest p-space-lg sm:p-space-xl border border-surface-container-high shadow-sm flex flex-col gap-space-lg">
+        
+        <div class="flex items-center gap-space-md pb-space-md border-b border-surface-container">
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-16 h-16 object-contain flex-shrink-0" />
+          <div class="flex flex-col">
+            <span class="font-headline-md text-xl font-bold uppercase tracking-tight text-on-surface">OTODESK DSP PROJECT</span>
+            <span class="font-label-sm text-secondary">ARCHITECTURAL SOUND DESIGN FOR FORWARD MUSICIANS</span>
+          </div>
+        </div>
+
+        <div class="space-y-6 text-on-surface font-body-md text-base leading-relaxed">
+          <p class="text-lg font-semibold border-l-4 border-primary pl-4 text-on-surface">
+            OTODESK は、一人の音楽プロデューサーが、自身の制作のためだけに立ち上げた DSP プロジェクトです。
+          </p>
+          <p>
+            公開しているすべてのプラグインは、デモやコンセプトではなく、実際の楽曲制作の現場で「足りない」と感じた瞬間から逆算して設計され、繰り返し使い倒した上でリリースしています。
+          </p>
+          <p>
+            開発者は音響工学の専門教育を受けたエンジニアではありません。サラリーマンとして働き、家庭では子の良き父であり、ただ音楽が好きな一個人です。<strong class="text-primary font-bold">耳を頼りに、AI を壁打ち相手に</strong>、Gemini や Claude と対話を重ねながら、JUCE のドキュメント、DSP の論文、プロエンジニアのブログを読み込み、難解な専門用語を一つずつ自分の言葉に翻訳して、設計と実装を進めてきました。
+          </p>
+          <p>
+            ビルドエラーは、もはや数えていません。それでも諦めなかったのは、頭の中で鳴っている音を、誰かが作ってくれるのを待っていられなかったから。<strong class="text-primary font-bold">執念だけは、誰にも負けない自信があります。</strong>
+          </p>
+          <p>
+            バグの報告や機能のリクエスト、感想は、GitHub Issues か X (旧 Twitter) までお気軽にどうぞ。ご連絡いただけると、開発者は素直に喜びます。
+          </p>
+          <div class="bg-surface-container-low p-space-md border border-surface-container text-sm text-secondary">
+            <span class="text-primary font-bold">＊</span> 誰にも再生されていない自作曲を、YouTube で公開しています。再生やコメントをいただけると、犬のように「ワンっ」と吠えて喜びます。
+          </div>
+        </div>
+
+        <!-- Social & Community Links -->
+        <div class="pt-space-md border-t border-surface-container flex flex-wrap items-center gap-space-sm font-label-md text-label-md">
+          <a href="https://github.com/OTODESK4193" target="_blank" rel="noopener noreferrer" class="px-space-md py-2 bg-on-surface text-surface hover:bg-primary font-bold uppercase transition-colors flex items-center gap-2">
+            <span>GITHUB (OTODESK4193)</span>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+          <a href="https://x.com/kijyoumusic" target="_blank" rel="noopener noreferrer" class="px-space-md py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-bold uppercase transition-colors flex items-center gap-2">
+            <span>X (旧 Twitter)</span>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+          <a href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer" class="px-space-md py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-bold uppercase transition-colors flex items-center gap-2">
+            <span>NOTE</span>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+          <a href="https://www.youtube.com/@OTODESK" target="_blank" rel="noopener noreferrer" class="px-space-md py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-bold uppercase transition-colors flex items-center gap-2">
+            <span>YOUTUBE</span>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Return Button -->
+      <div class="flex justify-start">
+        <a href="index.html" class="px-space-lg py-space-sm bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-label-lg uppercase font-bold flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>トップページへ戻る</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.02)] border-t border-surface-container-high mt-space-xl">
+    <div class="w-full max-w-7xl mx-auto px-gutter-lg py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex items-center gap-space-md">
+        <img src="assets/circle-logo-white.png" alt="OTODESK Circular Logo" class="w-14 h-14 object-contain filter drop-shadow-sm flex-shrink-0" />
+        <div class="flex flex-col gap-space-xs text-left">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-headline-sm text-xl uppercase tracking-tight text-on-surface font-bold">OTODESK</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-secondary">I'm Playing Music On The Desk</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-center my-space-md md:my-0 flex-shrink-0">
+        <img src="assets/header-logo-white.png" alt="OTODESK Header Logo" class="h-10 md:h-12 w-auto object-contain" />
+      </div>
+      <div class="flex flex-col md:items-end gap-space-xs font-label-md text-label-md uppercase text-on-surface-variant text-center md:text-right">
+        <div class="flex items-center gap-space-md">
+          <span class="text-secondary">FORMATS: VST3 / Ableton Live</span>
+          <span class="text-on-surface font-bold">© 2026 OTODESK</span>
+        </div>
+        <span class="font-label-sm text-label-sm text-secondary">OPEN-SOURCE AUDIO DSP // ALL RIGHTS RESERVED</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SOUND MODAL -->
+  <div id="soundModal" class="fixed inset-0 z-50 flex items-center justify-center bg-on-surface/50 backdrop-blur-sm hidden">
+    <div class="bg-surface-container-lowest border border-surface-container-high p-space-xl max-w-md w-full mx-4 shadow-2xl flex flex-col gap-space-md">
+      <div class="flex items-center justify-between border-b border-surface-container-high pb-space-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary inline-block"></span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">SYSTEM NOTICE</span>
+        </div>
+        <button onclick="closeSoundModal()" class="text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-xl font-bold uppercase text-on-surface mb-2">SOUND // 準備中</h3>
+        <p class="font-body-md text-sm text-secondary leading-relaxed">
+          OTODESKの音楽ページは現在準備中です。<br />
+          開発者による楽曲や音響作品を公開予定です。お楽しみに！
+        </p>
+      </div>
+      <div class="pt-space-xs flex justify-end">
+        <button onclick="closeSoundModal()" class="px-space-lg py-2 bg-on-surface text-surface hover:bg-primary font-label-md text-label-md uppercase font-bold transition-colors">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openSoundModal() {
+      document.getElementById('soundModal').classList.remove('hidden');
+    }
+    function closeSoundModal() {
+      document.getElementById('soundModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
