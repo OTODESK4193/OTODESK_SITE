@@ -114,7 +114,24 @@
           <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="about.html">ABOUT</a>
         </nav>
       </div>
-      <div></div>
+      <!-- DIGITAL HARDWARE VISITOR COUNTER -->
+      <div class="flex items-center">
+        <div class="h-12 px-3 bg-[#111315] border border-[#2b2e34] shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] flex flex-col justify-center items-end select-none min-w-[130px]">
+          <div class="flex items-center justify-between w-full gap-2 border-b border-[#22252a] pb-0.5 mb-0.5">
+            <span class="text-[8px] font-mono tracking-widest text-[#888] uppercase flex items-center gap-1 font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary inline-block animate-pulse"></span>
+              VISITORS
+            </span>
+            <span class="text-[8px] font-mono text-[#555] tracking-widest">DSP.SYS</span>
+          </div>
+          <div class="relative flex items-center justify-end w-full">
+            <!-- 7セグメント風ゴースト文字（888888） -->
+            <span class="font-mono text-xl sm:text-2xl font-bold tracking-[0.18em] text-[#22262c] select-none absolute right-0 pointer-events-none">888888</span>
+            <!-- 実際のデジタル数値 -->
+            <span id="visitor-counter" class="font-mono text-xl sm:text-2xl font-bold tracking-[0.18em] text-primary drop-shadow-[0_0_8px_rgba(255,85,0,0.4)] z-10">008430</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -1156,6 +1173,58 @@
       window.addEventListener('scroll', updateActiveSidebar);
       updateActiveSidebar();
     });
+
+    // DIGITAL VISITOR COUNTER INITIALIZATION & ROLL-UP
+    (async function initVisitorCounter() {
+      const el = document.getElementById('visitor-counter');
+      if (!el) return;
+      const NAMESPACE = "otodesk4193";
+      const KEY = "visits";
+      const SESSION_KEY = "otodesk_visit_v1";
+
+      let fallbackVal = parseInt(localStorage.getItem('otodesk_last_visits') || '8430', 10);
+
+      function animateRoll(start, end, duration = 850) {
+        if (start === end) {
+          el.textContent = String(end).padStart(6, '0');
+          return;
+        }
+        const startTime = performance.now();
+        function update(now) {
+          const p = Math.min(1, (now - startTime) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const current = Math.round(start + (end - start) * eased);
+          el.textContent = String(current).padStart(6, '0');
+          if (p < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+        requestAnimationFrame(update);
+      }
+
+      // 初期値で速やかに表示
+      el.textContent = String(fallbackVal).padStart(6, '0');
+
+      try {
+        const alreadyCounted = sessionStorage.getItem(SESSION_KEY) === "1";
+        const endpoint = alreadyCounted 
+          ? `https://abacus.jasoncameron.dev/get/${NAMESPACE}/${KEY}`
+          : `https://abacus.jasoncameron.dev/hit/${NAMESPACE}/${KEY}`;
+
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        if (data && typeof data.value === 'number') {
+          const realCount = data.value;
+          localStorage.setItem('otodesk_last_visits', String(realCount));
+          if (!alreadyCounted) {
+            sessionStorage.setItem(SESSION_KEY, "1");
+          }
+          animateRoll(fallbackVal > realCount ? realCount : fallbackVal, realCount);
+        }
+      } catch (err) {
+        console.warn("Visitor counter API offline, using cached count", err);
+      }
+    })();
   </script>
 </body>
 </html>
