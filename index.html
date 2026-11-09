@@ -95,12 +95,12 @@
 
   <!-- HEADER NAVIGATION -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high">
-    <div class="h-16 w-full px-gutter-lg flex items-center justify-between">
-      <div class="flex items-center gap-space-lg">
-        <a class="flex items-center gap-space-sm group" href="index.html">
+    <div class="h-16 w-full px-3 sm:px-gutter-lg flex items-center justify-between">
+      <div class="flex items-center gap-space-sm sm:gap-space-lg">
+        <a class="flex items-center gap-1.5 sm:gap-space-sm group flex-shrink-0" href="index.html">
           <!-- 白色ロゴ（外枠なし） -->
-          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
-          <span class="font-headline-sm text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
+          <span class="font-headline-sm text-base sm:text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
           <span class="font-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-semibold tracking-widest hidden sm:inline-block">DSP</span>
         </a>
         <nav class="hidden md:flex items-center gap-space-xs">
@@ -114,18 +114,49 @@
           <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="about.html">ABOUT</a>
         </nav>
       </div>
-      <!-- SWISS CLEAN CARD VISITOR COUNTER -->
-      <div class="flex items-center">
-        <div class="inline-flex items-center border-2 border-black px-3 py-1 bg-white select-none shadow-xs">
-          <div class="border-r border-neutral-300 pr-3 text-left leading-tight">
-            <div class="text-[8px] font-bold text-neutral-400 tracking-widest uppercase">MONITOR</div>
-            <div class="text-[10px] font-black text-black tracking-wider uppercase font-sans">VISITOR COUNT</div>
+
+      <!-- RIGHT WIDGETS: SWISS CLEAN CARD & MOBILE MENU BUTTON -->
+      <div class="flex items-center gap-2">
+        <!-- SWISS CLEAN CARD VISITOR COUNTER (COMPACT ON MOBILE TO PREVENT OVERLAP) -->
+        <div class="inline-flex items-center border-2 border-black px-1.5 sm:px-3 py-0.5 sm:py-1 bg-white select-none shadow-xs">
+          <div class="border-r border-neutral-300 pr-1.5 sm:pr-3 text-left leading-tight">
+            <div class="text-[7px] sm:text-[8px] font-bold text-neutral-400 tracking-widest uppercase">MONITOR</div>
+            <div class="text-[9px] sm:text-[10px] font-black text-black tracking-wider uppercase font-sans whitespace-nowrap">VISITOR COUNT</div>
           </div>
-          <div class="pl-3 font-mono text-lg sm:text-xl font-bold tracking-[0.18em] text-black" id="visitor-counter">
+          <div class="pl-1.5 sm:pl-3 font-mono text-xs sm:text-xl font-bold tracking-[0.08em] sm:tracking-[0.18em] text-black" id="visitor-counter">
             00008430
           </div>
         </div>
+
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <button id="mobile-menu-toggle" onclick="toggleMobileMenu()" class="md:hidden flex items-center justify-center w-8 h-8 bg-surface-container border border-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined text-xl" id="mobile-menu-icon">menu</span>
+        </button>
       </div>
+    </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest border-t border-surface-container-high px-4 py-3 flex flex-col gap-1 shadow-lg">
+      <a class="font-label-md uppercase px-3 py-2 bg-primary text-on-primary font-bold flex items-center justify-between" href="#plugins" onclick="toggleMobileMenu()">
+        <span>Plugins</span>
+        <span class="text-xs">10 SUITE</span>
+      </a>
+      <button onclick="toggleMobileMenu(); openSoundModal()" class="font-label-md uppercase px-3 py-2 text-left text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between">
+        <span>Sound</span>
+        <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
+      </button>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="legacy.html">
+        <span>Legacy Archives</span>
+        <span class="text-xs text-secondary">12 PLUGINS</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">
+        <span>BLOG (note)</span>
+        <span class="material-symbols-outlined text-sm">open_in_new</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="about.html">
+        <span>ABOUT</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
     </div>
   </header>
 
@@ -144,43 +175,43 @@
             <span class="font-label-sm text-label-sm text-secondary">RACK v2.8</span>
           </div>
           <nav class="flex flex-col gap-0.5 text-left font-label-md text-label-md" id="sidebar-links">
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-01" data-target="plugin-01">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-01" data-target="plugin-01" data-category="synth">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">01</span> PicoSampler</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">SMP</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-02" data-target="plugin-02">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-02" data-target="plugin-02" data-category="fx">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">02</span> SPECTRA8</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">VOC</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-03" data-target="plugin-03">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-03" data-target="plugin-03" data-category="fx">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">03</span> Granular</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-04" data-target="plugin-04">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-04" data-target="plugin-04" data-category="synth">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">04</span> LIFT-X</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">MST</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-05" data-target="plugin-05">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-05" data-target="plugin-05" data-category="synth">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">05</span> Wavetable</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-primary/10 text-primary font-bold">SOON</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-06" data-target="plugin-06">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-06" data-target="plugin-06" data-category="synth">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">06</span> NextGenKick2</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">KCK</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-07" data-target="plugin-07">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-07" data-target="plugin-07" data-category="fx">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">07</span> Ambience</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">REV</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-08" data-target="plugin-08">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-08" data-target="plugin-08" data-category="fx">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">08</span> QuadMorphFilter</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">FLT</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-09" data-target="plugin-09">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-09" data-target="plugin-09" data-category="synth">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">09</span> Anatomy</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">TON</span>
             </a>
-            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-10" data-target="plugin-10">
+            <a class="sidebar-item group flex items-center justify-between py-1.5 px-2 hover:bg-surface-container hover:text-primary transition-all text-on-surface" href="#plugin-10" data-target="plugin-10" data-category="dynamics">
               <span class="flex items-center gap-2"><span class="text-secondary group-hover:text-primary font-bold">10</span> MULTI-OTO</span>
               <span class="text-[9px] uppercase px-1 py-0.2 bg-surface-container text-secondary">DYN</span>
             </a>
@@ -190,8 +221,8 @@
             <a class="font-label-sm text-label-sm text-primary font-bold hover:underline" href="legacy.html">ARCHIVE (12) →</a>
           </div>
         </div>
-        <!-- Mobile Toggle Button -->
-        <a class="xl:hidden flex items-center justify-center w-11 h-11 bg-primary text-on-primary shadow-lg font-headline-sm" href="#plugins" title="プラグイン一覧へ">
+        <!-- Mobile Toggle Button (Scrolls to Filter & Index Bar) -->
+        <a class="xl:hidden flex items-center justify-center w-11 h-11 bg-primary text-on-primary shadow-lg font-headline-sm" href="#suite-filter-bar" title="フィルター＆プラグイン目次へ">
           <span class="material-symbols-outlined text-xl">tune</span>
         </a>
       </aside>
@@ -264,15 +295,76 @@
       </section>
 
       <!-- ======================================================== -->
-      <!-- 10 PLUGINS EDITORIAL SUITE SHOWCASE -->
+      <!-- 10 PLUGINS EDITORIAL SUITE SHOWCASE & STICKY FILTER BAR -->
       <!-- ======================================================== -->
       <div id="gallery" class="scroll-mt-24"></div>
+
+      <!-- STICKY FILTER BAR (PC & MOBILE) -->
+      <div class="sticky top-16 z-30 w-full bg-surface/95 backdrop-blur-md border-b border-surface-container-high py-2.5 px-3 sm:px-gutter-lg shadow-xs" id="suite-filter-bar">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5 bg-surface-container-low p-1.5 border border-surface-container">
+          
+          <!-- Category Filter Buttons (Horizontal Scroll on Mobile) -->
+          <div class="flex items-center gap-1 overflow-x-auto no-scrollbar scroll-smooth py-0.5" id="main-filter-buttons">
+            <button class="main-filter-btn active flex-shrink-0 bg-on-surface text-surface font-label-md text-xs sm:text-label-md px-2.5 sm:px-space-sm py-1.5 uppercase transition-none font-bold" data-filter="all">
+              ALL SUITE (10)
+            </button>
+            <button class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-md text-xs sm:text-label-md px-2.5 sm:px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="synth">
+              SYNTH &amp; SAMPLER (5)
+            </button>
+            <button class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-md text-xs sm:text-label-md px-2.5 sm:px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="fx">
+              FILTER &amp; FX (4)
+            </button>
+            <button class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-md text-xs sm:text-label-md px-2.5 sm:px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="dynamics">
+              DYNAMICS &amp; PRE (1)
+            </button>
+            <button class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-md text-xs sm:text-label-md px-2.5 sm:px-space-sm py-1.5 uppercase hover:bg-surface-variant transition-none" data-filter="utility">
+              UTILITY &amp; MIDI (0)
+            </button>
+          </div>
+
+          <!-- Quick Jump Selector (Mobile & Desktop Instant Navigation) -->
+          <div class="flex items-center justify-between md:justify-end gap-2 font-label-sm text-xs pt-1 md:pt-0 border-t md:border-t-0 border-surface-container">
+            <div class="flex items-center gap-1.5 text-secondary">
+              <span class="w-1.5 h-1.5 bg-primary"></span>
+              <span class="text-tertiary">INDEX:</span>
+            </div>
+            <select id="plugin-jump-select" onchange="jumpToPlugin(this.value)" class="bg-surface border border-surface-container-high px-2 py-1 font-label-sm text-xs text-on-surface focus:outline-none focus:border-primary max-w-[220px] sm:max-w-none">
+              <option value="">▼ プラグインへ直接ジャンプ</option>
+              <option value="plugin-01" data-category="synth">01 PicoSampler (SMP)</option>
+              <option value="plugin-02" data-category="fx">02 SPECTRA8 (VOC)</option>
+              <option value="plugin-03" data-category="fx">03 Granular [SOON]</option>
+              <option value="plugin-04" data-category="synth">04 LIFT-X (MST)</option>
+              <option value="plugin-05" data-category="synth">05 Wavetable [SOON]</option>
+              <option value="plugin-06" data-category="synth">06 NextGenKick2 (KCK)</option>
+              <option value="plugin-07" data-category="fx">07 Ambience (REV)</option>
+              <option value="plugin-08" data-category="fx">08 QuadMorphFilter (FLT)</option>
+              <option value="plugin-09" data-category="synth">09 Anatomy (TON)</option>
+              <option value="plugin-10" data-category="dynamics">10 MULTI-OTO (DYN)</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
       <div class="w-full max-w-7xl mx-auto px-gutter sm:px-gutter-lg flex flex-col gap-space-xl my-space-lg" id="plugins">
+
+        <!-- FALLBACK FOR EMPTY CATEGORY (UTILITY & MIDI) -->
+        <div id="no-plugins-fallback" class="hidden w-full p-space-xl bg-surface-container-low border border-surface-container text-center flex-col items-center justify-center gap-space-sm my-space-lg">
+          <span class="material-symbols-outlined text-4xl text-primary">construction</span>
+          <h3 class="font-headline-sm text-lg uppercase font-bold text-on-surface">UTILITY &amp; MIDI // NO CURRENT SUITE</h3>
+          <p class="font-body-md text-secondary text-sm max-w-md">
+            現在「Utility &amp; MIDI」カテゴリの現行製品は準備中です。<br />
+            過去のユーティリティプラグイン（ScoreViewer, LowCut Police等）は<a href="legacy.html" class="text-primary font-bold hover:underline">Legacy Archive</a>にて公開されています。
+          </p>
+          <button onclick="document.querySelector('[data-filter=all]').click()" class="mt-2 px-space-md py-1.5 bg-on-surface text-surface hover:bg-primary font-label-sm uppercase font-bold transition-colors">
+            全プラグインを表示
+          </button>
+        </div>
 
         <!-- ==================================================== -->
         <!-- PLUGIN 01: PicoSampler (Left Text, Right Visual) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-01">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-01" data-category="synth">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Text Column -->
             <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -341,7 +433,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 02: SPECTRA8 (Alternate: Left Visual, Right Text) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-02">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-02" data-category="fx">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Visual Column (Left) -->
             <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
@@ -410,7 +502,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 03: Granular (未公開 / Coming Soon) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-03">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-03" data-category="fx">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Text Column -->
             <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -482,7 +574,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 04: LIFT-X (Alternate: Left Visual, Right Text) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-04">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-04" data-category="synth">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Visual Column (Left) -->
             <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
@@ -551,7 +643,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 05: Wavetable (未公開 / Coming Soon) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-05">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md border-l-4 border-l-primary" id="plugin-05" data-category="synth">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Text Column -->
             <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -623,7 +715,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 06: NextGenKick2 (Alternate: Left Visual, Right Text) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-06">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-06" data-category="synth">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Visual Column (Left) -->
             <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
@@ -692,7 +784,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 07: Ambience (Left Text, Right Visual) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-07">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-07" data-category="fx">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Text Column -->
             <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -761,7 +853,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 08: QuadMorphFilter (Alternate: Left Visual, Right Text) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-08">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-08" data-category="fx">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Visual Column (Left) -->
             <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
@@ -830,7 +922,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 09: Anatomy (Left Text, Right Visual) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-09">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-09" data-category="synth">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Text Column -->
             <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -899,7 +991,7 @@
         <!-- ==================================================== -->
         <!-- PLUGIN 10: MULTI-OTO (Alternate: Left Visual, Right Text) -->
         <!-- ==================================================== -->
-        <section class="scroll-mt-24 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-10">
+        <section class="plugin-section scroll-mt-36 p-space-lg md:p-space-xl bg-surface-container-lowest shadow-sm border border-surface-container-high transition-all hover:shadow-md" id="plugin-10" data-category="dynamics">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             <!-- Visual Column (Left) -->
             <div class="lg:col-span-6 order-2 lg:order-1 bg-surface-container-low p-space-md border border-surface-container flex flex-col gap-space-xs shadow-inner">
@@ -1128,8 +1220,24 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT FOR SIDEBAR SYNC & MODALS -->
+  <!-- JAVASCRIPT FOR SIDEBAR SYNC, FILTERING & MODALS -->
   <script>
+    // MOBILE NAVIGATION DRAWER
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (icon) icon.textContent = 'close';
+      } else {
+        menu.classList.add('hidden');
+        if (icon) icon.textContent = 'menu';
+      }
+    }
+
+    // SOUND PREPARATION MODAL
     function openSoundModal() {
       document.getElementById('soundModal').classList.remove('hidden');
     }
@@ -1137,26 +1245,117 @@
       document.getElementById('soundModal').classList.add('hidden');
     }
 
-    // Floating Sidebar Active Sync (10 plugins)
-    document.addEventListener('DOMContentLoaded', () => {
-      const sidebarItems = document.querySelectorAll('.sidebar-item');
-      const sections = Array.from(sidebarItems).map(item => {
-        const id = item.getAttribute('data-target');
-        return document.getElementById(id);
-      }).filter(Boolean);
+    // DIRECT JUMP TO SPECIFIC PLUGIN (FROM SELECT BOX)
+    function jumpToPlugin(targetId) {
+      if (!targetId) return;
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
 
+      // もし非表示中のカテゴリであれば、ALLフィルターに戻して表示させる
+      if (targetEl.style.display === 'none') {
+        const allBtn = document.querySelector('.main-filter-btn[data-filter="all"]');
+        if (allBtn) allBtn.click();
+      }
+
+      // スムーズスクロール
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+
+      // セレクトボックスをリセット
+      const select = document.getElementById('plugin-jump-select');
+      if (select) select.value = '';
+    }
+
+    // FILTERING LOGIC & SIDEBAR SYNC
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.main-filter-btn');
+      const pluginSections = document.querySelectorAll('.plugin-section');
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      const jumpSelect = document.getElementById('plugin-jump-select');
+      const fallbackBox = document.getElementById('no-plugins-fallback');
+
+      let currentFilter = 'all';
+
+      // Filter Button Click Handler
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          currentFilter = filter;
+
+          // 1. Update active button style
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-on-surface', 'text-surface', 'font-bold');
+            b.classList.add('bg-surface-container', 'text-on-surface');
+          });
+          btn.classList.add('bg-on-surface', 'text-surface', 'font-bold');
+          btn.classList.remove('bg-surface-container', 'text-on-surface');
+
+          // 2. Filter Plugin Sections
+          let visibleCount = 0;
+          pluginSections.forEach(section => {
+            const cat = section.getAttribute('data-category');
+            if (filter === 'all' || cat === filter) {
+              section.style.display = 'block';
+              visibleCount++;
+            } else {
+              section.style.display = 'none';
+            }
+          });
+
+          // 3. Fallback box for empty category (Utility & MIDI)
+          if (visibleCount === 0) {
+            fallbackBox.classList.remove('hidden');
+            fallbackBox.classList.add('flex');
+          } else {
+            fallbackBox.classList.add('hidden');
+            fallbackBox.classList.remove('flex');
+          }
+
+          // 4. Update Sidebar Items (PC Right-side Index)
+          sidebarItems.forEach(item => {
+            const cat = item.getAttribute('data-category');
+            if (filter === 'all' || cat === filter) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+
+          // 5. Update Quick Jump Options
+          if (jumpSelect) {
+            const options = jumpSelect.querySelectorAll('option[data-category]');
+            options.forEach(opt => {
+              const cat = opt.getAttribute('data-category');
+              if (filter === 'all' || cat === filter) {
+                opt.style.display = '';
+              } else {
+                opt.style.display = 'none';
+              }
+            });
+          }
+
+          // 6. Update Active Sidebar indicator
+          updateActiveSidebar();
+        });
+      });
+
+      // Floating Sidebar Active Sync (Based on visible plugins)
       function updateActiveSidebar() {
         const scrollPos = window.scrollY + 250;
-        let activeIndex = 0;
+        const visibleSections = Array.from(pluginSections).filter(sec => sec.style.display !== 'none');
+        
+        if (visibleSections.length === 0) return;
 
-        sections.forEach((sec, idx) => {
+        let activeId = visibleSections[0].id;
+        visibleSections.forEach(sec => {
           if (sec.offsetTop <= scrollPos) {
-            activeIndex = idx;
+            activeId = sec.id;
           }
         });
 
-        sidebarItems.forEach((item, idx) => {
-          if (idx === activeIndex) {
+        sidebarItems.forEach(item => {
+          if (item.getAttribute('data-target') === activeId) {
             item.classList.add('bg-surface-container', 'text-primary', 'font-bold', 'border-l-2', 'border-primary');
           } else {
             item.classList.remove('bg-surface-container', 'text-primary', 'font-bold', 'border-l-2', 'border-primary');
