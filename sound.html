@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>SOUND // OTODESK VINYL PLAYER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "inverse-primary": "#ffb59c",
+            "on-tertiary-container": "#fefcfc",
+            "on-secondary-fixed": "#1c1b1b",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#390c00",
+            "on-tertiary": "#ffffff",
+            "on-background": "#1a1c1c",
+            "primary-fixed-dim": "#ffb59c",
+            "surface-container": "#eeeeee",
+            "background": "#f9f9f9",
+            "surface-container-low": "#f3f3f3",
+            "outline-variant": "#e5beb2",
+            "primary-fixed": "#ffdbcf",
+            "surface-tint": "#aa3600",
+            "on-surface": "#1a1c1c",
+            "inverse-surface": "#2f3131",
+            "surface": "#f9f9f9",
+            "on-surface-variant": "#5c4037",
+            "secondary": "#5f5e5e",
+            "inverse-on-surface": "#f1f1f1",
+            "secondary-fixed-dim": "#c8c6c5",
+            "tertiary": "#5c5c5c",
+            "surface-container-high": "#e8e8e8",
+            "tertiary-fixed-dim": "#c7c6c6",
+            "on-primary-fixed-variant": "#822700",
+            "surface-variant": "#e2e2e2",
+            "on-secondary-fixed-variant": "#474646",
+            "secondary-fixed": "#e5e2e1",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#656464",
+            "tertiary-fixed": "#e4e2e2",
+            "on-tertiary-fixed-variant": "#464747",
+            "primary-container": "#d04400",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "surface-dim": "#dadada",
+            "secondary-container": "#e5e2e1",
+            "on-primary-container": "#fffbff",
+            "primary": "#a63500",
+            "tertiary-container": "#757474",
+            "outline": "#907065",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#e2e2e2",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#1b1c1c",
+            "surface-bright": "#f9f9f9"
+          },
+          borderRadius: {
+            DEFAULT: "0px",
+            sm: "0px",
+            md: "0px",
+            lg: "0px",
+            xl: "0px",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "margin": "1.5rem",
+            "margin-lg": "2.5rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "label-sm": ["9px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+            "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "headline-xl": ["52px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high">
+    <div class="h-16 w-full px-3 sm:px-gutter-lg flex items-center justify-between">
+      <div class="flex items-center gap-space-sm sm:gap-space-lg">
+        <a class="flex items-center gap-1.5 sm:gap-space-sm group flex-shrink-0" href="index.html">
+          <img src="assets/circle-logo-white.png" alt="OTODESK" class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform duration-300 group-hover:rotate-45" />
+          <span class="font-headline-sm text-base sm:text-lg font-bold uppercase tracking-tighter text-on-surface">OTODESK</span>
+          <span class="font-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-semibold tracking-widest hidden sm:inline-block">DSP</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-space-xs">
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="index.html#plugins">Plugins</a>
+          <a class="font-label-lg uppercase px-space-md py-space-sm transition-colors bg-primary text-on-primary font-bold" href="sound.html">Sound</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="legacy.html">Legacy</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">BLOG</a>
+          <a class="font-label-lg text-label-lg uppercase px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="about.html">ABOUT</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container border border-surface-container-high font-label-sm text-label-sm text-secondary">
+          <span class="w-1.5 h-1.5 bg-primary rounded-full" id="header-audio-led"></span>
+          <span id="header-audio-status">AUDIO ENGINE: STANDBY</span>
+        </div>
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <button onclick="toggleMobileMenu()" class="md:hidden flex items-center justify-center w-8 h-8 bg-surface-container border border-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined text-xl" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest border-t border-surface-container-high px-4 py-3 flex flex-col gap-1 shadow-lg">
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="index.html#plugins">
+        <span>Plugins</span>
+        <span class="text-xs text-secondary">10 SUITE</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 bg-primary text-on-primary font-bold flex items-center justify-between" href="sound.html">
+        <span>Sound</span>
+        <span class="text-xs">VINYL LAB</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="legacy.html">
+        <span>Legacy Archives</span>
+        <span class="text-xs text-secondary">12 PLUGINS</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">
+        <span>BLOG (note)</span>
+        <span class="material-symbols-outlined text-sm">open_in_new</span>
+      </a>
+      <a class="font-label-md uppercase px-3 py-2 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="about.html">
+        <span>ABOUT</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="w-full pt-16 bg-surface flex-grow">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-12">
+      <div class="flex flex-col w-full pb-space-xl">
+
+        <!-- Top Technical Header Strip -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between py-space-md sm:py-space-lg gap-space-md bg-surface border-b border-surface-container-high mb-space-lg">
+          <div class="flex flex-col gap-space-xs">
+            <div class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm">
+              <span class="font-label-sm text-label-sm uppercase px-space-xs py-0.5 bg-primary-container text-on-primary-container tracking-widest font-bold">SOUND LAB</span>
+              <span class="font-label-sm text-label-sm uppercase text-secondary">SPEC: DIRECT-DRIVE TURNTABLE</span>
+              <span class="text-secondary hidden sm:inline">•</span>
+              <span class="font-label-sm text-label-sm uppercase text-primary font-semibold">ORIGINAL WORKS BY OTODESK</span>
+            </div>
+            <h1 class="font-headline-lg text-2xl sm:text-4xl text-on-surface tracking-tight uppercase flex flex-wrap items-baseline gap-x-space-sm">
+              <span>VINYL PLAYER</span>
+              <span class="text-primary font-headline-sm text-base sm:text-headline-sm font-semibold tracking-normal">// SOUND ARCHIVE</span>
+            </h1>
+            <p class="font-body-md text-xs sm:text-body-md text-secondary max-w-2xl">
+              OTODESKのプラグインとサウンドデザインで制作されたオリジナル音源コレクション。トラックリストから楽曲を選択し、ターンテーブルで再生できます。
+            </p>
+          </div>
+
+          <!-- Theme Selector Ribbon -->
+          <div class="flex flex-col gap-1 self-start md:self-end bg-surface-container-low p-space-xs border border-surface-container">
+            <span class="font-label-sm text-[8px] uppercase text-secondary px-1 font-semibold">DECK SKIN MATRIX</span>
+            <div class="flex items-center gap-1" id="theme-selector">
+              <button class="theme-btn px-2.5 py-1 bg-on-surface text-surface font-label-sm text-label-sm uppercase font-bold transition-none" data-theme="light">STUDIO LIGHT</button>
+              <button class="theme-btn px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase hover:bg-surface-variant transition-none" data-theme="dark">OBSIDIAN</button>
+              <button class="theme-btn px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase hover:bg-surface-variant transition-none" data-theme="industrial">INDUSTRIAL</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Workspace Layout: Grid 12 cols -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+
+          <!-- LEFT / MAIN: Interactive Turntable Stage (7 Cols) -->
+          <div class="lg:col-span-7 flex flex-col gap-space-md">
+            <!-- Studio Stage Housing with Deep Audio-Reactive Interactive Backgrounds -->
+            <div class="relative p-2.5 sm:p-space-lg flex flex-col items-center justify-center sm:min-h-[500px] border border-[#2a2d34] overflow-hidden transition-all duration-500 bg-[#141619] select-none" id="stage-housing">
+
+              <!-- ============================================================ -->
+              <!-- THEME BACKGROUND 1: STUDIO LIGHT (Deep Warm Charcoal & Signal Orange) -->
+              <!-- ============================================================ -->
+              <div class="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-100 bg-gradient-to-br from-[#1b1918] via-[#23201e] to-[#141210]" id="bg-theme-light">
+                <!-- Rich Signal Orange & Warm Amber Atmospheric Glow -->
+                <div class="absolute -top-20 -left-16 w-96 h-96 rounded-full opacity-55 blur-3xl transition-transform duration-150" id="light-glow-1" style="background: radial-gradient(circle, #ff4d00 0%, #a63500 45%, transparent 72%);"></div>
+                <div class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full opacity-40 blur-3xl transition-transform duration-150" id="light-glow-2" style="background: radial-gradient(circle, #ff8800 0%, transparent 70%);"></div>
+                <!-- High-Contrast Swiss Architectural Grid -->
+                <svg class="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="swiss-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#3d3834" stroke-width="0.8" />
+                      <circle cx="0" cy="0" r="1.2" fill="#ff5500" opacity="0.65" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#swiss-grid)" />
+                  <line x1="0" y1="100%" x2="100%" y2="0" stroke="#ff5500" stroke-width="0.9" opacity="0.3" />
+                </svg>
+              </div>
+
+              <!-- ============================================================ -->
+              <!-- THEME BACKGROUND 2: OBSIDIAN (Pitch Abyss Cyber Matrix & Dual Neon) -->
+              <!-- ============================================================ -->
+              <div class="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 bg-gradient-to-br from-[#040508] via-[#090c14] to-[#05060a]" id="bg-theme-dark">
+                <!-- Deep Cyber Neon Dual Aurora Glows -->
+                <div class="absolute -top-20 left-1/4 w-96 h-96 rounded-full opacity-55 blur-3xl" style="background: radial-gradient(circle, #ff2a00 0%, transparent 70%);"></div>
+                <div class="absolute -bottom-24 right-8 w-96 h-96 rounded-full opacity-45 blur-3xl" style="background: radial-gradient(circle, #00e5ff 0%, transparent 70%);"></div>
+                <!-- Dark Laser Matrix Grid -->
+                <svg class="absolute inset-0 w-full h-full opacity-65" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="obsidian-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+                      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#192236" stroke-width="0.9" />
+                      <circle cx="36" cy="36" r="1.3" fill="#00e5ff" opacity="0.55" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#obsidian-grid)" />
+                </svg>
+              </div>
+
+              <!-- ============================================================ -->
+              <!-- THEME BACKGROUND 3: INDUSTRIAL (Heavy Gunmetal & Hazard Telemetry) -->
+              <!-- ============================================================ -->
+              <div class="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 bg-gradient-to-b from-[#14171a] via-[#1b1f24] to-[#111315]" id="bg-theme-industrial">
+                <!-- Carbon Diagonal Weave & Hazard Glow -->
+                <div class="absolute inset-0 opacity-35" style="background: repeating-linear-gradient(-45deg, #08090a 0px, #08090a 3px, transparent 3px, transparent 10px);"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-45 blur-3xl" style="background: radial-gradient(circle, #ff6a00 0%, transparent 70%);"></div>
+                <svg class="absolute inset-0 w-full h-full opacity-65" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="cad-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#2f363d" stroke-width="0.7" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#cad-grid)" />
+                  <line x1="28%" y1="0" x2="28%" y2="100%" stroke="#ff6a00" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.5" />
+                  <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#ff6a00" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.5" />
+                </svg>
+                <!-- Industrial Hazard Stripe Bar (Top & Bottom Edge) -->
+                <div class="absolute top-0 left-0 right-0 h-2 opacity-80" style="background: repeating-linear-gradient(45deg, #ff6a00 0px, #ff6a00 8px, #0d0e10 8px, #0d0e10 16px);"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-2 opacity-80" style="background: repeating-linear-gradient(45deg, #ff6a00 0px, #ff6a00 8px, #0d0e10 8px, #0d0e10 16px);"></div>
+              </div>
+
+              <!-- LIVE INTERACTIVE AUDIO-REACTIVE STAGE CANVAS (60FPS FFT + Mouse/Touch Ripples) -->
+              <canvas class="absolute inset-0 w-full h-full pointer-events-none z-[5]" id="stage-reactive-canvas"></canvas>
+
+              <!-- Measurement Watermarks (Interactive Live Coordinates & Telemetry) -->
+              <div class="hidden sm:block absolute top-2.5 left-3.5 font-label-sm text-label-sm text-white/70 uppercase tracking-widest select-none z-10" id="wm-tl">
+                X: 00.00 / Y: 00.00 // INTERACTIVE STAGE
+              </div>
+              <div class="hidden sm:block absolute top-2.5 right-3.5 font-label-sm text-label-sm text-[#ff6a00] uppercase tracking-widest select-none z-10" id="wm-tr">
+                AUDIO REACTIVE // CLICK OR MOVE CURSOR
+              </div>
+              <div class="hidden sm:block absolute bottom-2.5 left-3.5 font-label-sm text-label-sm text-white/60 uppercase tracking-widest select-none z-10" id="wm-bl">
+                AUDIO STREAM: 44.1kHz STEREO
+              </div>
+              <div class="hidden sm:block absolute bottom-2.5 right-3.5 font-label-sm text-label-sm text-white/60 uppercase tracking-widest select-none z-10" id="wm-br">
+                DIRECT DRIVE MOTOR
+              </div>
+
+              <!-- THE TURNTABLE DECK CONTAINER -->
+              <div class="w-full max-w-[640px] bg-[#edeae4]/90 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.65)] transition-all duration-300 flex flex-col overflow-hidden relative border border-white/25 sm:my-4 z-10" id="embed-widget-container">
+
+                <!-- Widget Micro-Header -->
+                <div class="h-8 bg-surface-container-high/90 px-3 sm:px-space-md flex items-center justify-between relative z-10" id="widget-header-bar">
+                  <div class="flex items-center gap-space-xs">
+                    <span class="w-2 h-2 bg-primary rounded-full" id="deck-status-dot"></span>
+                    <span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-on-surface" id="deck-id-label">OTODESK // DISK-01</span>
+                    <span class="font-label-sm text-label-sm text-secondary uppercase hidden xs:inline">STEREO DECK</span>
+                  </div>
+                  <div class="flex items-center gap-space-sm font-label-sm text-label-sm text-secondary">
+                    <span class="text-primary font-bold" id="motor-state-label">STANDBY</span>
+                    <span>•</span>
+                    <span class="text-on-surface font-semibold" id="widget-rpm">33⅓ RPM</span>
+                  </div>
+                </div>
+
+                <!-- Turntable Deck Area (With Inner Audio-Reactive Halo Canvas) -->
+                <div class="p-3 sm:p-space-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center relative overflow-hidden">
+                  <!-- Inner Deck Audio-Reactive Canvas (Renders 360° Spectrum Halo around Platter & Bass Pulse) -->
+                  <canvas class="absolute inset-0 w-full h-full pointer-events-none z-0" id="deck-reactive-canvas"></canvas>
+
+                  <!-- Vinyl Platter Plinth (Left/Center col-span-7) -->
+                  <div class="md:col-span-7 flex justify-center relative py-2 sm:py-space-sm z-10">
+                    <!-- Platter Well Ring -->
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#242220] flex items-center justify-center relative p-1 shadow-[0_0_30px_rgba(0,0,0,0.35)] ring-2 ring-[#a63500]/40 transition-transform duration-75" id="platter-well">
+                      <!-- Rotating Full Picture Vinyl Disc -->
+                      <div class="w-full h-full rounded-full relative flex items-center justify-center cursor-pointer shadow-lg select-none overflow-hidden ring-1 ring-black/40" id="vinyl-disc" title="クリックで再生 / 停止" style="border-radius: 9999px;">
+                        <!-- Full-Bleed Picture Disc Jacket Image (100% Disc Surface) -->
+                        <div class="w-full h-full rounded-full overflow-hidden absolute inset-0 flex items-center justify-center" id="picture-disc-art" style="width: 100%; height: 100%; inset: 0; border-radius: 9999px;">
+                          <img class="w-full h-full object-cover" alt="Track Artwork" id="disc-image" src="assets/jackets/paradigm-shift.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9999px;" />
+                        </div>
+
+                        <!-- Subtle Vinyl Grooves Overlay (Above Artwork) -->
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-25 z-10" viewBox="0 0 200 200">
+                          <circle cx="100" cy="100" fill="none" r="94" stroke="#fff" stroke-width="0.25"></circle>
+                          <circle cx="100" cy="100" fill="none" r="84" stroke="#000" stroke-width="0.3"></circle>
+                          <circle cx="100" cy="100" fill="none" r="74" stroke="#fff" stroke-width="0.25"></circle>
+                          <circle cx="100" cy="100" fill="none" r="64" stroke="#000" stroke-width="0.3"></circle>
+                          <circle cx="100" cy="100" fill="none" r="52" stroke="#fff" stroke-width="0.25"></circle>
+                          <circle cx="100" cy="100" fill="none" r="40" stroke="#000" stroke-width="0.3"></circle>
+                        </svg>
+
+                        <!-- Gloss Light Reflection Sheen -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 via-transparent to-white/20 pointer-events-none z-10"></div>
+
+                        <!-- Minimal Center Spindle Hole -->
+                        <div class="relative w-5 h-5 rounded-full bg-on-background/85 border border-white/40 flex items-center justify-center shadow-md z-20 pointer-events-none">
+                          <div class="w-2 h-2 rounded-full bg-surface-container-highest shadow-inner"></div>
+                        </div>
+                      </div>
+
+                      <!-- Stylus Tone-Arm Unit (Unified Precision SVG - Never Detaches) -->
+                      <div class="absolute -top-3 -right-7 sm:-top-4 sm:-right-8 w-16 h-48 sm:w-20 sm:h-56 pointer-events-none transition-transform duration-300 ease-out z-30" id="tone-arm" style="transform-origin: 50% 13%; transform: rotate(-12deg);">
+                        <svg class="w-full h-full overflow-visible drop-shadow-md" viewBox="0 0 60 200">
+                          <!-- Tone-arm Counterweight (Top of Pivot) -->
+                          <rect x="24" y="2" width="12" height="10" fill="#2f3131" />
+                          <!-- Tone-arm Base Pivot Housing (Center at x=30, y=26) -->
+                          <circle cx="30" cy="26" r="14" fill="#e2e2e2" stroke="#bebebe" stroke-width="1.5" />
+                          <circle cx="30" cy="26" r="6" fill="#1a1c1c" />
+                          <!-- Main Metallic Arm Tube (From Pivot straight down, then angled offset to Cartridge) -->
+                          <path d="M 30 26 L 30 144 L 20 166" fill="none" stroke="#c8c6c5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                          <!-- Headshell & Cartridge Body (Signal Orange / Brown #a63500, attached directly to Arm Tip) -->
+                          <g transform="translate(20, 166) rotate(24)">
+                            <!-- Connector Collar -->
+                            <rect x="-3" y="-4" width="6" height="4" fill="#1a1c1c" />
+                            <!-- Cartridge Shell -->
+                            <rect x="-5.5" y="0" width="11" height="20" fill="#a63500" />
+                            <!-- Finger Lift Lever -->
+                            <path d="M 5.5 4 L 11 2" stroke="#c8c6c5" stroke-width="1.8" stroke-linecap="round" />
+                            <!-- Stylus Indicator Line / Needle Tip -->
+                            <rect x="-1" y="14" width="2" height="7" fill="#1a1c1c" />
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Track Metadata & Real-Time DSP Visualizer (Right col-span-5) -->
+                  <div class="md:col-span-5 flex flex-col justify-between h-full gap-space-md relative z-10">
+                    <div class="flex flex-col text-center md:text-left">
+                      <div class="flex items-center justify-center md:justify-start gap-space-xs mb-1.5">
+                        <span class="px-1.5 py-0.5 bg-primary text-on-primary font-label-sm text-label-sm uppercase font-bold" id="track-number-badge">TRACK 01</span>
+                        <span class="font-label-sm text-label-sm text-secondary uppercase" id="track-cat-label">OTO-001</span>
+                      </div>
+                      <h2 class="font-headline-sm text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight uppercase leading-tight" id="track-title">
+                        PARADIGM SHIFT
+                      </h2>
+                      <span class="font-label-md text-label-md text-secondary uppercase mt-1 font-semibold tracking-wider" id="track-artist">
+                        OTODESK
+                      </span>
+                    </div>
+
+                    <!-- Real-Time Acoustic Visualizer Spectrum -->
+                    <div class="flex flex-col gap-1.5 bg-surface-container-low p-space-sm border border-surface-container" id="spectrum-panel">
+                      <div class="flex justify-between items-center font-label-sm text-[9px] text-secondary uppercase">
+                        <span>SPECTRUM [20Hz - 20kHz]</span>
+                        <span class="text-primary font-bold" id="dsp-meter-val">-INF dBFS</span>
+                      </div>
+                      <!-- 16 Segment Frequency Spectrum Bars -->
+                      <div class="flex items-end justify-between h-16 gap-1 pt-1 px-1.5 bg-surface-container-lowest border border-surface-container" id="dsp-spectrum">
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-primary h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-primary h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-primary h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-primary h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-primary h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-on-surface h-1.5 transition-all duration-75"></div>
+                        <div class="w-full bg-secondary h-1.5 transition-all duration-75"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Transport Control Ribbon -->
+                <div class="bg-surface-container-low p-3 sm:px-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-surface-container" id="transport-ribbon">
+                  <div class="flex items-center justify-between sm:justify-start gap-2">
+                    <!-- Play/Pause Big Trigger -->
+                    <button class="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-space-md py-2 bg-on-surface text-surface hover:bg-primary transition-colors font-label-md text-label-md uppercase font-bold tracking-wider" id="master-play-btn">
+                      <span class="material-symbols-outlined text-lg leading-none" id="play-icon">play_arrow</span>
+                      <span id="play-text">START MOTOR</span>
+                    </button>
+
+                    <!-- Mobile Volume Control -->
+                    <div class="flex sm:hidden items-center gap-1.5 bg-surface-container px-2 py-1.5">
+                      <button id="mute-btn-mobile" class="flex items-center text-secondary hover:text-primary" aria-label="Mute">
+                        <span class="material-symbols-outlined text-base" id="vol-icon-mobile">volume_up</span>
+                      </button>
+                      <input class="w-16 h-1 accent-[#a63500] cursor-pointer" id="vol-slider-mobile" max="100" min="0" type="range" value="85" />
+                    </div>
+                  </div>
+
+                  <!-- Smooth Draggable Scrubber Track & Timecode -->
+                  <div class="flex-1 flex items-center gap-2.5">
+                    <span class="font-label-sm text-label-sm text-on-surface font-bold w-9 text-right select-none" id="time-current">00:00</span>
+                    <div class="relative flex-1 h-5 flex items-center cursor-pointer group" id="scrubber-bar" title="ドラッグまたはクリックで再生位置を移動">
+                      <!-- Track Rail Background -->
+                      <div class="w-full h-2 bg-surface-container-high overflow-hidden relative pointer-events-none">
+                        <div class="h-full bg-primary" id="scrubber-fill" style="width: 0%;"></div>
+                      </div>
+                      <!-- Thumb Handle Indicator -->
+                      <div class="w-3 h-4 bg-primary border border-white shadow-sm absolute top-0.5 -ml-1.5 pointer-events-none transition-transform group-hover:scale-110" id="scrubber-thumb" style="left: 0%;"></div>
+                      <!-- Native Range Input Overlay for Smooth Dragging / Scrolling -->
+                      <input
+                        type="range"
+                        id="seek-slider"
+                        min="0"
+                        max="1000"
+                        step="1"
+                        value="0"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 m-0"
+                        aria-label="再生位置シークバー"
+                      />
+                    </div>
+                    <span class="font-label-sm text-label-sm text-secondary w-9 select-none" id="time-total">03:19</span>
+                  </div>
+
+                  <!-- Desktop Volume / Gain Control -->
+                  <div class="hidden sm:flex items-center gap-1.5">
+                    <button id="mute-btn" class="flex items-center text-secondary hover:text-primary" aria-label="Mute">
+                      <span class="material-symbols-outlined text-base" id="vol-icon">volume_up</span>
+                    </button>
+                    <input class="w-16 h-1 accent-[#a63500] cursor-pointer" id="vol-slider" max="100" min="0" type="range" value="85" />
+                    <span class="font-label-sm text-label-sm text-on-surface font-semibold w-7 text-right" id="vol-label">85%</span>
+                  </div>
+                </div>
+
+                <!-- Micro Footer Strip -->
+                <div class="bg-surface-container-high/90 px-3 sm:px-space-md py-1.5 flex items-center justify-between text-secondary" id="widget-footer-bar">
+                  <span class="font-label-sm text-[8px] tracking-widest uppercase">OTODESK SOUND SYSTEM // DIRECT STREAM</span>
+                  <span class="font-label-sm text-[8px] text-primary uppercase font-bold" id="loop-status-label">CONTINUOUS PLAY</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Track Selector / Record Crate Panel (5 Cols) -->
+          <div class="lg:col-span-5 flex flex-col gap-space-md">
+            <div class="bg-surface-container-lowest p-space-md flex flex-col gap-space-md shadow-sm border border-surface-container-high">
+              <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-base">album</span>
+                  <span class="font-label-md text-label-md uppercase font-bold text-on-surface">SELECT RECORD // TRACK CRATE</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-primary font-bold uppercase" id="crate-count-label">1 TRACK AVAILABLE</span>
+              </div>
+
+              <p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+                再生したい楽曲を選択してください。選択するとターンテーブルのレコード盤がその楽曲のピクチャーディスクに切り替わります。
+              </p>
+
+              <!-- Track List Container (Rendered dynamically from TRACKS array) -->
+              <div class="flex flex-col gap-space-sm max-h-[460px] overflow-y-auto pr-0.5" id="track-list-container">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Crate Footer Note -->
+              <div class="pt-space-xs border-t border-surface-container flex items-center justify-between font-label-sm text-label-sm text-secondary">
+                <span>ALL TRACKS PRODUCED BY OTODESK</span>
+                <span class="text-primary font-bold">320kbps STREAM</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.02)] border-t border-surface-container-high mt-auto">
+    <div class="w-full max-w-7xl mx-auto px-gutter-lg py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex items-center gap-space-md">
+        <img src="assets/circle-logo-white.png" alt="OTODESK Circular Logo" class="w-14 h-14 object-contain filter drop-shadow-sm flex-shrink-0" />
+        <div class="flex flex-col gap-space-xs text-left">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-headline-sm text-xl uppercase tracking-tight text-on-surface font-bold">OTODESK</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-secondary">I'm Playing Music On The Desk</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-center my-space-md md:my-0 flex-shrink-0">
+        <img src="assets/header-logo-white.png" alt="OTODESK Header Logo" class="h-12 md:h-14 w-auto object-contain" />
+      </div>
+      <div class="flex flex-col md:items-end gap-space-xs font-label-md text-label-md uppercase text-on-surface-variant text-center md:text-right">
+        <div class="flex items-center gap-space-md">
+          <span class="text-secondary">FORMATS: VST3 / Ableton Live</span>
+          <span class="text-on-surface font-bold">© 2026 OTODESK</span>
+        </div>
+        <span class="font-label-sm text-label-sm text-secondary">OPEN-SOURCE AUDIO DSP // ALL RIGHTS RESERVED</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VINYL PLAYER & WEB AUDIO API ENGINE -->
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (icon) icon.textContent = 'close';
+      } else {
+        menu.classList.add('hidden');
+        if (icon) icon.textContent = 'menu';
+      }
+    }
+
+    (function initOtodeskVinylPlayer() {
+      // ==========================================================
+      // TRACK CATALOG (新曲追加時はこの配列にオブジェクトを追加)
+      // ==========================================================
+      const TRACKS = [
+        {
+          id: 'oto-001',
+          number: '01',
+          catNo: 'OTO-001',
+          title: 'PARADIGM SHIFT',
+          artist: 'OTODESK',
+          audioSrc: 'assets/audio/paradigm-shift.mp3',
+          jacketSrc: 'assets/jackets/paradigm-shift.jpg',
+          durationText: '03:19'
+        },
+        {
+          id: 'oto-002',
+          number: '02',
+          catNo: 'OTO-002',
+          title: 'MANTRA',
+          artist: 'OTODESK',
+          audioSrc: 'assets/audio/mantra.mp3',
+          jacketSrc: 'assets/jackets/mantra.jpg',
+          durationText: '04:23'
+        },
+        {
+          id: 'oto-003',
+          number: '03',
+          catNo: 'OTO-003',
+          title: 'LIGHT THE UGLINESS OF HUMANS',
+          artist: 'OTODESK',
+          audioSrc: 'assets/audio/light-the-ugliness-of-humans.mp3',
+          jacketSrc: 'assets/jackets/light-the-ugliness-of-humans.jpg',
+          durationText: '05:04'
+        },
+        {
+          id: 'oto-004',
+          number: '04',
+          catNo: 'OTO-004',
+          title: 'MUSICAL FANTASY',
+          artist: 'OTODESK',
+          audioSrc: 'assets/audio/musical-fantasy.mp3',
+          jacketSrc: 'assets/jackets/musical-fantasy.jpg',
+          durationText: '03:22'
+        }
+      ];
+
+      let currentTrackIndex = 0;
+      let isPlaying = false;
+      let rotationAngle = 0;
+      let animFrame = null;
+      let lastFrameTime = performance.now();
+
+      // DOM Elements
+      const vinylDisc = document.getElementById('vinyl-disc');
+      const discImg = document.getElementById('disc-image');
+      const toneArm = document.getElementById('tone-arm');
+      const masterPlayBtn = document.getElementById('master-play-btn');
+      const playIcon = document.getElementById('play-icon');
+      const playText = document.getElementById('play-text');
+      const motorStateLabel = document.getElementById('motor-state-label');
+      const headerAudioStatus = document.getElementById('header-audio-status');
+      const headerAudioLed = document.getElementById('header-audio-led');
+      const deckIdLabel = document.getElementById('deck-id-label');
+      const trackNumberBadge = document.getElementById('track-number-badge');
+      const trackCatLabel = document.getElementById('track-cat-label');
+      const trackTitle = document.getElementById('track-title');
+      const trackArtist = document.getElementById('track-artist');
+      const timeCurrent = document.getElementById('time-current');
+      const timeTotal = document.getElementById('time-total');
+      const scrubberBar = document.getElementById('scrubber-bar');
+      const scrubberFill = document.getElementById('scrubber-fill');
+      const dspMeterVal = document.getElementById('dsp-meter-val');
+      const spectrumBars = document.getElementById('dsp-spectrum')?.children;
+      const trackListContainer = document.getElementById('track-list-container');
+      const crateCountLabel = document.getElementById('crate-count-label');
+      const widgetContainer = document.getElementById('embed-widget-container');
+      const volSlider = document.getElementById('vol-slider');
+      const volSliderMobile = document.getElementById('vol-slider-mobile');
+      const volLabel = document.getElementById('vol-label');
+      const muteBtn = document.getElementById('mute-btn');
+      const muteBtnMobile = document.getElementById('mute-btn-mobile');
+      const volIcon = document.getElementById('vol-icon');
+      const volIconMobile = document.getElementById('vol-icon-mobile');
+
+      // HTML5 Audio & Web Audio API Context
+      const audio = new Audio();
+      audio.preload = 'metadata';
+      audio.volume = 0.85;
+
+      let audioCtx = null;
+      let analyser = null;
+      let sourceNode = null;
+      let freqData = null;
+      let timeData = null;
+
+      function ensureAudioContext() {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 128;
+          analyser.smoothingTimeConstant = 0.78;
+          sourceNode = audioCtx.createMediaElementSource(audio);
+          sourceNode.connect(analyser);
+          analyser.connect(audioCtx.destination);
+          freqData = new Uint8Array(analyser.frequencyBinCount);
+          timeData = new Uint8Array(analyser.fftSize);
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+
+      function formatTime(sec) {
+        if (!isFinite(sec) || sec < 0) return '00:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      }
+
+      // ==========================================================
+      // PLAY COUNT TELEMETRY (Abacus Cloud API + localStorage Sync)
+      // ==========================================================
+      const NAMESPACE = 'otodesk4193';
+      const playCounts = {};
+      let hasCountedCurrentSessionPlay = false;
+
+      function getStorageKey(trackId) {
+        return `otodesk_plays_${trackId}`;
+      }
+
+      function initPlayCounts() {
+        TRACKS.forEach(async (t) => {
+          const localVal = parseInt(localStorage.getItem(getStorageKey(t.id)) || '0', 10);
+          playCounts[t.id] = localVal;
+          renderTrackList();
+
+          try {
+            const res = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/plays_${t.id}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data && typeof data.value === 'number') {
+                const synced = Math.max(localVal, data.value);
+                playCounts[t.id] = synced;
+                localStorage.setItem(getStorageKey(t.id), String(synced));
+                renderTrackList();
+              }
+            }
+          } catch (e) {
+            // Ignore if offline or key not created yet
+          }
+        });
+      }
+
+      async function incrementPlayCount(trackId) {
+        const current = playCounts[trackId] || 0;
+        const nextVal = current + 1;
+        playCounts[trackId] = nextVal;
+        localStorage.setItem(getStorageKey(trackId), String(nextVal));
+        renderTrackList();
+
+        try {
+          const res = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/plays_${trackId}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && typeof data.value === 'number' && data.value > nextVal) {
+              playCounts[trackId] = data.value;
+              localStorage.setItem(getStorageKey(trackId), String(data.value));
+              renderTrackList();
+            }
+          }
+        } catch (e) {
+          // Offline fallback already handled via localStorage
+        }
+      }
+
+      // Render Track List Crate
+      function renderTrackList() {
+        if (!trackListContainer) return;
+        if (crateCountLabel) {
+          crateCountLabel.textContent = `${TRACKS.length} ${TRACKS.length === 1 ? 'TRACK' : 'TRACKS'} IN CRATE`;
+        }
+
+        trackListContainer.innerHTML = '';
+        TRACKS.forEach((t, idx) => {
+          const isSelected = idx === currentTrackIndex;
+          const count = playCounts[t.id] ?? 0;
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = `w-full p-2.5 text-left flex items-center gap-3 border transition-all ${
+            isSelected
+              ? 'bg-surface-container border-primary ring-1 ring-primary'
+              : 'bg-surface-container-low border-surface-container hover:bg-surface-container'
+          }`;
+
+          card.innerHTML = `
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-on-background flex-shrink-0 overflow-hidden relative border border-surface-container-high">
+              <img src="${t.jacketSrc}" alt="${t.title}" class="w-full h-full object-cover" />
+              ${isSelected && isPlaying ? `
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-white text-xl animate-spin">album</span>
+                </div>
+              ` : ''}
+            </div>
+            <div class="flex-1 min-w-0 flex flex-col justify-between gap-1">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-sm text-label-sm px-1.5 py-0.5 ${isSelected ? 'bg-primary text-on-primary' : 'bg-surface-container-high text-secondary'} font-bold uppercase">
+                    TRACK ${t.number}
+                  </span>
+                  <span class="font-label-sm text-label-sm text-on-surface font-bold tracking-wider" title="再生回数">
+                    ▶${count}
+                  </span>
+                </div>
+                <span class="font-label-sm text-label-sm text-secondary">${t.durationText}</span>
+              </div>
+              <div class="font-headline-sm text-base sm:text-lg font-bold text-on-surface uppercase truncate">${t.title}</div>
+              <div class="flex items-center justify-between">
+                <span class="font-label-sm text-label-sm text-secondary uppercase truncate">${t.artist}</span>
+                <span class="font-label-sm text-[9px] uppercase font-bold ${isSelected ? 'text-primary' : 'text-secondary'}">
+                  ${isSelected ? (isPlaying ? '● NOW SPINNING' : '● LOADED ON DECK') : 'LOAD DISC →'}
+                </span>
+              </div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => {
+            if (currentTrackIndex === idx) {
+              togglePlay();
+            } else {
+              loadTrack(idx, true);
+            }
+          });
+
+          trackListContainer.appendChild(card);
+        });
+      }
+
+      // Load Track onto Turntable
+      function loadTrack(index, autoPlay = false) {
+        currentTrackIndex = index;
+        hasCountedCurrentSessionPlay = false;
+        const t = TRACKS[index];
+        if (!t) return;
+
+        const wasPlaying = isPlaying;
+        if (isPlaying) {
+          audio.pause();
+          isPlaying = false;
+          cancelAnimationFrame(animFrame);
+        }
+
+        audio.src = t.audioSrc;
+        audio.load();
+
+        if (discImg) discImg.src = t.jacketSrc;
+        if (deckIdLabel) deckIdLabel.textContent = `OTODESK // DISK-${t.number}`;
+        if (trackNumberBadge) trackNumberBadge.textContent = `TRACK ${t.number}`;
+        if (trackCatLabel) trackCatLabel.textContent = t.catNo;
+        if (trackTitle) trackTitle.textContent = t.title;
+        if (trackArtist) trackArtist.textContent = t.artist;
+        if (timeCurrent) timeCurrent.textContent = '00:00';
+        if (timeTotal) timeTotal.textContent = t.durationText;
+        if (scrubberFill) scrubberFill.style.width = '0%';
+        const seekSliderEl = document.getElementById('seek-slider');
+        const scrubberThumbEl = document.getElementById('scrubber-thumb');
+        if (seekSliderEl) seekSliderEl.value = '0';
+        if (scrubberThumbEl) scrubberThumbEl.style.left = '0%';
+
+        rotationAngle = 0;
+        if (vinylDisc) vinylDisc.style.transform = 'rotate(0deg)';
+
+        updateUIState();
+        renderTrackList();
+
+        if (autoPlay || wasPlaying) {
+          startPlayback();
+        }
+      }
+
+      // Tone-Arm Angle Calculation:
+      // - Standby (stopped): -12deg (Parked outside the vinyl platter on the right arm-rest)
+      // - Playback Start (0%): 0deg (Outer edge of the vinyl disc where the previous standby position was)
+      // - Playback End (100%): 20deg (Inner groove boundary, safely outside the center label/spindle)
+      function updateToneArmAngle() {
+        if (!toneArm) return;
+        if (!isPlaying) {
+          toneArm.style.transform = 'rotate(-12deg)';
+          return;
+        }
+        const progress = (audio.duration && isFinite(audio.duration) && audio.duration > 0)
+          ? Math.max(0, Math.min(1, audio.currentTime / audio.duration))
+          : 0;
+        const startDeg = 0;  // Outer edge of vinyl (previous pre-play position)
+        const endDeg = 20;   // Inner lead-out groove boundary
+        const currentDeg = startDeg + (endDeg - startDeg) * progress;
+        toneArm.style.transform = `rotate(${currentDeg.toFixed(2)}deg)`;
+      }
+
+      // Main Animation Loop (Gentle visual disc rotation + Tone-arm tracking + Real FFT Spectrum)
+      function spinLoop(now) {
+        if (!isPlaying) return;
+        const dt = (now - lastFrameTime) / 1000;
+        lastFrameTime = now;
+
+        // Gentle visual rotation (55 deg/sec = ~6.5 sec per revolution, audio pitch/speed unaffected)
+        rotationAngle = (rotationAngle + (55 * Math.min(dt, 0.1))) % 360;
+        if (vinylDisc) {
+          vinylDisc.style.transform = `rotate(${rotationAngle.toFixed(2)}deg)`;
+        }
+
+        // Update Tone-Arm position based on playback progress
+        updateToneArmAngle();
+
+        // Update Real-Time FFT Spectrum & dBFS Meter
+        if (analyser && freqData && spectrumBars) {
+          analyser.getByteFrequencyData(freqData);
+          analyser.getByteTimeDomainData(timeData);
+
+          // Calculate RMS for dBFS readout
+          let sumSquares = 0;
+          for (let i = 0; i < timeData.length; i++) {
+            const normalized = (timeData[i] - 128) / 128;
+            sumSquares += normalized * normalized;
+          }
+          const rms = Math.sqrt(sumSquares / timeData.length);
+          const db = rms > 0.0001 ? Math.max(-60, 20 * Math.log10(rms)) : -Infinity;
+          if (dspMeterVal) {
+            dspMeterVal.textContent = isFinite(db) ? `${db.toFixed(1)} dBFS` : '-INF dBFS';
+          }
+
+          // Map 64 FFT bins across 16 bars (logarithmic-like grouping)
+          const numBars = spectrumBars.length;
+          for (let i = 0; i < numBars; i++) {
+            const binIndex = Math.min(freqData.length - 1, Math.floor(Math.pow(i / numBars, 1.35) * (freqData.length * 0.75)) + i);
+            const val = freqData[binIndex] || 0;
+            const heightPx = Math.max(4, Math.round((val / 255) * 54));
+            spectrumBars[i].style.height = `${heightPx}px`;
+          }
+        }
+
+        animFrame = requestAnimationFrame(spinLoop);
+      }
+
+      function updateUIState() {
+        if (isPlaying) {
+          playIcon.textContent = 'pause';
+          playText.textContent = 'STOP MOTOR';
+          masterPlayBtn.classList.add('bg-primary', 'text-on-primary');
+          masterPlayBtn.classList.remove('bg-on-surface', 'text-surface');
+          updateToneArmAngle();
+          if (motorStateLabel) motorStateLabel.textContent = 'PLAYING';
+          if (headerAudioStatus) headerAudioStatus.textContent = 'AUDIO ENGINE: ACTIVE';
+          if (headerAudioLed) headerAudioLed.classList.add('animate-ping');
+        } else {
+          playIcon.textContent = 'play_arrow';
+          playText.textContent = 'START MOTOR';
+          masterPlayBtn.classList.remove('bg-primary', 'text-on-primary');
+          masterPlayBtn.classList.add('bg-on-surface', 'text-surface');
+          updateToneArmAngle();
+          if (motorStateLabel) motorStateLabel.textContent = 'STANDBY';
+          if (headerAudioStatus) headerAudioStatus.textContent = 'AUDIO ENGINE: STANDBY';
+          if (headerAudioLed) headerAudioLed.classList.remove('animate-ping');
+          if (dspMeterVal) dspMeterVal.textContent = '-INF dBFS';
+          if (spectrumBars) {
+            for (let i = 0; i < spectrumBars.length; i++) {
+              spectrumBars[i].style.height = '6px';
+            }
+          }
+        }
+      }
+
+      function startPlayback() {
+        ensureAudioContext();
+        audio.play().then(() => {
+          isPlaying = true;
+          lastFrameTime = performance.now();
+
+          // Count play once per track start / loop
+          if (!hasCountedCurrentSessionPlay) {
+            hasCountedCurrentSessionPlay = true;
+            const currentTrack = TRACKS[currentTrackIndex];
+            if (currentTrack) {
+              incrementPlayCount(currentTrack.id);
+            }
+          }
+
+          updateUIState();
+          renderTrackList();
+          cancelAnimationFrame(animFrame);
+          animFrame = requestAnimationFrame(spinLoop);
+        }).catch(err => {
+          console.error('Playback failed:', err);
+        });
+      }
+
+      function pausePlayback() {
+        audio.pause();
+        isPlaying = false;
+        cancelAnimationFrame(animFrame);
+        updateUIState();
+        renderTrackList();
+      }
+
+      function togglePlay() {
+        if (isPlaying) {
+          pausePlayback();
+        } else {
+          startPlayback();
+        }
+      }
+
+      masterPlayBtn?.addEventListener('click', togglePlay);
+      vinylDisc?.addEventListener('click', togglePlay);
+
+      const seekSlider = document.getElementById('seek-slider');
+      const scrubberThumb = document.getElementById('scrubber-thumb');
+      let isDraggingScrubber = false;
+
+      // Audio Events (Time Update, Metadata, Ended)
+      audio.addEventListener('loadedmetadata', () => {
+        if (audio.duration && isFinite(audio.duration)) {
+          const formatted = formatTime(audio.duration);
+          if (timeTotal) timeTotal.textContent = formatted;
+          TRACKS[currentTrackIndex].durationText = formatted;
+          renderTrackList();
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (isDraggingScrubber) return;
+        if (timeCurrent) timeCurrent.textContent = formatTime(audio.currentTime);
+        if (audio.duration && isFinite(audio.duration)) {
+          const pct = Math.min(100, (audio.currentTime / audio.duration) * 100);
+          if (scrubberFill) scrubberFill.style.width = `${pct.toFixed(2)}%`;
+          if (scrubberThumb) scrubberThumb.style.left = `${pct.toFixed(2)}%`;
+          if (seekSlider) seekSlider.value = String(Math.round(pct * 10));
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        // Loop if 1 track, or advance to next track in crate
+        hasCountedCurrentSessionPlay = false;
+        if (TRACKS.length > 1) {
+          const nextIdx = (currentTrackIndex + 1) % TRACKS.length;
+          loadTrack(nextIdx, true);
+        } else {
+          audio.currentTime = 0;
+          startPlayback();
+        }
+      });
+
+      // Smooth Scrubber Drag & Scroll Support via Range Input
+      function applySeekRatio(ratio) {
+        const clamped = Math.max(0, Math.min(1, ratio));
+        const pct = (clamped * 100).toFixed(2);
+        if (scrubberFill) scrubberFill.style.width = `${pct}%`;
+        if (scrubberThumb) scrubberThumb.style.left = `${pct}%`;
+        if (audio.duration && isFinite(audio.duration)) {
+          const targetSec = clamped * audio.duration;
+          if (timeCurrent) timeCurrent.textContent = formatTime(targetSec);
+          audio.currentTime = targetSec;
+          updateToneArmAngle();
+        }
+      }
+
+      seekSlider?.addEventListener('pointerdown', () => {
+        isDraggingScrubber = true;
+      });
+      seekSlider?.addEventListener('input', (e) => {
+        isDraggingScrubber = true;
+        const ratio = Number(e.target.value) / 1000;
+        applySeekRatio(ratio);
+      });
+      seekSlider?.addEventListener('change', (e) => {
+        const ratio = Number(e.target.value) / 1000;
+        applySeekRatio(ratio);
+        isDraggingScrubber = false;
+      });
+      window.addEventListener('pointerup', () => {
+        if (isDraggingScrubber) {
+          isDraggingScrubber = false;
+        }
+      });
+
+      // Volume Controls (Desktop & Mobile Synced)
+      function setVolume(val) {
+        const v = Math.max(0, Math.min(100, Number(val)));
+        audio.volume = v / 100;
+        audio.muted = (v === 0);
+        if (volSlider) volSlider.value = String(v);
+        if (volSliderMobile) volSliderMobile.value = String(v);
+        if (volLabel) volLabel.textContent = `${v}%`;
+        const iconName = (audio.muted || v === 0) ? 'volume_off' : (v < 50 ? 'volume_down' : 'volume_up');
+        if (volIcon) volIcon.textContent = iconName;
+        if (volIconMobile) volIconMobile.textContent = iconName;
+      }
+
+      volSlider?.addEventListener('input', (e) => setVolume(e.target.value));
+      volSliderMobile?.addEventListener('input', (e) => setVolume(e.target.value));
+
+      function toggleMute() {
+        audio.muted = !audio.muted;
+        const iconName = audio.muted ? 'volume_off' : (audio.volume < 0.5 ? 'volume_down' : 'volume_up');
+        if (volIcon) volIcon.textContent = iconName;
+        if (volIconMobile) volIconMobile.textContent = iconName;
+      }
+
+      muteBtn?.addEventListener('click', toggleMute);
+      muteBtnMobile?.addEventListener('click', toggleMute);
+
+      // Theme Switching (STUDIO LIGHT / OBSIDIAN / INDUSTRIAL with Deep Audio-Reactive Interactive Canvas)
+      const themeBtns = document.querySelectorAll('.theme-btn');
+      const stageHousing = document.getElementById('stage-housing');
+      const stageCanvas = document.getElementById('stage-reactive-canvas');
+      const deckCanvas = document.getElementById('deck-reactive-canvas');
+      const spectrumBox = document.getElementById('dsp-spectrum');
+      const spectrumPanel = document.getElementById('spectrum-panel');
+      const transportRibbon = document.getElementById('transport-ribbon');
+      const widgetHeaderBar = document.getElementById('widget-header-bar');
+      const widgetFooterBar = document.getElementById('widget-footer-bar');
+      const platterWell = document.getElementById('platter-well');
+      const bgLight = document.getElementById('bg-theme-light');
+      const bgDark = document.getElementById('bg-theme-dark');
+      const bgIndustrial = document.getElementById('bg-theme-industrial');
+      const wmTl = document.getElementById('wm-tl');
+      const wmTr = document.getElementById('wm-tr');
+      const watermarks = [
+        wmTl,
+        wmTr,
+        document.getElementById('wm-bl'),
+        document.getElementById('wm-br')
+      ];
+
+      let currentTheme = 'light';
+
+      themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          themeBtns.forEach(b => {
+            b.className = 'theme-btn px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase hover:bg-surface-variant transition-none';
+          });
+          btn.className = 'theme-btn px-2.5 py-1 bg-on-surface text-surface font-label-sm text-label-sm uppercase font-bold transition-none';
+
+          const theme = btn.dataset.theme || 'light';
+          currentTheme = theme;
+          if (!widgetContainer) return;
+
+          // Switch Stage Background Layers
+          if (bgLight) bgLight.style.opacity = theme === 'light' ? '1' : '0';
+          if (bgDark) bgDark.style.opacity = theme === 'dark' ? '1' : '0';
+          if (bgIndustrial) bgIndustrial.style.opacity = theme === 'industrial' ? '1' : '0';
+
+          // Update Watermark Colors (All themes now use deep rich dark stage backgrounds)
+          watermarks.forEach(wm => {
+            if (!wm) return;
+            const posClass =
+              wm.id === 'wm-tl' ? 'top-2.5 left-3.5' :
+              wm.id === 'wm-tr' ? 'top-2.5 right-3.5' :
+              wm.id === 'wm-bl' ? 'bottom-2.5 left-3.5' : 'bottom-2.5 right-3.5';
+            const colorClass = wm.id === 'wm-tr'
+              ? (theme === 'dark' ? 'text-[#00e5ff]' : 'text-[#ff6a00]')
+              : 'text-white/65';
+            wm.className = `hidden sm:block absolute font-label-sm text-label-sm uppercase tracking-widest select-none z-10 ${posClass} ${colorClass}`;
+          });
+
+          // Switch Turntable Deck Styling
+          widgetContainer.className = 'w-full max-w-[640px] backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.65)] transition-all duration-300 flex flex-col overflow-hidden relative sm:my-4 z-10 border ';
+          if (theme === 'dark') {
+            widgetContainer.classList.add('bg-[#0d1017]/88', 'text-white', 'border-[#253047]');
+            if (trackTitle) trackTitle.classList.replace('text-on-surface', 'text-white');
+            if (spectrumPanel) spectrumPanel.className = 'flex flex-col gap-1.5 bg-[#141822]/90 p-space-sm border border-[#253047]';
+            if (spectrumBox) spectrumBox.className = 'flex items-end justify-between h-16 gap-1 pt-1 px-1.5 bg-[#080a0f] border border-[#1f293d]';
+            if (transportRibbon) transportRibbon.className = 'bg-[#121620]/95 p-3 sm:px-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-[#253047] relative z-10';
+            if (timeCurrent) timeCurrent.classList.replace('text-on-surface', 'text-white');
+            if (volLabel) volLabel.classList.replace('text-on-surface', 'text-white');
+            if (widgetHeaderBar) widgetHeaderBar.className = 'h-8 bg-[#161b26] px-3 sm:px-space-md flex items-center justify-between border-b border-[#253047] relative z-10';
+            if (widgetFooterBar) widgetFooterBar.className = 'bg-[#161b26] px-3 sm:px-space-md py-1.5 flex items-center justify-between text-secondary border-t border-[#253047] relative z-10';
+            if (deckIdLabel) deckIdLabel.classList.replace('text-on-surface', 'text-white');
+            if (platterWell) platterWell.className = 'w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#181e2c] flex items-center justify-center relative p-1 shadow-[0_0_35px_rgba(0,229,255,0.2)] ring-2 ring-[#00e5ff]/40 transition-transform duration-75';
+          } else if (theme === 'industrial') {
+            widgetContainer.classList.add('bg-[#1f2328]/92', 'text-white', 'border-[#4a525d]');
+            if (trackTitle) trackTitle.classList.replace('text-on-surface', 'text-white');
+            if (spectrumPanel) spectrumPanel.className = 'flex flex-col gap-1.5 bg-[#16191d]/95 p-space-sm border border-[#3d444d]';
+            if (spectrumBox) spectrumBox.className = 'flex items-end justify-between h-16 gap-1 pt-1 px-1.5 bg-[#0e1012] border border-[#3d444d]';
+            if (transportRibbon) transportRibbon.className = 'bg-[#181b1f]/95 p-3 sm:px-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-[#3d444d] relative z-10';
+            if (timeCurrent) timeCurrent.classList.replace('text-on-surface', 'text-white');
+            if (volLabel) volLabel.classList.replace('text-on-surface', 'text-white');
+            if (widgetHeaderBar) widgetHeaderBar.className = 'h-8 bg-[#282d33] px-3 sm:px-space-md flex items-center justify-between border-b border-[#4a525d] relative z-10';
+            if (widgetFooterBar) widgetFooterBar.className = 'bg-[#282d33] px-3 sm:px-space-md py-1.5 flex items-center justify-between text-white/70 border-t border-[#4a525d] relative z-10';
+            if (deckIdLabel) deckIdLabel.classList.replace('text-on-surface', 'text-white');
+            if (platterWell) platterWell.className = 'w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#121417] flex items-center justify-center relative p-1 shadow-[0_0_30px_rgba(255,106,0,0.25)] ring-2 ring-[#ff6a00]/50 transition-transform duration-75';
+          } else {
+            widgetContainer.classList.add('bg-[#edeae4]/90', 'text-on-surface', 'border-white/25');
+            if (trackTitle) trackTitle.classList.replace('text-white', 'text-on-surface');
+            if (spectrumPanel) spectrumPanel.className = 'flex flex-col gap-1.5 bg-surface-container-low/90 p-space-sm border border-surface-container';
+            if (spectrumBox) spectrumBox.className = 'flex items-end justify-between h-16 gap-1 pt-1 px-1.5 bg-surface-container-lowest border border-surface-container';
+            if (transportRibbon) transportRibbon.className = 'bg-surface-container-low/95 p-3 sm:px-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-surface-container relative z-10';
+            if (timeCurrent) timeCurrent.classList.replace('text-white', 'text-on-surface');
+            if (volLabel) volLabel.classList.replace('text-white', 'text-on-surface');
+            if (widgetHeaderBar) widgetHeaderBar.className = 'h-8 bg-surface-container-high/90 px-3 sm:px-space-md flex items-center justify-between relative z-10';
+            if (widgetFooterBar) widgetFooterBar.className = 'bg-surface-container-high/90 px-3 sm:px-space-md py-1.5 flex items-center justify-between text-secondary relative z-10';
+            if (deckIdLabel) deckIdLabel.classList.replace('text-white', 'text-on-surface');
+            if (platterWell) platterWell.className = 'w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#242220] flex items-center justify-center relative p-1 shadow-[0_0_30px_rgba(0,0,0,0.35)] ring-2 ring-[#a63500]/40 transition-transform duration-75';
+          }
+        });
+      });
+
+      // ==========================================================
+      // INTERACTIVE & AUDIO-REACTIVE VISUALIZER ENGINE (60FPS)
+      // ==========================================================
+      const pointer = { x: 0.5, y: 0.5, active: false };
+      const shockwaves = [];
+      const particles = Array.from({ length: 28 }, (_, i) => ({
+        x: Math.random(),
+        y: Math.random(),
+        vx: (Math.random() - 0.5) * 0.0008,
+        vy: (Math.random() - 0.5) * 0.0008,
+        radius: 1.5 + (i % 3) * 1.1,
+        bin: (i * 2) % 32
+      }));
+
+      function spawnShockwave(normX, normY, strength = 1.0) {
+        shockwaves.push({
+          x: normX,
+          y: normY,
+          r: 8,
+          maxR: 260 * strength,
+          alpha: 0.85,
+          speed: 3.5 + strength * 2.5
+        });
+      }
+
+      if (stageHousing) {
+        stageHousing.addEventListener('pointermove', (e) => {
+          const rect = stageHousing.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            pointer.x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            pointer.y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+            pointer.active = true;
+            if (wmTl) {
+              wmTl.textContent = `X: ${(pointer.x * 100).toFixed(1)} / Y: ${(pointer.y * 100).toFixed(1)} // INTERACTIVE STAGE`;
+            }
+          }
+        });
+
+        stageHousing.addEventListener('pointerleave', () => {
+          pointer.active = false;
+        });
+
+        stageHousing.addEventListener('pointerdown', (e) => {
+          const rect = stageHousing.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            const nx = (e.clientX - rect.left) / rect.width;
+            const ny = (e.clientY - rect.top) / rect.height;
+            spawnShockwave(nx, ny, 1.15);
+          }
+        });
+      }
+
+      function resizeCanvases() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (stageCanvas && stageHousing) {
+          const rect = stageHousing.getBoundingClientRect();
+          stageCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
+          stageCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
+        }
+        if (deckCanvas && deckCanvas.parentElement) {
+          const rect = deckCanvas.parentElement.getBoundingClientRect();
+          deckCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
+          deckCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
+        }
+      }
+      window.addEventListener('resize', resizeCanvases);
+      setTimeout(resizeCanvases, 60);
+
+      let lastBeatShockTime = 0;
+
+      function renderInteractiveBackground(now) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const tSec = now * 0.001;
+
+        // Compute Audio Energies (Bass / Mid / High)
+        let bassEnergy = 0;
+        let midEnergy = 0;
+        let highEnergy = 0;
+
+        if (isPlaying && analyser && freqData && timeData) {
+          analyser.getByteFrequencyData(freqData);
+          analyser.getByteTimeDomainData(timeData);
+
+          for (let i = 0; i < 6; i++) bassEnergy += freqData[i];
+          bassEnergy = bassEnergy / (6 * 255);
+
+          for (let i = 6; i < 22; i++) midEnergy += freqData[i];
+          midEnergy = midEnergy / (16 * 255);
+
+          for (let i = 22; i < 48; i++) highEnergy += freqData[i];
+          highEnergy = highEnergy / (26 * 255);
+
+          // Spawn automatic beat shockwave on strong bass hits
+          if (bassEnergy > 0.72 && now - lastBeatShockTime > 380) {
+            lastBeatShockTime = now;
+            spawnShockwave(0.32, 0.5, 0.8 + bassEnergy * 0.5);
+          }
+        } else {
+          // Subtle ambient idle breathing when paused
+          bassEnergy = 0.08 + 0.04 * Math.sin(tSec * 2.2);
+          midEnergy = 0.05 + 0.03 * Math.cos(tSec * 1.7);
+          highEnergy = 0.04;
+        }
+
+        // Theme color palettes
+        const palette = currentTheme === 'dark'
+          ? { primary: '255, 51, 0', accent: '0, 229, 255', line: '#00e5ff', glow: '#ff3300' }
+          : currentTheme === 'industrial'
+          ? { primary: '255, 106, 0', accent: '160, 175, 190', line: '#ff6a00', glow: '#ff6a00' }
+          : { primary: '255, 77, 0', accent: '255, 160, 60', line: '#ff5500', glow: '#a63500' };
+
+        // Subtle platter well bass scale pulse
+        if (platterWell) {
+          const scale = isPlaying ? (1 + bassEnergy * 0.038) : 1;
+          platterWell.style.transform = `scale(${scale.toFixed(3)})`;
+        }
+
+        // ----------------------------------------------------------
+        // 1. RENDER STAGE REACTIVE CANVAS (Outer Stage - No Equalizer Bars)
+        // ----------------------------------------------------------
+        if (stageCanvas) {
+          const ctx = stageCanvas.getContext('2d');
+          const W = stageCanvas.width;
+          const H = stageCanvas.height;
+          ctx.clearRect(0, 0, W, H);
+
+          const focusX = W * (pointer.active ? (0.35 + (pointer.x - 0.5) * 0.25) : 0.35);
+          const focusY = H * (pointer.active ? (0.5 + (pointer.y - 0.5) * 0.25) : 0.5);
+
+          // A. Deep Bass-Reactive Atmospheric Nebula Aura
+          const auraR = Math.max(W, H) * (0.32 + bassEnergy * 0.32);
+          const grad = ctx.createRadialGradient(focusX, focusY, 10, focusX, focusY, auraR);
+          grad.addColorStop(0, `rgba(${palette.primary}, ${(0.22 + bassEnergy * 0.38).toFixed(3)})`);
+          grad.addColorStop(0.5, `rgba(${palette.accent}, ${(0.08 + midEnergy * 0.24).toFixed(3)})`);
+          grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, W, H);
+
+          // B. Subtle Ambient Energy Silk Wave (Soft atmospheric plasma contour, not a bar spectrum)
+          ctx.beginPath();
+          ctx.lineWidth = 1.5 * dpr;
+          ctx.strokeStyle = `rgba(${palette.primary}, ${(0.18 + bassEnergy * 0.35).toFixed(3)})`;
+          const sliceCount = 48;
+          for (let i = 0; i <= sliceCount; i++) {
+            const px = (i / sliceCount) * W;
+            const waveOffset = Math.sin(tSec * 1.8 + i * 0.18) * (12 + bassEnergy * 42)
+                             + Math.cos(tSec * 2.9 - i * 0.12) * (6 + midEnergy * 28);
+            const py = H * 0.5 + waveOffset * dpr;
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.stroke();
+
+          // C. Interactive Particle Network (Reacts to Audio + Cursor)
+          const ptrX = pointer.x * W;
+          const ptrY = pointer.y * H;
+          const speedMult = 1 + bassEnergy * 4.5 + midEnergy * 2.5;
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x = (p.x + p.vx * speedMult + 1) % 1;
+            p.y = (p.y + p.vy * speedMult + 1) % 1;
+
+            let sx = p.x * W;
+            let sy = p.y * H;
+
+            // Gentle attraction/swirl toward cursor when active
+            if (pointer.active) {
+              const dx = ptrX - sx;
+              const dy = ptrY - sy;
+              const dist = Math.hypot(dx, dy);
+              if (dist < 180 * dpr && dist > 1) {
+                sx += (dx / dist) * 14 * dpr * (1 - dist / (180 * dpr));
+                sy += (dy / dist) * 14 * dpr * (1 - dist / (180 * dpr));
+              }
+            }
+
+            const binVal = (isPlaying && freqData) ? (freqData[p.bin] / 255) : 0.15;
+            const r = (p.radius + binVal * 4.5) * dpr;
+
+            ctx.beginPath();
+            ctx.arc(sx, sy, r, 0, Math.PI * 2);
+            ctx.fillStyle = i % 2 === 0
+              ? `rgba(${palette.primary}, ${(0.35 + binVal * 0.55).toFixed(3)})`
+              : `rgba(${palette.accent}, ${(0.3 + binVal * 0.5).toFixed(3)})`;
+            ctx.fill();
+
+            // Connect nearby particles to pointer
+            if (pointer.active) {
+              const dPtr = Math.hypot(ptrX - sx, ptrY - sy);
+              if (dPtr < 140 * dpr) {
+                ctx.beginPath();
+                ctx.moveTo(sx, sy);
+                ctx.lineTo(ptrX, ptrY);
+                ctx.strokeStyle = `rgba(${palette.accent}, ${((1 - dPtr / (140 * dpr)) * 0.35).toFixed(3)})`;
+                ctx.lineWidth = 1 * dpr;
+                ctx.stroke();
+              }
+            }
+          }
+
+          // D. Industrial Sonar Sweep (When in INDUSTRIAL theme)
+          if (currentTheme === 'industrial') {
+            const sweepAngle = (tSec * (0.9 + bassEnergy * 1.2)) % (Math.PI * 2);
+            const radarR = Math.min(W, H) * 0.44;
+            ctx.save();
+            ctx.translate(focusX, focusY);
+            ctx.beginPath();
+            ctx.arc(0, 0, radarR, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 106, 0, 0.28)';
+            ctx.lineWidth = 1.2 * dpr;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, radarR, sweepAngle - 0.35, sweepAngle);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(255, 106, 0, 0.14)';
+            ctx.fill();
+            ctx.restore();
+          }
+
+          // E. Interactive Click & Bass Beat Shockwave Rings
+          for (let i = shockwaves.length - 1; i >= 0; i--) {
+            const sw = shockwaves[i];
+            sw.r += sw.speed * dpr;
+            sw.alpha *= 0.95;
+            if (sw.alpha < 0.02 || sw.r > sw.maxR * dpr) {
+              shockwaves.splice(i, 1);
+              continue;
+            }
+            ctx.beginPath();
+            ctx.arc(sw.x * W, sw.y * H, sw.r, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${palette.primary}, ${sw.alpha.toFixed(3)})`;
+            ctx.lineWidth = 2.2 * dpr;
+            ctx.stroke();
+          }
+        }
+
+        // ----------------------------------------------------------
+        // 2. RENDER INNER DECK SOLAR CORONA & FLARE PROMINENCES (Behind Vinyl Platter)
+        // ----------------------------------------------------------
+        if (deckCanvas && platterWell) {
+          const dctx = deckCanvas.getContext('2d');
+          const dW = deckCanvas.width;
+          const dH = deckCanvas.height;
+          dctx.clearRect(0, 0, dW, dH);
+
+          const deckRect = deckCanvas.getBoundingClientRect();
+          const wellRect = platterWell.getBoundingClientRect();
+          if (deckRect.width > 0 && wellRect.width > 0) {
+            const cx = ((wellRect.left + wellRect.width / 2) - deckRect.left) * dpr;
+            const cy = ((wellRect.top + wellRect.height / 2) - deckRect.top) * dpr;
+            const baseR = (wellRect.width / 2) * dpr;
+
+            dctx.save();
+            dctx.globalCompositeOperation = currentTheme === 'light' ? 'source-over' : 'lighter';
+
+            // Layer 1: Wide Atmospheric Solar Corona Base Glow
+            const coronaOuterR = baseR * (1.42 + bassEnergy * 0.45);
+            const haloGrad = dctx.createRadialGradient(cx, cy, baseR * 0.82, cx, cy, coronaOuterR);
+            haloGrad.addColorStop(0, `rgba(${palette.primary}, ${(0.45 + bassEnergy * 0.45).toFixed(3)})`);
+            haloGrad.addColorStop(0.45, `rgba(${palette.accent}, ${(0.22 + midEnergy * 0.35).toFixed(3)})`);
+            haloGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            dctx.fillStyle = haloGrad;
+            dctx.beginPath();
+            dctx.arc(cx, cy, coronaOuterR, 0, Math.PI * 2);
+            dctx.fill();
+
+            // Layer 2: Multi-Layered Undulating Solar Flare Plasma Waves (Smooth Organic Closed Contours)
+            for (let layer = 0; layer < 3; layer++) {
+              const numNodes = 72;
+              const phaseSpeed = (layer === 0 ? 1.4 : layer === 1 ? -1.9 : 2.5) * tSec;
+              const freqHarmonic = layer === 0 ? 5 : layer === 1 ? 8 : 11;
+
+              dctx.beginPath();
+              for (let i = 0; i <= numNodes; i++) {
+                const theta = (i / numNodes) * Math.PI * 2;
+                let audioBoost = 0;
+                if (isPlaying && freqData) {
+                  // Symmetrical wrapped frequency sampling for seamless organic plasma loop
+                  const normIdx = Math.abs((i / numNodes) * 2 - 1);
+                  const bin = Math.min(31, Math.floor(normIdx * 24) + layer * 3);
+                  audioBoost = (freqData[bin] / 255);
+                } else {
+                  audioBoost = 0.12 + 0.06 * Math.sin(tSec * 2 + layer);
+                }
+
+                // Organic solar flare wave turbulence (combination of harmonics + audio energy)
+                const wave1 = Math.sin(theta * freqHarmonic + phaseSpeed) * (0.5 + 0.5 * Math.cos(theta * 3 - tSec));
+                const wave2 = Math.cos(theta * (freqHarmonic + 3) - phaseSpeed * 1.3);
+                const flareHeight = (4 + (audioBoost * 24 + bassEnergy * 16) * (0.65 + 0.35 * wave1 + 0.25 * wave2) - layer * 3) * dpr;
+
+                const r = baseR + Math.max(1 * dpr, flareHeight);
+                const px = cx + Math.cos(theta) * r;
+                const py = cy + Math.sin(theta) * r;
+                if (i === 0) dctx.moveTo(px, py);
+                else dctx.lineTo(px, py);
+              }
+              dctx.closePath();
+
+              const flareGrad = dctx.createRadialGradient(cx, cy, baseR * 0.92, cx, cy, baseR + 38 * dpr);
+              if (layer === 0) {
+                flareGrad.addColorStop(0, `rgba(${palette.primary}, ${(0.42 + bassEnergy * 0.4).toFixed(3)})`);
+                flareGrad.addColorStop(0.65, `rgba(${palette.accent}, ${(0.18 + midEnergy * 0.3).toFixed(3)})`);
+                flareGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+              } else if (layer === 1) {
+                flareGrad.addColorStop(0, `rgba(${palette.accent}, ${(0.35 + midEnergy * 0.4).toFixed(3)})`);
+                flareGrad.addColorStop(0.7, `rgba(${palette.primary}, ${(0.14 + bassEnergy * 0.25).toFixed(3)})`);
+                flareGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+              } else {
+                flareGrad.addColorStop(0, `rgba(255, 235, 200, ${(0.25 + highEnergy * 0.45).toFixed(3)})`);
+                flareGrad.addColorStop(0.6, `rgba(${palette.primary}, ${(0.12 + bassEnergy * 0.2).toFixed(3)})`);
+                flareGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+              }
+              dctx.fillStyle = flareGrad;
+              dctx.fill();
+            }
+
+            // Layer 3: Solar Prominence Loops & Glowing Corona Hotspots around Rim
+            const hotspotCount = 8;
+            for (let k = 0; k < hotspotCount; k++) {
+              const bin = (k * 3) % 24;
+              const energy = (isPlaying && freqData) ? (freqData[bin] / 255) : (0.15 + 0.08 * Math.sin(tSec * 2 + k));
+              const angle = (k / hotspotCount) * Math.PI * 2 + tSec * (k % 2 === 0 ? 0.35 : -0.28);
+              const dist = baseR + (2 + energy * 10) * dpr;
+              const hx = cx + Math.cos(angle) * dist;
+              const hy = cy + Math.sin(angle) * dist;
+              const blobR = (14 + energy * 28 + bassEnergy * 18) * dpr;
+
+              const blobGrad = dctx.createRadialGradient(hx, hy, 1, hx, hy, blobR);
+              blobGrad.addColorStop(0, `rgba(${palette.primary}, ${(0.32 + energy * 0.5).toFixed(3)})`);
+              blobGrad.addColorStop(0.5, `rgba(${palette.accent}, ${(0.14 + energy * 0.3).toFixed(3)})`);
+              blobGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+              dctx.fillStyle = blobGrad;
+              dctx.beginPath();
+              dctx.arc(hx, hy, blobR, 0, Math.PI * 2);
+              dctx.fill();
+            }
+
+            dctx.restore();
+          }
+        }
+
+        requestAnimationFrame(renderInteractiveBackground);
+      }
+
+      requestAnimationFrame(renderInteractiveBackground);
+
+      // Initialize Play Counts & First Track
+      initPlayCounts();
+      loadTrack(0, false);
+    })();
+  </script>
+</body>
+</html>
