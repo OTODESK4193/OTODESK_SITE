@@ -326,104 +326,104 @@
         </div>
       </section>
 
-      <!-- 03. INTERACTIVE 6-TAB HARDWARE RACK INSPECTOR (REPLACES STATIC SIMULATOR WITH REAL SCREENSHOT DECK) -->
-      <section class="w-full bg-surface-container-lowest px-gutter lg:px-margin-lg py-space-xl border-t border-b border-surface-container-high scroll-mt-28" id="chassis-simulator">
-        <!-- Rack Shell Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-md">
-          <div>
-            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
-              <span class="w-2 h-2 bg-primary"></span> INTERACTIVE INTERFACE INSPECTOR
-            </div>
-            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold">
+      <!-- 03. INTERACTIVE 6-TAB HARDWARE RACK INSPECTOR (COMPACT FIT FOR 100% VIEWPORT VISIBILITY ON PC) -->
+      <section class="w-full bg-surface-container-lowest px-gutter lg:px-margin-lg py-space-md border-t border-b border-surface-container-high scroll-mt-28" id="chassis-simulator">
+        <!-- Rack Shell Header (Compact Single Row) -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-xs">
+          <div class="flex items-baseline gap-space-sm">
+            <span class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span class="w-2 h-2 bg-primary"></span> INTERACTIVE DECK
+            </span>
+            <h2 class="font-headline-md text-xl sm:text-2xl uppercase tracking-tight text-on-surface font-bold">
               SL-03 6-TAB WORKSTATION DECK
             </h2>
           </div>
           <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase">
-            <span class="bg-surface-container px-space-sm py-1 font-bold">SPECTRAL DOT WAVEFORM</span>
-            <span class="bg-surface-container-high px-space-sm py-1 text-primary font-bold">CLICK TABS TO SWITCH VIEW</span>
+            <span class="bg-surface-container px-space-sm py-0.5 font-bold">SPECTRAL DOT WAVEFORM</span>
+            <span class="bg-surface-container-high px-space-sm py-0.5 text-primary font-bold">CLICK TABS TO SWITCH VIEW</span>
           </div>
         </div>
 
-        <!-- MAIN HARDWARE RACK FRAME (DEEP INDUSTRIAL UNIT) -->
-        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-md shadow-xl border border-on-surface">
+        <!-- MAIN HARDWARE RACK FRAME (COMPACT PRECISION FIT FOR PC SCREEN) -->
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-sm sm:p-space-md shadow-xl border border-on-surface" id="rack-deck-frame">
           <!-- Top Metal Frame Ribbon + Interactive Tab Selector -->
-          <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm bg-surface-container-highest/10 p-space-sm mb-space-md font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+          <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-highest/10 px-space-sm py-1.5 mb-space-sm font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
             <div class="flex items-center gap-space-sm">
               <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">GRANULAR v1.1.0</span>
-              <span class="text-inverse-on-surface font-bold" id="deck-tab-subtitle">TAB 01 // MAIN: GRAIN &amp; DOT-MATRIX WAVEFORM</span>
+              <span class="text-inverse-on-surface font-bold hidden sm:inline" id="deck-tab-subtitle">TAB 01 // MAIN: GRAIN &amp; DOT-MATRIX WAVEFORM</span>
             </div>
             <!-- 6 Tab Buttons -->
             <div class="flex flex-wrap items-center gap-1" id="gui-tab-buttons">
-              <button type="button" data-tab="main" class="gui-tab-btn px-3 py-1.5 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer">01 MAIN</button>
-              <button type="button" data-tab="engine" class="gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">02 ENGINE</button>
-              <button type="button" data-tab="arp" class="gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">03 ARP &amp; SCALE</button>
-              <button type="button" data-tab="mod" class="gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">04 MOD MATRIX</button>
-              <button type="button" data-tab="fx" class="gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">05 FX RACK</button>
-              <button type="button" data-tab="config" class="gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">06 CONFIG</button>
+              <button type="button" data-tab="main" class="gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer">01 MAIN</button>
+              <button type="button" data-tab="engine" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">02 ENGINE</button>
+              <button type="button" data-tab="arp" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">03 ARP &amp; SCALE</button>
+              <button type="button" data-tab="mod" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">04 MOD MATRIX</button>
+              <button type="button" data-tab="fx" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">05 FX RACK</button>
+              <button type="button" data-tab="config" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">06 CONFIG</button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-stretch">
-            <!-- Left 8 Cols: Actual High-Res Plugin Screenshot + Bottom Tab Overview Banner -->
-            <div class="lg:col-span-8 bg-[#0d0d12] p-space-sm border border-white/10 flex flex-col justify-between gap-space-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-stretch">
+            <!-- Left 7 Cols: Actual High-Res Plugin Screenshot + Bottom Tab Overview Banner -->
+            <div class="lg:col-span-7 bg-[#0d0d12] p-space-xs sm:p-space-sm border border-white/10 flex flex-col justify-between gap-space-xs">
               <div class="relative w-full overflow-hidden flex items-center justify-center bg-black border border-white/5">
-                <img id="gui-preview-img" src="screenshots/granular-main.jpg?v=117" alt="GRANULAR Interface Preview" class="w-full h-auto object-contain transition-opacity duration-200" />
+                <img id="gui-preview-img" src="screenshots/granular-main.jpg?v=117" alt="GRANULAR Interface Preview" class="w-full max-h-[400px] xl:max-h-[430px] object-contain transition-opacity duration-200" />
               </div>
 
-              <!-- Bottom Tab Title & Description Banner (Replaces empty black space) -->
-              <div class="bg-[#151722] p-space-md border-l-4 border-primary flex flex-col gap-space-xs">
+              <!-- Bottom Tab Title & Description Banner (Fits cleanly inside viewport) -->
+              <div class="bg-[#151722] px-space-md py-space-sm border-l-4 border-primary flex flex-col gap-1">
                 <div class="flex flex-wrap items-center justify-between gap-2">
-                  <h3 class="font-headline-md text-xl sm:text-2xl text-inverse-on-surface font-extrabold uppercase tracking-tight" id="panel-title">
+                  <h3 class="font-headline-sm text-base sm:text-lg text-inverse-on-surface font-extrabold uppercase tracking-tight" id="panel-title">
                     MAIN タブ：粒子生成＆スペクトル波形
                   </h3>
-                  <span class="font-label-sm text-[10px] text-primary uppercase font-bold tracking-widest bg-primary/15 px-2 py-0.5" id="gui-caption-right">
+                  <span class="font-label-sm text-[9px] text-primary uppercase font-bold tracking-widest bg-primary/15 px-1.5 py-0.5" id="gui-caption-right">
                     DRAG &amp; DROP WAV / AIFF / MP3 / FLAC / OGG
                   </span>
                 </div>
-                <p class="font-body-lg text-sm sm:text-base text-inverse-on-surface/90 leading-relaxed" id="panel-desc">
+                <p class="font-body-md text-xs sm:text-sm text-inverse-on-surface/90 leading-snug" id="panel-desc">
                   読み込んだサンプルの周波数帯域（低域＝暖色、高域＝寒色）でドット着色される波形ディスプレイを常時表示。発音中のグレインがリアルタイムの光の粒子として舞い、Start/EndマーカーやPositionを直感的にドラッグ操作できます。
                 </p>
               </div>
             </div>
 
-            <!-- Right 4 Cols: Enlarged Key Parameter Cards & Header Tools (Fills Full Height Cleanly) -->
-            <div class="lg:col-span-4 bg-surface-container-lowest/5 p-space-md flex flex-col justify-between gap-space-sm border border-white/10">
-              <div class="flex items-center justify-between pb-space-xs font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
-                <span class="font-bold text-inverse-on-surface text-xs" id="panel-badge">MODULE // 01 MAIN</span>
-                <span class="bg-primary text-on-primary px-space-sm py-0.5 font-bold" id="panel-tag">CORE GRAIN</span>
+            <!-- Right 5 Cols: 4 Parameter Cards + Header Tools (Matched Height) -->
+            <div class="lg:col-span-5 bg-surface-container-lowest/5 p-space-sm flex flex-col justify-between gap-space-xs border border-white/10">
+              <div class="flex items-center justify-between pb-1 font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+                <span class="font-bold text-inverse-on-surface text-[11px]" id="panel-badge">MODULE // 01 MAIN</span>
+                <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold" id="panel-tag">CORE GRAIN</span>
               </div>
 
-              <!-- Enlarged Dynamic Key Points List (4 Cards Stretched Evenly to Eliminate Dead Space) -->
-              <div class="flex-1 flex flex-col justify-between gap-space-xs py-1" id="panel-bullets">
-                <div class="flex-1 flex flex-col justify-center p-space-md bg-black/45 border-l-4 border-primary">
-                  <span class="font-label-md text-xs sm:text-sm text-primary uppercase font-bold block mb-1">01 // GRAIN &amp; PITCH JITTER</span>
-                  <span class="font-body-md text-xs sm:text-sm text-inverse-on-surface leading-relaxed block">Size (20–500ms) / Density (最大64倍オーバーラップ) / Jitter (±2400ct・クオンタイズ前加算)</span>
+              <!-- Dynamic Key Points List (4 Cards Stretched Evenly) -->
+              <div class="flex-1 flex flex-col justify-between gap-1.5 py-0.5" id="panel-bullets">
+                <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+                  <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">01 // GRAIN &amp; PITCH JITTER</span>
+                  <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">Size (20–500ms) / Density (最大64倍オーバーラップ) / Jitter (±2400ct・クオンタイズ前加算)</span>
                 </div>
-                <div class="flex-1 flex flex-col justify-center p-space-md bg-black/45 border-l-4 border-primary">
-                  <span class="font-label-md text-xs sm:text-sm text-primary uppercase font-bold block mb-1">02 // P-SYNC &amp; TONE COMB</span>
-                  <span class="font-body-md text-xs sm:text-sm text-inverse-on-surface leading-relaxed block">発火周期をノート周波数にロックするP-SYNCと、弦鳴りを生むKarplus-Strongコムレゾネーター。</span>
+                <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+                  <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">02 // P-SYNC &amp; TONE COMB</span>
+                  <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">発火周期をノート周波数にロックするP-SYNCと、弦鳴りを生むKarplus-Strongコムレゾネーター。</span>
                 </div>
-                <div class="flex-1 flex flex-col justify-center p-space-md bg-black/45 border-l-4 border-primary">
-                  <span class="font-label-md text-xs sm:text-sm text-primary uppercase font-bold block mb-1">03 // MOTION &amp; S-SYNC</span>
-                  <span class="font-body-md text-xs sm:text-sm text-inverse-on-surface leading-relaxed block">Forward / Backward / Ping-Pong / Random。1拍〜8小節でDAWテンポに完全同期スキャン。</span>
+                <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+                  <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">03 // MOTION &amp; S-SYNC</span>
+                  <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">Forward / Backward / Ping-Pong / Random。1拍〜8小節でDAWテンポに完全同期スキャン。</span>
                 </div>
-                <div class="flex-1 flex flex-col justify-center p-space-md bg-black/45 border-l-4 border-primary">
-                  <span class="font-label-md text-xs sm:text-sm text-primary uppercase font-bold block mb-1">04 // MASTER &amp; LOOK-AHEAD LIMITER</span>
-                  <span class="font-body-md text-xs sm:text-sm text-inverse-on-surface leading-relaxed block">TPT SVFによるMaster HPF/LPF、FX Dry/Wetブレンド、1.5ms先読みブリックウォールリミッター。</span>
+                <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+                  <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">04 // MASTER &amp; LOOK-AHEAD LIMITER</span>
+                  <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">TPT SVFによるMaster HPF/LPF、FX Dry/Wetブレンド、1.5ms先読みブリックウォールリミッター。</span>
                 </div>
               </div>
 
               <!-- Quick Header Button Guide -->
-              <div class="pt-space-sm border-t border-white/10 flex flex-col gap-1.5 font-label-sm text-label-sm uppercase">
+              <div class="pt-1.5 border-t border-white/10 flex flex-col gap-1 font-label-sm text-label-sm uppercase">
                 <div class="flex items-center justify-between text-tertiary-fixed">
                   <span>HEADER SAFETY &amp; TOOLS:</span>
                   <span class="text-primary font-bold">INSTANT ACCESS</span>
                 </div>
-                <div class="grid grid-cols-2 gap-1.5 text-[11px]">
-                  <div class="bg-black/45 px-2.5 py-2 text-inverse-on-surface border border-white/5"><strong class="text-primary">PANIC:</strong> 全ボイス＆残響を即時消音</div>
-                  <div class="bg-black/45 px-2.5 py-2 text-inverse-on-surface border border-white/5"><strong class="text-primary">RANDOM:</strong> 8アーキタイプ自動生成</div>
-                  <div class="bg-black/45 px-2.5 py-2 text-inverse-on-surface border border-white/5"><strong class="text-primary">PLAY DRY:</strong> 原音サンプルを即試聴</div>
-                  <div class="bg-black/45 px-2.5 py-2 text-inverse-on-surface border border-white/5"><strong class="text-primary">BROWSE:</strong> 3カラム150プリセット</div>
+                <div class="grid grid-cols-2 gap-1 text-[10px]">
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"><strong class="text-primary">PANIC:</strong> 全ボイス＆残響を即時消音</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"><strong class="text-primary">RANDOM:</strong> 8アーキタイプ自動生成</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"><strong class="text-primary">PLAY DRY:</strong> 原音サンプルを即試聴</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"><strong class="text-primary">BROWSE:</strong> 3カラム150プリセット</div>
                 </div>
               </div>
             </div>
@@ -1016,9 +1016,9 @@
           if (!d) return;
 
           buttons.forEach(b => {
-            b.className = 'gui-tab-btn px-3 py-1.5 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
+            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
           });
-          btn.className = 'gui-tab-btn px-3 py-1.5 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
 
           if (imgEl) imgEl.src = d.img;
           if (subtitleEl) subtitleEl.textContent = d.subtitle;
@@ -1031,11 +1031,22 @@
 
           if (bulletsEl) {
             bulletsEl.innerHTML = d.bullets.map(b => `
-              <div class="flex-1 flex flex-col justify-center p-space-md bg-black/45 border-l-4 border-primary">
-                <span class="font-label-md text-xs sm:text-sm text-primary uppercase font-bold block mb-1">${b.label}</span>
-                <span class="font-body-md text-xs sm:text-sm text-inverse-on-surface leading-relaxed block">${b.text}</span>
+              <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+                <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
+                <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b.text}</span>
               </div>
             `).join('');
+          }
+
+          // Smoothly align the deck into full view if partially off-screen
+          const rackFrame = document.getElementById('rack-deck-frame');
+          if (rackFrame) {
+            const rect = rackFrame.getBoundingClientRect();
+            const headerOffset = 116;
+            if (rect.top < headerOffset || rect.bottom > window.innerHeight) {
+              const targetY = window.scrollY + rect.top - headerOffset - 8;
+              window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+            }
           }
         });
       });
