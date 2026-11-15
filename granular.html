@@ -142,7 +142,6 @@
           <a class="flex items-center gap-space-sm group" href="index.html">
             <img alt="OTODESK Logo" class="h-8 w-8 object-contain transition-transform duration-300 group-hover:rotate-45" src="assets/circle-logo-white.png" />
             <span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold">OTODESK</span>
-            <span class="font-label-sm text-label-sm text-primary px-1.5 py-0.5 bg-surface-container font-bold tracking-widest hidden sm:inline-block">DSP</span>
           </a>
           <nav class="hidden md:flex items-center gap-space-md ml-space-md">
             <a class="font-label-lg text-label-lg uppercase text-primary font-bold transition-colors" href="index.html#plugins">Plugins</a>
@@ -154,9 +153,14 @@
         </div>
 
         <div class="flex items-center gap-space-sm sm:gap-space-md">
+          <!-- JP / EN Language Switcher -->
+          <div class="otodesk-lang-switcher inline-flex items-center border border-surface-container-highest bg-surface-container-low p-0.5 text-xs font-label-md select-none" role="group" aria-label="Language Switcher">
+            <button type="button" data-set-lang="ja" class="otodesk-lang-btn px-2.5 py-1 bg-on-surface text-surface font-bold transition-colors cursor-pointer">JP</button>
+            <button type="button" data-set-lang="en" class="otodesk-lang-btn px-2.5 py-1 text-secondary hover:text-on-surface transition-colors cursor-pointer">EN</button>
+          </div>
           <a class="hidden sm:flex font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors items-center gap-1.5" href="index.html#plugin-03">
             <span class="material-symbols-outlined text-[15px]">arrow_back</span>
-            <span>SUITE INDEX</span>
+            <span data-i18n-ja="プラグイン一覧" data-i18n-en="ALL PLUGINS">プラグイン一覧</span>
           </a>
           <span class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container-high text-secondary flex items-center gap-space-xs font-bold cursor-not-allowed select-none">
             <span class="material-symbols-outlined text-[15px]">schedule</span>
@@ -194,8 +198,7 @@
       <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-sm border-b border-surface-container-high">
         <div class="flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm uppercase">
           <div class="flex items-center gap-space-sm">
-            <span class="text-tertiary">OTODESK_DSP // ARCHIVE:</span>
-            <span class="font-bold text-on-surface">SYNTH &amp; FX // SL-03 GRANULAR V1.1.0 (BUILD 017)</span>
+            <span class="font-bold text-on-surface">GRANULAR V1.1.0 (BUILD 017)</span>
             <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // COMING SOON</span>
           </div>
           <div class="flex items-center gap-space-md text-tertiary overflow-x-auto no-scrollbar whitespace-nowrap">
@@ -207,7 +210,7 @@
         </div>
       </section>
 
-      <!-- 02. HERO DISPLAY SECTION (BRUTALIST COLLISION) -->
+      <!-- 02. HERO DISPLAY SECTION -->
       <section class="w-full bg-surface px-gutter lg:px-margin-lg pt-space-lg pb-space-xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-margin items-start">
 
@@ -220,10 +223,7 @@
             </div>
 
             <div class="flex flex-col">
-              <div class="flex items-baseline gap-space-sm">
-                <span class="font-label-lg text-label-lg text-primary font-bold">MOD. NO // SL-03</span>
-                <span class="font-label-sm text-label-sm text-tertiary uppercase">[24-VOICE SCALE-QUANTIZED GRANULAR SYNTHESIZER]</span>
-              </div>
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">24-VOICE SCALE-QUANTIZED GRANULAR SYNTHESIZER</span>
               <h1 class="font-headline-xl text-4xl sm:text-headline-xl uppercase tracking-tighter text-on-surface mt-space-xs leading-none font-extrabold">
                 GRANULAR
               </h1>
@@ -232,10 +232,14 @@
             <!-- Japanese Raw Contrast Bar (Vertical Stacked Large Catchphrase + Concise Description) -->
             <div class="bg-surface-container p-space-lg flex flex-col gap-space-md border-l-4 border-primary">
               <div class="font-headline-lg text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface leading-tight font-extrabold">
-                音を微塵に砕け。<br />
-                <span class="bg-primary text-on-primary px-space-sm py-1 font-extrabold inline-block mt-1.5">どれほど狂わせても、音階からは逃がさない。</span>
+                <span data-i18n-ja="音を微塵に砕け。" data-i18n-en="Shatter Sound into Particles.">音を微塵に砕け。</span><br />
+                <span class="bg-primary text-on-primary px-space-sm py-1 font-extrabold inline-block mt-1.5"
+                      data-i18n-ja="どれほど狂わせても、音階からは逃がさない。"
+                      data-i18n-en="No matter how wild the modulation, it never leaves the scale.">どれほど狂わせても、音階からは逃がさない。</span>
               </div>
-              <p class="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-3xl">
+              <p class="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-3xl"
+                 data-i18n-ja="例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。"
+                 data-i18n-en="Even pure noise is deconstructed into 1,200 grains to play lush musical chords. An 82-scale post-modulation quantizer locks every grain into harmonic key.">
                 例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。
               </p>
             </div>
@@ -897,8 +901,16 @@
   <!-- ===================================================================== -->
   <!-- INTERACTIVE 6-TAB SCREENSHOT DECK SCRIPT                              -->
   <!-- ===================================================================== -->
+  <!-- SITE-WIDE I18N (JP/EN) -->
+  <script src="assets/i18n.js"></script>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE 6-TAB SCREENSHOT DECK SCRIPT (BILINGUAL JP/EN SUPPORT)    -->
+  <!-- ===================================================================== -->
   <script>
     (function () {
+      let currentTabKey = 'main';
+
       const TAB_DATA = {
         main: {
           img: 'screenshots/granular-main.jpg?v=117',
@@ -907,13 +919,35 @@
           captionRight: 'DRAG & DROP WAV / AIFF / MP3 / FLAC / OGG',
           badge: 'MODULE // 01 MAIN',
           tag: 'CORE GRAIN',
-          title: 'MAIN タブ：粒子生成＆スペクトル波形',
-          desc: '読み込んだサンプルの周波数帯域（低域＝暖色、高域＝寒色）でドット着色される波形ディスプレイを常時表示。発音中のグレインがリアルタイムの光の粒子として舞い、Start/EndマーカーやPositionを直感的にドラッグ操作できます。',
+          title: {
+            ja: 'MAIN タブ：粒子生成＆スペクトル波形',
+            en: 'MAIN TAB: Grain Generation & Spectral Dot Waveform'
+          },
+          desc: {
+            ja: '読み込んだサンプルの周波数帯域（低域＝暖色、高域＝寒色）でドット着色される波形ディスプレイを常時表示。発音中のグレインがリアルタイムの光の粒子として舞い、Start/EndマーカーやPositionを直感的にドラッグ操作できます。',
+            en: 'Displays an always-on dot-matrix waveform colored by spectral frequency (warm lows, cool highs). Active grains dance as real-time light particles while you drag Start/End markers and scan position directly on the waveform.'
+          },
           bullets: [
-            { label: '01 // GRAIN & PITCH JITTER', text: 'Size (20–500ms) / Density (最大64倍オーバーラップ) / Jitter (±2400ct・クオンタイズ前加算)' },
-            { label: '02 // P-SYNC & TONE COMB', text: '発火周期をノート周波数にロックするP-SYNCと、弦鳴りを生むKarplus-Strongコムレゾネーター。' },
-            { label: '03 // MOTION & S-SYNC', text: 'Forward / Backward / Ping-Pong / Random。1拍〜8小節でDAWテンポに完全同期スキャン。' },
-            { label: '04 // MASTER & LOOK-AHEAD LIMITER', text: 'TPT SVFによるMaster HPF/LPF、FX Dry/Wetブレンド、1.5ms先読みブリックウォールリミッター。' }
+            {
+              label: '01 // GRAIN & PITCH JITTER',
+              ja: 'Size (20–500ms) / Density (最大64倍オーバーラップ) / Jitter (±2400ct・クオンタイズ前加算)',
+              en: 'Size (20–500ms) / Density (up to 64x overlap) / Jitter (±2400ct added before scale quantizer)'
+            },
+            {
+              label: '02 // P-SYNC & TONE COMB',
+              ja: '発火周期をノート周波数にロックするP-SYNCと、弦鳴りを生むKarplus-Strongコムレゾネーター。',
+              en: 'P-SYNC locks grain firing period to MIDI note frequency, paired with a Karplus-Strong comb resonator.'
+            },
+            {
+              label: '03 // MOTION & S-SYNC',
+              ja: 'Forward / Backward / Ping-Pong / Random。1拍〜8小節でDAWテンポに完全同期スキャン。',
+              en: 'Forward / Backward / Ping-Pong / Random scan modes locked to DAW tempo from 1 beat to 8 bars.'
+            },
+            {
+              label: '04 // MASTER & LOOK-AHEAD LIMITER',
+              ja: 'TPT SVFによるMaster HPF/LPF、FX Dry/Wetブレンド、1.5ms先読みブリックウォールリミッター。',
+              en: 'Zero-delay TPT SVF Master HPF/LPF, FX Dry/Wet blend, and 1.5ms look-ahead brickwall safety limiter.'
+            }
           ]
         },
         engine: {
@@ -923,13 +957,35 @@
           captionRight: '8-MODE SCALE-TUNED MODAL RESONATOR BANK',
           badge: 'MODULE // 02 ENGINE',
           tag: 'PHASE 4 CORE',
-          title: 'ENGINE タブ：3大エンジン＆物理モーダル共鳴',
-          desc: 'Granular / WSOLA（位相整列ストレッチ） / TD-PSOLA（独立フォルマントシフト）の切り替えに加え、Concatenative音色アトラス、グレイン単位のTPT SVF、8モード物理モーダル共振バンクを統合した心臓部です。',
+          title: {
+            ja: 'ENGINE タブ：3大エンジン＆物理モーダル共鳴',
+            en: 'ENGINE TAB: 3 Synthesis Engines & Modal Resonator'
+          },
+          desc: {
+            ja: 'Granular / WSOLA（位相整列ストレッチ） / TD-PSOLA（独立フォルマントシフト）の切り替えに加え、Concatenative音色アトラス、グレイン単位のTPT SVF、8モード物理モーダル共振バンクを統合した心臓部です。',
+            en: 'Switch between Granular, WSOLA (phase-aligned stretch), and TD-PSOLA (independent formant shifting), combined with an O(log N) Concatenative Timbre Atlas, per-grain TPT SVF, and an 8-mode physical Modal Resonator bank.'
+          },
           bullets: [
-            { label: '01 // MULTI-ENGINE & FORMANT SHIFT', text: 'Granular / WSOLA / TD-PSOLAを切替。音程を変えずに声質・ボディを±12半音シフト可能。' },
-            { label: '02 // DIATONIC SWARM & ATLAS PITCH', text: 'スケール音階に沿った和音グレイン群を自動分散配置し、局所F0ロックでノイズ素材も正確に調律。' },
-            { label: '03 // CONCATENATIVE ATLAS & GRAIN SVF', text: '音の明るさ（Timbre）で発生位置を引き寄せるO(log N)アトラス探索と、粒ごとのSkew / Chirp / SVF。' },
-            { label: '04 // 8-MODE MODAL RESONATOR BANK', text: 'Scale / Harmonic / Marimba / Bell / Plate などの物理共鳴ボディを通し、生楽器のような響きへ昇華。' }
+            {
+              label: '01 // MULTI-ENGINE & FORMANT SHIFT',
+              ja: 'Granular / WSOLA / TD-PSOLAを切替。音程を変えずに声質・ボディを±12半音シフト可能。',
+              en: 'Switch Granular / WSOLA / TD-PSOLA and shift vocal/instrument formants ±12 semitones independently of pitch.'
+            },
+            {
+              label: '02 // DIATONIC SWARM & ATLAS PITCH',
+              ja: 'スケール音階に沿った和音グレイン群を自動分散配置し、局所F0ロックでノイズ素材も正確に調律。',
+              en: 'Automatically spreads grain clusters across diatonic chord intervals while local F0 pitch lock tunes noisy sources.'
+            },
+            {
+              label: '03 // CONCATENATIVE ATLAS & GRAIN SVF',
+              ja: '音の明るさ（Timbre）で発生位置を引き寄せるO(log N)アトラス探索と、粒ごとのSkew / Chirp / SVF。',
+              en: 'O(log N) spectral centroid lookup gravitates toward target brightness, plus per-grain Skew, Chirp, and SVF.'
+            },
+            {
+              label: '04 // 8-MODE MODAL RESONATOR BANK',
+              ja: 'Scale / Harmonic / Marimba / Bell / Plate などの物理共鳴ボディを通し、生楽器のような響きへ昇華。',
+              en: 'Excites Scale, Harmonic, Marimba, Bell, or Plate acoustic modal bodies for organic physical resonance.'
+            }
           ]
         },
         arp: {
@@ -939,13 +995,35 @@
           captionRight: 'EUCLIDEAN RHYTHM GENERATOR: STEPS / FILLS / ROTATION',
           badge: 'MODULE // 03 ARP & SCALE',
           tag: '82 SCALES',
-          title: 'ARP タブ：82スケール量子化＆ユークリッドARP',
-          desc: '本機最大の特徴である「ポストモジュレーション・スケールクオンタイズ（全82スケール）」と、25パターン＋Bjorklundユークリッドリズム生成器を備えたアルペジエイターを集中コントロールします。',
+          title: {
+            ja: 'ARP タブ：82スケール量子化＆ユークリッドARP',
+            en: 'ARP TAB: 82-Scale Quantizer & Euclidean Arpeggiator'
+          },
+          desc: {
+            ja: '本機最大の特徴である「ポストモジュレーション・スケールクオンタイズ（全82スケール）」と、25パターン＋Bjorklundユークリッドリズム生成器を備えたアルペジエイターを集中コントロールします。',
+            en: 'Controls the signature Post-Modulation Scale Quantizer (82 global & microtonal scales) alongside a 25-pattern arpeggiator with a Bjorklund Euclidean rhythm generator.'
+          },
           bullets: [
-            { label: '01 // 82 SCALES & REAL-TIME NOTE PREVIEW', text: 'Major/Minor、教会旋法、日本音階（平調子・陰旋法・琉球）、民族音階など82種。構成音をリアルタイム表示。' },
-            { label: '02 // 25 ARP PATTERNS & SAFE RETRIGGER', text: 'Up, Down, Converge, Diverge, Random Walk, Thumb Bass 等25パターン。安全リトリガー機構で飽和を防止。' },
-            { label: '03 // EUCLIDEAN RHYTHM (E(k,n,r))', text: 'Steps (2–16) / Fills (1–16) / Rotation (0–15) により、変拍子やポリリズムのシーケンスを即座に生成。' },
-            { label: '04 // TEXTURE & WINDOW SCULPTING', text: 'Hanning / Triangle / Square / Asymmetric 窓関数切替と、逆再生（REV）・スプレー速度の精密制御。' }
+            {
+              label: '01 // 82 SCALES & REAL-TIME NOTE PREVIEW',
+              ja: 'Major/Minor、教会旋法、日本音階（平調子・陰旋法・琉球）、民族音階など82種。構成音をリアルタイム表示。',
+              en: '82 scales including Church Modes, Japanese (Hirajoshi, In-Sen, Ryukyu), and World scales with live note readout.'
+            },
+            {
+              label: '02 // 25 ARP PATTERNS & SAFE RETRIGGER',
+              ja: 'Up, Down, Converge, Diverge, Random Walk, Thumb Bass 等25パターン。安全リトリガー機構で飽和を防止。',
+              en: '25 melodic and generative patterns with voice-stealing protection to prevent grain saturation.'
+            },
+            {
+              label: '03 // EUCLIDEAN RHYTHM (E(k,n,r))',
+              ja: 'Steps (2–16) / Fills (1–16) / Rotation (0–15) により、変拍子やポリリズムのシーケンスを即座に生成。',
+              en: 'Dial in Steps (2–16), Fills (1–16), and Rotation (0–15) to generate complex polyrhythmic sequences instantly.'
+            },
+            {
+              label: '04 // TEXTURE & WINDOW SCULPTING',
+              ja: 'Hanning / Triangle / Square / Asymmetric 窓関数切替と、逆再生（REV）・スプレー速度の精密制御。',
+              en: 'Select Hanning, Triangle, Square, or Asymmetric grain windows with Reverse probability and Spray control.'
+            }
           ]
         },
         mod: {
@@ -955,13 +1033,35 @@
           captionRight: 'LFO ×4 (WITH LORENZ CHAOS) + LOOPABLE ADSR ENV ×3',
           badge: 'MODULE // 04 MOD MATRIX',
           tag: 'POLYPHONIC',
-          title: 'MOD タブ：16スロット・ポリフォニック変調',
-          desc: '4基のLFO（RK4ローレンツ・カオス波形含む）、ループ可能なボイス毎ADSRエンベロープ×3、Velocity、Note、Random、MPE Aftertouchの計13ソースを77種類のデスティネーションへ自在にルーティングします。',
+          title: {
+            ja: 'MOD タブ：16スロット・ポリフォニック変調',
+            en: 'MOD TAB: 16-Slot True Polyphonic Modulation Matrix'
+          },
+          desc: {
+            ja: '4基のLFO（RK4ローレンツ・カオス波形含む）、ループ可能なボイス毎ADSRエンベロープ×3、Velocity、Note、Random、MPE Aftertouchの計13ソースを77種類のデスティネーションへ自在にルーティングします。',
+            en: 'Route 13 modulation sources — including 4 LFOs (with RK4 Lorenz Chaos attractor), 3 loopable per-voice ADSR envelopes, Velocity, Random, and MPE — across 77 destinations.'
+          },
           bullets: [
-            { label: '01 // LFO ×4 (LORENZ CHAOS) & LOOP ENV ×3', text: 'Sine / Saw / S&H / RK4ローレンツカオス対応の4基のLFOと、A-DループでLFO化する3基のADSR。' },
-            { label: '02 // TRUE PER-VOICE ISOLATION', text: '24ボイスそれぞれが独自のADSRやRandom S&H、ベロシティ変調を独立計算。和音の一音ごとに異なる動きを実現。' },
-            { label: '03 // LIVE MODULATION ARC DISPLAY', text: '変調されたノブの周囲に現在の到達範囲を示す白いアーク（弧）と現在値ドットをリアルタイム描画。' },
-            { label: '04 // PITCH MODULATION MAGIC', text: 'ピッチ宛先への変調もすべてスケールクオンタイザーの手前で合算されるため、LFOを最大に振っても音が外れません。' }
+            {
+              label: '01 // LFO ×4 (LORENZ CHAOS) & LOOP ENV ×3',
+              ja: 'Sine / Saw / S&H / RK4ローレンツカオス対応の4基のLFOと、A-DループでLFO化する3基のADSR。',
+              en: '4 LFOs featuring RK4 Lorenz strange attractor chaos waves, plus 3 ADSR envelopes with A-D loop mode.'
+            },
+            {
+              label: '02 // TRUE PER-VOICE ISOLATION',
+              ja: '24ボイスそれぞれが独自のADSRやRandom S&H、ベロシティ変調を独立計算。和音の一音ごとに異なる動きを実現。',
+              en: 'All 24 voices compute independent envelopes, S&H random values, and velocity scaling per note in a chord.'
+            },
+            {
+              label: '03 // LIVE MODULATION ARC DISPLAY',
+              ja: '変調されたノブの周囲に現在の到達範囲を示す白いアーク（弧）と現在値ドットをリアルタイム描画。',
+              en: 'Draws real-time modulation range arcs and animated value indicators around every modulated knob.'
+            },
+            {
+              label: '04 // PITCH MODULATION MAGIC',
+              ja: 'ピッチ宛先への変調もすべてスケールクオンタイザーの手前で合算されるため、LFOを最大に振っても音が外れません。',
+              en: 'All pitch modulations sum before the scale quantizer — even extreme LFO pitch sweeps stay 100% in key.'
+            }
           ]
         },
         fx: {
@@ -971,13 +1071,35 @@
           captionRight: 'ADAA SATURATION / CHORUS / DELAY / FREEZE / SHIMMER / FORMANT GATE',
           badge: 'MODULE // 05 FX RACK',
           tag: 'DRAG REORDER',
-          title: 'FX タブ：順序入れ替え自在の5スロットFXラック',
-          desc: 'カードヘッダーをドラッグ＆ドロップするだけで信号順序を即座に入れ替えられる5スロット直列FXチェーン。重複選択を自動で防ぐ排他ロック機構を備えています。',
+          title: {
+            ja: 'FX タブ：順序入れ替え自在の5スロットFXラック',
+            en: 'FX TAB: 5-Slot Drag-to-Reorder Studio FX Chain'
+          },
+          desc: {
+            ja: 'カードヘッダーをドラッグ＆ドロップするだけで信号順序を即座に入れ替えられる5スロット直列FXチェーン。重複選択を自動で防ぐ排他ロック機構を備えています。',
+            en: 'A 5-slot serial FX rack where you can drag and drop card headers to reorder the signal path on the fly, complete with automatic duplicate-prevention locking.'
+          },
           bullets: [
-            { label: '01 // ADAA SATURATION (10 ALGORITHMS)', text: '反微分アンチエイリアシング処理によるSoft Tanh, Triode, Tape, Wavefold, Exciterなど10種の歪みとPre-HPF。' },
-            { label: '02 // ENSEMBLE CHORUS & DUCKING TAPE DELAY', text: '空間を広げるステレオコーラスと、原音アタック時に自動でディレイ音を下げるDucking機能付きテープディレイ。' },
-            { label: '03 // GRANULAR FREEZE & 16CH SHIMMER REVERB', text: '最大1000msの粒状フリーズと、オクターブシフターを内蔵した幻想的な16ch FDNシマーリバーブ。' },
-            { label: '04 // RHYTHMIC FORMANT GATE', text: '母音フォルマント共鳴（Vowel）を伴う8パターンのテンポ同期スタッター・スライサー。' }
+            {
+              label: '01 // ADAA SATURATION (10 ALGORITHMS)',
+              ja: '反微分アンチエイリアシング処理によるSoft Tanh, Triode, Tape, Wavefold, Exciterなど10種の歪みとPre-HPF。',
+              en: '10 anti-derivative anti-aliased (ADAA) drive models including Soft Tanh, Triode, Tape, Wavefold, and Exciter.'
+            },
+            {
+              label: '02 // ENSEMBLE CHORUS & DUCKING TAPE DELAY',
+              ja: '空間を広げるステレオコーラスと、原音アタック時に自動でディレイ音を下げるDucking機能付きテープディレイ。',
+              en: 'Wide stereo Ensemble Chorus and a tempo-synced Tape Delay with automatic envelope ducking.'
+            },
+            {
+              label: '03 // GRANULAR FREEZE & 16CH SHIMMER REVERB',
+              ja: '最大1000msの粒状フリーズと、オクターブシフターを内蔵した幻想的な16ch FDNシマーリバーブ。',
+              en: 'Up to 1000ms Granular Freeze buffer and a lush 16-channel FDN Shimmer Reverb with pitch-shifted feedback.'
+            },
+            {
+              label: '04 // RHYTHMIC FORMANT GATE',
+              ja: '母音フォルマント共鳴（Vowel）を伴う8パターンのテンポ同期スタッター・スライサー。',
+              en: '8-pattern tempo-synced rhythmic stutter slicer coupled with a vowel formant filter.'
+            }
           ]
         },
         config: {
@@ -987,13 +1109,35 @@
           captionRight: 'ASPECT-RATIO LOCKED UI SCALING: 75% TO 200%',
           badge: 'MODULE // 06 CONFIG',
           tag: 'SYSTEM & UI',
-          title: 'CONFIG タブ：素材解析＆10種のカラーテーマ',
-          desc: 'サンプルの素材特性に合わせたピッチ解析プロファイル、先読みリミッターのリリース設定、最大同時発音数（1〜24ボイス）、10種類のカラーテーマと75%〜200%のUIスケーリングを管理します。',
+          title: {
+            ja: 'CONFIG タブ：素材解析＆10種のカラーテーマ',
+            en: 'CONFIG TAB: Pitch Analysis Profiles & 10 UI Themes'
+          },
+          desc: {
+            ja: 'サンプルの素材特性に合わせたピッチ解析プロファイル、先読みリミッターのリリース設定、最大同時発音数（1〜24ボイス）、10種類のカラーテーマと75%〜200%のUIスケーリングを管理します。',
+            en: 'Configure material-specific pitch analysis profiles, look-ahead limiter release times, maximum polyphony (1–24 voices), 10 color themes, and 75%–200% UI scaling.'
+          },
           bullets: [
-            { label: '01 // MATERIAL ANALYSIS MODES', text: 'Auto / Percussive / Melodic / Vocal の4モードで高精度に基本ピッチとキーを自動検出。' },
-            { label: '02 // POLYPHONY & FILTER SLOPE', text: 'CPU負荷に合わせて最大同時発音数（1〜24ボイス）とMaster HPF/LPFのスロープ（12 / 24 dB/oct）を切替。' },
-            { label: '03 // 10 CURATED COLOR THEMES', text: 'Midnight, Sakura, Ocean, Forest, Sunset, Mono, Neon, Vaporwave, Amber, Arctic の10テーマを収録。' },
-            { label: '04 // FLEXIBLE UI SCALING (75% – 200%)', text: 'ボタンまたは右下ハンドルで画面サイズを自在に変更可能。設定サイズはDAWプロジェクトに自動保存されます。' }
+            {
+              label: '01 // MATERIAL ANALYSIS MODES',
+              ja: 'Auto / Percussive / Melodic / Vocal の4モードで高精度に基本ピッチとキーを自動検出。',
+              en: '4 specialized detection profiles (Auto / Percussive / Melodic / Vocal) for accurate root pitch & key detection.'
+            },
+            {
+              label: '02 // POLYPHONY & FILTER SLOPE',
+              ja: 'CPU負荷に合わせて最大同時発音数（1〜24ボイス）とMaster HPF/LPFのスロープ（12 / 24 dB/oct）を切替。',
+              en: 'Adjust active voice count (1–24 voices) and Master HPF/LPF slope (12 / 24 dB/oct) to match your CPU budget.'
+            },
+            {
+              label: '03 // 10 CURATED COLOR THEMES',
+              ja: 'Midnight, Sakura, Ocean, Forest, Sunset, Mono, Neon, Vaporwave, Amber, Arctic の10テーマを収録。',
+              en: 'Includes 10 curated dark & vibrant themes: Midnight, Sakura, Ocean, Forest, Sunset, Mono, Neon, Vaporwave, Amber, Arctic.'
+            },
+            {
+              label: '04 // FLEXIBLE UI SCALING (75% – 200%)',
+              ja: 'ボタンまたは右下ハンドルで画面サイズを自在に変更可能。設定サイズはDAWプロジェクトに自動保存されます。',
+              en: 'Resize from 75% to 200% via preset buttons or the bottom-right corner handle; persisted per DAW project.'
+            }
           ]
         }
       };
@@ -1009,36 +1153,35 @@
       const descEl = document.getElementById('panel-desc');
       const bulletsEl = document.getElementById('panel-bullets');
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const key = btn.getAttribute('data-tab');
-          const d = TAB_DATA[key];
-          if (!d) return;
+      function getActiveLang() {
+        return (window.OTODESK_I18N && window.OTODESK_I18N.getLang()) || document.documentElement.getAttribute('data-lang') || 'ja';
+      }
 
-          buttons.forEach(b => {
-            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
-          });
-          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+      function renderTab(key, shouldScroll) {
+        const d = TAB_DATA[key];
+        if (!d) return;
+        currentTabKey = key;
+        const lang = getActiveLang() === 'en' ? 'en' : 'ja';
 
-          if (imgEl) imgEl.src = d.img;
-          if (subtitleEl) subtitleEl.textContent = d.subtitle;
-          if (capLeftEl) capLeftEl.textContent = d.captionLeft;
-          if (capRightEl) capRightEl.textContent = d.captionRight;
-          if (badgeEl) badgeEl.textContent = d.badge;
-          if (tagEl) tagEl.textContent = d.tag;
-          if (titleEl) titleEl.textContent = d.title;
-          if (descEl) descEl.textContent = d.desc;
+        if (imgEl && imgEl.getAttribute('src') !== d.img) imgEl.src = d.img;
+        if (subtitleEl) subtitleEl.textContent = d.subtitle;
+        if (capLeftEl) capLeftEl.textContent = d.captionLeft;
+        if (capRightEl) capRightEl.textContent = d.captionRight;
+        if (badgeEl) badgeEl.textContent = d.badge;
+        if (tagEl) tagEl.textContent = d.tag;
+        if (titleEl) titleEl.textContent = d.title[lang];
+        if (descEl) descEl.textContent = d.desc[lang];
 
-          if (bulletsEl) {
-            bulletsEl.innerHTML = d.bullets.map(b => `
-              <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
-                <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
-                <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b.text}</span>
-              </div>
-            `).join('');
-          }
+        if (bulletsEl) {
+          bulletsEl.innerHTML = d.bullets.map(b => `
+            <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+              <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
+              <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b[lang]}</span>
+            </div>
+          `).join('');
+        }
 
-          // Smoothly align the deck into full view if partially off-screen
+        if (shouldScroll) {
           const rackFrame = document.getElementById('rack-deck-frame');
           if (rackFrame) {
             const rect = rackFrame.getBoundingClientRect();
@@ -1048,8 +1191,28 @@
               window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
             }
           }
+        }
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-tab');
+          if (!TAB_DATA[key]) return;
+
+          buttons.forEach(b => {
+            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
+          });
+          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+
+          renderTab(key, true);
         });
       });
+
+      window.addEventListener('otodesk:langchange', () => {
+        renderTab(currentTabKey, false);
+      });
+
+      renderTab('main', false);
     })();
   </script>
 </body>
