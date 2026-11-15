@@ -167,34 +167,26 @@
       transition-delay: 6.10s;
     }
 
-    /* Step 3 (FINALE): OTODESK Horizontal Logo & Ableton Verified Spec Pills Slow Fade-In */
+    /* Step 3 (FINALE): OTODESK Horizontal Logo, Spec Pills & Scroll Prompt All Fade In Together at 8.10s */
     .finale-slow-fade {
       opacity: 0;
       transform: translateY(18px) scale(0.98);
       filter: blur(10px);
+      pointer-events: none;
       transition:
-        opacity 3.6s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 3.6s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 3.4s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 3.6s cubic-bezier(0.22, 1, 0.36, 1) 8.10s !important,
+        transform 3.6s cubic-bezier(0.16, 1, 0.3, 1) 8.10s !important,
+        filter 3.4s cubic-bezier(0.22, 1, 0.36, 1) 8.10s !important;
       will-change: opacity, transform, filter;
     }
-    .hero-loaded .finale-logo-delay {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0px);
-      transition-delay: 8.10s;
-    }
-    .hero-loaded .finale-pills-delay {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0px);
-      transition-delay: 8.65s;
-    }
+    .hero-loaded .finale-logo-delay,
+    .hero-loaded .finale-pills-delay,
     .hero-loaded .finale-scroll-delay {
       opacity: 1;
       transform: translateY(0) scale(1);
       filter: blur(0px);
-      transition-delay: 9.30s;
+      pointer-events: auto;
+      transition-delay: 8.10s !important;
     }
 
     /* Slow, Cinematic Scene Transition (Scene 1 <-> Scene 2: Half Speed ~3.4s) */
@@ -562,20 +554,21 @@
             </div>
 
             <!-- Step 1 (First): Full-Width Multi-Mode Kinetic Catchphrase (Japanese Mode) -->
-            <h1 id="hero-kinetic-title-ja" class="font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[72px] tracking-tight text-on-surface font-black leading-[1.16] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
+            <h1 id="hero-kinetic-title-ja" class="font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[68px] tracking-tight text-on-surface font-black leading-[1.18] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
               <!-- Phrase 1: Architectural Stroke-to-Ink Fill + Interactive Wireframe Chars -->
-              <span class="kinetic-mask">
+              <span class="kinetic-mask whitespace-nowrap">
                 <span id="hero-stroke-ja" class="stroke-to-ink-word" title="カーソルを近づけるとワイヤーフレーム輪郭が浮かび上がります">音を楽しむ。</span>
               </span>
-              <br class="sm:hidden" />
-              <!-- Phrase 2A: Liquid Copper-Gold Gradient + Finale Flash Burst (No Underline) -->
-              <span class="relative inline-block align-bottom mx-1" id="hero-flash-box-ja">
-                <span id="hero-orange-ja" class="inline-block" title="コピー登場の最後にフラッシュ発光します（ホバー・クリックでも発光）">大人の自由</span>
-              </span><!-- Phrase 2B: Horizontal Curtain Slide --><span class="curtain-reveal-word">がここにある。</span>
+              <span class="inline-block whitespace-nowrap">
+                <!-- Phrase 2A: Liquid Copper-Gold Gradient + Finale Flash Burst (No Underline) -->
+                <span class="relative inline-block align-bottom" id="hero-flash-box-ja">
+                  <span id="hero-orange-ja" class="inline-block" title="コピー登場の最後にフラッシュ発光します（ホバー・クリックでも発光）">大人の自由</span>
+                </span><!-- Phrase 2B: Horizontal Curtain Slide --><span class="curtain-reveal-word">がここにある。</span>
+              </span>
             </h1>
 
             <!-- Step 1 (First): Full-Width Multi-Mode Kinetic Catchphrase (English Mode, toggled by i18n) -->
-            <h1 id="hero-kinetic-title-en" class="hidden font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-tight text-on-surface font-black leading-[1.12] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
+            <h1 id="hero-kinetic-title-en" class="hidden font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[64px] tracking-tight text-on-surface font-black leading-[1.12] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
               <span class="kinetic-mask">
                 <span id="hero-stroke-en" class="stroke-to-ink-word">Play with Sound.</span>
               </span>
@@ -604,7 +597,7 @@
               </p>
             </div>
 
-            <!-- Step 3 (Finale): Spec Pills (Slowly fades in LAST at 8.65s) -->
+            <!-- Step 3 (Finale): Spec Pills (Slowly fades in LAST at 8.10s) -->
             <div class="kinetic-mask">
               <div class="finale-slow-fade finale-pills-delay flex flex-wrap items-center justify-center gap-2.5 font-label-md text-xs sm:text-sm">
                 <span class="px-3.5 py-1.5 bg-on-surface text-surface font-bold shadow-sm" data-i18n-ja="Ableton Live 動作確認済み" data-i18n-en="Verified on Ableton Live">Ableton Live 動作確認済み</span>
@@ -614,17 +607,19 @@
               </div>
             </div>
 
-            <!-- Step 3 (Finale): Scroll / Scene Transition Prompt -->
-            <button
-              type="button"
-              onclick="triggerPluginsShowcaseScene()"
-              class="finale-slow-fade finale-scroll-delay mt-8 sm:mt-10 inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary transition-colors cursor-pointer group"
-            >
-              <span class="font-label-md text-[11px] font-bold tracking-[0.2em] uppercase" data-i18n-ja="SCROLL // PLUGINS SHOWCASE へ" data-i18n-en="SCROLL // TO PLUGINS SHOWCASE">SCROLL // PLUGINS SHOWCASE へ</span>
-              <span class="w-8 h-8 rounded-full border border-on-surface/30 group-hover:border-primary flex items-center justify-center animate-bounce">
-                <span class="material-symbols-outlined text-lg">south</span>
-              </span>
-            </button>
+            <!-- Step 3 (Finale): Scroll / Scene Transition Prompt (Slowly fades in LAST at 8.10s with Logo) -->
+            <div class="finale-slow-fade finale-scroll-delay mt-8 sm:mt-10">
+              <button
+                type="button"
+                onclick="triggerPluginsShowcaseScene()"
+                class="inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary cursor-pointer group"
+              >
+                <span class="font-label-md text-[11px] font-bold tracking-[0.2em] uppercase" data-i18n-ja="SCROLL // PLUGINS SHOWCASE へ" data-i18n-en="SCROLL // TO PLUGINS SHOWCASE">SCROLL // PLUGINS SHOWCASE へ</span>
+                <span class="w-8 h-8 rounded-full border border-on-surface/30 group-hover:border-primary flex items-center justify-center animate-bounce">
+                  <span class="material-symbols-outlined text-lg">south</span>
+                </span>
+              </button>
+            </div>
           </div>
 
           <!-- =================================================================== -->
@@ -638,7 +633,7 @@
               <div class="flex items-center gap-3">
                 <button
                   type="button"
-                  onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                  onclick="returnToOpeningScene()"
                   class="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white/80 font-label-md text-xs flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <span class="material-symbols-outlined text-sm">north</span>
@@ -1894,42 +1889,89 @@
         });
       }
 
-      // 3. Slow, Cinematic Scrollytelling Scene Switch (Scene 1 <-> Scene 2 over 1.85s)
+      // 3. Slow, Cinematic Scene Switch (Auto-Transition after Scene 1 Finale + Scroll/Button Support)
       const wrapper = document.getElementById('hero-scrolly-wrapper');
       const scene1 = document.getElementById('hero-scene-1');
       const scene2 = document.getElementById('hero-scene-2');
       const backdropTint = document.getElementById('hero-backdrop-tint');
       let isScene2Active = false;
+      let autoScene2Lock = false; // true when automatically transitioned at scrollY === 0
 
+      function activateScene2(fromAuto = false) {
+        if (!scene1 || !scene2 || !backdropTint) return;
+        if (fromAuto) autoScene2Lock = true;
+        if (isScene2Active) return;
+        isScene2Active = true;
+
+        scene1.classList.remove('scene-1-visible', 'z-20');
+        scene1.classList.add('scene-1-hidden', '-z-10');
+
+        scene2.classList.remove('scene-2-hidden', '-z-10');
+        scene2.classList.add('scene-2-visible', 'z-20');
+
+        backdropTint.style.background =
+          'radial-gradient(circle at 50% 50%, rgba(14, 16, 22, 0.85) 0%, rgba(12, 13, 18, 0.92) 70%, rgba(10, 11, 15, 0.96) 100%)';
+
+        setShowcasePlugin(currentShowcaseIdx);
+        showcaseProgress = 0;
+      }
+
+      function activateScene1() {
+        if (!scene1 || !scene2 || !backdropTint) return;
+        autoScene2Lock = false;
+        if (!isScene2Active) return;
+        isScene2Active = false;
+
+        scene1.classList.remove('scene-1-hidden', '-z-10');
+        scene1.classList.add('scene-1-visible', 'z-20');
+
+        scene2.classList.remove('scene-2-visible', 'z-20');
+        scene2.classList.add('scene-2-hidden', '-z-10');
+
+        backdropTint.style.background =
+          'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.78) 0%, rgba(249,249,249,0.52) 58%, rgba(249,249,249,0.22) 100%)';
+
+        setTimeout(() => {
+          triggerHeroFreedomFlash('hero-orange-ja');
+          triggerHeroFreedomFlash('hero-orange-en');
+        }, 1200);
+      }
+
+      window.triggerPluginsShowcaseScene = function () {
+        activateScene2(true);
+      };
+
+      window.returnToOpeningScene = function () {
+        activateScene1();
+        if (window.scrollY > 10) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      // Automatically and slowly transition from Scene 1 to Scene 2 (Plugins Showcase)
+      // right after Scene 1's catchphrase, lead copy, logo/pills fade-in & flash complete (~12.6s)
+      setTimeout(() => {
+        if (!isScene2Active && window.scrollY < window.innerHeight * 0.32) {
+          activateScene2(true);
+        }
+      }, 12600);
+
+      let lastScrollY = window.scrollY;
       function handleHeroScroll() {
         if (!wrapper || !scene1 || !scene2 || !backdropTint) return;
         const scrollY = window.scrollY;
         const threshold = window.innerHeight * 0.32;
+        const scrollingUp = scrollY < lastScrollY;
+        lastScrollY = scrollY;
 
-        if (scrollY >= threshold && !isScene2Active) {
-          isScene2Active = true;
-          scene1.classList.remove('scene-1-visible', 'z-20');
-          scene1.classList.add('scene-1-hidden', '-z-10');
-
-          scene2.classList.remove('scene-2-hidden', '-z-10');
-          scene2.classList.add('scene-2-visible', 'z-20');
-
-          backdropTint.style.background =
-            'radial-gradient(circle at 50% 50%, rgba(14, 16, 22, 0.85) 0%, rgba(12, 13, 18, 0.92) 70%, rgba(10, 11, 15, 0.96) 100%)';
-
-          // Trigger fresh character reveal on the active plugin's orange catchphrase
-          setShowcasePlugin(currentShowcaseIdx);
-          showcaseProgress = 0;
+        if (scrollY >= threshold) {
+          autoScene2Lock = false;
+          if (!isScene2Active) activateScene2(false);
         } else if (scrollY < threshold && isScene2Active) {
-          isScene2Active = false;
-          scene1.classList.remove('scene-1-hidden', '-z-10');
-          scene1.classList.add('scene-1-visible', 'z-20');
-
-          scene2.classList.remove('scene-2-visible', 'z-20');
-          scene2.classList.add('scene-2-hidden', '-z-10');
-
-          backdropTint.style.background =
-            'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.78) 0%, rgba(249,249,249,0.52) 58%, rgba(249,249,249,0.22) 100%)';
+          // Only switch back to Scene 1 on scroll-up if not locked by auto-transition at top
+          if (!autoScene2Lock || (scrollingUp && scrollY <= 12)) {
+            activateScene1();
+          }
         }
       }
 
