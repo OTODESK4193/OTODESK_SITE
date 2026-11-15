@@ -34,15 +34,16 @@
       100% { left: 100%; opacity: 0; }
     }
     .ableton-bg-drift {
-      animation: abletonDrift 26s ease-in-out infinite;
+      animation: abletonDrift 52s ease-in-out infinite;
       will-change: transform;
     }
     .ableton-playhead-auto {
-      animation: playheadForward 18s linear infinite;
+      animation: playheadForward 38s linear infinite;
     }
 
     /* ========================================================================= */
-    /* MULTI-MODE KINETIC TYPOGRAPHY SYSTEM (EDITORIAL / DSP INSPIRED)           */
+    /* MULTI-MODE KINETIC TYPOGRAPHY SYSTEM (UNHURRIED HALF-SPEED CHOREOGRAPHY)  */
+    /* Order: 1. Main Catchphrase -> 2. Lead Copy -> 3. OTODESK Logo & Spec Pills*/
     /* ========================================================================= */
     .kinetic-mask {
       display: inline-block;
@@ -50,40 +51,23 @@
       perspective: 1100px;
       padding: 0.08em 0.04em;
     }
-    .kinetic-word {
-      display: inline-block;
-      transform-origin: 50% 100%;
-      transform: translate3d(0, 52px, -40px) rotateX(-38deg) scale(0.94);
-      opacity: 0;
-      filter: blur(12px);
-      transition:
-        transform 2.1s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 1.9s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 1.9s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform, opacity, filter;
-    }
-    .hero-loaded .kinetic-word {
-      transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
-      opacity: 1;
-      filter: blur(0px);
-    }
 
-    /* Phrase 1: Architectural Wireframe Stroke-to-Ink Fill + Tracking Compression */
+    /* Step 1A: Phrase 1 ("音を楽しむ。") Architectural Wireframe Stroke-to-Ink Fill */
     .stroke-to-ink-word {
       display: inline-block;
       color: transparent;
       -webkit-text-stroke: 1.5px #141414;
       letter-spacing: 0.22em;
       opacity: 0;
-      filter: blur(8px);
-      transform: translateY(26px) scale(1.06);
+      filter: blur(10px);
+      transform: translateY(28px) scale(1.05);
       transition:
-        color 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.75s,
-        -webkit-text-stroke-color 1.8s ease 0.75s,
-        letter-spacing 2.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
-        opacity 1.4s ease 0.35s,
-        filter 1.6s ease 0.35s,
-        transform 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+        color 3.4s cubic-bezier(0.22, 1, 0.36, 1) 1.1s,
+        -webkit-text-stroke-color 3.4s ease 1.1s,
+        letter-spacing 3.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+        opacity 2.8s ease 0.35s,
+        filter 3.0s ease 0.35s,
+        transform 3.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
     }
     .hero-loaded .stroke-to-ink-word {
       color: #141414;
@@ -95,11 +79,11 @@
     }
     .stroke-interactive-char {
       display: inline-block;
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.22s ease, -webkit-text-stroke 0.22s ease;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease, -webkit-text-stroke 0.35s ease;
       cursor: default;
     }
 
-    /* Phrase 2A: Liquid Copper-Gold Shimmer + Finale Flash Burst for "大人の自由" */
+    /* Step 1B: Phrase 2A ("大人の自由") Liquid Copper-Gold Shimmer + Finale Flash Burst */
     @keyframes liquidCopperFlow {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
@@ -110,12 +94,12 @@
         filter: brightness(1) drop-shadow(0 0 0px rgba(255, 120, 30, 0));
         transform: translateY(0) scale(1);
       }
-      18% {
-        filter: brightness(3.2) contrast(1.2) drop-shadow(0 0 26px rgba(255, 255, 255, 1)) drop-shadow(0 0 48px rgba(255, 115, 20, 0.95));
+      22% {
+        filter: brightness(3.3) contrast(1.2) drop-shadow(0 0 28px rgba(255, 255, 255, 1)) drop-shadow(0 0 52px rgba(255, 115, 20, 0.95));
         transform: translateY(-5px) scale(1.12);
       }
-      42% {
-        filter: brightness(2.1) drop-shadow(0 0 18px rgba(255, 160, 60, 0.9)) drop-shadow(0 0 34px rgba(255, 85, 0, 0.75));
+      50% {
+        filter: brightness(2.0) drop-shadow(0 0 20px rgba(255, 160, 60, 0.85)) drop-shadow(0 0 36px rgba(255, 85, 0, 0.7));
         transform: translateY(-2px) scale(1.04);
       }
       100% {
@@ -130,27 +114,27 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      animation: liquidCopperFlow 7s ease-in-out infinite;
-      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
+      animation: liquidCopperFlow 12s ease-in-out infinite;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
       will-change: transform, filter;
       cursor: pointer;
     }
     .liquid-copper-char.is-flashing {
-      animation: finaleFlashBurst 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards, liquidCopperFlow 7s ease-in-out infinite;
+      animation: finaleFlashBurst 1.85s cubic-bezier(0.16, 1, 0.3, 1) forwards, liquidCopperFlow 12s ease-in-out infinite;
     }
 
-    /* Phrase 2B: Editorial Horizontal Clip-Curtain Reveal for "がここにある。" */
+    /* Step 1C: Phrase 2B ("がここにある。") Editorial Horizontal Clip-Curtain Reveal */
     .curtain-reveal-word {
       display: inline-block;
       clip-path: inset(0 100% 0 0);
-      transform: translateX(-18px);
+      transform: translateX(-20px);
       opacity: 0;
-      filter: blur(6px);
+      filter: blur(8px);
       transition:
-        clip-path 1.9s cubic-bezier(0.16, 1, 0.3, 1) 1.55s,
-        transform 1.9s cubic-bezier(0.16, 1, 0.3, 1) 1.55s,
-        opacity 1.4s ease 1.55s,
-        filter 1.5s ease 1.55s;
+        clip-path 3.4s cubic-bezier(0.16, 1, 0.3, 1) 2.65s,
+        transform 3.4s cubic-bezier(0.16, 1, 0.3, 1) 2.65s,
+        opacity 2.6s ease 2.65s,
+        filter 2.8s ease 2.65s;
     }
     .hero-loaded .curtain-reveal-word {
       clip-path: inset(0 0% 0 0);
@@ -159,43 +143,66 @@
       filter: blur(0px);
     }
 
-    /* Lead Copy Staggered Editorial Line Reveal */
+    /* Step 2: Lead Copy ("年齢もキャリアも超えて〜") Staggered Slow Editorial Reveal */
     .editorial-line {
       display: block;
       opacity: 0;
-      transform: translateY(28px);
-      filter: blur(8px);
+      transform: translateY(30px);
+      filter: blur(10px);
       transition:
-        opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 1.7s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity 3.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 3.4s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 3.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-loaded .editorial-line-1 {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0px);
-      transition-delay: 2.05s;
+      transition-delay: 4.85s;
     }
     .hero-loaded .editorial-line-2 {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0px);
-      transition-delay: 2.40s;
+      transition-delay: 6.10s;
     }
 
-    .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.45s; }
-    .delay-3 { transition-delay: 1.00s; }
-    .delay-4 { transition-delay: 1.50s; }
-    .delay-5 { transition-delay: 2.05s; }
-    .delay-6 { transition-delay: 2.75s; }
+    /* Step 3 (FINALE): OTODESK Horizontal Logo & Ableton Verified Spec Pills Slow Fade-In */
+    .finale-slow-fade {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+      filter: blur(10px);
+      transition:
+        opacity 3.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 3.6s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 3.4s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform, filter;
+    }
+    .hero-loaded .finale-logo-delay {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+      transition-delay: 8.10s;
+    }
+    .hero-loaded .finale-pills-delay {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+      transition-delay: 8.65s;
+    }
+    .hero-loaded .finale-scroll-delay {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+      transition-delay: 9.30s;
+    }
 
-    /* Slow, Cinematic Scene Transition (Scene 1 <-> Scene 2) */
+    /* Slow, Cinematic Scene Transition (Scene 1 <-> Scene 2: Half Speed ~3.4s) */
     .hero-scene-transition {
       transition:
-        opacity 1.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1.85s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 1.75s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 3.3s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 3.5s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 3.3s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform, filter;
     }
     .scene-1-visible {
@@ -221,7 +228,7 @@
       filter: blur(0px);
     }
 
-    /* Slow Dynamic Showcase Text & 3D Screenshot Entrance */
+    /* Slow Dynamic Showcase Text & 3D Screenshot Entrance (Half Speed ~2.8s) */
     @keyframes showcaseTextIn {
       0%   { opacity: 0; transform: perspective(900px) translateY(38px) rotateX(-24deg) rotateZ(2deg); filter: blur(12px); }
       45%  { opacity: 0.45; filter: blur(4px); }
@@ -233,16 +240,16 @@
       100% { opacity: 1; transform: perspective(1200px) rotateY(-4deg) rotateX(1deg) rotateZ(0deg) scale(1) translateY(0); filter: blur(0px); }
     }
     .showcase-animate-text {
-      animation: showcaseTextIn 1.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: showcaseTextIn 2.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .showcase-animate-img {
-      animation: showcaseImgIn 1.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: showcaseImgIn 2.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* ========================================================================= */
-    /* 4 DISTINCT SHOWCASE CATCHPHRASE ENTRANCE MODES (NO ONE-PATTERN MOTION!)   */
+    /* 4 DISTINCT SHOWCASE CATCHPHRASE ENTRANCE MODES (HALF SPEED ~2.5s)         */
     /* ========================================================================= */
-    /* Mode 1: GRAIN SCATTER (Dispersed 3D sound particles with chromatic split converging into key) */
+    /* Mode 1: GRAIN SCATTER */
     @keyframes modeGrainScatter {
       0% {
         opacity: 0;
@@ -263,7 +270,7 @@
       }
     }
 
-    /* Mode 2: HARMONIC WAVE (Phase-shifted upper/lower sine undulation + italic liquid flow) */
+    /* Mode 2: HARMONIC WAVE */
     @keyframes modeHarmonicWave {
       0% {
         opacity: 0;
@@ -284,7 +291,7 @@
       }
     }
 
-    /* Mode 3: ENVELOPE STROKE (Hollow wireframe outline progressively filling with glowing orange) */
+    /* Mode 3: ENVELOPE STROKE */
     @keyframes modeEnvelopeStroke {
       0% {
         opacity: 0.15;
@@ -308,7 +315,7 @@
       }
     }
 
-    /* Mode 4: STEP DECODE (Crisp step-sequencer lock-in with vertical slot-machine snap) */
+    /* Mode 4: STEP DECODE */
     @keyframes modeStepDecode {
       0% {
         opacity: 0;
@@ -334,25 +341,25 @@
       opacity: 0;
     }
     .orange-char-wrap.mode-grain-scatter {
-      animation: modeGrainScatter 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: modeGrainScatter 2.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .orange-char-wrap.mode-harmonic-wave {
-      animation: modeHarmonicWave 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: modeHarmonicWave 2.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     .orange-char-wrap.mode-envelope-stroke {
-      animation: modeEnvelopeStroke 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: modeEnvelopeStroke 2.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .orange-char-wrap.mode-step-decode {
-      animation: modeStepDecode 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: modeStepDecode 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .orange-kinetic-char {
       display: inline-block;
       transition:
-        transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-        color 0.2s ease,
-        text-shadow 0.22s ease,
-        -webkit-text-stroke 0.2s ease;
+        transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.35s ease,
+        text-shadow 0.35s ease,
+        -webkit-text-stroke 0.35s ease;
       will-change: transform, color, text-shadow;
       cursor: pointer;
     }
@@ -531,22 +538,21 @@
               <div class="w-3.5 h-3.5 -ml-[6px] bg-primary rotate-45 -mt-1.5"></div>
             </div>
 
-            <!-- Dynamic Backdrop Overlay: Slow 1.8s Cross-Dissolve -->
-            <div id="hero-backdrop-tint" class="absolute inset-0 transition-all duration-[1800ms] ease-in-out"
+            <!-- Dynamic Backdrop Overlay: Slow 3.4s Cross-Dissolve -->
+            <div id="hero-backdrop-tint" class="absolute inset-0 transition-all duration-[3400ms] ease-in-out"
                  style="background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.78) 0%, rgba(249,249,249,0.52) 58%, rgba(249,249,249,0.22) 100%);">
             </div>
           </div>
 
           <!-- =================================================================== -->
           <!-- SCENE 1: FULL-SCREEN OPENING STATEMENT                              -->
-          <!-- "音を楽しむ。大人の自由がここにある。"                              -->
-          <!-- Multi-Layer Kinetic: Stroke-to-Ink + Liquid Copper + Pluckable SVG  -->
+          <!-- Sequence: 1. Catchphrase -> 2. Lead Copy -> 3. Logo & Spec Pills    -->
           <!-- =================================================================== -->
           <div id="hero-scene-1" class="hero-scene-transition scene-1-visible relative z-20 w-full max-w-[1360px] mx-auto px-6 sm:px-12 flex flex-col items-center justify-center text-center">
             
-            <!-- Horizontal OTODESK Logo Only (Frameless & Clean) -->
+            <!-- Step 3 (Finale): Horizontal OTODESK Logo (Slowly fades in LAST at 8.1s) -->
             <div class="kinetic-mask mb-5 sm:mb-7">
-              <div class="kinetic-word delay-1">
+              <div class="finale-slow-fade finale-logo-delay">
                 <img
                   alt="OTODESK"
                   class="w-auto h-14 sm:h-20 md:h-24 object-contain mx-auto drop-shadow-[0_4px_20px_rgba(255,255,255,0.9)]"
@@ -555,7 +561,7 @@
               </div>
             </div>
 
-            <!-- Full-Width Multi-Mode Kinetic Catchphrase (Japanese Mode) -->
+            <!-- Step 1 (First): Full-Width Multi-Mode Kinetic Catchphrase (Japanese Mode) -->
             <h1 id="hero-kinetic-title-ja" class="font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[72px] tracking-tight text-on-surface font-black leading-[1.16] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
               <!-- Phrase 1: Architectural Stroke-to-Ink Fill + Interactive Wireframe Chars -->
               <span class="kinetic-mask">
@@ -568,7 +574,7 @@
               </span><!-- Phrase 2B: Horizontal Curtain Slide --><span class="curtain-reveal-word">がここにある。</span>
             </h1>
 
-            <!-- Full-Width Multi-Mode Kinetic Catchphrase (English Mode, toggled by i18n) -->
+            <!-- Step 1 (First): Full-Width Multi-Mode Kinetic Catchphrase (English Mode, toggled by i18n) -->
             <h1 id="hero-kinetic-title-en" class="hidden font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-tight text-on-surface font-black leading-[1.12] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
               <span class="kinetic-mask">
                 <span id="hero-stroke-en" class="stroke-to-ink-word">Play with Sound.</span>
@@ -580,7 +586,7 @@
               <span class="curtain-reveal-word">Lives Here.</span>
             </h1>
 
-            <!-- Staggered 2-Line Editorial Lead Copy -->
+            <!-- Step 2 (Second): Staggered 2-Line Editorial Lead Copy -->
             <div class="max-w-3xl mb-8 flex flex-col gap-1.5">
               <p
                 class="editorial-line editorial-line-1 font-body-lg text-base sm:text-xl md:text-2xl text-on-surface font-bold leading-relaxed drop-shadow-[0_1px_14px_rgba(255,255,255,0.95)]"
@@ -598,9 +604,9 @@
               </p>
             </div>
 
-            <!-- Spec Pills -->
+            <!-- Step 3 (Finale): Spec Pills (Slowly fades in LAST at 8.65s) -->
             <div class="kinetic-mask">
-              <div class="kinetic-word delay-6 flex flex-wrap items-center justify-center gap-2.5 font-label-md text-xs sm:text-sm">
+              <div class="finale-slow-fade finale-pills-delay flex flex-wrap items-center justify-center gap-2.5 font-label-md text-xs sm:text-sm">
                 <span class="px-3.5 py-1.5 bg-on-surface text-surface font-bold shadow-sm" data-i18n-ja="Ableton Live 動作確認済み" data-i18n-en="Verified on Ableton Live">Ableton Live 動作確認済み</span>
                 <span class="px-3.5 py-1.5 bg-white/90 text-on-surface border border-black/15 font-bold shadow-sm">Windows 11 / VST3</span>
                 <span class="px-3.5 py-1.5 bg-primary text-on-primary font-bold shadow-sm">100% FREE</span>
@@ -608,11 +614,11 @@
               </div>
             </div>
 
-            <!-- Scroll / Scene Transition Prompt -->
+            <!-- Step 3 (Finale): Scroll / Scene Transition Prompt -->
             <button
               type="button"
               onclick="triggerPluginsShowcaseScene()"
-              class="mt-8 sm:mt-10 inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary transition-colors cursor-pointer group"
+              class="finale-slow-fade finale-scroll-delay mt-8 sm:mt-10 inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary transition-colors cursor-pointer group"
             >
               <span class="font-label-md text-[11px] font-bold tracking-[0.2em] uppercase" data-i18n-ja="SCROLL // PLUGINS SHOWCASE へ" data-i18n-en="SCROLL // TO PLUGINS SHOWCASE">SCROLL // PLUGINS SHOWCASE へ</span>
               <span class="w-8 h-8 rounded-full border border-on-surface/30 group-hover:border-primary flex items-center justify-center animate-bounce">
@@ -1623,20 +1629,20 @@
       buildStrokeInteractiveChars(document.getElementById('hero-stroke-en'), 'Play with Sound.');
 
       // B. Build Scene 1 Phrase 2A: Liquid Copper-Gold Shimmer + Finale Flash Burst ("大人の自由")
-      function buildLiquidCopperText(container, text, baseDelaySec = 0.85) {
+      function buildLiquidCopperText(container, text, baseDelaySec = 1.45, stepDelaySec = 0.14) {
         if (!container) return;
         const chars = Array.from(text);
         container.innerHTML = chars.map((ch, i) => {
           if (ch === ' ') return '<span class="inline-block w-2.5">&nbsp;</span>';
-          const delay = (baseDelaySec + i * 0.065).toFixed(3);
+          const delay = (baseDelaySec + i * stepDelaySec).toFixed(3);
           const wy = i % 2 === 0 ? '-32px' : '32px';
           return `<span class="orange-char-wrap mode-harmonic-wave" style="--wy:${wy}; animation-delay:${delay}s"><span class="liquid-copper-char" data-copper-idx="${i}">${ch}</span></span>`;
         }).join('');
       }
-      buildLiquidCopperText(document.getElementById('hero-orange-ja'), '大人の自由', 0.85);
-      buildLiquidCopperText(document.getElementById('hero-orange-en'), 'Freedom for Grown Minds', 0.80);
+      buildLiquidCopperText(document.getElementById('hero-orange-ja'), '大人の自由', 1.45, 0.14);
+      buildLiquidCopperText(document.getElementById('hero-orange-en'), 'Freedom for Grown Minds', 1.35, 0.055);
 
-      // C. Finale Strobe Flash on "大人の自由" (Fires once all copy finishes appearing + on hover/click)
+      // C. Finale Strobe Flash on "大人の自由" (Fires once all copy + finale fade finishes + on hover/click)
       function triggerHeroFreedomFlash(textContainerId) {
         const textBox = document.getElementById(textContainerId);
         if (!textBox) return;
@@ -1646,15 +1652,19 @@
           void ch.offsetWidth;
           setTimeout(() => {
             ch.classList.add('is-flashing');
-          }, idx * 45);
+          }, idx * 85);
         });
       }
 
-      // Trigger Finale Flash right after all opening copy & lead lines settle (~2.85s after load)
+      // Trigger Finale Flash right after the catchphrase & lead lines settle (~7.6s) and again as the logo & pills finish emerging (~10.4s)
       setTimeout(() => {
         triggerHeroFreedomFlash('hero-orange-ja');
         triggerHeroFreedomFlash('hero-orange-en');
-      }, 2850);
+      }, 7600);
+      setTimeout(() => {
+        triggerHeroFreedomFlash('hero-orange-ja');
+        triggerHeroFreedomFlash('hero-orange-en');
+      }, 10500);
 
       // Also allow re-triggering the flash interactively on hover or click
       ['hero-flash-box-ja', 'hero-flash-box-en'].forEach((boxId) => {
@@ -1664,7 +1674,7 @@
         let lastFlash = 0;
         box.addEventListener('mouseenter', () => {
           const now = performance.now();
-          if (now - lastFlash < 600) return;
+          if (now - lastFlash < 900) return;
           lastFlash = now;
           triggerHeroFreedomFlash(targetId);
         });
@@ -1673,9 +1683,9 @@
         });
       });
 
-      // D. Multi-Mode Showcase Catchphrase Builder (4 Distinct Choreography Modes)
+      // D. Multi-Mode Showcase Catchphrase Builder (4 Distinct Choreography Modes at Half Speed)
       let decodeTimers = [];
-      function buildMultiModeCatchphrase(container, text, mode = 'grain-scatter', baseDelaySec = 0.12) {
+      function buildMultiModeCatchphrase(container, text, mode = 'grain-scatter', baseDelaySec = 0.25) {
         if (!container) return;
         decodeTimers.forEach(t => clearTimeout(t));
         decodeTimers = [];
@@ -1692,23 +1702,23 @@
             const gx = (((i * 47) % 90) - 45) + 'px';
             const gy = (((i * 61) % 76) - 38) + 'px';
             const gz = -(((i * 29) % 90) + 20) + 'px';
-            const delay = (baseDelaySec + (i % 7) * 0.045 + i * 0.014).toFixed(3);
+            const delay = (baseDelaySec + (i % 7) * 0.085 + i * 0.026).toFixed(3);
             return `<span class="orange-char-wrap mode-grain-scatter" style="--gx:${gx};--gy:${gy};--gz:${gz};--gr:${angle}deg;animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
           }
 
           if (mode === 'harmonic-wave') {
             const wy = (i % 2 === 0 ? -34 : 34) + 'px';
-            const delay = (baseDelaySec + i * 0.028).toFixed(3);
+            const delay = (baseDelaySec + i * 0.052).toFixed(3);
             return `<span class="orange-char-wrap mode-harmonic-wave" style="--wy:${wy};animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
           }
 
           if (mode === 'envelope-stroke') {
-            const delay = (baseDelaySec + i * 0.032).toFixed(3);
+            const delay = (baseDelaySec + i * 0.058).toFixed(3);
             return `<span class="orange-char-wrap mode-envelope-stroke" style="animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
           }
 
           // mode === 'step-decode' (Musical/DSP glyph matrix shuffle into lock-in)
-          const delay = (baseDelaySec + i * 0.022).toFixed(3);
+          const delay = (baseDelaySec + i * 0.044).toFixed(3);
           const initGlyph = DSP_GLYPHS[i % DSP_GLYPHS.length];
           return `<span class="orange-char-wrap mode-step-decode" style="animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${initGlyph}</span></span>`;
         }).join('');
@@ -1720,11 +1730,11 @@
             const t1 = setTimeout(() => {
               el.textContent = DSP_GLYPHS[(idx + 3) % DSP_GLYPHS.length];
               el.style.color = '#ffffff';
-            }, (baseDelaySec * 1000) + idx * 24 + 90);
+            }, (baseDelaySec * 1000) + idx * 46 + 180);
             const t2 = setTimeout(() => {
               el.textContent = orig;
               el.style.color = '';
-            }, (baseDelaySec * 1000) + idx * 24 + 230);
+            }, (baseDelaySec * 1000) + idx * 46 + 440);
             decodeTimers.push(t1, t2);
           });
         }
@@ -2113,7 +2123,7 @@
         if (scTitle) scTitle.textContent = item.name;
         if (scCatch) {
           const catchText = lang === 'en' ? item.catchEn : item.catchJa;
-          buildMultiModeCatchphrase(scCatch, catchText, item.motionMode, 0.14);
+          buildMultiModeCatchphrase(scCatch, catchText, item.motionMode, 0.25);
         }
         if (scDesc) scDesc.textContent = lang === 'en' ? item.descEn : item.descJa;
         if (scDetailLink) scDetailLink.href = item.url;
@@ -2130,10 +2140,10 @@
         setShowcasePlugin(currentShowcaseIdx);
       });
 
-      // Unhurried Auto-Advance Timer (~7.4s per plugin, pauses while hovering over the interactive orange catchphrase)
+      // Unhurried Auto-Advance Timer (~14.7s per plugin, half speed, pauses while hovering over the interactive orange catchphrase)
       setInterval(() => {
         if (!isScene2Active || isHoveringOrange) return;
-        showcaseProgress += 1.35;
+        showcaseProgress += 0.68;
         if (scProgressBar) scProgressBar.style.width = `${Math.min(100, showcaseProgress)}%`;
         if (showcaseProgress >= 100) {
           showcaseProgress = 0;
