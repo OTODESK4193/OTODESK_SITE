@@ -41,36 +41,154 @@
       animation: playheadForward 18s linear infinite;
     }
 
-    /* Slow, Atmospheric Kinetic Typography Reveal (Rotation + Blur + Transparent-to-Dense) */
+    /* ========================================================================= */
+    /* MULTI-MODE KINETIC TYPOGRAPHY SYSTEM (EDITORIAL / DSP INSPIRED)           */
+    /* ========================================================================= */
     .kinetic-mask {
       display: inline-block;
       vertical-align: bottom;
-      perspective: 1000px;
+      perspective: 1100px;
       padding: 0.08em 0.04em;
     }
     .kinetic-word {
       display: inline-block;
       transform-origin: 50% 100%;
-      transform: translate3d(0, 56px, -40px) rotateX(-42deg) rotateZ(5deg) scale(0.92);
+      transform: translate3d(0, 52px, -40px) rotateX(-38deg) scale(0.94);
       opacity: 0;
-      filter: blur(14px);
+      filter: blur(12px);
       transition:
-        transform 2.2s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 2.0s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+        transform 2.1s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 1.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1.9s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform, opacity, filter;
     }
     .hero-loaded .kinetic-word {
-      transform: translate3d(0, 0, 0) rotateX(0deg) rotateZ(0deg) scale(1);
+      transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
       opacity: 1;
       filter: blur(0px);
     }
+
+    /* Phrase 1: Architectural Wireframe Stroke-to-Ink Fill + Tracking Compression */
+    .stroke-to-ink-word {
+      display: inline-block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #141414;
+      letter-spacing: 0.22em;
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(26px) scale(1.06);
+      transition:
+        color 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.75s,
+        -webkit-text-stroke-color 1.8s ease 0.75s,
+        letter-spacing 2.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+        opacity 1.4s ease 0.35s,
+        filter 1.6s ease 0.35s,
+        transform 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+    }
+    .hero-loaded .stroke-to-ink-word {
+      color: #141414;
+      -webkit-text-stroke: 0px transparent;
+      letter-spacing: -0.03em;
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0) scale(1);
+    }
+    .stroke-interactive-char {
+      display: inline-block;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.22s ease, -webkit-text-stroke 0.22s ease;
+      cursor: default;
+    }
+
+    /* Phrase 2A: Liquid Copper-Gold Shimmer + Finale Flash Burst for "大人の自由" */
+    @keyframes liquidCopperFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes finaleFlashBurst {
+      0% {
+        filter: brightness(1) drop-shadow(0 0 0px rgba(255, 120, 30, 0));
+        transform: translateY(0) scale(1);
+      }
+      18% {
+        filter: brightness(3.2) contrast(1.2) drop-shadow(0 0 26px rgba(255, 255, 255, 1)) drop-shadow(0 0 48px rgba(255, 115, 20, 0.95));
+        transform: translateY(-5px) scale(1.12);
+      }
+      42% {
+        filter: brightness(2.1) drop-shadow(0 0 18px rgba(255, 160, 60, 0.9)) drop-shadow(0 0 34px rgba(255, 85, 0, 0.75));
+        transform: translateY(-2px) scale(1.04);
+      }
+      100% {
+        filter: brightness(1) drop-shadow(0 0 0px rgba(255, 120, 30, 0));
+        transform: translateY(0) scale(1);
+      }
+    }
+    .liquid-copper-char {
+      display: inline-block;
+      background: linear-gradient(115deg, #a63500 0%, #ff5500 28%, #ffaa4c 50%, #cc3700 74%, #8f2800 100%);
+      background-size: 260% 260%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: liquidCopperFlow 7s ease-in-out infinite;
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
+      will-change: transform, filter;
+      cursor: pointer;
+    }
+    .liquid-copper-char.is-flashing {
+      animation: finaleFlashBurst 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards, liquidCopperFlow 7s ease-in-out infinite;
+    }
+
+    /* Phrase 2B: Editorial Horizontal Clip-Curtain Reveal for "がここにある。" */
+    .curtain-reveal-word {
+      display: inline-block;
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-18px);
+      opacity: 0;
+      filter: blur(6px);
+      transition:
+        clip-path 1.9s cubic-bezier(0.16, 1, 0.3, 1) 1.55s,
+        transform 1.9s cubic-bezier(0.16, 1, 0.3, 1) 1.55s,
+        opacity 1.4s ease 1.55s,
+        filter 1.5s ease 1.55s;
+    }
+    .hero-loaded .curtain-reveal-word {
+      clip-path: inset(0 0% 0 0);
+      transform: translateX(0);
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    /* Lead Copy Staggered Editorial Line Reveal */
+    .editorial-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(8px);
+      transition:
+        opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-loaded .editorial-line-1 {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+      transition-delay: 2.05s;
+    }
+    .hero-loaded .editorial-line-2 {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+      transition-delay: 2.40s;
+    }
+
     .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.55s; }
-    .delay-3 { transition-delay: 1.10s; }
-    .delay-4 { transition-delay: 1.60s; }
-    .delay-5 { transition-delay: 2.15s; }
-    .delay-6 { transition-delay: 2.65s; }
+    .delay-2 { transition-delay: 0.45s; }
+    .delay-3 { transition-delay: 1.00s; }
+    .delay-4 { transition-delay: 1.50s; }
+    .delay-5 { transition-delay: 2.05s; }
+    .delay-6 { transition-delay: 2.75s; }
 
     /* Slow, Cinematic Scene Transition (Scene 1 <-> Scene 2) */
     .hero-scene-transition {
@@ -121,31 +239,120 @@
       animation: showcaseImgIn 1.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Interactive Orange Catchphrase Characters (Slow Rotational Reveal + Cursor Proximity Physics) */
-    @keyframes orangeCharIn {
+    /* ========================================================================= */
+    /* 4 DISTINCT SHOWCASE CATCHPHRASE ENTRANCE MODES (NO ONE-PATTERN MOTION!)   */
+    /* ========================================================================= */
+    /* Mode 1: GRAIN SCATTER (Dispersed 3D sound particles with chromatic split converging into key) */
+    @keyframes modeGrainScatter {
       0% {
         opacity: 0;
-        filter: blur(10px);
-        transform: perspective(600px) translateY(28px) rotateX(-65deg) rotateY(25deg) rotateZ(10deg) scale(0.75);
+        filter: blur(12px);
+        transform: perspective(600px) translate3d(var(--gx, 24px), var(--gy, -32px), var(--gz, -80px)) rotateZ(var(--gr, 28deg)) scale(0.45);
+        text-shadow: -6px 0 rgba(255, 40, 0, 0.85), 6px 0 rgba(0, 210, 255, 0.85);
       }
-      40% {
-        opacity: 0.35;
-        filter: blur(4px);
+      55% {
+        opacity: 0.75;
+        filter: blur(2px);
+        text-shadow: -2px 0 rgba(255, 90, 30, 0.5), 2px 0 rgba(0, 210, 255, 0.4);
       }
       100% {
         opacity: 1;
         filter: blur(0px);
-        transform: perspective(600px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+        transform: perspective(600px) translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+        text-shadow: 0 0 0 transparent;
       }
     }
+
+    /* Mode 2: HARMONIC WAVE (Phase-shifted upper/lower sine undulation + italic liquid flow) */
+    @keyframes modeHarmonicWave {
+      0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(var(--wy, 34px)) skewX(-22deg) scaleY(1.35);
+        color: #ffd9b3;
+      }
+      50% {
+        opacity: 0.85;
+        filter: blur(1px);
+        transform: translateY(calc(var(--wy, 34px) * -0.28)) skewX(8deg) scaleY(0.94);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0) skewX(0deg) scaleY(1);
+        color: #ff6a2b;
+      }
+    }
+
+    /* Mode 3: ENVELOPE STROKE (Hollow wireframe outline progressively filling with glowing orange) */
+    @keyframes modeEnvelopeStroke {
+      0% {
+        opacity: 0.15;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #ff8547;
+        transform: perspective(600px) rotateY(75deg) scale(0.86);
+        filter: drop-shadow(0 0 12px rgba(255, 106, 43, 0.65));
+      }
+      55% {
+        opacity: 1;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #ffb07c;
+        transform: perspective(600px) rotateY(-12deg) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        color: #ff6a2b;
+        -webkit-text-stroke: 0px transparent;
+        transform: perspective(600px) rotateY(0deg) scale(1);
+        filter: drop-shadow(0 0 0px transparent);
+      }
+    }
+
+    /* Mode 4: STEP DECODE (Crisp step-sequencer lock-in with vertical slot-machine snap) */
+    @keyframes modeStepDecode {
+      0% {
+        opacity: 0;
+        transform: translateY(-28px) scale(1.25);
+        color: #ffffff;
+        text-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
+      }
+      45% {
+        opacity: 1;
+        transform: translateY(5px) scale(0.95);
+        color: #ffb88c;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        color: #ff6a2b;
+        text-shadow: 0 0 0 transparent;
+      }
+    }
+
     .orange-char-wrap {
       display: inline-block;
       opacity: 0;
-      animation: orangeCharIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    .orange-char-wrap.mode-grain-scatter {
+      animation: modeGrainScatter 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .orange-char-wrap.mode-harmonic-wave {
+      animation: modeHarmonicWave 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .orange-char-wrap.mode-envelope-stroke {
+      animation: modeEnvelopeStroke 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .orange-char-wrap.mode-step-decode {
+      animation: modeStepDecode 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
     .orange-kinetic-char {
       display: inline-block;
-      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.22s ease, text-shadow 0.22s ease;
+      transition:
+        transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.2s ease,
+        text-shadow 0.22s ease,
+        -webkit-text-stroke 0.2s ease;
       will-change: transform, color, text-shadow;
       cursor: pointer;
     }
@@ -331,13 +538,14 @@
           </div>
 
           <!-- =================================================================== -->
-          <!-- SCENE 1: FULL-SCREEN OPENING STATEMENT ("触れた瞬間、想像力を解き放つ。") -->
-          <!-- Slow rotational & opacity gradation reveal + Interactive Orange     -->
+          <!-- SCENE 1: FULL-SCREEN OPENING STATEMENT                              -->
+          <!-- "音を楽しむ。大人の自由がここにある。"                              -->
+          <!-- Multi-Layer Kinetic: Stroke-to-Ink + Liquid Copper + Pluckable SVG  -->
           <!-- =================================================================== -->
           <div id="hero-scene-1" class="hero-scene-transition scene-1-visible relative z-20 w-full max-w-[1360px] mx-auto px-6 sm:px-12 flex flex-col items-center justify-center text-center">
             
             <!-- Horizontal OTODESK Logo Only (Frameless & Clean) -->
-            <div class="kinetic-mask mb-6 sm:mb-8">
+            <div class="kinetic-mask mb-5 sm:mb-7">
               <div class="kinetic-word delay-1">
                 <img
                   alt="OTODESK"
@@ -347,27 +555,46 @@
               </div>
             </div>
 
-            <!-- Full-Width Kinetic Catchphrase (Japanese Mode) -->
-            <h1 id="hero-kinetic-title-ja" class="font-headline-xl text-4xl sm:text-6xl md:text-7xl lg:text-[80px] tracking-tighter text-on-surface font-black leading-[1.12] mb-6 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
-              <span class="kinetic-mask"><span class="kinetic-word delay-2">触れた瞬間、</span></span><br class="sm:hidden" />
-              <span class="kinetic-mask"><span id="hero-orange-ja" class="kinetic-word delay-3 text-primary" title="カーソルを合わせると文字が反応します">想像力</span></span><span class="kinetic-mask"><span class="kinetic-word delay-4">を解き放つ。</span></span>
+            <!-- Full-Width Multi-Mode Kinetic Catchphrase (Japanese Mode) -->
+            <h1 id="hero-kinetic-title-ja" class="font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[72px] tracking-tight text-on-surface font-black leading-[1.16] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
+              <!-- Phrase 1: Architectural Stroke-to-Ink Fill + Interactive Wireframe Chars -->
+              <span class="kinetic-mask">
+                <span id="hero-stroke-ja" class="stroke-to-ink-word" title="カーソルを近づけるとワイヤーフレーム輪郭が浮かび上がります">音を楽しむ。</span>
+              </span>
+              <br class="sm:hidden" />
+              <!-- Phrase 2A: Liquid Copper-Gold Gradient + Finale Flash Burst (No Underline) -->
+              <span class="relative inline-block align-bottom mx-1" id="hero-flash-box-ja">
+                <span id="hero-orange-ja" class="inline-block" title="コピー登場の最後にフラッシュ発光します（ホバー・クリックでも発光）">大人の自由</span>
+              </span><!-- Phrase 2B: Horizontal Curtain Slide --><span class="curtain-reveal-word">がここにある。</span>
             </h1>
 
-            <!-- Full-Width Kinetic Catchphrase (English Mode, toggled by i18n) -->
-            <h1 id="hero-kinetic-title-en" class="hidden font-headline-xl text-4xl sm:text-6xl md:text-7xl lg:text-[72px] tracking-tighter text-on-surface font-black leading-[1.1] mb-6 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
-              <span class="kinetic-mask"><span class="kinetic-word delay-2">Unleash</span></span>
-              <span class="kinetic-mask"><span id="hero-orange-en" class="kinetic-word delay-3 text-primary">Imagination</span></span><br />
-              <span class="kinetic-mask"><span class="kinetic-word delay-4">the Moment You Touch It.</span></span>
+            <!-- Full-Width Multi-Mode Kinetic Catchphrase (English Mode, toggled by i18n) -->
+            <h1 id="hero-kinetic-title-en" class="hidden font-headline-xl text-3xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-tight text-on-surface font-black leading-[1.12] mb-5 drop-shadow-[0_2px_24px_rgba(255,255,255,0.95)]">
+              <span class="kinetic-mask">
+                <span id="hero-stroke-en" class="stroke-to-ink-word">Play with Sound.</span>
+              </span>
+              <br />
+              <span class="relative inline-block align-bottom mr-2" id="hero-flash-box-en">
+                <span id="hero-orange-en" class="inline-block">Freedom for Grown Minds</span>
+              </span>
+              <span class="curtain-reveal-word">Lives Here.</span>
             </h1>
 
-            <!-- Lead Copy -->
-            <div class="kinetic-mask max-w-3xl mb-8">
+            <!-- Staggered 2-Line Editorial Lead Copy -->
+            <div class="max-w-3xl mb-8 flex flex-col gap-1.5">
               <p
-                class="kinetic-word delay-5 font-body-lg text-base sm:text-xl md:text-2xl text-on-surface font-semibold leading-relaxed drop-shadow-[0_1px_14px_rgba(255,255,255,0.95)]"
-                data-i18n-html-ja="50近いオッサンが、AIを使い独学で辿り着いた創造の境地。<br class=&quot;hidden sm:inline&quot; />無駄な装飾を削ぎ落とし、あなたのイマジネーションを直感的に音へと変えるツールを作っています。"
-                data-i18n-html-en="Born from a nearly 50-year-old creator’s self-taught journey with AI.<br class=&quot;hidden sm:inline&quot; />Stripping away unnecessary clutter to turn your musical ideas directly into sound."
+                class="editorial-line editorial-line-1 font-body-lg text-base sm:text-xl md:text-2xl text-on-surface font-bold leading-relaxed drop-shadow-[0_1px_14px_rgba(255,255,255,0.95)]"
+                data-i18n-ja="年齢もキャリアも超えて、AIと独学で辿り着いた音響設計の現在地。"
+                data-i18n-en="Beyond age or background — the frontier of sound design reached through AI and self-taught exploration."
               >
-                50近いオッサンが、AIを使い独学で辿り着いた創造の境地。<br class="hidden sm:inline" />無駄な装飾を削ぎ落とし、あなたのイマジネーションを直感的に音へと変えるツールを作っています。
+                年齢もキャリアも超えて、AIと独学で辿り着いた音響設計の現在地。
+              </p>
+              <p
+                class="editorial-line editorial-line-2 font-body-lg text-sm sm:text-lg md:text-xl text-on-surface/90 font-semibold leading-relaxed drop-shadow-[0_1px_14px_rgba(255,255,255,0.95)]"
+                data-i18n-ja="余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けています。"
+                data-i18n-en="Stripping away excess ornament to deliver minimal tools that spark truly original sound."
+              >
+                余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けています。
               </p>
             </div>
 
@@ -385,7 +612,7 @@
             <button
               type="button"
               onclick="triggerPluginsShowcaseScene()"
-              class="mt-10 sm:mt-12 inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary transition-colors cursor-pointer group"
+              class="mt-8 sm:mt-10 inline-flex flex-col items-center gap-1.5 text-on-surface/80 hover:text-primary transition-colors cursor-pointer group"
             >
               <span class="font-label-md text-[11px] font-bold tracking-[0.2em] uppercase" data-i18n-ja="SCROLL // PLUGINS SHOWCASE へ" data-i18n-en="SCROLL // TO PLUGINS SHOWCASE">SCROLL // PLUGINS SHOWCASE へ</span>
               <span class="w-8 h-8 rounded-full border border-on-surface/30 group-hover:border-primary flex items-center justify-center animate-bounce">
@@ -396,7 +623,7 @@
 
           <!-- =================================================================== -->
           <!-- SCENE 2: DYNAMIC PLUGINS COPY & SCREENSHOT SHOWCASE                 -->
-          <!-- Slow 1.85s 3D Transition + Interactive Orange Catchphrase Wave      -->
+          <!-- 4 Distinct Per-Plugin Kinetic Modes + Multi-Physics Cursor Response -->
           <!-- =================================================================== -->
           <div id="hero-scene-2" class="hero-scene-transition scene-2-hidden -z-10 absolute inset-0 w-full max-w-[1380px] mx-auto px-4 sm:px-10 flex flex-col justify-between py-6 sm:py-10">
             
@@ -424,17 +651,18 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center my-auto py-2">
               <!-- Left 6 Cols: Dynamic Copy -->
               <div class="lg:col-span-6 flex flex-col items-start text-left gap-4" id="showcase-text-box">
-                <div class="flex items-center gap-2.5">
+                <div class="flex items-center gap-2 flex-wrap">
                   <span id="sc-badge" class="px-2.5 py-0.5 bg-primary text-white font-label-md text-xs font-bold uppercase">SYNTH &amp; FX</span>
                   <span id="sc-status" class="px-2.5 py-0.5 bg-white/15 text-white font-label-md text-xs font-bold uppercase">100% FREE</span>
+                  <span id="sc-motion-badge" class="px-2.5 py-0.5 border border-[#ff6a2b]/50 text-[#ff9a5c] font-label-md text-[10px] tracking-wider uppercase">KINETIC // GRAIN SCATTER</span>
                 </div>
 
                 <h2 id="sc-title" class="font-headline-xl text-4xl sm:text-6xl md:text-7xl text-white font-black tracking-tight leading-none">
                   Granular
                 </h2>
 
-                <!-- Interactive Orange Catchphrase (Per-Character 3D Rotation + Cursor Proximity Wave) -->
-                <p id="sc-catch" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-[#ff6a2b] font-extrabold leading-snug select-none" title="カーソルを動かすと文字がインタラクティブに波打ちます">
+                <!-- Interactive Orange Catchphrase (4 Distinct Kinetic Modes per Plugin) -->
+                <p id="sc-catch" data-motion-mode="grain-scatter" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-[#ff6a2b] font-extrabold leading-snug select-none" title="プラグインごとに異なる物理インタラクションが反応します（クリックで波動リプル）">
                   音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。
                 </p>
 
@@ -1379,22 +1607,128 @@
         if (heroStage) heroStage.classList.add('hero-loaded');
       }, 150);
 
-      // Interactive Orange Character Builder (Slow Rotational Reveal + Cursor Proximity 3D Physics)
       let isHoveringOrange = false;
+      const DSP_GLYPHS = ['♪', '♯', 'Δ', 'Ω', '∿', '0', '1', '◈', 'λ', '♭'];
 
-      function buildInteractiveOrangeText(container, text, baseDelaySec = 0) {
+      // A. Build Scene 1 Phrase 1: Interactive Wireframe Stroke-to-Ink Characters ("音を楽しむ。")
+      function buildStrokeInteractiveChars(container, text) {
+        if (!container) return;
+        const chars = Array.from(text);
+        container.innerHTML = chars.map((ch) => {
+          if (ch === ' ') return '<span class="inline-block w-2.5">&nbsp;</span>';
+          return `<span class="stroke-interactive-char">${ch}</span>`;
+        }).join('');
+      }
+      buildStrokeInteractiveChars(document.getElementById('hero-stroke-ja'), '音を楽しむ。');
+      buildStrokeInteractiveChars(document.getElementById('hero-stroke-en'), 'Play with Sound.');
+
+      // B. Build Scene 1 Phrase 2A: Liquid Copper-Gold Shimmer + Finale Flash Burst ("大人の自由")
+      function buildLiquidCopperText(container, text, baseDelaySec = 0.85) {
         if (!container) return;
         const chars = Array.from(text);
         container.innerHTML = chars.map((ch, i) => {
-          if (ch === ' ') return '<span class="inline-block w-2">&nbsp;</span>';
-          const delay = (baseDelaySec + i * 0.035).toFixed(3);
-          return `<span class="orange-char-wrap" style="animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}">${ch}</span></span>`;
+          if (ch === ' ') return '<span class="inline-block w-2.5">&nbsp;</span>';
+          const delay = (baseDelaySec + i * 0.065).toFixed(3);
+          const wy = i % 2 === 0 ? '-32px' : '32px';
+          return `<span class="orange-char-wrap mode-harmonic-wave" style="--wy:${wy}; animation-delay:${delay}s"><span class="liquid-copper-char" data-copper-idx="${i}">${ch}</span></span>`;
         }).join('');
       }
+      buildLiquidCopperText(document.getElementById('hero-orange-ja'), '大人の自由', 0.85);
+      buildLiquidCopperText(document.getElementById('hero-orange-en'), 'Freedom for Grown Minds', 0.80);
 
-      // Initialize Scene 1 Orange Highlight ("想像力" / "Imagination")
-      buildInteractiveOrangeText(document.getElementById('hero-orange-ja'), '想像力', 0.95);
-      buildInteractiveOrangeText(document.getElementById('hero-orange-en'), 'Imagination', 0.95);
+      // C. Finale Strobe Flash on "大人の自由" (Fires once all copy finishes appearing + on hover/click)
+      function triggerHeroFreedomFlash(textContainerId) {
+        const textBox = document.getElementById(textContainerId);
+        if (!textBox) return;
+        const chars = textBox.querySelectorAll('.liquid-copper-char');
+        chars.forEach((ch, idx) => {
+          ch.classList.remove('is-flashing');
+          void ch.offsetWidth;
+          setTimeout(() => {
+            ch.classList.add('is-flashing');
+          }, idx * 45);
+        });
+      }
+
+      // Trigger Finale Flash right after all opening copy & lead lines settle (~2.85s after load)
+      setTimeout(() => {
+        triggerHeroFreedomFlash('hero-orange-ja');
+        triggerHeroFreedomFlash('hero-orange-en');
+      }, 2850);
+
+      // Also allow re-triggering the flash interactively on hover or click
+      ['hero-flash-box-ja', 'hero-flash-box-en'].forEach((boxId) => {
+        const box = document.getElementById(boxId);
+        const targetId = boxId.endsWith('-ja') ? 'hero-orange-ja' : 'hero-orange-en';
+        if (!box) return;
+        let lastFlash = 0;
+        box.addEventListener('mouseenter', () => {
+          const now = performance.now();
+          if (now - lastFlash < 600) return;
+          lastFlash = now;
+          triggerHeroFreedomFlash(targetId);
+        });
+        box.addEventListener('click', () => {
+          triggerHeroFreedomFlash(targetId);
+        });
+      });
+
+      // D. Multi-Mode Showcase Catchphrase Builder (4 Distinct Choreography Modes)
+      let decodeTimers = [];
+      function buildMultiModeCatchphrase(container, text, mode = 'grain-scatter', baseDelaySec = 0.12) {
+        if (!container) return;
+        decodeTimers.forEach(t => clearTimeout(t));
+        decodeTimers = [];
+
+        container.setAttribute('data-motion-mode', mode);
+        const chars = Array.from(text);
+
+        container.innerHTML = chars.map((ch, i) => {
+          if (ch === ' ') return '<span class="inline-block w-2">&nbsp;</span>';
+
+          if (mode === 'grain-scatter') {
+            // Deterministic pseudo-random scatter coordinates per grain
+            const angle = ((i * 73) % 110) - 55;
+            const gx = (((i * 47) % 90) - 45) + 'px';
+            const gy = (((i * 61) % 76) - 38) + 'px';
+            const gz = -(((i * 29) % 90) + 20) + 'px';
+            const delay = (baseDelaySec + (i % 7) * 0.045 + i * 0.014).toFixed(3);
+            return `<span class="orange-char-wrap mode-grain-scatter" style="--gx:${gx};--gy:${gy};--gz:${gz};--gr:${angle}deg;animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
+          }
+
+          if (mode === 'harmonic-wave') {
+            const wy = (i % 2 === 0 ? -34 : 34) + 'px';
+            const delay = (baseDelaySec + i * 0.028).toFixed(3);
+            return `<span class="orange-char-wrap mode-harmonic-wave" style="--wy:${wy};animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
+          }
+
+          if (mode === 'envelope-stroke') {
+            const delay = (baseDelaySec + i * 0.032).toFixed(3);
+            return `<span class="orange-char-wrap mode-envelope-stroke" style="animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${ch}</span></span>`;
+          }
+
+          // mode === 'step-decode' (Musical/DSP glyph matrix shuffle into lock-in)
+          const delay = (baseDelaySec + i * 0.022).toFixed(3);
+          const initGlyph = DSP_GLYPHS[i % DSP_GLYPHS.length];
+          return `<span class="orange-char-wrap mode-step-decode" style="animation-delay:${delay}s"><span class="orange-kinetic-char" data-char-idx="${i}" data-orig="${ch}">${initGlyph}</span></span>`;
+        }).join('');
+
+        if (mode === 'step-decode') {
+          const charEls = container.querySelectorAll('.orange-kinetic-char');
+          charEls.forEach((el, idx) => {
+            const orig = el.getAttribute('data-orig') || '';
+            const t1 = setTimeout(() => {
+              el.textContent = DSP_GLYPHS[(idx + 3) % DSP_GLYPHS.length];
+              el.style.color = '#ffffff';
+            }, (baseDelaySec * 1000) + idx * 24 + 90);
+            const t2 = setTimeout(() => {
+              el.textContent = orig;
+              el.style.color = '';
+            }, (baseDelaySec * 1000) + idx * 24 + 230);
+            decodeTimers.push(t1, t2);
+          });
+        }
+      }
 
       // Sync JP/EN Kinetic H1 visibility
       function syncHeroTitleLang() {
@@ -1414,14 +1748,36 @@
       syncHeroTitleLang();
       window.addEventListener('otodesk:langchange', syncHeroTitleLang);
 
-      // 2. Interactive Ableton Background Mouse Parallax & Orange Catchphrase Proximity Wave
+      // 2. Interactive Ableton Background Mouse Parallax & Mode-Specific Cursor Physics
       // (Playhead strictly moves forward left-to-right via CSS animation — never reverses!)
       const parallaxWrap = document.getElementById('ableton-parallax-wrap');
 
-      function updateOrangeProximityWave(clientX, clientY) {
-        const chars = heroStage ? heroStage.querySelectorAll('.orange-kinetic-char') : [];
+      function updateMultiModeCursorPhysics(clientX, clientY) {
+        // Scene 1: Wireframe Stroke Hover on "音を楽しむ。"
+        const strokeChars = heroStage ? heroStage.querySelectorAll('.stroke-interactive-char') : [];
+        strokeChars.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.width === 0) return;
+          const dist = Math.hypot(clientX - (r.left + r.width * 0.5), clientY - (r.top + r.height * 0.5));
+          if (dist < 105) {
+            const p = 1 - dist / 105;
+            el.style.color = 'transparent';
+            el.style.webkitTextStroke = '1.8px #a63500';
+            el.style.transform = `translateY(${(-8 * p).toFixed(1)}px) skewX(${(-10 * p).toFixed(1)}deg) scale(${(1 + 0.14 * p).toFixed(2)})`;
+          } else {
+            el.style.color = '';
+            el.style.webkitTextStroke = '';
+            el.style.transform = '';
+          }
+        });
+
+        // Scene 2: Per-Plugin Mode-Specific Cursor Physics on #sc-catch
+        const scCatch = document.getElementById('sc-catch');
+        const activeMode = scCatch ? (scCatch.getAttribute('data-motion-mode') || 'grain-scatter') : 'grain-scatter';
+        const chars = scCatch ? scCatch.querySelectorAll('.orange-kinetic-char') : [];
         let anyClose = false;
-        chars.forEach((el) => {
+
+        chars.forEach((el, idx) => {
           const rect = el.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0) return;
           const cx = rect.left + rect.width * 0.5;
@@ -1429,34 +1785,64 @@
           const dx = clientX - cx;
           const dy = clientY - cy;
           const dist = Math.hypot(dx, dy);
-          const radius = 135; // interactive proximity radius in px
+          const radius = 140;
 
           if (dist < radius) {
             anyClose = true;
-            const power = Math.pow(1 - dist / radius, 1.45);
-            const liftY = -14 * power;
-            const rotZ = ((dx / radius) * 18 * power).toFixed(1);
-            const rotX = ((-dy / radius) * 24 * power).toFixed(1);
-            const scale = (1 + 0.28 * power).toFixed(3);
-            el.style.transform = `perspective(500px) translate3d(0, ${liftY.toFixed(1)}px, 0) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
-            el.style.color = power > 0.35 ? '#ffb067' : '#ff6a2b';
-            el.style.textShadow = `0 0 ${(24 * power).toFixed(0)}px rgba(255, 115, 45, ${(0.85 * power).toFixed(2)})`;
+            const power = Math.pow(1 - dist / radius, 1.4);
+
+            if (activeMode === 'grain-scatter') {
+              // Mode 1: Magnetic Grain Repulsion + Chromatic Split
+              const repelX = (-dx / Math.max(18, dist)) * 18 * power;
+              const repelY = (-dy / Math.max(18, dist)) * 18 * power;
+              const spin = ((idx % 2 === 0 ? 1 : -1) * 22 * power).toFixed(1);
+              el.style.transform = `perspective(500px) translate3d(${repelX.toFixed(1)}px, ${repelY.toFixed(1)}px, 0) rotateZ(${spin}deg) scale(${(1 + 0.28 * power).toFixed(2)})`;
+              el.style.color = '#fff2e6';
+              el.style.textShadow = `${(-4 * power).toFixed(1)}px 0 rgba(255,40,0,0.9), ${(4 * power).toFixed(1)}px 0 rgba(0,212,255,0.85)`;
+            } else if (activeMode === 'harmonic-wave') {
+              // Mode 2: Smooth Sine Wave Ripple + Italic Skew
+              const waveY = Math.sin(dist * 0.06 - idx * 0.5) * 16 * power;
+              const skew = ((dx / radius) * -22 * power).toFixed(1);
+              el.style.transform = `translate3d(0, ${waveY.toFixed(1)}px, 0) skewX(${skew}deg) scaleY(${(1 + 0.25 * power).toFixed(2)})`;
+              el.style.color = '#ffc288';
+              el.style.textShadow = `0 8px 20px rgba(255, 115, 45, ${(0.8 * power).toFixed(2)})`;
+            } else if (activeMode === 'envelope-stroke') {
+              // Mode 3: Hollow Neon Wireframe Outline + 3D Y-Flip
+              const rotY = ((dx / radius) * 65 * power).toFixed(1);
+              el.style.transform = `perspective(500px) translateY(${(-10 * power).toFixed(1)}px) rotateY(${rotY}deg) scale(${(1 + 0.22 * power).toFixed(2)})`;
+              if (power > 0.32) {
+                el.style.color = 'transparent';
+                el.style.webkitTextStroke = '1.5px #ffb88c';
+              } else {
+                el.style.color = '#ff6a2b';
+                el.style.webkitTextStroke = '0px transparent';
+              }
+              el.style.textShadow = `0 0 ${(22 * power).toFixed(0)}px rgba(255, 130, 60, 0.85)`;
+            } else {
+              // Mode 4: Step-Decode Elastic Snap + Harmonic Glyph Shimmer
+              const snapY = -15 * power;
+              el.style.transform = `translate3d(0, ${snapY.toFixed(1)}px, 0) scale(${(1 + 0.3 * power).toFixed(2)})`;
+              el.style.color = power > 0.45 ? '#ffffff' : '#ffb067';
+              el.style.textShadow = `0 0 ${(24 * power).toFixed(0)}px rgba(255, 160, 90, 0.95)`;
+            }
           } else {
-            el.style.transform = 'perspective(500px) translate3d(0, 0, 0) rotateX(0deg) rotateZ(0deg) scale(1)';
+            el.style.transform = '';
             el.style.color = '';
             el.style.textShadow = '';
+            el.style.webkitTextStroke = '';
           }
         });
         isHoveringOrange = anyClose;
       }
 
-      function resetOrangeProximityWave() {
+      function resetMultiModeCursorPhysics() {
         isHoveringOrange = false;
-        const chars = heroStage ? heroStage.querySelectorAll('.orange-kinetic-char') : [];
-        chars.forEach((el) => {
-          el.style.transform = 'perspective(500px) translate3d(0, 0, 0) rotateX(0deg) rotateZ(0deg) scale(1)';
+        const allChars = heroStage ? heroStage.querySelectorAll('.orange-kinetic-char, .stroke-interactive-char') : [];
+        allChars.forEach((el) => {
+          el.style.transform = '';
           el.style.color = '';
           el.style.textShadow = '';
+          el.style.webkitTextStroke = '';
         });
       }
 
@@ -1469,13 +1855,12 @@
           const moveY = (0.5 - normY) * 18;
           parallaxWrap.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0) scale(1.06)`;
 
-          // Interactive Orange Catchphrase Wave
-          updateOrangeProximityWave(e.clientX, e.clientY);
+          updateMultiModeCursorPhysics(e.clientX, e.clientY);
         });
 
         heroStage.addEventListener('mouseleave', () => {
           parallaxWrap.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
-          resetOrangeProximityWave();
+          resetMultiModeCursorPhysics();
         });
       }
 
@@ -1486,15 +1871,15 @@
           const chars = scCatchEl.querySelectorAll('.orange-kinetic-char');
           chars.forEach((ch, idx) => {
             setTimeout(() => {
-              ch.style.transform = 'perspective(500px) translate3d(0, -16px, 0) rotateZ(-12deg) scale(1.3)';
-              ch.style.color = '#ffd29d';
-              ch.style.textShadow = '0 0 26px rgba(255, 130, 50, 0.95)';
+              ch.style.transform = 'perspective(500px) translate3d(0, -16px, 0) rotateY(25deg) rotateZ(-10deg) scale(1.32)';
+              ch.style.color = '#ffffff';
+              ch.style.textShadow = '-3px 0 #ff3300, 3px 0 #00d4ff';
               setTimeout(() => {
                 ch.style.transform = '';
                 ch.style.color = '';
                 ch.style.textShadow = '';
               }, 380);
-            }, idx * 24);
+            }, idx * 20);
           });
         });
       }
@@ -1540,13 +1925,15 @@
 
       window.addEventListener('scroll', handleHeroScroll, { passive: true });
 
-      // 4. Dynamic Plugins Showcase Reel (Scene 2 Slow Auto-Cycle + Interactive Switcher)
+      // 4. Dynamic Plugins Showcase Reel (Each Plugin Assigned one of 4 Distinct Kinetic Modes)
       const SHOWCASE_PLUGINS = [
         {
           id: 'plugin-03',
           name: 'Granular',
           badge: 'GRANULAR SYNTH',
           status: 'FREE // COMING SOON',
+          motionMode: 'grain-scatter',
+          motionLabel: 'KINETIC // GRAIN SCATTER',
           url: 'granular.html',
           img: 'screenshots/granular-main.jpg?v=117',
           catchJa: '音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。',
@@ -1559,6 +1946,8 @@
           name: 'PicoSampler',
           badge: 'CREATIVE SAMPLER',
           status: '100% FREE',
+          motionMode: 'step-decode',
+          motionLabel: 'KINETIC // STEP DECODE',
           url: 'picosampler.html',
           img: 'screenshots/picosampler-main.jpg',
           catchJa: '直感のサンプリング。サブピクセル単位の精密エディット。',
@@ -1571,6 +1960,8 @@
           name: 'SPECTRA8',
           badge: 'POLYPHONIC VOCODER',
           status: '100% FREE',
+          motionMode: 'harmonic-wave',
+          motionLabel: 'KINETIC // HARMONIC WAVE',
           url: 'spectra8.html',
           img: 'screenshots/spectra8-vocoder.jpg',
           catchJa: '革新のVocoder。Wavetable・スケールクオンタイズ搭載の変態仕様。',
@@ -1583,6 +1974,8 @@
           name: 'LIFT-X',
           badge: 'RISER SYNTHESIZER',
           status: '100% FREE',
+          motionMode: 'envelope-stroke',
+          motionLabel: 'KINETIC // ENVELOPE STROKE',
           url: 'lift-x.html',
           img: 'screenshots/liftx-main.jpg',
           catchJa: 'ライザーはエンベロープではない——41個のカーブが同時に動く音楽的展開である。',
@@ -1595,6 +1988,8 @@
           name: 'NEXT GEN KICK 2',
           badge: 'KICK SYNTHESIZER',
           status: '100% FREE',
+          motionMode: 'step-decode',
+          motionLabel: 'KINETIC // STEP DECODE',
           url: 'next-gen-kick-2.html',
           img: 'screenshots/NextGenKick2Main.jpg',
           catchJa: '最強のキックシンセ降臨。AI対話7ヶ月のノウハウを凝縮した最高傑作。',
@@ -1607,6 +2002,8 @@
           name: 'Ambience',
           badge: 'HYBRID REVERB',
           status: '100% FREE',
+          motionMode: 'harmonic-wave',
+          motionLabel: 'KINETIC // HARMONIC WAVE',
           url: 'ambience.html',
           img: 'screenshots/ambience.jpg',
           catchJa: '世界の名ホールを、16ch FDN & SDN ハイブリッドに閉じ込めた。無料で。',
@@ -1619,6 +2016,8 @@
           name: 'Quad Morph Filter',
           badge: 'XY MORPH FILTER',
           status: '100% FREE',
+          motionMode: 'envelope-stroke',
+          motionLabel: 'KINETIC // ENVELOPE STROKE',
           url: 'quad-morph.html',
           img: 'screenshots/quad-morph-main.jpg',
           catchJa: '踊れ、フィルター！あらゆる空間周波数を支配する。',
@@ -1631,6 +2030,8 @@
           name: 'ANATOMY',
           badge: 'TRANSIENT / TONAL',
           status: '100% FREE',
+          motionMode: 'grain-scatter',
+          motionLabel: 'KINETIC // GRAIN SCATTER',
           url: 'anatomy.html',
           img: 'screenshots/anatomy.jpg',
           catchJa: '2段カスケード OTT×2 搭載。サンプルを極限まで解剖・強化。',
@@ -1643,6 +2044,7 @@
       const pillsContainer = document.getElementById('showcase-pills');
       const scBadge = document.getElementById('sc-badge');
       const scStatus = document.getElementById('sc-status');
+      const scMotionBadge = document.getElementById('sc-motion-badge');
       const scTitle = document.getElementById('sc-title');
       const scCatch = document.getElementById('sc-catch');
       const scDesc = document.getElementById('sc-desc');
@@ -1707,10 +2109,11 @@
 
         if (scBadge) scBadge.textContent = item.badge;
         if (scStatus) scStatus.textContent = item.status;
+        if (scMotionBadge) scMotionBadge.textContent = item.motionLabel;
         if (scTitle) scTitle.textContent = item.name;
         if (scCatch) {
           const catchText = lang === 'en' ? item.catchEn : item.catchJa;
-          buildInteractiveOrangeText(scCatch, catchText, 0.18);
+          buildMultiModeCatchphrase(scCatch, catchText, item.motionMode, 0.14);
         }
         if (scDesc) scDesc.textContent = lang === 'en' ? item.descEn : item.descJa;
         if (scDetailLink) scDetailLink.href = item.url;
