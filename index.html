@@ -41,6 +41,21 @@
       animation: playheadForward 38s linear infinite;
     }
 
+    /* Single-Line News Ticker Marquee (Between Header and Hero Stage) */
+    @keyframes newsTickerScroll {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .news-ticker-track {
+      display: flex;
+      width: max-content;
+      animation: newsTickerScroll 32s linear infinite;
+      will-change: transform;
+    }
+    .news-ticker-bar:hover .news-ticker-track {
+      animation-play-state: paused;
+    }
+
     /* ========================================================================= */
     /* MULTI-MODE KINETIC TYPOGRAPHY SYSTEM (UNHURRIED HALF-SPEED CHOREOGRAPHY)  */
     /* Order: 1. Main Catchphrase -> 2. Lead Copy -> 3. OTODESK Logo & Spec Pills*/
@@ -508,12 +523,43 @@
     <div class="flex flex-col w-full text-on-surface">
 
       <!-- ========================================================================= -->
+      <!-- 1-LINE SCROLLING NEWS TICKER (BETWEEN HEADER & HERO VIDEO STAGE)          -->
+      <!-- ========================================================================= -->
+      <div class="news-ticker-bar sticky top-16 z-40 w-full h-9 bg-[#141519] text-white border-b border-white/15 flex items-center overflow-hidden select-none">
+        <!-- Left Pinned Badge -->
+        <div class="flex-shrink-0 h-full px-3 sm:px-4 bg-primary text-on-primary font-label-md text-[11px] font-bold tracking-wider uppercase flex items-center gap-1.5 z-10 shadow-[6px_0_16px_rgba(0,0,0,0.45)]">
+          <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+          <span>NEWS</span>
+        </div>
+
+        <!-- Scrolling 1-Line Marquee Track -->
+        <div class="flex-1 overflow-hidden relative h-full flex items-center">
+          <div class="news-ticker-track items-center whitespace-nowrap font-body-sm text-xs sm:text-[13px] font-bold tracking-wide text-white/95">
+            <!-- Group 1 -->
+            <div class="flex items-center">
+              <span class="mx-6" data-i18n-ja="新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください" data-i18n-en="NEW RELEASE ALERT! A major Ambience update and the all-new Granular plugin will be released very soon!! Please stay tuned.">新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください</span>
+              <span class="text-[#ff6a2b] font-label-md text-xs mx-2">///</span>
+              <span class="mx-6" data-i18n-ja="新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください" data-i18n-en="NEW RELEASE ALERT! A major Ambience update and the all-new Granular plugin will be released very soon!! Please stay tuned.">新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください</span>
+              <span class="text-[#ff6a2b] font-label-md text-xs mx-2">///</span>
+            </div>
+            <!-- Group 2 (Seamless Loop Duplicate) -->
+            <div class="flex items-center" aria-hidden="true">
+              <span class="mx-6" data-i18n-ja="新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください" data-i18n-en="NEW RELEASE ALERT! A major Ambience update and the all-new Granular plugin will be released very soon!! Please stay tuned.">新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください</span>
+              <span class="text-[#ff6a2b] font-label-md text-xs mx-2">///</span>
+              <span class="mx-6" data-i18n-ja="新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください" data-i18n-en="NEW RELEASE ALERT! A major Ambience update and the all-new Granular plugin will be released very soon!! Please stay tuned.">新着情報！近日中にAmbienceのバージョンアップとGranularを公開します！！今しばらくおまちください</span>
+              <span class="text-[#ff6a2b] font-label-md text-xs mx-2">///</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
       <!-- WANTEDLY-INSPIRED 2-STAGE FULL-BLEED KINETIC HERO                         -->
-      <!-- Stage 1: Full-screen "触れた瞬間、想像力を解き放つ。" (Edge-to-Edge)       -->
+      <!-- Stage 1: Full-screen "音を楽しむ。大人の自由がここにある。"               -->
       <!-- Stage 2: Dynamic Plugins Catchphrase & 3D Screenshot Showcase on Scroll   -->
       <!-- ========================================================================= -->
       <section id="hero-scrolly-wrapper" class="relative w-full h-[250vh] select-none">
-        <div id="hero-stage" class="sticky top-16 w-full h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center border-b border-surface-container-high">
+        <div id="hero-stage" class="sticky top-[6.25rem] w-full h-[calc(100vh-6.25rem)] overflow-hidden flex items-center justify-center border-b border-surface-container-high">
 
           <!-- Full-Screen Interactive Ableton Arrangement View Layer -->
           <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
