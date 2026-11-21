@@ -222,20 +222,20 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN & SDN Hybrid", jp: "アルゴリズミック・リバーブ — 16ch FDN & SDN ハイブリッド" },
     type: "Effect",
     year: "2026",
-    version: "2.0.2",
+    version: "3.0.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience.jpg?v=2.0.2",
-    screenshotPro: "assets/ambience-screenshot-2.jpg?v=2.0.2",
+    screenshot: "screenshots/ambience-main.jpg?v=3.0.0",
+    screenshotPro: "screenshots/ambience-pro.jpg?v=3.0.0",
     tagline: {
-      en: "World-class halls in 16 channels of FDN & SDN hybrid. Free.",
-      jp: "世界の名ホールを、16ch FDN & SDN ハイブリッドに閉じ込めた。無料で。"
+      en: "Warmth Meets Transparency. The Art of Spatial Aesthetics.",
+      jp: "温もりのある、透明。空間の美学を極める。"
     },
     description: {
-      en: "A research-grade open-source algorithmic reverb built on a 16-channel Feedback Delay Network (FDN) and Spatial Decomposition Network (SDN) hybrid architecture. 104 master-calibrated factory presets across 8 room algorithms with next-gen tag browser and 6 PRO acoustic physical controls — at zero cost.",
-      jp: "16チャンネルFDNとSDN（空間分解ネットワーク）のハイブリッド音響アーキテクチャを核に据えた、リサーチグレードのオープンソース・アルゴリズミック・リバーブ。8種の空間アルゴリズム、タグ／ルーム分類対応の次世代ブラウザ、104種のマスター校正済みファクトリープリセット、6つのPRO音響フィジカルコントロールを搭載。無料で。"
+      en: "Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN & SDN hybrid, 104 presets, up to 200s decay.",
+      jp: "全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN & SDN ハイブリッド、104プリセット、最大200秒。"
     },
     features: [
       { en: "16-channel FDN & SDN hybrid acoustic engine", jp: "16ch FDN ＆ SDN ハイブリッド音響エンジン" },
