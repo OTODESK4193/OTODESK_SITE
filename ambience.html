@@ -1,1154 +1,1210 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ambience — Algorithmic Reverb | OTODESK_Official_Site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles/main.css" />
-<link rel="stylesheet" href="styles/ambience.css" />
-</head>
-<body class="amb-page">
-<div id="root"></div>
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-<script src="data/plugins.js?v=2.0.2"></script>
-<script type="text/babel" src="components/visual.jsx?v=2.0.2"></script>
-<script type="text/babel" src="components/counters.jsx?v=2.0.2"></script>
-<script type="text/babel" src="components/sections.jsx?v=2.0.2"></script>
-
-<script type="text/babel" data-presets="env,react">
-const LANG_KEY = "otodesk_lang";
-
-// DownloadChip コンポーネント
-function DownloadChip({ pluginId, lang }) {
-  const [count, setCount] = React.useState(() => {
-    return parseInt(localStorage.getItem(`dl-${pluginId}`) || "0");
-  });
-
-  React.useEffect(() => {
-    const handleDLBump = (e) => {
-      if (e.detail === pluginId) {
-        const newCount = count + 1;
-        setCount(newCount);
-        localStorage.setItem(`dl-${pluginId}`, newCount);
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>AMBIENCE v3.0.0 // 16-Channel FDN &amp; SDN Hybrid Reverb | OTODESK</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "tertiary": "#5c5c5c",
+            "on-surface": "#1a1c1c",
+            "background": "#f9f9f9",
+            "on-secondary-fixed": "#1c1b1b",
+            "surface-container": "#eeeeee",
+            "primary": "#a63500",
+            "primary-container": "#d04400",
+            "surface-container-highest": "#e2e2e2",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#aa3600",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#e8e8e8",
+            "on-primary-fixed-variant": "#822700",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#656464",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#f1f1f1",
+            "on-tertiary-fixed-variant": "#464747",
+            "on-tertiary-container": "#fefcfc",
+            "on-tertiary-fixed": "#1b1c1c",
+            "surface": "#f9f9f9",
+            "tertiary-fixed": "#e4e2e2",
+            "surface-bright": "#f9f9f9",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#390c00",
+            "outline-variant": "#e5beb2",
+            "secondary-fixed-dim": "#c8c6c5",
+            "secondary-container": "#e5e2e1",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#907065",
+            "inverse-surface": "#2f3131",
+            "secondary": "#5f5e5e",
+            "primary-fixed-dim": "#ffb59c",
+            "tertiary-container": "#757474",
+            "on-surface-variant": "#5c4037",
+            "on-secondary-fixed-variant": "#474646",
+            "primary-fixed": "#ffdbcf",
+            "error": "#ba1a1a",
+            "surface-variant": "#e2e2e2",
+            "surface-dim": "#dadada",
+            "on-background": "#1a1c1c",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f3f3f3",
+            "inverse-primary": "#ffb59c",
+            "secondary-fixed": "#e5e2e1",
+            "tertiary-fixed-dim": "#c7c6c6"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "margin-lg": "2.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "gutter-sm": "0.5rem"
+          },
+          fontFamily: {
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "headline-xl-mobile": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "body-lg": ["15px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-lg": ["12px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }],
+            "headline-xl-mobile": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-sm": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-xl": ["56px", { lineHeight: "60px", letterSpacing: "-0.03em", fontWeight: "700" }],
+            "headline-md": ["24px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "label-md": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "500" }],
+            "headline-lg": ["40px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "label-sm": ["9px", { lineHeight: "10px", letterSpacing: "0.08em", fontWeight: "500" }],
+            "headline-lg-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "body-md": ["13px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+            "body-sm": ["11px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }]
+          }
+        }
       }
     };
-    window.addEventListener("dlbump", handleDLBump);
-    return () => window.removeEventListener("dlbump", handleDLBump);
-  }, [count, pluginId]);
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
 
-  if (count === 0) return null;
+  <!-- ===================================================================== -->
+  <!-- TWO-TIER PRECISION HEADER (OTODESK GLOBAL NAV + AMBIENCE SUB-NAV)    -->
+  <!-- ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-surface-container-highest">
+    <div class="h-28 w-full">
+      <!-- Top Bar: Global Site Navigation -->
+      <div class="h-16 border-b border-surface-container-highest px-gutter lg:px-margin-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-lg">
+          <a class="flex items-center gap-space-sm group" href="index.html">
+            <img alt="OTODESK Logo" class="h-8 w-8 object-contain transition-transform duration-300 group-hover:rotate-45" src="assets/circle-logo-white.png" />
+            <span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold">OTODESK</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-space-md ml-space-md">
+            <a class="font-label-lg text-label-lg uppercase text-primary font-bold transition-colors" href="index.html#plugins">Plugins</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="sound.html">Sound</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="legacy.html">Legacy</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">Blog</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="about.html">About</a>
+          </nav>
+        </div>
 
-  return (
-    <div style={{
-      display: "inline-flex",
-      alignItems: "center",
-      gap: "10px",
-      padding: "12px 16px",
-      fontFamily: "var(--mono)",
-      fontSize: "11px",
-      letterSpacing: "0.2em",
-      textTransform: "uppercase",
-      border: "1px solid var(--rule-faint)",
-      color: "var(--ink-2)",
-      background: "transparent",
-    }}>
-      <span style={{
-        width: "6px",
-        height: "6px",
-        borderRadius: "50%",
-        background: "var(--accent)",
-        boxShadow: "0 0 8px var(--accent)",
-      }} />
-      <span style={{ color: "var(--dim)" }}>{lang === "jp" ? "ダウンロード" : "Downloads"}</span>
-      <span style={{
-        fontFeatureSettings: "tnum",
-        fontVariantNumeric: "tabular-nums",
-        color: "var(--ink)",
-        fontWeight: "500",
-        letterSpacing: "0.12em",
-      }}>
-        {count.toLocaleString()}
-      </span>
-    </div>
-  );
-}
-
-// Footer用の訪問者カウンター
-function useVisitorCount() {
-  const [count, setCount] = React.useState(() => {
-    return parseInt(localStorage.getItem("visitor-count") || "0");
-  });
-
-  React.useEffect(() => {
-    const newCount = count + 1;
-    setCount(newCount);
-    localStorage.setItem("visitor-count", newCount);
-  }, []);
-
-  return count;
-}
-
-// CountNumber コンポーネント
-function CountNumber({ value, pad }) {
-  return String(value).padStart(pad || 0, "0");
-}
-
-
-function useLang() {
-  const [lang, setLang] = React.useState(() => {
-    return localStorage.getItem("otodesk-lang") || localStorage.getItem(LANG_KEY) || "jp";
-  });
-  const set = (v) => {
-    setLang(v);
-    try {
-      localStorage.setItem("otodesk-lang", v);
-      localStorage.setItem(LANG_KEY, v);
-    } catch (e) {}
-  };
-  return [lang, set];
-}
-
-function AmbHero({ lang, setLang }) {
-  const [parallax, setParallax] = React.useState(0);
-  React.useEffect(() => {
-    const onScroll = () => setParallax(Math.min(1, window.scrollY / 700));
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <section className="amb-hero">
-      <div className="amb-hero-bg" style={{ transform: `translateY(${parallax * 60}px)` }}>
-        <div className="amb-grid-bg" />
-        <div className="amb-glow" />
+        <div class="flex items-center gap-space-sm sm:gap-space-md">
+          <!-- JP / EN Language Switcher -->
+          <div class="otodesk-lang-switcher inline-flex items-center border border-surface-container-highest bg-surface-container-low p-0.5 text-xs font-label-md select-none" role="group" aria-label="Language Switcher">
+            <button type="button" data-set-lang="ja" class="otodesk-lang-btn px-2.5 py-1 bg-on-surface text-surface font-bold transition-colors cursor-pointer">JP</button>
+            <button type="button" data-set-lang="en" class="otodesk-lang-btn px-2.5 py-1 text-secondary hover:text-on-surface transition-colors cursor-pointer">EN</button>
+          </div>
+          <a class="hidden sm:flex font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors items-center gap-1.5" href="index.html#plugin-07">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+            <span data-i18n-ja="プラグイン一覧" data-i18n-en="ALL PLUGINS">プラグイン一覧</span>
+          </a>
+          <a href="https://github.com/OTODESK4193/Ambience/releases/latest" target="_blank" rel="noopener noreferrer" class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-primary hover:bg-primary-container text-on-primary flex items-center gap-space-xs font-bold transition-colors">
+            <span class="material-symbols-outlined text-[15px]">download</span>
+            <span data-i18n-ja="GITHUB DL" data-i18n-en="GITHUB DL">GITHUB DL</span>
+            <span class="bg-on-surface text-surface px-1 py-0.5 text-[9px] font-bold">FREE</span>
+          </a>
+        </div>
       </div>
 
-      <div className="amb-hero-content">
-        <div className="amb-hero-flag">
-          <a href="index.html" className="amb-back">← {lang === "jp" ? "OTODESK" : "OTODESK"}</a>
-          <span className="amb-flag-tag">
-            <span className="amb-pulse" /> {lang === "jp" ? "リリース中" : "OUT NOW"}
+      <!-- Bottom Sub-Navigation Bar: Section Anchors -->
+      <div class="h-12 bg-surface-container-low px-gutter lg:px-margin-lg flex items-center justify-between overflow-x-auto no-scrollbar">
+        <nav class="flex items-center gap-space-lg h-full whitespace-nowrap">
+          <a class="font-label-md text-label-md uppercase text-primary font-bold border-b-2 border-primary h-full flex items-center transition-colors" href="#overview">01 // Overview</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#chassis-simulator">02 // 4-Tab GUI Deck</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#feature-highlights">03 // Feature Highlights</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#dsp-architecture">04 // DSP Architecture</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#video-showcase">05 // Video Demo</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#specs">06 // System Specs</a>
+        </nav>
+        <div class="hidden lg:flex items-center gap-space-sm pl-space-md shrink-0">
+          <span class="font-label-sm text-label-sm uppercase text-tertiary">BUILD TARGET:</span>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">ABLETON LIVE 11/12 // WIN 64-BIT</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT                                                          -->
+  <!-- ===================================================================== -->
+  <main class="w-full pt-28 bg-surface" id="overview">
+    <div class="flex flex-col w-full selection:bg-primary selection:text-on-primary font-body-md text-on-surface">
+
+      <!-- 01. TELEMETRY & HARDWARE STRIP -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-sm border-b border-surface-container-high">
+        <div class="flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm uppercase">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-bold text-on-surface">AMBIENCE V3.0.0 (TRUE STEREO OVERHAUL)</span>
+            <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // AGPLv3</span>
+          </div>
+          <div class="flex items-center gap-space-md text-tertiary overflow-x-auto no-scrollbar whitespace-nowrap">
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> LATE FIELD: TRUE STEREO L/R</span>
+            <span>CORE: 16CH FDN × SDN HYBRID</span>
+            <span>MODULATION: SMOOTHED-RANDOM (ZERO PITCH WOBBLE)</span>
+            <span class="text-on-surface font-bold bg-surface-container px-space-xs py-0.5">WINDOWS 10/11 // ABLETON LIVE EXCLUSIVE</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. HERO DISPLAY SECTION -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pt-space-lg pb-space-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-margin items-start">
+
+          <!-- Left Column: Brutal Typography & Japanese Collision -->
+          <div class="lg:col-span-8 flex flex-col gap-space-md">
+            <div class="flex flex-wrap items-center gap-space-xs font-label-md text-label-md uppercase">
+              <span class="bg-on-surface text-on-primary px-space-sm py-1 font-bold">100% FREE // AGPLv3</span>
+              <span class="bg-primary text-on-primary px-space-sm py-1 font-bold">16CH FDN &amp; SDN HYBRID</span>
+              <span class="bg-surface-container px-space-sm py-1 text-on-surface-variant font-bold">ABLETON LIVE // WINDOWS ONLY</span>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">TRUE-STEREO RESEARCH-GRADE ALGORITHMIC REVERB</span>
+              <h1 class="font-headline-xl text-4xl sm:text-headline-xl uppercase tracking-tighter text-on-surface mt-space-xs leading-none font-extrabold">
+                AMBIENCE
+              </h1>
+            </div>
+
+            <!-- Japanese Raw Contrast Bar (Vertical Stacked Large Catchphrase + Concise Description) -->
+            <div class="bg-surface-container p-space-lg flex flex-col gap-space-md border-l-4 border-primary">
+              <div class="font-headline-lg text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface leading-tight font-extrabold">
+                <span data-i18n-ja="温もりのある、透明。" data-i18n-en="Warmth Meets Transparency.">温もりのある、透明。</span><br />
+                <span class="bg-primary text-on-primary px-space-sm py-1 font-extrabold inline-block mt-1.5"
+                      data-i18n-ja="空間の美学を極める。"
+                      data-i18n-en="The Art of Spatial Aesthetics.">空間の美学を極める。</span>
+              </div>
+              <p class="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-3xl"
+                 data-i18n-ja="全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。"
+                 data-i18n-en="Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN &amp; SDN hybrid, 104 presets, up to 200s decay.">
+                全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。
+              </p>
+            </div>
+
+            <!-- Feature Micro-Metrics Grid (4 User-Specified Specs) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs font-label-md text-label-md uppercase">
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">ALGORITHMS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">8 Recalibrated</span>
+                <span class="text-primary text-label-sm block font-bold">BAND-BY-BAND RT60</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">LATE FIELD</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">True Stereo L/R</span>
+                <span class="text-tertiary text-label-sm block">INDEPENDENT FDN TANKS</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">PRESETS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">104 Master Rigs</span>
+                <span class="text-primary text-label-sm block font-bold">ROOM / TAGS BROWSER</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">DECAY</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">Log Up to 200s</span>
+                <span class="text-tertiary text-label-sm block">AUTO-SCALING RT60</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: FREE Acquisition & Direct Download Module -->
+          <div class="lg:col-span-4 flex flex-col bg-surface-container-lowest p-space-md shadow-md border border-surface-container-highest">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-low p-space-sm">
+              <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">DIRECT DISTRIBUTION</span>
+              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-xs py-0.5 font-bold">OPEN SOURCE // AGPLv3</span>
+            </div>
+
+            <div class="py-space-md flex flex-col gap-space-xs">
+              <div class="flex items-baseline gap-space-sm">
+                <span class="font-headline-xl text-headline-xl text-primary tracking-tighter leading-none font-extrabold">FREE</span>
+                <span class="font-label-lg text-label-lg uppercase text-on-surface font-bold"
+                      data-i18n-ja="¥0 // 完全無料配布"
+                      data-i18n-en="$0 // 100% FREE DOWNLOAD">¥0 // 完全無料配布</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wide"
+                    data-i18n-ja="ABLETON LIVE 11/12 専用 // WINDOWS 10/11 64-BIT 専用"
+                    data-i18n-en="EXCLUSIVE FOR ABLETON LIVE 11/12 // WINDOWS 10/11 64-BIT">
+                ABLETON LIVE 11/12 専用 // WINDOWS 10/11 64-BIT 専用
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-space-xs">
+              <a href="https://github.com/OTODESK4193/Ambience/releases/latest" target="_blank" rel="noopener noreferrer"
+                 class="w-full bg-primary hover:bg-primary-container text-on-primary py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider flex items-center justify-center gap-space-sm transition-colors">
+                <span class="material-symbols-outlined text-lg">download</span>
+                <span data-i18n-ja="無料ダウンロード (GITHUB)" data-i18n-en="FREE DOWNLOAD (GITHUB)">無料ダウンロード (GITHUB)</span>
+              </a>
+              <a href="https://github.com/OTODESK4193/Ambience" target="_blank" rel="noopener noreferrer"
+                 class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase font-bold tracking-wide flex items-center justify-center gap-space-xs transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">code</span>
+                <span data-i18n-ja="GITHUB ソース・マニュアルを見る" data-i18n-en="VIEW GITHUB SOURCE &amp; MANUAL">GITHUB ソース・マニュアルを見る</span>
+              </a>
+            </div>
+
+            <!-- System Specs Checklist -->
+            <div class="mt-space-md pt-space-md bg-surface-container-low p-space-sm flex flex-col gap-space-xs font-label-sm text-label-sm uppercase text-tertiary border border-surface-container-high">
+              <div class="flex items-center justify-between">
+                <span>PRICE / LICENSE:</span>
+                <span class="text-primary font-bold">FREE (AGPLv3)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>TARGET DAW:</span>
+                <span class="text-on-surface font-bold" data-i18n-ja="ABLETON LIVE 11 / 12 専用" data-i18n-en="ABLETON LIVE 11 / 12 EXCLUSIVE">ABLETON LIVE 11 / 12 専用</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>OS PLATFORM:</span>
+                <span class="text-on-surface font-bold" data-i18n-ja="WINDOWS 10 / 11 (64-BIT) 専用" data-i18n-en="WINDOWS 10 / 11 (64-BIT) ONLY">WINDOWS 10 / 11 (64-BIT) 専用</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>FORMAT / CPU:</span>
+                <span class="text-on-surface font-bold">VST3 / STANDALONE (AVX2)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>VERSION / LATENCY:</span>
+                <span class="text-primary font-bold">v3.0.0 // 48 SAMPLES (2x OS)</span>
+              </div>
+            </div>
+
+            <!-- Editorial Stamp -->
+            <div class="mt-space-sm p-space-xs bg-surface text-center font-label-sm text-label-sm uppercase text-tertiary tracking-widest border border-surface-container">
+              +++ WARMTH, CLARITY, AND TRUE-STEREO SPACE +++
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03. INTERACTIVE 4-TAB HARDWARE RACK INSPECTOR (COMPACT FIT FOR 100% VIEWPORT VISIBILITY ON PC) -->
+      <section class="w-full bg-surface-container-lowest px-gutter lg:px-margin-lg py-space-md border-t border-b border-surface-container-high scroll-mt-28" id="chassis-simulator">
+        <!-- Rack Shell Header (Compact Single Row) -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-xs">
+          <div class="flex items-baseline gap-space-sm">
+            <span class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span class="w-2 h-2 bg-primary"></span> INTERACTIVE DECK
+            </span>
+            <h2 class="font-headline-md text-xl sm:text-2xl uppercase tracking-tight text-on-surface font-bold">
+              AMBIENCE v3.0.0 4-TAB WORKSTATION DECK
+            </h2>
+          </div>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase">
+            <span class="bg-surface-container px-space-sm py-0.5 font-bold">16CH FDN × SDN HYBRID</span>
+            <span class="bg-surface-container-high px-space-sm py-0.5 text-primary font-bold">CLICK TABS TO SWITCH VIEW</span>
+          </div>
+        </div>
+
+        <!-- MAIN HARDWARE RACK FRAME (COMPACT PRECISION FIT FOR PC SCREEN) -->
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-sm sm:p-space-md shadow-xl border border-on-surface" id="rack-deck-frame">
+          <!-- Top Metal Frame Ribbon + Interactive Tab Selector -->
+          <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-highest/10 px-space-sm py-1.5 mb-space-sm font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+            <div class="flex items-center gap-space-sm">
+              <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">AMBIENCE v3.0.0</span>
+              <span class="text-inverse-on-surface font-bold hidden sm:inline" id="deck-tab-subtitle">TAB 01 // MAIN: 16CH FDN &amp; SDN HYBRID ENGINE</span>
+            </div>
+            <!-- 4 Tab Buttons -->
+            <div class="flex flex-wrap items-center gap-1" id="gui-tab-buttons">
+              <button type="button" data-tab="main" class="gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer">01 MAIN</button>
+              <button type="button" data-tab="rt60" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">02 RT60 &amp; METRICS</button>
+              <button type="button" data-tab="pro" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">03 PRO &amp; 2.5D VIZ</button>
+              <button type="button" data-tab="browser" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">04 104 PRESETS</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-stretch">
+            <!-- Left 7 Cols: Actual High-Res Plugin Screenshot + Bottom Tab Overview Banner -->
+            <div class="lg:col-span-7 bg-[#0d0d12] p-space-xs sm:p-space-sm border border-white/10 flex flex-col justify-between gap-space-xs">
+              <div class="relative w-full overflow-hidden flex items-center justify-center bg-black border border-white/5">
+                <img id="gui-preview-img" src="screenshots/ambience-main.jpg" alt="AMBIENCE Interface Preview" class="w-full max-h-[400px] xl:max-h-[430px] object-contain transition-opacity duration-200" />
+              </div>
+
+              <!-- Bottom Tab Title & Description Banner (Fits cleanly inside viewport) -->
+              <div class="bg-[#151722] px-space-md py-space-sm border-l-4 border-primary flex flex-col gap-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="font-headline-sm text-base sm:text-lg text-inverse-on-surface font-extrabold uppercase tracking-tight" id="panel-title">
+                    MAIN ビュー：8アルゴリズム＆トゥルーステレオ音響空間
+                  </h3>
+                  <span class="font-label-sm text-[9px] text-primary uppercase font-bold tracking-widest bg-primary/15 px-1.5 py-0.5" id="gui-caption-right">
+                    10 COLOR THEMES // SCALABLE 80%–150%
+                  </span>
+                </div>
+                <p class="font-body-md text-xs sm:text-sm text-inverse-on-surface/90 leading-snug" id="panel-desc">
+                  ROOM1/2・HALL1/2・PLATE・SPRING・GOLDFOIL・INCHINDOWNの全8アルゴリズムを統合。独立L/Rの後期残響ネットワーク、ピッチの揺れないSmoothed-Random変調、ADAAサチュレーション、ダッキングを直感的に操作します。
+                </p>
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: 4 Parameter Cards + Header Tools (Matched Height) -->
+            <div class="lg:col-span-5 bg-surface-container-lowest/5 p-space-sm flex flex-col justify-between gap-space-xs border border-white/10">
+              <div class="flex items-center justify-between pb-1 font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+                <span class="font-bold text-inverse-on-surface text-[11px]" id="panel-badge">MODULE // 01 MAIN</span>
+                <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold" id="panel-tag">CORE ENGINE</span>
+              </div>
+
+              <!-- Dynamic Key Points List (4 Cards Stretched Evenly) -->
+              <div class="flex-1 flex flex-col justify-between gap-1.5 py-0.5" id="panel-bullets">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Quick Header Button Guide -->
+              <div class="pt-1.5 border-t border-white/10 flex flex-col gap-1 font-label-sm text-label-sm uppercase">
+                <div class="flex items-center justify-between text-tertiary-fixed">
+                  <span>HEADER SAFETY &amp; TOOLS:</span>
+                  <span class="text-primary font-bold">INSTANT ACCESS</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1 text-[10px]">
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>PANIC:</strong> 全ディレイ＆残響を即時消音"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>PANIC:</strong> Instant Tail &amp; Buffer Kill"><strong class="text-primary">PANIC:</strong> 全ディレイ＆残響を即時消音</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>SEND:</strong> Dry -60dB / Wet 0dB センド用"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>SEND:</strong> Aux Bus Dry -60dB / Wet 0dB"><strong class="text-primary">SEND:</strong> Dry -60dB / Wet 0dB センド用</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>LOCK:</strong> プリセット切替時に設定を固定"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>LOCK:</strong> Freeze Mix / EQ Across Presets"><strong class="text-primary">LOCK:</strong> プリセット切替時に設定を固定</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>REVERT:</strong> ワンクリックで元のプリセットへ"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>REVERT:</strong> One-Click Restore to Original"><strong class="text-primary">REVERT:</strong> ワンクリックで元のプリセットへ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. FEATURE HIGHLIGHTS (8 ESSENTIALS USING PRESET CARD LAYOUT) -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl scroll-mt-28" id="feature-highlights">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// V3.0.0 OVERHAUL HIGHLIGHTS</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="8 FEATURE HIGHLIGHTS // 機能ハイライト"
+                data-i18n-en="8 FEATURE HIGHLIGHTS // KEY CAPABILITIES">
+              8 FEATURE HIGHLIGHTS // 機能ハイライト
+            </h2>
+          </div>
+          <p class="font-body-md text-body-md text-tertiary max-w-md"
+             data-i18n-ja="16ch FDN &amp; SDNハイブリッドの土台をv3.0.0で帯域ごとに再測定・再構築した8つの革新。"
+             data-i18n-en="Eight core breakthroughs rebuilt from the ground up in v3.0.0 — band-by-band recalibration meets true-stereo spatial transparency.">
+            16ch FDN &amp; SDNハイブリッドの土台をv3.0.0で帯域ごとに再測定・再構築した8つの革新。
+          </p>
+        </div>
+
+        <!-- 8 Highlight Modules Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+
+          <!-- Highlight 01 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 01 // STEREO</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">TRUE L/R</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="トゥルーステレオ後期残響"
+                  data-i18n-en="True Stereo Late Field">
+                トゥルーステレオ後期残響
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="v3.0.0で全8アルゴリズムの後期FDNネットワークを<strong>左右独立（L/R）</strong>へ分割。擬似ステレオ化ではない本物の左右定位と自然な非対称包み込み感を実現しました。"
+                 data-i18n-html-en="In v3.0.0, the late FDN field is split into <strong>independent L/R networks</strong> across all 8 algorithms — delivering genuine stereo envelopment instead of decorrelated mono tails.">
+                v3.0.0で全8アルゴリズムの後期FDNネットワークを<strong>左右独立（L/R）</strong>へ分割。擬似ステレオ化ではない本物の左右定位と自然な非対称包み込み感を実現しました。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">ALL 8 ALGORITHMS</span>
+              <span class="text-primary font-bold">TRUE STEREO</span>
+            </div>
+          </div>
+
+          <!-- Highlight 02 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 02 // CALIBRATION</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">8 TOPOLOGIES</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="全8アルゴリズム帯域再校正"
+                  data-i18n-en="Band-by-Band Recalibration">
+                全8アルゴリズム帯域再校正
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="ROOM1/2・HALL1/2・PLATE・SPRING・GOLDFOIL・INCHINDOWNを帯域別に再測定。<strong>PLATE/SPRING/GOLDFOIL</strong>の金属的共鳴（リンギング）を徹底抑制しました。"
+                 data-i18n-html-en="ROOM1/2, HALL1/2, PLATE, SPRING, GOLDFOIL, and INCHINDOWN re-measured band by band — taming metallic ringing in Plate/Spring/Goldfoil and tightening Hall low ends.">
+                ROOM1/2・HALL1/2・PLATE・SPRING・GOLDFOIL・INCHINDOWNを帯域別に再測定。<strong>PLATE/SPRING/GOLDFOIL</strong>の金属的共鳴（リンギング）を徹底抑制しました。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">BERANEK / RT60</span>
+              <span class="text-primary font-bold">ZERO RINGING</span>
+            </div>
+          </div>
+
+          <!-- Highlight 03 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 03 // MODULATION</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">PITCH-SOLID</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="ピッチの揺れない変調＆ユニタリ回転"
+                  data-i18n-en="Smoothed-Random &amp; Unitary Mod">
+                ピッチの揺れない変調＆ユニタリ回転
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="周期的なサイン波変調を廃止し、<strong>Smoothed-Random変調</strong>と<strong>Unitary帰還行列回転</strong>を新採用。深いMOD AMTでも音程が揺れず、残響だけが有機的に息づきます。"
+                 data-i18n-html-en="Replaces periodic sine LFOs with <strong>smoothed-random modulation</strong> and slowly evolving <strong>unitary feedback-matrix rotation</strong> — lush tail movement with zero pitch wobble.">
+                周期的なサイン波変調を廃止し、<strong>Smoothed-Random変調</strong>と<strong>Unitary帰還行列回転</strong>を新採用。深いMOD AMTでも音程が揺れず、残響だけが有機的に息づきます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">NO CHORUS WOBBLE</span>
+              <span class="text-primary font-bold">UNITARY MATRIX</span>
+            </div>
+          </div>
+
+          <!-- Highlight 04 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 04 // DIFFUSION</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">6 STAGES</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="6段再設計インプットディフューザー"
+                  data-i18n-en="6-Stage Tapered Input Diffuser">
+                6段再設計インプットディフューザー
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="段ごとのテーパリングを施した<strong>素数ディレイ集合の6段ディフューザー</strong>へ刷新。鋭いパーカッション入力でも粒立ちのない滑らかで高密度な立ち上がりを生みます。"
+                 data-i18n-html-en="Redesigned <strong>6-stage input diffuser</strong> using prime-number delay sets with per-stage tapering — delivering denser, silkier onset diffusion even on sharp transients.">
+                段ごとのテーパリングを施した<strong>素数ディレイ集合の6段ディフューザー</strong>へ刷新。鋭いパーカッション入力でも粒立ちのない滑らかで高密度な立ち上がりを生みます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">PRIME DELAY SETS</span>
+              <span class="text-primary font-bold">SILKY ONSET</span>
+            </div>
+          </div>
+
+          <!-- Highlight 05 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 05 // SATURATION</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">2X OS + ADAA</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="2倍オーバーサンプリング ADAA 歪み"
+                  data-i18n-en="2x Oversampled ADAA Saturator">
+                2倍オーバーサンプリング ADAA 歪み
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="Warm / Tape / Tube / Hard の4モードに<strong>ADAA＋2倍オーバーサンプリング</strong>を統合。特にTUBEモードは偶数次倍音主体へ再調整し、極上のアナログ感を付与（48サンプルPDC通知対応）。"
+                 data-i18n-html-en="Combines Anti-Derivative Anti-Aliasing with <strong>2x oversampling</strong> across Warm, Tape, Tube (rebalanced for dominant even harmonics), and Hard modes — with accurate 48-sample PDC.">
+                Warm / Tape / Tube / Hard の4モードに<strong>ADAA＋2倍オーバーサンプリング</strong>を統合。特にTUBEモードは偶数次倍音主体へ再調整し、極上のアナログ感を付与（48サンプルPDC通知対応）。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">EVEN-HARMONIC TUBE</span>
+              <span class="text-primary font-bold">48-SMP PDC</span>
+            </div>
+          </div>
+
+          <!-- Highlight 06 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 06 // PRO PHYSICS</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">6 CONTROLS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="6種のPRO音響物理コントロール"
+                  data-i18n-en="6 PRO Acoustic Physical Controls">
+                6種のPRO音響物理コントロール
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="<strong>Scattering / ER Crossover / Late Density / Asymmetry / Clarity / Air Absorb</strong>を搭載。v3.0.0ではER減衰法則を統一し、全アルゴリズムで一貫した物理変化が得られます。"
+                 data-i18n-html-en="Sculpt <strong>Scattering, ER Crossover, Late Density, Asymmetry, Clarity, and Air Absorb</strong> — normalized in v3.0.0 so ASYMMETRY and every physics control work consistently across all algorithms.">
+                <strong>Scattering / ER Crossover / Late Density / Asymmetry / Clarity / Air Absorb</strong>を搭載。v3.0.0ではER減衰法則を統一し、全アルゴリズムで一貫した物理変化が得られます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">2.5D VECTOR VIZ</span>
+              <span class="text-primary font-bold">NORMALIZED LAW</span>
+            </div>
+          </div>
+
+          <!-- Highlight 07 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 07 // ANALYZER</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">0.05S – 200S</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="対数RT60＆音響メトリクス可視化"
+                  data-i18n-en="Log RT60 &amp; Acoustic Metrics">
+                対数RT60＆音響メトリクス可視化
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="0.05秒〜200秒を自動スケールする<strong>10バンドRT60グラフ</strong>、ER/Late分割ディケイ曲線、Dry/Wetスペクトラム、さらにスタジオ計測指標<strong>D50 / C50 / C80 / EDT</strong>をリアルタイム表示。"
+                 data-i18n-html-en="Features a <strong>10-band RT60 graph</strong> (auto-scaling 0.05s–200s), split ER/Late decay curve, live Dry/Wet spectrum overlay, and real-time room metrics: <strong>D50, C50, C80, and EDT</strong>.">
+                0.05秒〜200秒を自動スケールする<strong>10バンドRT60グラフ</strong>、ER/Late分割ディケイ曲線、Dry/Wetスペクトラム、さらにスタジオ計測指標<strong>D50 / C50 / C80 / EDT</strong>をリアルタイム表示。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">D50 / C50 / C80 / EDT</span>
+              <span class="text-primary font-bold">LOG AUTO-SCALE</span>
+            </div>
+          </div>
+
+          <!-- Highlight 08 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 08 // WORKFLOW</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">104 PATCHES</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="104マスタープリセット＆3カラムブラウザ"
+                  data-i18n-en="104 Presets &amp; Hybrid Browser">
+                104マスタープリセット＆3カラムブラウザ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="8アルゴリズム×13種の<strong>104プリセット</strong>を収録。<code>[ROOM]</code>空間別と<code>[TAGS]</code>楽器別を切り替えるハイブリッドブラウザ、お気に入り★、全文検索、<code>REVERT</code>を完備。"
+                 data-i18n-html-en="Includes <strong>104 calibrated presets</strong> (13 per algorithm) in a 3-column overlay browser with instant <code>[ROOM]</code> / <code>[TAGS]</code> switching, favorites, live search, and 1-click <code>REVERT</code>.">
+                8アルゴリズム×13種の<strong>104プリセット</strong>を収録。<code>[ROOM]</code>空間別と<code>[TAGS]</code>楽器別を切り替えるハイブリッドブラウザ、お気に入り★、全文検索、<code>REVERT</code>を完備。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">[ROOM] / [TAGS]</span>
+              <span class="text-primary font-bold">104 RIGS</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 05. DEEP-DIVE DSP ARCHITECTURE BREAKDOWN -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="dsp-architecture">
+        <div class="flex flex-col gap-space-xs mb-space-lg">
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+            <span>DSP ARCHITECTURE // SIGNAL TOPOLOGY</span>
+          </div>
+          <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface font-bold"
+              data-i18n-ja="RESEARCH-GRADE REVERB ARCHITECTURE // 内部DSPアーキテクチャ"
+              data-i18n-en="RESEARCH-GRADE REVERB ARCHITECTURE // INTERNAL DSP ARCHITECTURE">
+            RESEARCH-GRADE REVERB ARCHITECTURE // 内部DSPアーキテクチャ
+          </h2>
+          <p class="font-body-md text-body-md text-tertiary max-w-3xl"
+             data-i18n-ja="Schroeder/Moorer/Jotの古典的構造にとどまらず、学術文献に基づくFWHTユニタリ帰還行列、Välimäki-Liski 10バンドGEQ吸収、そしてv3.0.0のトゥルーステレオFDN×SDNハイブリッドを統合しました。"
+             data-i18n-en="Built directly from acoustic DSP research papers: Fast Walsh-Hadamard unitary feedback matrices, Välimäki-Liski 10-band GEQ absorption, and v3.0.0's true-stereo FDN &amp; SDN hybrid core.">
+            Schroeder/Moorer/Jotの古典的構造にとどまらず、学術文献に基づくFWHTユニタリ帰還行列、Välimäki-Liski 10バンドGEQ吸収、そしてv3.0.0のトゥルーステレオFDN×SDNハイブリッドを統合しました。
+          </p>
+        </div>
+
+        <!-- 3 Technical Architecture Breakdown Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-margin">
+          <!-- Kernel 01 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 01 // TRUE STEREO FDN</span>
+                <span class="text-primary font-bold">FWHT + UNITARY ROT</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="16ch トゥルーステレオ FDN ＆ ユニタリ変調"
+                  data-i18n-en="16-ch True-Stereo FDN &amp; Unitary Rotation">
+                16ch トゥルーステレオ FDN ＆ ユニタリ変調
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="対数配置された互いに素な素数ディレイラインと<strong>FWHT帰還行列</strong>に、v3.0.0では独立L/Rネットワークと緩やかに変化する<strong>Unitary行列回転</strong>を実装。ピッチを一切揺らさずに空間の密度と立体感を最大化します。"
+                 data-i18n-html-en="Combines logarithmically spaced mutually-coprime delay lines and an <strong>FWHT feedback matrix</strong> with v3.0.0's independent L/R tanks and slowly evolving <strong>unitary rotation</strong> for dense, pitch-solid envelopment.">
+                対数配置された互いに素な素数ディレイラインと<strong>FWHT帰還行列</strong>に、v3.0.0では独立L/Rネットワークと緩やかに変化する<strong>Unitary行列回転</strong>を実装。ピッチを一切揺らさずに空間の密度と立体感を最大化します。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">LATE NETWORK:</span>
+                <span class="font-bold text-primary">INDEPENDENT L/R TRUE STEREO</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">MODULATION:</span>
+                <span class="font-bold">SMOOTHED-RANDOM + UNITARY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 02 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 02 // STAGE 2 GEQ</span>
+                <span class="text-primary font-bold">VÄLIMÄKI-LISKI WLS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="10バンド Biquad GEQ 吸収＆64bit精度"
+                  data-i18n-en="10-Band WLS GEQ &amp; 64-Bit Precision">
+                10バンド Biquad GEQ 吸収＆64bit精度
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="各FDNチャンネルに10バンドBiquad GEQを直列接続し、<strong>重み付き最小二乗法（WLS）</strong>で目標RT60カーブへ高精度追従。64-bit倍精度演算とPing-Pongクロスフェードにより、最長200秒のテールでも量子化ノイズやツマミ操作時のクリックを排除します。"
+                 data-i18n-html-en="Each FDN channel runs a 10-band biquad GEQ cascade solved via <strong>Weighted Least Squares (WLS)</strong> in 64-bit double precision with dual-state ping-pong crossfading — zero clicks or quantization noise even at 200s decay.">
+                各FDNチャンネルに10バンドBiquad GEQを直列接続し、<strong>重み付き最小二乗法（WLS）</strong>で目標RT60カーブへ高精度追従。64-bit倍精度演算とPing-Pongクロスフェードにより、最長200秒のテールでも量子化ノイズやツマミ操作時のクリックを排除します。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">ABSORPTION:</span>
+                <span class="font-bold text-primary">16CH × 10-BAND WLS LDLT</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">FILTER PRECISION:</span>
+                <span class="font-bold">64-BIT DOUBLE TDF-II</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 03 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 03 // REAL-TIME SAFETY</span>
+                <span class="text-primary font-bold">ZERO ALLOCATION</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="実戦堅牢設計＆1,200件自動音響検証"
+                  data-i18n-en="Zero-Allocation Safety &amp; 1,200 Test Cases">
+                実戦堅牢設計＆1,200件自動音響検証
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="オーディオスレッド上のヒープ確保ゼロ、Dirty-FlagによるWLS演算抑制、Hermite分数ディレイ補間、Ableton Liveの非同期サンプルレート変更保護を実装。<strong>1,200パターンの自動音響検証</strong>を通過したスタジオ標準の安定性です。"
+                 data-i18n-html-en="Zero heap allocation on the audio thread, dirty-flag WLS dispatch, Hermite fractional delay interpolation, and Ableton sample-rate jitter guards — validated across <strong>1,200 automated acoustic test cases</strong>.">
+                オーディオスレッド上のヒープ確保ゼロ、Dirty-FlagによるWLS演算抑制、Hermite分数ディレイ補間、Ableton Liveの非同期サンプルレート変更保護を実装。<strong>1,200パターンの自動音響検証</strong>を通過したスタジオ標準の安定性です。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">AUDIO THREAD:</span>
+                <span class="font-bold text-primary">0 ALLOC + DENORMAL GUARD</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">OUTPUT SAFETY:</span>
+                <span class="font-bold">-0.5 DBFS BRICKWALL LIMITER</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signal Flow Diagram Box -->
+        <div class="mt-space-lg bg-inverse-surface text-inverse-on-surface p-space-lg border border-on-surface">
+          <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-white/10 font-label-sm text-label-sm uppercase">
+            <span class="text-primary font-bold">// COMPLETE INTERNAL SIGNAL FLOW (v3.0.0)</span>
+            <span class="text-tertiary-fixed">PDC LATENCY REPORTED: 48 SAMPLES (2x OVERSAMPLED ADAA)</span>
+          </div>
+          <pre class="font-body-sm text-xs sm:text-body-sm text-inverse-on-surface overflow-x-auto leading-relaxed">Input (Stereo L/R)
+    │
+    ├─► [Mid/Side Decorrelation Matrix]
+    │
+    ├─► [Input Diffusers × 6 Stages (Prime-Number Tapering)]
+    │
+    ├─► [SDN / ISM Early Reflections Engine (Graceful 20ms Bypass)] ────────┐
+    │                                                                        │
+    └─► [16-Channel True-Stereo FDN Core (Independent L/R Networks)]         │
+         ├─► FWHT Unitary Feedback Matrix + Slow Unitary Rotation            │
+         ├─► Smoothed-Random Modulation Sources (Pitch-Solid)                │
+         ├─► Dual-State 10-Band Biquad Absorption Filters (Välimäki-Liski)   │
+         ├─► Internal Padé Micro-Saturation Safety Loop                      │
+         └─► 3-Stage Nested Allpass Dispersion Chains                        │
+                    │                                                        │
+                    └─► [ER Mix + Late FDN Mix] ◄────────────────────────────┘
+                                │
+                         [2x Oversampled ADAA Saturator: Warm / Tape / Tube / Hard]
+                                │
+                         [Output EQ: Lo/Hi Cut &amp; Shelf] ──► [-0.5 dBFS Brick-Wall Limiter]
+                                                                        │
+                         [Dry Signal × SmoothedGain] ───────────────────┼─► Final Stereo Output</pre>
+        </div>
+      </section>
+
+      <!-- 06. YOUTUBE VIDEO SHOWCASE -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="video-showcase">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-md">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// VISUAL &amp; SOUND WALKTHROUGH</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="YOUTUBE SHOWCASE // デモ動画"
+                data-i18n-en="YOUTUBE SHOWCASE // DEMO VIDEOS">
+              YOUTUBE SHOWCASE // デモ動画
+            </h2>
+          </div>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-sm py-1 text-primary font-bold">
+            BEFORE / AFTER &amp; OFFICIAL INTRO
           </span>
         </div>
 
-        <h1 className="amb-hero-title">
-          {lang === "jp" ? (
-            <>
-              <span className="ahl ahl-1">空間を、</span>
-              <span className="ahl ahl-2"><em>支配する</em>。</span>
-            </>
-          ) : (
-            <>
-              <span className="ahl ahl-1">Command</span>
-              <span className="ahl ahl-2"><em>the room</em>.</span>
-            </>
-          )}
-        </h1>
-
-        <p className="amb-hero-sub">
-          {lang === "jp" ? (
-            <>Abbey Road、Vienna Musikverein、Concertgebouw、Carnegie Hall、そして Inchindown。<br />
-            世界の名空間が、<span className="amb-em">16ch FDN & SDN ハイブリッド</span> の中に閉じ込められた。</>
-          ) : (
-            <>Abbey Road, Vienna Musikverein, Concertgebouw, Carnegie Hall, and Inchindown.<br />
-            All the world's great rooms, captured in a <span className="amb-em">16-channel FDN & SDN hybrid</span>.</>
-          )}
-        </p>
-
-        <div className="amb-hero-meta">
-          <div><span className="ahm-k">PLUGIN</span> Ambience v2.0.2</div>
-          <div><span className="ahm-k">TYPE</span> Algorithmic Reverb</div>
-          <div><span className="ahm-k">FORMAT</span> VST3 · Windows</div>
-          <div><span className="ahm-k">LICENSE</span> GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
-        </div>
-
-        <div className="amb-hero-actions">
-          <a
-            href="https://github.com/OTODESK4193/Ambience/releases/latest"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-release"
-            onClick={() => {
-              try {
-                counterUp("dl-ambience");
-                window.dispatchEvent(new CustomEvent("dlbump", { detail: "ambience" }));
-              } catch(e){}
-            }}
-          >
-            <span className="br-dot" />
-            {lang === "jp" ? "ダウンロード v2.0.2" : "Download v2.0.2"}
-            <span className="arrow">↓</span>
-          </a>
-          <a
-            href="https://github.com/OTODESK4193/Ambience"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-ghost amb-src"
-          >
-            GitHub <span className="arrow">↗</span>
-          </a>
-          <DownloadChip pluginId="ambience" lang={lang} />
-          <button
-            className="amb-lang-btn"
-            onClick={() => setLang(lang === "en" ? "jp" : "en")}
-            aria-label="Toggle language"
-          >
-            <span className={lang === "en" ? "on" : ""}>EN</span>
-            <span className="sep">/</span>
-            <span className={lang === "jp" ? "on" : ""}>JP</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="amb-hero-shot">
-        <img src="assets/ambience-screenshot-1.jpg?v=2.0.2" alt="Ambience UI" />
-      </div>
-    </section>
-  );
-}
-
-function Pitch({ lang }) {
-  return (
-    <section className="amb-section amb-pitch">
-      <div className="amb-eyebrow">— 01 / {lang === "jp" ? "そもそも、なぜ無料なのか" : "Why free?"}</div>
-      <h2 className="amb-h2">
-        {lang === "jp" ? (
-          <>有料リバーブの<span className="amb-h">9 割</span>は、<br />実は同じものを<span className="amb-h">隠して</span>売っている。</>
-        ) : (
-          <>Most paid reverbs sell you<br />the same <span className="amb-h">box</span>, in different boxes.</>
-        )}
-      </h2>
-      <div className="amb-pitch-body">
-        <p>
-          {lang === "jp" ?
-            "Schroeder、Moorer、Jot ── 1960年代から数えて約60年、商用リバーブの土台はほとんど更新されていません。違いはプリセットとUIだけ。" :
-            "Schroeder, Moorer, Jot — for sixty years, the foundations of commercial reverb have barely moved. The differences are presets and UI."
-          }
-        </p>
-        <p>
-          {lang === "jp" ?
-            "Ambience は、その土台そのものを学術文献から再構築したリサーチグレード実装です。FWHT 帰還行列、最近接素数遅延配置、Välimäki-Liski の 10 バンド GEQ、ISM ベース Early Reflections ── どれも「論文を読んで実装する」種類の DSP。" :
-            "Ambience reimplements that foundation from primary academic sources — FWHT feedback matrices, nearest-prime delay allocation, Välimäki-Liski 10-band GEQ, ISM-based early reflections. Research-paper DSP, end to end."
-          }
-        </p>
-        <p className="amb-stress">
-          {lang === "jp" ?
-            "それを、無料で配ります。" :
-            "And we're giving it away."
-          }
-        </p>
-      </div>
-
-      <div className="amb-pitch-video">
-        <div className="amb-eyebrow" style={{ marginTop: 0, marginBottom: 16 }}>
-          ▶ {lang === "jp" ? "最新デモ・解説動画（Before / After ＆ 公式紹介）" : "Demo Videos (Before / After & Introduction)"}
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "32px" }}>
-          <div className="amb-video-frame">
-            <iframe
-              src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&modestbranding=1"
-              title="Ambience — Before / After demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+        <!-- Dual 16:9 YouTube Embed Frame -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+          <div class="bg-inverse-surface text-inverse-on-surface p-space-sm shadow-md border border-surface-container-highest">
+            <div class="font-label-sm text-label-sm uppercase text-tertiary-fixed pb-space-xs flex items-center justify-between">
+              <span class="text-primary font-bold">01 // BEFORE / AFTER SOUND DEMO</span>
+              <span>YOUTUBE HD</span>
+            </div>
+            <div class="relative w-full aspect-video bg-black border border-white/10 overflow-hidden">
+              <iframe
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/9UfD9NzSE3c?rel=0&amp;modestbranding=1"
+                title="Ambience — Before / After demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
-          <div className="amb-video-frame">
-            <iframe
-              src="https://www.youtube.com/embed/yVb9Fkl8nk0?rel=0&modestbranding=1"
-              title="Ambience — Introduction & Demo video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+          <div class="bg-inverse-surface text-inverse-on-surface p-space-sm shadow-md border border-surface-container-highest">
+            <div class="font-label-sm text-label-sm uppercase text-tertiary-fixed pb-space-xs flex items-center justify-between">
+              <span class="text-primary font-bold">02 // OFFICIAL INTRODUCTION &amp; WALKTHROUGH</span>
+              <span>YOUTUBE HD</span>
+            </div>
+            <div class="relative w-full aspect-video bg-black border border-white/10 overflow-hidden">
+              <iframe
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/yVb9Fkl8nk0?rel=0&amp;modestbranding=1"
+                title="Ambience — Introduction &amp; Demo video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function Numbers({ lang }) {
-  const items = [
-    { n: "16", k: lang === "jp" ? "FDN チャンネル" : "FDN channels", s: "Feedback Delay Network" },
-    { n: "104", k: lang === "jp" ? "ファクトリプリセット" : "factory presets", s: "13 presets × 8 algos · Tag Browser" },
-    { n: "8", k: lang === "jp" ? "リバーブアルゴリズム" : "reverb algorithms", s: "ROOM · HALL · PLATE · SPRING · GOLDFOIL · INCHINDOWN" },
-    { n: "6", k: lang === "jp" ? "PRO 音響コントロール" : "PRO acoustic controls", s: "Scattering · Clarity · Density · Asymmetry · etc." },
-    { n: "10", k: lang === "jp" ? "バンド GEQ 吸収" : "band GEQ absorption", s: "Välimäki-Liski WLS" },
-    { n: "0", k: lang === "jp" ? "オーディオスレッド確保" : "audio-thread allocations", s: lang === "jp" ? "完全リアルタイムセーフ" : "fully real-time safe" }
-  ];
-  return (
-    <section className="amb-section amb-numbers">
-      <div className="amb-eyebrow">— 02 / {lang === "jp" ? "数字で見る Ambience" : "By the numbers"}</div>
-      <div className="amb-num-grid">
-        {items.map((it, i) => (
-          <div key={i} className="amb-num-cell">
-            <div className="amb-num-n">{it.n}</div>
-            <div className="amb-num-k">{it.k}</div>
-            <div className="amb-num-s">{it.s}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Engine({ lang }) {
-  return (
-    <section className="amb-section amb-engine">
-      <div className="amb-eyebrow">— 03 / {lang === "jp" ? "中身を見せましょう" : "Inside the box"}</div>
-      <h2 className="amb-h2">
-        {lang === "jp" ? (
-          <>「箱の中で<span className="amb-h">なに</span>が<br />起きているのか」を、公開する。</>
-        ) : (
-          <>Here's exactly what's<br /><span className="amb-h">happening inside the box</span>.</>
-        )}
-      </h2>
-
-      <div className="amb-engine-grid">
-        <article className="amb-card">
-          <div className="amb-card-k">SDN × FDN HYBRID</div>
-          <h3>{lang === "jp" ? "16ch FDN ＆ SDN ハイブリッドエンジン" : "16-ch FDN & SDN Hybrid Engine"}</h3>
-          <p>
-            {lang === "jp" ?
-              "空間分解ネットワーク（SDN）による初期反射音モデリングと、16ch Feedback Delay Network（FDN）コアを完全統合。直接音から後期残響までシームレスに推移する極上の音響空間を生成します。" :
-              "Spatial Decomposition Networks (SDN) early reflection modeling fully integrated with the 16-channel FDN core for seamless transition from direct sound to late reverberation."
-            }
-          </p>
-        </article>
-
-        <article className="amb-card">
-          <div className="amb-card-k">8 ALGORITHMS</div>
-          <h3>{lang === "jp" ? "ROOM・HALL・PLATE・SPRING・GOLDFOIL・INCHINDOWN" : "ROOM · HALL · PLATE · SPRING · GOLDFOIL · INCHINDOWN"}</h3>
-          <p>
-            {lang === "jp" ?
-              "ROOM1／ROOM2／HALL1／HALL2／PLATE／SPRING／GOLDFOIL／INCHINDOWN ── それぞれが独立したトポロジカル・ルーティング、Allpass 係数、散乱境界、独自のERパターン（ISM, 2D Mesh, Spring1D, 巨大地下タンク）を持ちます。" :
-              "ROOM1 / ROOM2 / HALL1 / HALL2 / PLATE / SPRING / GOLDFOIL / INCHINDOWN — each algorithm features custom topological routing, allpass gains, boundary scattering, and specialized early reflection patterns."
-            }
-          </p>
-        </article>
-
-        <article className="amb-card">
-          <div className="amb-card-k">VÄLIMÄKI-LISKI</div>
-          <h3>{lang === "jp" ? "Stage 2 GEQ 吸収 ── 周波数別 RT60" : "Stage 2 GEQ — frequency-dependent RT60"}</h3>
-          <p>
-            {lang === "jp" ?
-              "各 FDN チャンネルに、10 バンドの biquad Graphic EQ をカスケード接続。Weighted Least Squares 法で重み付き最小二乗系を解き、可聴域全体で目標 RT60 曲線を高精度に追従させます。" :
-              "Each FDN channel hosts a 10-band biquad GEQ cascade. The plugin solves a Weighted Least Squares system in real time to follow target RT60 curves with surgical accuracy across the full audible band."
-            }
-          </p>
-        </article>
-
-        <article className="amb-card">
-          <div className="amb-card-k">PRO ACOUSTIC CONTROLS</div>
-          <h3>{lang === "jp" ? "6つの PRO 音響フィジカルコントロール" : "6 PRO Acoustic Physical Controls"}</h3>
-          <p>
-            {lang === "jp" ?
-              "Scattering、ER Crossover（10〜100ms）、Late Density、Asymmetry、Clarity（-6〜+6dB）、Air Absorb（0.2〜2.5x）により、部屋の非対称性や空気吸収など深層の音響物理を精密に彫刻できます。" :
-              "Tailor deep acoustic physics with SCATTERING, ER CROSSOVER, LATE DENSITY, ASYMMETRY, CLARITY, and AIR ABSORB."
-            }
-          </p>
-        </article>
-
-        <article className="amb-card">
-          <div className="amb-card-k">ZERO-METALLIC LFO</div>
-          <h3>{lang === "jp" ? "16ch 黄金比 LFO ＆ 3段直列 SAPF" : "16-ch Golden-Ratio LFO & 3-Stage SAPF"}</h3>
-          <p>
-            {lang === "jp" ?
-              "16本のFDNチャンネルそれぞれに非同期Dual Golden-Ratio LFOと3段直列Allpass位相スミアリングを配置。金属的リンギングや定常波を根絶し、超高透明度の残響テールを実現。" :
-              "16-channel asynchronous Dual Golden-Ratio LFOs with 3-stage serial Allpass phase smearing, completely eliminating metallic ringing and standing waves for an ultra-transparent tail."
-            }
-          </p>
-        </article>
-
-        <article className="amb-card">
-          <div className="amb-card-k">ADAA SATURATOR</div>
-          <h3>{lang === "jp" ? "4 種のサチュレーションキャラクタ" : "Four saturation characters"}</h3>
-          <p>
-            {lang === "jp" ?
-              "Anti-Derivative Anti-Aliasing 適用の 4 モード ── Warm（Vicanek）、Tape（Padé）、Tube（非対称 ADAA）、Hard（ADAA クリップ）。エイリアシングなしで質感を選べます。" :
-              "Anti-Derivative Anti-Aliasing in four flavors — Warm (Vicanek), Tape (Padé rational), Tube (asymmetric ADAA), Hard (ADAA clip). Texture without aliasing artifacts."
-            }
-          </p>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-function ProMode({ lang }) {
-  return (
-    <section className="amb-section amb-pro">
-      <div className="amb-pro-grid">
-        <div className="amb-pro-text">
-          <div className="amb-eyebrow">— 04 / {lang === "jp" ? "Pro モード ＆ 空間ビジュアライザー" : "Pro Mode & Space Visualizer"}</div>
-          <h2 className="amb-h2">
-            {lang === "jp" ? (<>音響物理を、<br /><span className="amb-h">指先と視覚で支配する</span>。</>) : (<>Master acoustic physics<br /><span className="amb-h">by fingertip and sight</span>.</>)}
-          </h2>
-          <p>
-            {lang === "jp" ?
-              "PRO ボタンで、10 バンド RT60 倍率や Tilt EQ に加え、新たに 6 つの音響フィジカルコントロール（Scattering, Clarity, Density, Asymmetry, Crossover, Air Absorb）が解放されます。" :
-              "One PRO button unlocks 10-band RT60 multipliers, Tilt EQ, and 6 new physical acoustic controls (Scattering, Clarity, Density, Asymmetry, Crossover, Air Absorb)."
-            }
-          </p>
-          <p>
-            {lang === "jp" ?
-              "JUCE 8 完全ベクター描画の「2.5Dパースペクティブ空間ビジュアライザー」により、部屋の非対称性の変化、境界の散乱質感、音響パルスの伝搬リング、空気吸収のフォグなどをリアルタイムに視覚化します。" :
-              "The pure vector-rendered 2.5D perspective visualizer dynamically illustrates room asymmetry morphing, scattering boundary textures, pulse wavefront rings, and atmospheric fog absorption."
-            }
-          </p>
-        </div>
-        <div className="amb-pro-shot">
-          <img src="assets/ambience-screenshot-2.jpg?v=2.0.2" alt="Pro Mode" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Presets({ lang }) {
-  const presets = [
-    { algo: "ROOM1", name: "Abbey Road Studio 2", ref: "Abbey Road Studio 2, London" },
-    { algo: "ROOM1", name: "Drums in a Box", ref: "Small dead studio room" },
-    { algo: "ROOM1", name: "Tracking Room", ref: "Medium tracking room" },
-    { algo: "ROOM2", name: "Abbey Road Studio 1", ref: "Abbey Road Studio 1" },
-    { algo: "ROOM2", name: "Capitol Studio A", ref: "Capitol Studios, LA" },
-    { algo: "ROOM2", name: "Skywalker Sound", ref: "Skywalker Sound, CA" },
-    { algo: "HALL1", name: "Carnegie Hall", ref: "Carnegie Hall, NYC" },
-    { algo: "HALL1", name: "Tokyo Opera City", ref: "Tokyo Opera City Concert Hall" },
-    { algo: "HALL1", name: "Berlin Konzerthaus", ref: "Konzerthaus Berlin" },
-    { algo: "HALL2", name: "Vienna Musikverein", ref: "Wiener Musikverein Goldener Saal" },
-    { algo: "HALL2", name: "Boston Symphony", ref: "Boston Symphony Hall" },
-    { algo: "HALL2", name: "Concertgebouw", ref: "Amsterdam Concertgebouw" },
-    { algo: "PLATE", name: "EMT140 Vocal", ref: "EMT 140 — vocal setting" },
-    { algo: "PLATE", name: "EMT140 Snare", ref: "EMT 140 — snare setting" },
-    { algo: "PLATE", name: "Dark Plate", ref: "Dark plate, enhanced low end" },
-    { algo: "SPRING", name: "Surf Guitar", ref: "Guitar amp spring tank" },
-    { algo: "SPRING", name: "Vintage Studio", ref: "Fender-style spring tank" },
-    { algo: "SPRING", name: "Deep Tank", ref: "AKG BX-20 style deep spring" },
-    { algo: "GOLDFOIL", name: "Gothic Cathedral", ref: "Cologne Cathedral reference" },
-    { algo: "GOLDFOIL", name: "Stone Chamber", ref: "Stone underground chamber" },
-    { algo: "GOLDFOIL", name: "Infinite Space", ref: "Synthetic infinite ambient" },
-    { algo: "INCHINDOWN", name: "Inchindown", ref: "Inchindown Oil Tanks, Scotland (112s decay)" }
-  ];
-  return (
-    <section className="amb-section amb-presets">
-      <div className="amb-eyebrow">— 05 / {lang === "jp" ? "プリセット" : "Presets"}</div>
-      <h2 className="amb-h2">
-        {lang === "jp" ? (<>104 の<span className="amb-h">マスター校正空間</span>。</>) : (<>104 <span className="amb-h">master-calibrated spaces</span>.</>)}
-      </h2>
-      <p className="amb-lead">
-        {lang === "jp" ?
-          "8アルゴリズム×各13プリセット、計104種類のファクトリープリセットを収録。[ROOM] 空間分類と [TAGS] 楽器タグ分類をワンクリックで切り替えられる次世代ブラウザを搭載。" :
-          "104 factory presets across 8 algorithms (13 per algo). Features next-gen browser with hybrid [ROOM] / [TAGS] filtering, interactive INFO panel, and context-aware navigation."
-        }
-      </p>
-      <div className="amb-preset-grid">
-        {presets.map((p, i) => (
-          <div key={i} className="amb-preset-cell">
-            <div className="apc-algo">{p.algo}</div>
-            <div className="apc-name">{p.name}</div>
-            <div className="apc-ref">{p.ref}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Safety({ lang }) {
-  const items = [
-    { k: "01", t: lang === "jp" ? "ヒープ確保ゼロ" : "Zero heap allocation",
-      b: lang === "jp" ? "オーディオスレッド上では new ／ malloc ／ vector::resize() を一切呼びません。全バッファは prepareToPlay() で確保。" : "No new / malloc / vector::resize on the audio thread. All buffers pre-allocated in prepareToPlay()." },
-    { k: "02", t: lang === "jp" ? "Dirty-Flag パラメータディスパッチ" : "Dirty-flag parameter dispatch",
-      b: lang === "jp" ? "DSP パラメータ変更時のみ重い WLS 行列計算 (16ch × 10 バンド LDLT) を走らせます。" : "The expensive Stage 2 GEQ WLS computation (16ch × 10-band LDLT) runs only when DSP parameters actually change." },
-    { k: "03", t: lang === "jp" ? "Ableton ジッタ保護" : "Ableton jitter protection",
-      b: lang === "jp" ? "サンプルレートの非同期変更を検出し、安全な内部リセットでクラッシュを防ぎます。" : "Detects asynchronous sample-rate changes (an Ableton edge case) and triggers a safe internal reset." },
-    { k: "04", t: lang === "jp" ? "Denormal 抑制" : "ScopedNoDenormals",
-      b: lang === "jp" ? "全 processBlock() 入口で denormal CPU スパイクを抑制。" : "Suppresses denormal CPU spikes at the entry of every processBlock()." },
-    { k: "05", t: lang === "jp" ? "Smoothed ゲイン" : "Sample-accurate gain smoothing",
-      b: lang === "jp" ? "Wet ／ Dry のゲインはサンプル精度で補間。オートメーションでもジッパーノイズなし。" : "Wet and Dry gain changes are interpolated sample-accurately — no zipper noise under automation." },
-    { k: "06", t: lang === "jp" ? "安全なエディタ破棄" : "Safe editor destruction",
-      b: lang === "jp" ? "Editor 破棄時に stopTimer() と setLookAndFeel(nullptr) を明示的に呼び、Ableton クリーンアップ順序クラッシュを防止。" : "Explicit stopTimer() and setLookAndFeel(nullptr) in the Editor destructor — prevents Ableton cleanup-order crashes." }
-  ];
-  return (
-    <section className="amb-section amb-safety">
-      <div className="amb-eyebrow">— 06 / {lang === "jp" ? "実戦投入のための設計" : "Built for the studio"}</div>
-      <h2 className="amb-h2">
-        {lang === "jp" ? (<>セッションを<br /><span className="amb-h">壊さない</span>ために。</>) : (<>Engineered to <span className="amb-h">never break your session</span>.</>)}
-      </h2>
-      <p className="amb-lead">
-        {lang === "jp" ?
-          "リサーチグレードの DSP は、リアルタイム制約を守れなければ意味がありません。Ableton Live 特有のエッジケースを含めて、徹底的に堅牢化しています。" :
-          "Research-grade DSP is worthless if it breaks under real-time constraints. Hardened against Ableton Live's edge cases, line by line."
-        }
-      </p>
-      <div className="amb-safety-grid">
-        {items.map((it, i) => (
-          <div key={i} className="amb-safety-cell">
-            <div className="ass-k">{it.k}</div>
-            <h4>{it.t}</h4>
-            <p>{it.b}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Metrics({ lang }) {
-  const ms = [
-    { k: "D50", desc: lang === "jp" ? "明瞭度 ── 初期 50ms と全体エネルギの比" : "Definition — early/total energy at 50ms", ideal: ">0.5" },
-    { k: "C50", desc: lang === "jp" ? "音声明瞭度" : "Speech clarity", ideal: ">0 dB" },
-    { k: "C80", desc: lang === "jp" ? "音楽明瞭度" : "Music clarity", ideal: "-2 ~ +4 dB" },
-    { k: "EDT", desc: lang === "jp" ? "初期減衰時間 ── 最初の 10dB から推定した RT60" : "Early Decay Time — RT60 from the first 10dB", ideal: "≈ RT60 mid" }
-  ];
-  return (
-    <section className="amb-section amb-metrics">
-      <div className="amb-eyebrow">— 07 / {lang === "jp" ? "可視化と計測" : "Visualization & metrics"}</div>
-      <h2 className="amb-h2">
-        {lang === "jp" ? (<><span className="amb-h">数値</span>で語る、リバーブ。</>) : (<>Reverb that <span className="amb-h">speaks in numbers</span>.</>)}
-      </h2>
-      <p className="amb-lead">
-        {lang === "jp" ?
-          "リアルタイムで D50 / C50 / C80 / EDT を計測表示。スタジオ計測に使われる音響評価値が、ミックス画面に直接出てきます。" :
-          "Live D50 / C50 / C80 / EDT readouts — the same acoustic metrics used in real-room measurement, right inside your mix."
-        }
-      </p>
-      <table className="amb-metrics-table">
-        <thead>
-          <tr><th>Metric</th><th>Description</th><th>Ideal</th></tr>
-        </thead>
-        <tbody>
-          {ms.map((m, i) => (
-            <tr key={i}><td className="amk">{m.k}</td><td>{m.desc}</td><td className="ami">{m.ideal}</td></tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-}
-
-function Specs({ lang }) {
-  return (
-    <section className="amb-section amb-specs">
-      <div className="amb-eyebrow">— 08 / {lang === "jp" ? "仕様" : "Specifications"}</div>
-      <div className="amb-specs-grid">
-        <div>
-          <div className="asg-k">OS</div>
-          <div className="asg-v">Windows 10 / 11 (64-bit)</div>
-        </div>
-        <div>
-          <div className="asg-k">{lang === "jp" ? "フォーマット" : "Format"}</div>
-          <div className="asg-v">VST3 / Standalone</div>
-        </div>
-        <div>
-          <div className="asg-k">CPU</div>
-          <div className="asg-v">AVX2 required</div>
-        </div>
-        <div>
-          <div className="asg-k">{lang === "jp" ? "動作確認" : "Tested host"}</div>
-          <div className="asg-v">Ableton Live 11 / 12</div>
-        </div>
-        <div>
-          <div className="asg-k">{lang === "jp" ? "ライセンス" : "License"}</div>
-          <div className="asg-v">GPLv3 · {lang === "jp" ? "完全無料" : "Free"}</div>
-        </div>
-        <div>
-          <div className="asg-k">Framework</div>
-          <div className="asg-v">JUCE 8.0.x</div>
-        </div>
-      </div>
-      <p className="amb-warn">
-        ⚠ {lang === "jp" ?
-          "macOS／AU は非対応。他 DAW での動作は未検証です。Ableton Live 上での使用を強く推奨します。" :
-          "macOS / AU not supported. Operation on other DAWs is unverified. Ableton Live strongly recommended."
-        }
-      </p>
-    </section>
-  );
-}
-
-function CTA({ lang }) {
-  return (
-    <section className="amb-section amb-cta">
-      <h2 className="amb-cta-title">
-        {lang === "jp" ? (
-          <><span className="amb-h">有料</span>のものと、<br /><span className="amb-h">違い</span>が分かりますか？</>
-        ) : (
-          <><span className="amb-h">Can you tell</span><br />it apart from the <span className="amb-h">paid ones</span>?</>
-        )}
-      </h2>
-      <p className="amb-cta-sub">
-        {lang === "jp" ?
-          "GitHub から無料でダウンロードできます。" :
-          "Free download on GitHub."
-        }
-      </p>
-      <div className="amb-cta-actions">
-        <a
-          href="https://github.com/OTODESK4193/Ambience/releases/latest"
-          target="_blank"
-          rel="noreferrer"
-          className="btn-release big"
-          onClick={() => {
-            try {
-              counterUp("dl-ambience");
-              window.dispatchEvent(new CustomEvent("dlbump", { detail: "ambience" }));
-            } catch(e){}
-          }}
-        >
-          <span className="br-dot" />
-          {lang === "jp" ? "ダウンロード v2.0.2" : "Download v2.0.2"}
-          <span className="arrow">↓</span>
-        </a>
-        <DownloadChip pluginId="ambience" lang={lang} />
-        <a href="index.html" className="btn-ghost">
-          ← {lang === "jp" ? "他のプラグインを見る" : "Other plugins"}
-        </a>
-      </div>
-    </section>
-  );
-}
-
-function Changelog({ lang }) {
-  const [activeTab, setActiveTab] = React.useState("v2.0.2");
-
-  const v202Items = [
-    {
-      title: { jp: "安定性・堅牢性の向上", en: "Improved Robustness and Stability" },
-      desc: {
-        jp: "各種DAWセッションにおける動作の安定性と堅牢性を向上させました。",
-        en: "Enhanced overall stability and robustness across various DAW host environments."
-      }
-    },
-    {
-      title: { jp: "CPU最適化", en: "CPU Optimization" },
-      desc: {
-        jp: "内部DSP処理およびリソース消費を最適化し、CPU負荷を低減しました。",
-        en: "Optimized internal DSP calculations to minimize CPU load and resource utilization."
-      }
-    }
-  ];
-
-  const v201BugFixes = [
-    {
-      title: { jp: "プリセットブラウザの不具合修正", en: "Preset Browser Bug Fixes" },
-      desc: {
-        jp: "DAW プロジェクト再オープン時におけるプリセット名の保持・復元を修正。プリセット選択時に誤って編集フラグ（*）が付与される問題を解消し、トラック新規挿入時にクリーンな Room1 / Init 状態から開始するよう改善。",
-        en: "Fixed preset name recall and persistence when reopening the plugin in a DAW, resolved false edit (*) flags upon preset selection, and ensured clean Room1 / Init state upon insert."
-      }
-    },
-    {
-      title: { jp: "サチュレーションエンジンの伝達修正 ＆ AGC最適化", en: "Saturation Engine Bug Fix & AGC" },
-      desc: {
-        jp: "Saturation 量および Sat Type の設定が DSP エンジンへ正常に伝達されていなかった不具合を修正。全4モード（Warm, Tape, Tube, Hard）においてドライブ感度と等ラウドネス AGC を再設計し、自然で使いやすいサチュレーションカーブを実現。",
-        en: "Fixed an issue where Saturation and Sat Type controls were not dispatched to the DSP engine, and re-engineered drive sensitivity and equal-loudness AGC across all saturation modes (Warm, Tape, Tube, Hard)."
-      }
-    }
-  ];
-
-  const v200HybridEngine = [
-    {
-      title: { jp: "SDN × FDN ハイブリッド音響アーキテクチャ", en: "SDN × FDN Hybrid Architecture" },
-      desc: {
-        jp: "空間分解ネットワーク（SDN）による初期反射音モデリングと16ch FDNコアを統合。直接音から後期残響まで極めて滑らかな接続を実現。",
-        en: "Integrated Spatial Decomposition Networks (SDN) early reflection modeling with the 16-channel FDN core for seamless direct-to-reverberant transition."
-      }
-    },
-    {
-      title: { jp: "8種類の空間アルゴリズムを徹底チューニング", en: "8 Calibrated Reverb Topologies" },
-      desc: {
-        jp: "ROOM1/2, HALL1/2, PLATE, SPRING, GOLDFOIL, INCHINDOWN の全8アルゴリズムを専用のAllpass係数、散乱行列、ERパターン（ISM, 2D Mesh, Spring1D, 巨大地下タンク）で再調整。",
-        en: "Comprehensive tuning across all 8 topologies with custom Allpass gains, scattering matrices, and algorithm-specific early reflection patterns."
-      }
-    },
-    {
-      title: { jp: "最大200秒の対数ディケイ自動スケーリング", en: "Extreme Decay Auto-Scaling (up to 200s)" },
-      desc: {
-        jp: "0.05秒から200秒までの対数RT60スケールに対応し、Inchindownの最長112秒ディケイも視認性高く正確に制御可能。",
-        en: "Logarithmic RT60 auto-scaling series (0.05s to 200s), comfortably accommodating Inchindown's world-record 112s decay."
-      }
-    }
-  ];
-
-  const v200ProAcoustics = [
-    {
-      title: { jp: "6つの PRO 音響フィジカルコントロール", en: "6 PRO Acoustic Physical Controls" },
-      desc: {
-        jp: "SCATTERING（境界散乱）、ER CROSSOVER（10〜100ms）、LATE DENSITY、ASYMMETRY（空間非対称性）、CLARITY（-6〜+6dB）、AIR ABSORB（0.2〜2.5x）を新設。",
-        en: "Added SCATTERING, ER CROSSOVER (10–100ms), LATE DENSITY, ASYMMETRY, CLARITY (-6 to +6dB), and AIR ABSORB (0.2–2.5x) for deep acoustic physics tailoring."
-      }
-    },
-    {
-      title: { jp: "2.5D パースペクティブ空間ビジュアライザー (ProAcousticSpaceViz)", en: "Pro Acoustic Space Visualizer" },
-      desc: {
-        jp: "JUCE 8 完全ベクター描画。部屋の非対称性モーフィング、散乱テクスチャ、パルス伝搬リング、空気吸収フォグをリアルタイムに視覚化。",
-        en: "Vector-rendered 2.5D perspective visualizer illustrating room asymmetry morphing, scattering boundary textures, pulse wavefront rings, and atmospheric fog absorption."
-      }
-    },
-    {
-      title: { jp: "次世代ブラウザ ＆ 104 ファクトリープリセット", en: "Next-Gen Preset Browser & 104 Presets" },
-      desc: {
-        jp: "各アルゴリズム13種（計104種）のマスター校正済みプリセットを収録。[ROOM] / [TAGS] カテゴリ切り替え、楽器タグ検索、INFOパネル表示に対応。",
-        en: "104 master-calibrated presets (13 per algo) with hybrid [ROOM] / [TAGS] filtering, interactive INFO panel, and context-aware navigation."
-      }
-    },
-    {
-      title: { jp: "DSP最適化 ＆ 音質向上・UIテーマ刷新", en: "DSP Hardening, Sound Quality & UI Themes" },
-      desc: {
-        jp: "エルミート/Farrow小数遅延補間、160個のBiquadデュアルステートクロスフェード、スムーズERバイパス、完全モノラル出力（StereoWidth=0%）、高コントラストテーマ刷新。",
-        en: "Fractional delay interpolation, dual-state biquad crossfading, graceful ER bypass, bit-exact mono collapse, and refined two-tone themes."
-      }
-    }
-  ];
-
-  const v130Items = [
-    {
-      title: { jp: "更なる音質改善（ノイズ低減 ＆ 残響テールのシルキー化）", en: "Further Sound Quality Improvements" },
-      desc: {
-        jp: "内部ノイズフロアの徹底的な抑制と、高音域および減衰時における残響テールの更なるシルキー・透明化処理を施しました。",
-        en: "Further sound quality improvements including thorough noise reduction and silkier, more transparent reverb tails."
-      }
-    },
-    {
-      title: { jp: "安定性の向上 ＆ クラッシュ防止（緊急メンテナンス）", en: "Enhanced Stability & Crash Prevention" },
-      desc: {
-        jp: "特定条件下での動作安定性を強化し、DAWセッションにおける潜在的なクラッシュや不具合を防止する安全対策を適用しました。",
-        en: "Enhanced stability and robust crash prevention safeguards across various DAW host environments."
-      }
-    }
-  ];
-
-  const v121SoundQuality = [
-    {
-      title: { jp: "ゼロ・メタリック拡散（Dual Golden-Ratio LFO & 3段直列SAPF）", en: "Zero-Metallic Diffusion (Dual Golden-Ratio LFOs & 3-Stage SAPF)" },
-      desc: {
-        jp: "16チャンネル非同期Dual Golden-Ratio LFOと3段直列オールパス位相スミアリングを完全統合。高域コード（B5〜E6等）や鋭い打楽器トランジェントでの金属的リンギング、フラッターエコー、定常波を根絶し、極上のシルキーかつ高透明度な残響テールを実現。",
-        en: "Fully integrated 16-channel asynchronous Dual Golden-Ratio LFOs with 3-stage serial Allpass phase smearing, completely eliminating metallic ringing, flutter echoes, and standing waves on high-register chords (e.g. B5–E6) and sharp percussive transients for a silky, ultra-transparent reverb tail."
-      }
-    },
-    {
-      title: { jp: "非対称マイクロサチュレーション＆倍音の温かみ", en: "Asymmetric Micro-Saturation & Harmonic Warmth" },
-      desc: {
-        jp: "16ch FDN帰還ループ内にソフトニー非対称マイクロサチュレーション（偶数/奇数次倍音ブレンド）を組み込み、冷たいデジタルリミットサイクルを抑制。アナログ級の深み、濃密さ、空気吸収感を付与。",
-        en: "Embedded soft-knee asymmetric micro-saturation (precise even/odd harmonic blending) within the 16-channel FDN feedback loop, suppressing cold digital limit cycles and delivering analog-grade depth, lushness, and air absorption."
-      }
-    },
-    {
-      title: { jp: "新アルゴリズム「Inchindown」（超ロングリバーブ）搭載", en: "Colossal Subterranean Resonance (\"Inchindown\")" },
-      desc: {
-        jp: "最長112秒のディケイタイムを誇る世界記録の地下貯油タンク「Inchindown」アルゴリズムを新搭載。圧倒的な低域共鳴（31 Hz〜125 Hz）と広大な音響包囲感を提供。",
-        en: "Added the world-record holding Inchindown Oil Tanks algorithm with decay times up to 112 seconds, featuring immense low-frequency resonance (31 Hz–125 Hz) and vast spatial envelopment."
-      }
-    },
-    {
-      title: { jp: "シームレスなISM初期反射音の結合", en: "Seamless ISM Early Reflection Coupling" },
-      desc: {
-        jp: "アルゴリズム専用の12タップImage Source Method（ISM）初期反射音と周波数依存の境界吸収フィルターを結合し、位相打ち消しのない極めて自然な空間深度を達成。",
-        en: "Coupled algorithm-specific 12-tap Image Source Method (ISM) early reflections with frequency-dependent boundary absorption filters, achieving natural spatial depth without phase cancellation."
-      }
-    },
-    {
-      title: { jp: "22種類の音響キャリブレーション済みファクトリープリセット", en: "22 Acoustically Calibrated Factory Presets" },
-      desc: {
-        jp: "世界的なコンサートホールやスタジオ、ヴィンテージ空間のプリセットを完全再設計。マルチバンドRT60プロファイルの最適化とDry 0dB / Wet -12dBの統一ゲインステージングを実施。",
-        en: "Completely re-engineered all factory presets (including iconic concert halls, tracking rooms, and vintage chambers) with optimized multi-band RT60 profiles and unified Dry 0 dB / Wet -12 dB gain staging."
-      }
-    }
-  ];
-
-  const v121Architecture = [
-    {
-      title: { jp: "10種類のダイナミックカラーテーマ（THEMEセレクター）", en: "10 Dynamic Color Themes (THEME Selector)" },
-      desc: {
-        jp: "Proモードに10種のハイコントラストテーマ（Cyber Neon [デフォルト], Solar Flare, Matrix Glow, Vaporwave, Dark Amber, Nordic Frost, Deep Purple, Midnight, Blood Moon, Monochrome）を新設。リアルタイムにベクターUIが変化。",
-        en: "Added a THEME selector in Pro Mode featuring 10 distinct two-tone contrast themes (Cyber Neon [default], Solar Flare, Matrix Glow, Vaporwave, Dark Amber, Nordic Frost, Deep Purple, Midnight, Blood Moon, Monochrome) with real-time vector UI updates."
-      }
-    },
-    {
-      title: { jp: "スマートプリセット管理＆REVERT機能", en: "Smart Preset Management & REVERT Function" },
-      desc: {
-        jp: "プリセット編集追跡（*表示）と、元のプリセット設定へ即座に戻す専用の「REVERT」ボタンを新設。SAVE / REVERT / LOAD / DELETE の4ボタングループを整備。",
-        en: "Added real-time preset edit tracking (* indicator) and a dedicated 1-click REVERT button to instantly restore original preset settings. Redesigned toolbar with SAVE, REVERT, LOAD, DELETE."
-      }
-    },
-    {
-      title: { jp: "コントロール強化（SEND / PANIC / LOCK）", en: "Control Enhancements (SEND / PANIC / LOCK)" },
-      desc: {
-        jp: "Auxバス用SENDモードボタン（Dry -60dB / Wet 0dB）、緊急ミュート用PANICボタン、パラメータ誤操作防止LOCKボタンを追加。",
-        en: "Added SEND mode button (Dry -60 dB / Wet 0 dB for aux bus), PANIC emergency mute button, and LOCK parameter freeze button."
-      }
-    },
-    {
-      title: { jp: "Scalable GUI（UIリサイズ対応）", en: "Scalable GUI (80%–150%)" },
-      desc: {
-        jp: "80%から150%までアスペクト比を維持したまま滑らかにベクターGUIの拡大縮小が可能。",
-        en: "Smooth vector GUI resizing from 80% to 150% with fixed aspect ratio."
-      }
-    },
-    {
-      title: { jp: "リアルタイム・ディケイタイム表示", en: "Real-Time Decay Time Readout" },
-      desc: {
-        jp: "ノブ操作に応じて動的に更新される高視認性ディケイタイム表示（DECAY TIME: XX.X s）を搭載。",
-        en: "High-visibility single-line readout (DECAY TIME: XX.X s) updated dynamically with knob movements."
-      }
-    },
-    {
-      title: { jp: "極限のDSPパフォーマンス最適化", en: "DSP Performance Optimization" },
-      desc: {
-        jp: "代数的ダッキング最適化、整数遅延バイパス（readInt）、ループ不変量の事前キャッシュ、GUI FFT非稼働時のアイドリング停止によりCPU負荷を最小化。",
-        en: "Algebraic ducking optimization, integer delay bypass (readInt), invariant loop caching, and inactive GUI FFT idling for maximum CPU efficiency."
-      }
-    }
-  ];
-
-  const v120Features = [
-    { jp: "リアルタイムスペクトラムアナライザー：Lock-freeリアルタイム周波数スペクトラム・オーバーレイ（Dry:グレー / Wet:ブルー）。RT60ビジュアライザーに対数マッピング。", en: "Real-time Spectrum Analyzer: Lock-free real-time frequency spectrum overlay (showing both Dry & Wet in gray/blue) mapped logarithmically." },
-    { jp: "拡散限界の拡張：発振を起こさずに濃密な後期残響を得るため、最大拡散限界を拡張。", en: "Expanded Diffusion limits: Increased maximum diffusion limits for denser late reverberation without self-oscillation." }
-  ];
-  const v120DSP = [
-    { jp: "エルミート3次補間による滑らかなテール：遅延線をFIRベースのエルミート3次補間に刷新。FDNループ内の高域損失を完全排除し、シルキーで透明感のある残響テールを復元。", en: "Hermite 3rd-Order Interpolation: Upgraded LinearDelayLine to FIR-based Hermite 3rd-order, eliminating HF loss in FDN loop for silky, transparent tails." },
-    { jp: "真のステレオ・プリディレイ：Mid/Sideマトリクス前にPre-Delayルーティングを独立L/Rラインへ分離。ステレオイメージのモノ化崩壊を防止。", en: "True Stereo Pre-Delay: Split Pre-Delay into independent L/R lines before Mid/Side matrix to preserve wide stereo imaging." },
-    { jp: "オーディオレートパラメータのスムージング：64サンプルスロットリングエンジンを搭載。Decay/EQの高速オートメーションでも160個のBiquadフィルターでジッパーノイズや不安定化が発生しない。", en: "Audio-Rate Parameter Smoothing: 64-sample throttling engine prevents zipper noise & filter instability across 160 Biquads during fast automation." },
-    { jp: "高精度コーラスLFO：1024ポイントの正弦波LUT＋線形補間に置換。LFO歪み率(THD)を-96dB以下に抑え、完璧にスムーズな変調を実現。", en: "High-Precision Chorus LFO: 1024-point Sine LUT + linear interpolation drives LFO THD below -96dB for perfectly smooth modulation." },
-    { jp: "64ビット倍精度フィルター：10バンドGEQを`double`（64ビット浮動小数点）精度＋Direct Form II Transposedで動作させ、長いテールでの量子化ノイズ蓄積を完全防止。", en: "64-bit Double Precision Filters: 10-band GEQ runs in double precision (Direct Form II Transposed), preventing quantization noise in long decay tails." }
-  ];
-  const v120Bugs = [
-    { jp: "高域サイン波の金属的共鳴（C#6/D6）排除：Valhallaスタイルの深い非対称位相スミアリングとAPFゲイン最適化により定常波を排除。", en: "Metallic ringing elimination: Eliminated harsh standing waves via deep asymmetrical phase smearing and APF gain tuning." },
-    { jp: "初期反射音（ER）ロジック修復：ERSoloがドライ信号を誤通過させる不具合の修正と、Plate/Spring/Goldfoil用12タップERパターンの正常化。", en: "Early Reflections logic fix: Fixed ERSolo incorrectly passing Dry signal, and enabled proper 12-tap ER patterns." },
-    { jp: "アルゴリズム切り替えノイズ修復：RoomSize変更やアルゴリズム切り替え時に遅延バッファを即時ゼロクリアしノイズ・メモリ破損を防止。", en: "Algorithm switching noise fix: Mitigated audio glitches & memory corruption when changing RoomSize/Algorithms by zero-clearing delay buffers." }
-  ];
-
-  return (
-    <section className="amb-section amb-changelog">
-      <div className="amb-eyebrow">— 09 / {lang === "jp" ? "アップデート履歴" : "Changelog"}</div>
-      
-      <div style={{ display: "flex", gap: "12px", marginBottom: "28px" }}>
-        <button
-          onClick={() => setActiveTab("v2.0.2")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v2.0.2" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
-            background: activeTab === "v2.0.2" ? "#ff8a3c22" : "transparent",
-            color: activeTab === "v2.0.2" ? "#ff8a3c" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v2.0.2 (Latest)
-        </button>
-        <button
-          onClick={() => setActiveTab("v2.0.1")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v2.0.1" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
-            background: activeTab === "v2.0.1" ? "#ff8a3c22" : "transparent",
-            color: activeTab === "v2.0.1" ? "#ff8a3c" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v2.0.1
-        </button>
-        <button
-          onClick={() => setActiveTab("v2.0.0")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v2.0.0" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
-            background: activeTab === "v2.0.0" ? "#ff8a3c22" : "transparent",
-            color: activeTab === "v2.0.0" ? "#ff8a3c" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v2.0.0
-        </button>
-        <button
-          onClick={() => setActiveTab("v1.3.0")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v1.3.0" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
-            background: activeTab === "v1.3.0" ? "#ff8a3c22" : "transparent",
-            color: activeTab === "v1.3.0" ? "#ff8a3c" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v1.3.0
-        </button>
-        <button
-          onClick={() => setActiveTab("v1.2.1")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v1.2.1" ? "1px solid #ff8a3c" : "1px solid var(--rule-faint)",
-            background: activeTab === "v1.2.1" ? "#ff8a3c22" : "transparent",
-            color: activeTab === "v1.2.1" ? "#ff8a3c" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v1.2.1
-        </button>
-        <button
-          onClick={() => setActiveTab("v1.2.0")}
-          style={{
-            padding: "8px 18px",
-            fontFamily: "var(--mono)",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            border: activeTab === "v1.2.0" ? "1px solid #00d4ff" : "1px solid var(--rule-faint)",
-            background: activeTab === "v1.2.0" ? "#00d4ff22" : "transparent",
-            color: activeTab === "v1.2.0" ? "#00d4ff" : "var(--dim)",
-            cursor: "pointer",
-            borderRadius: "4px"
-          }}
-        >
-          v1.2.0
-        </button>
-      </div>
-
-      {activeTab === "v2.0.2" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v2.0.2</span> メンテナンスアップデート（安定性・堅牢性の向上・CPU最適化）</> : <>v2.0.2 <span style={{ color: "#ff8a3c" }}>Maintenance Update (Stability, Robustness & CPU Optimization)</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.09.17</p>
-
-          <div style={{ maxWidth: "800px", marginBottom: "40px" }}>
-            <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-              🛠️ {lang === "jp" ? "アップデート内容" : "Update Details"}
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-              {v202Items.map((item, i) => (
-                <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
-                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                  <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {activeTab === "v2.0.1" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v2.0.1</span> メンテナンスアップデート（プリセット管理修正・サチュレーションAGC最適化）</> : <>v2.0.1 <span style={{ color: "#ff8a3c" }}>Maintenance Update (Preset Recall Fixes & Saturation AGC)</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.09.12</p>
-
-          <div style={{ maxWidth: "800px", marginBottom: "40px" }}>
-            <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-              🛠️ {lang === "jp" ? "修正 ＆ 最適化内容" : "Bug Fixes & DSP Improvements"}
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-              {v201BugFixes.map((item, i) => (
-                <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
-                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                  <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {activeTab === "v2.0.0" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v2.0.0</span> メジャーアップデート（SDN×FDNハイブリッド・PRO音響制御・104プリセット）</> : <>v2.0.0 <span style={{ color: "#ff8a3c" }}>Major Update (SDN×FDN Hybrid, PRO Acoustics, 104 Presets)</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.09.06</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                🎛️ {lang === "jp" ? "ハイブリッド音響エンジン ＆ アルゴリズム" : "Hybrid Engine & Algorithm Tuning"}
+      <!-- 07. SYSTEM COMPATIBILITY MATRIX & COLOSSAL FINAL BANNER -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pb-space-xl scroll-mt-28" id="specs">
+        <div class="bg-surface-container p-space-lg border border-surface-container-high">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+            <div class="flex flex-col gap-space-xs max-w-xl">
+              <span class="font-label-sm text-label-sm uppercase text-primary font-bold">SYSTEM SPECIFICATIONS &amp; HOST REQUIREMENT</span>
+              <h3 class="font-headline-md text-headline-md uppercase text-on-surface font-bold"
+                  data-i18n-ja="動作環境・システム要件（Windows / Ableton Live 専用）"
+                  data-i18n-en="System Requirements (Windows &amp; Ableton Live Exclusive)">
+                動作環境・システム要件（Windows / Ableton Live 専用）
               </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                {v200HybridEngine.map((item, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
-                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                  </li>
-                ))}
-              </ul>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed"
+                 data-i18n-html-ja="本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2必須)</strong> および <strong>Ableton Live 11 / 12</strong> をメインターゲットとして開発されています。<code>Ambience.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> にコピーして再スキャンするだけで即座に動作します。"
+                 data-i18n-html-en="Built for <strong>Windows 10 / 11 (64-bit / AVX2 required)</strong> and tested primarily on <strong>Ableton Live 11 / 12</strong>. Copy <code>Ambience.vst3</code> to <code>C:\Program Files\Common Files\VST3\</code> and rescan your plugins.">
+                本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2必須)</strong> および <strong>Ableton Live 11 / 12</strong> をメインターゲットとして開発されています。<code>Ambience.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> にコピーして再スキャンするだけで即座に動作します。
+              </p>
             </div>
-
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                🚀 {lang === "jp" ? "PRO音響制御・次世代ブラウザ・最適化" : "PRO Acoustics, Next-Gen Browser & Optimizations"}
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                {v200ProAcoustics.map((item, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>
-                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activeTab === "v1.3.0" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.3.0</span> 緊急メンテナンス ＆ 音質改善アップデート</> : <>v1.3.0 <span style={{ color: "#ff8a3c" }}>Hotfix & Sound Quality Update</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.30</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                ✨ {lang === "jp" ? "更なる音質改善 (Sound Quality)" : "Sound Quality Improvements"}
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                <li style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
-                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{v130Items[0].title[lang]}</strong>
-                  <span style={{ color: "var(--dim)" }}>{v130Items[0].desc[lang]}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                🛡️ {lang === "jp" ? "安定性の向上 ＆ クラッシュ防止" : "Stability & Crash Prevention"}
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                <li style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>
-                  <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{v130Items[1].title[lang]}</strong>
-                  <span style={{ color: "var(--dim)" }}>{v130Items[1].desc[lang]}</span>
-                </li>
-              </ul>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm font-label-sm text-label-sm uppercase text-on-surface w-full lg:w-auto">
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">OS / CPU</span>
+                <span class="font-bold text-on-surface">WIN 10/11 (AVX2)</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">TARGET HOST DAW</span>
+                <span class="font-bold text-primary">ABLETON LIVE 11 / 12</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PLUGIN FORMAT</span>
+                <span class="font-bold text-on-surface">VST3 / STANDALONE</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PRICE &amp; LICENSE</span>
+                <span class="font-bold text-primary">FREE (AGPLv3)</span>
+              </div>
             </div>
           </div>
         </div>
-      )}
 
-      {activeTab === "v1.2.1" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#ff8a3c" }}>v1.2.1</span> 音質改善 ＆ Inchindown アップデート</> : <>v1.2.1 <span style={{ color: "#ff8a3c" }}>Sound Quality & Inchindown Update</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.29</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff8a3c", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                ✨ {lang === "jp" ? "劇的な音質改善 (Sound Quality)" : "Dramatic Sound Quality Improvements"}
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                {v121SoundQuality.map((item, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff8a3c44" }}>
-                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>
-                🚀 {lang === "jp" ? "新機能 ＆ アーキテクチャ" : "New Features & Architecture"}
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
-                {v121Architecture.map((item, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>
-                    <strong style={{ color: "var(--ink)", display: "block", marginBottom: "4px" }}>{item.title[lang]}</strong>
-                    <span style={{ color: "var(--dim)" }}>{item.desc[lang]}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <!-- Colossal Avant-Garde Closing Banner -->
+        <div class="mt-space-md bg-on-surface text-on-primary p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+          <div class="flex flex-col gap-space-xs text-left w-full md:w-auto">
+            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">FREE ALGORITHMIC REVERB // v3.0.0</span>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tighter text-on-primary font-extrabold">
+              COMMAND TRUE-STEREO SPACE. 100% FREE.
+            </h2>
+            <span class="font-body-sm text-body-sm text-tertiary-fixed"
+                  data-i18n-ja="全8アルゴリズム・104マスタープリセット同梱。サブスクリプション不要・iLok不要・完全無料でGitHubから配布中。"
+                  data-i18n-en="Includes all 8 recalibrated algorithms and 104 master presets. No subscriptions, no iLok, no paywalls — free on GitHub.">
+              全8アルゴリズム・104マスタープリセット同梱。サブスクリプション不要・iLok不要・完全無料でGitHubから配布中。
+            </span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full md:w-auto shrink-0">
+            <a href="https://github.com/OTODESK4193/Ambience/releases/latest" target="_blank" rel="noopener noreferrer"
+               class="bg-primary hover:bg-primary-container text-on-primary px-space-xl py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider transition-colors text-center flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">download</span>
+              <span data-i18n-ja="FREE DOWNLOAD (GITHUB)" data-i18n-en="FREE DOWNLOAD (GITHUB)">FREE DOWNLOAD (GITHUB)</span>
+            </a>
+            <a href="index.html#plugins" class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-on-primary px-space-lg py-space-md font-label-md text-label-md uppercase font-bold transition-colors cursor-pointer text-center flex items-center justify-center border border-white/15">
+              BACK TO ALL PLUGINS
+            </a>
           </div>
         </div>
-      )}
+      </section>
 
-      {activeTab === "v1.2.0" && (
-        <div>
-          <h2 className="amb-h2" style={{ marginBottom: "8px" }}>
-            {lang === "jp" ? <><span style={{ color: "#00d4ff" }}>v1.2.0</span> "No Compromise" アップデート</> : <>v1.2.0 <span style={{ color: "#00d4ff" }}>"No Compromise" Update</span></>}
-          </h2>
-          <p style={{ color: "var(--dim)", fontFamily: "var(--mono)", fontSize: "13px", marginBottom: "36px" }}>2026.08.19</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00e5a0", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>🚀 {lang === "jp" ? "新機能" : "New Features"}</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {v120Features.map((b, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00e5a044" }}>{b[lang]}</li>
-                ))}
-              </ul>
-
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#ff6b6b", fontFamily: "var(--mono)", marginTop: "28px", marginBottom: "16px", textTransform: "uppercase" }}>🐛 {lang === "jp" ? "バグ修正" : "Bug Fixes"}</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {v120Bugs.map((b, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #ff6b6b44" }}>{b[lang]}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 style={{ fontSize: "13px", letterSpacing: "0.1em", color: "#00d4ff", fontFamily: "var(--mono)", marginBottom: "16px", textTransform: "uppercase" }}>⚡ {lang === "jp" ? "DSP 最適化 (No Compromise)" : "DSP Optimizations"}</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {v120DSP.map((m, i) => (
-                  <li key={i} style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink)", paddingLeft: "16px", borderLeft: "2px solid #00d4ff44" }}>{m[lang]}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function App() {
-  const [lang, setLang] = useLang();
-  return (
-    <div className="amb-root">
-      <AmbHero lang={lang} setLang={setLang} />
-      <Pitch lang={lang} />
-      <Numbers lang={lang} />
-      <Engine lang={lang} />
-      <ProMode lang={lang} />
-      <Presets lang={lang} />
-      <Safety lang={lang} />
-      <Metrics lang={lang} />
-      <Specs lang={lang} />
-      <Changelog lang={lang} />
-      <CTA lang={lang} />
-      <Footer lang={lang} />
     </div>
-  );
-}
+  </main>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-</script>
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="w-full bg-surface-container-lowest border-t border-surface-container-highest mt-margin-lg">
+    <div class="w-full px-gutter lg:px-margin-lg py-margin-lg border-b border-surface-container-highest">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-margin">
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">OTODESK // DSP RESEARCH</span>
+          <p class="font-body-sm text-body-sm text-tertiary max-w-sm leading-relaxed"
+             data-i18n-ja="余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。"
+             data-i18n-en="Minimalist, high-precision creative DSP tools for Windows and Ableton Live — stripping away excess ornament to spark original sound.">
+            余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。
+          </p>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase">
+            <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            STATUS: AMBIENCE v3.0.0 ACTIVE
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">AMBIENCE SPECS</span>
+          <div class="flex flex-wrap gap-space-xs">
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">VST3 64-BIT</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">ABLETON LIVE 11/12</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">WINDOWS 10/11 (AVX2)</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">JUCE 9.0.x</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">16CH FDN × SDN</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-primary font-bold">100% FREE (AGPLv3)</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">NAVIGATION</span>
+          <nav class="flex flex-col gap-space-xs">
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="index.html">Top // All 10 Plugins</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="sound.html">Sound // Vinyl Player</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="legacy.html">Legacy Archive (12)</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="about.html">About Creator</a>
+          </nav>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">CREDITS &amp; OPEN SOURCE</span>
+          <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Built with <strong>JUCE 9</strong> (AGPLv3). Based on research by Välimäki &amp; Liski (2017), Vicanek (2016), Schlecht &amp; Habets (2017).<br />
+            Developer: <a href="https://x.com/kijyoumusic" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">@kijyoumusic</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-gutter lg:px-margin-lg py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-tertiary uppercase">
+      <div>© 2026 OTODESK (@kijyoumusic). ALL RIGHTS RESERVED.</div>
+      <div class="flex items-center gap-space-md">
+        <span class="text-on-surface">DESIGNED FOR ABLETON LIVE</span>
+        <span class="text-tertiary">/</span>
+        <span class="text-primary font-bold">100% FREE &amp; 100% SELF-RESPONSIBILITY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SITE-WIDE I18N (JP/EN) -->
   <script src="assets/i18n.js"></script>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE 4-TAB SCREENSHOT DECK SCRIPT (BILINGUAL JP/EN SUPPORT)    -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      let currentTabKey = 'main';
+
+      const TAB_DATA = {
+        main: {
+          img: 'screenshots/ambience-main.jpg',
+          subtitle: 'TAB 01 // MAIN: 16CH FDN & SDN HYBRID ENGINE',
+          captionRight: '10 COLOR THEMES // SCALABLE 80%–150%',
+          badge: 'MODULE // 01 MAIN',
+          tag: 'CORE ENGINE',
+          title: {
+            ja: 'MAIN ビュー：8アルゴリズム＆トゥルーステレオ音響空間',
+            en: 'MAIN VIEW: 8 Recalibrated Algorithms & True-Stereo Space'
+          },
+          desc: {
+            ja: 'ROOM1/2・HALL1/2・PLATE・SPRING・GOLDFOIL・INCHINDOWNの全8アルゴリズムを統合。独立L/Rの後期残響ネットワーク、ピッチの揺れないSmoothed-Random変調、ADAAサチュレーション、ダッキングを直感的に操作します。',
+            en: 'Houses all 8 recalibrated algorithms (ROOM1/2, HALL1/2, PLATE, SPRING, GOLDFOIL, INCHINDOWN) with independent L/R late FDN networks, pitch-solid smoothed-random modulation, 2x oversampled ADAA saturation, and sidechain ducking.'
+          },
+          bullets: [
+            {
+              label: '01 // 8 RECALIBRATED ALGORITHMS',
+              ja: 'ROOM1/2・HALL1/2・PLATE・SPRING・GOLDFOIL・INCHINDOWN。v3.0.0で全帯域RT60を再校正。',
+              en: 'ROOM1/2, HALL1/2, PLATE, SPRING, GOLDFOIL, INCHINDOWN — band-by-band RT60 recalibrated in v3.0.0.'
+            },
+            {
+              label: '02 // TRUE STEREO & SMOOTHED MOD',
+              ja: '独立L/R後期残響ネットワーク＋ピッチの揺れないSmoothed-Random変調＆Unitary行列回転。',
+              en: 'Independent L/R true-stereo late tanks paired with pitch-solid smoothed-random & unitary matrix modulation.'
+            },
+            {
+              label: '03 // 6-STAGE DIFFUSER & 2X ADAA',
+              ja: '素数テーパリングの6段入力ディフューザーと、2倍オーバーサンプリング対応4種ADAAサチュレーター。',
+              en: 'Prime-tapered 6-stage input diffuser plus 4-mode 2x oversampled ADAA saturator (Warm / Tape / Tube / Hard).'
+            },
+            {
+              label: '04 // DUCKING & OUTPUT SAFETY',
+              ja: 'Threshold/Amount/Attack/Release独立のダイナミックダッキングと-0.5dBFSリミッターを搭載。',
+              en: 'Dynamic sidechain ducking with full envelope controls and a final -0.5 dBFS brickwall output limiter.'
+            }
+          ]
+        },
+        rt60: {
+          img: 'screenshots/ambience-rt60.jpg',
+          subtitle: 'TAB 02 // RT60 & METRICS: LOG DECAY GRAPH & SPECTRUM',
+          captionRight: 'DYNAMIC LOG AUTO-SCALING: 0.05S TO 200S',
+          badge: 'MODULE // 02 RT60 & METRICS',
+          tag: 'ANALYZER',
+          title: {
+            ja: 'RT60＆スペクトラム：対数ディケイ可視化＆空間計測',
+            en: 'RT60 & SPECTRUM: Logarithmic Decay Curve & Acoustic Metrics'
+          },
+          desc: {
+            ja: '31Hz〜16kHzの10バンドRT60カーブ（最大200秒まで自動スケール）と、Dry/Wetリアルタイムスペクトラム、ER/Late分割ディケイ曲線、スタジオ計測指標（D50/C50/C80/EDT）を同時表示します。',
+            en: 'Displays 10-band RT60 curves (31 Hz–16 kHz, auto-scaling 0.05s to 200s), lock-free Dry/Wet spectrum overlay, split Early/Late decay curve, and live D50 / C50 / C80 / EDT acoustic readouts.'
+          },
+          bullets: [
+            {
+              label: '01 // 10-BAND RT60 LOG GRAPH',
+              ja: 'オレンジ曲線が有効RT60、グレー曲線が基準値を描画。0.05秒〜200秒のワイドレンジを自動スケーリング。',
+              en: 'Orange curve shows effective RT60 vs. gray baseline, dynamically auto-scaling from 0.05s up to 200s.'
+            },
+            {
+              label: '02 // SPLIT ER / LATE DECAY CURVE',
+              ja: '初期反射（0–100msを2倍拡大）と後期残響の減衰カーブを左右並べて直感的にモニタリング。',
+              en: 'Side-by-side Early Reflections (0–100ms expanded 2x) and Late Reverb decay envelope with ER tap markers.'
+            },
+            {
+              label: '03 // LOCK-FREE SPECTRUM OVERLAY',
+              ja: '入力（Dry）と残響出力（Wet）の周波数分布を対数RT60グラフに重ねてリアルタイム監視。',
+              en: 'Lock-free real-time Dry and Wet frequency spectrum overlaid directly onto the logarithmic RT60 grid.'
+            },
+            {
+              label: '04 // LIVE ROOM METRICS (D50 / C50 / C80 / EDT)',
+              ja: '音響工学の明瞭度指標 D50 (%) / C50 (dB) / C80 (dB) / EDT (s) をリアルタイムに算出表示。',
+              en: 'Computes live architectural acoustics metrics: D50 (%), C50 (dB), C80 (dB), and Early Decay Time (EDT).'
+            }
+          ]
+        },
+        pro: {
+          img: 'screenshots/ambience-pro.jpg',
+          subtitle: 'TAB 03 // PRO MODE: 6 PHYSICAL CONTROLS & 2.5D SPACE VIZ',
+          captionRight: '10-BAND RT60 MULTIPLIERS + 3-BAND TILT + OUT EQ',
+          badge: 'MODULE // 03 PRO MODE',
+          tag: 'ACOUSTIC PHYSICS',
+          title: {
+            ja: 'PRO モード：6種の音響物理ノブ＆2.5D空間ビジュアライザー',
+            en: 'PRO MODE: 6 Physical Acoustic Controls & 2.5D Space Visualizer'
+          },
+          desc: {
+            ja: '壁面の散乱率や部屋の非対称性、空気分子吸収など6つの深層物理パラメーターを開放。JUCE 9完全ベクター描画の2.5D空間ビジュアライザーが空間の変形と音場伝搬をリアルタイムに描きます。',
+            en: 'Unlocks 6 deep physical controls (Scattering, ER Crossover, Late Density, Asymmetry, Clarity, Air Absorb), 10-band RT60 multipliers, 3-band Tilt EQ, OutEQ visualizer, and a 2.5D vector space display.'
+          },
+          bullets: [
+            {
+              label: '01 // 6 PRO ACOUSTIC CONTROLS',
+              ja: 'Scattering / ER Crossover (10–100ms) / Late Density / Asymmetry / Clarity (±6dB) / Air Absorb。',
+              en: 'Scattering, ER Crossover (10–100ms), Late Density, Asymmetry, Clarity (±6dB), and Air Absorb (0.2–2.5x).'
+            },
+            {
+              label: '02 // 2.5D PERSPECTIVE SPACE VIZ',
+              ja: '部屋の非対称歪み・散乱質感・音波パルスリング・空気吸収フォグをリアルタイムに2.5Dベクター描画。',
+              en: 'Pure vector 2.5D perspective visualizer depicting room skew, scattering textures, wavefront rings, and fog.'
+            },
+            {
+              label: '03 // 10-BAND RT60 & 3-TILT EQ',
+              ja: '31Hz〜16kHzの10バンド独立RT60倍率（0.5〜2.0x）に加え、Low/Mid/Highマクロチルトを装備。',
+              en: 'Fine-tune 10 independent octave RT60 multipliers (31 Hz–16 kHz) plus Low/Mid/High macro spectral Tilt.'
+            },
+            {
+              label: '04 // OUT EQ CURVE VISUALIZER',
+              ja: 'Wet信号最終段のLinkwitz-Riley 12dB/oct Lo/Hiカット＆シェルフカーブを視覚的に調整。',
+              en: 'Visual Linkwitz-Riley 12 dB/oct Lo/Hi Cut & Shelf output EQ sculpting the final wet reverberation tone.'
+            }
+          ]
+        },
+        browser: {
+          img: 'screenshots/ambience-browser.jpg',
+          subtitle: 'TAB 04 // PRESET BROWSER: 104 MASTER-CALIBRATED RIGS',
+          captionRight: 'HYBRID [ROOM] / [TAGS] FILTER + LIVE SEARCH',
+          badge: 'MODULE // 04 BROWSER',
+          tag: '104 PRESETS',
+          title: {
+            ja: 'プリセットブラウザ：3カラム104マスター空間＆タグ検索',
+            en: 'PRESET BROWSER: 3-Column 104 Master Spaces & Tag Filtering'
+          },
+          desc: {
+            ja: '8アルゴリズム×13種の計104プリセットを収録。空間タイプ別の[ROOM]表示と楽器用途別の[TAGS]表示をワンクリックで切り替え、特徴説明・推奨用途・お気に入り★・REVERTで素早く空間を呼び出せます。',
+            en: 'Browse 104 factory presets (13 per algorithm) in a 3-column overlay. Switch seamlessly between [ROOM] topology and [TAGS] instrument categories with live search, favorites, INFO panel, and REVERT.'
+          },
+          bullets: [
+            {
+              label: '01 // HYBRID [ROOM] / [TAGS] MODES',
+              ja: '8種の部屋アルゴリズム分類と、Vocal / Drums / Guitar / Strings / Ambient等9種の楽器タグを即切替。',
+              en: 'Switch between 8 room topologies and 9 instrument tags (Vocal, Drums, Guitar, Keys, Strings, Ambient, FX).'
+            },
+            {
+              label: '02 // 104 MASTER-CALIBRATED SPACES',
+              ja: 'Abbey Road、Musikverein、Concertgebouw、EMT140、Inchindown 112sなど実用80%・創造的20%を網羅。',
+              en: 'Covers iconic halls, vintage plates/springs, and the 112s Inchindown oil tank (80% studio / 20% creative).'
+            },
+            {
+              label: '03 // INTERACTIVE INFO & TAG PANEL',
+              ja: '右カラムにプリセットの音響キャラクター解説、アルゴリズムバッジ、主要パラメーター要約を即時表示。',
+              en: 'Right-hand INFO panel displays acoustic character notes, algorithm badge, tags, and parameter summary.'
+            },
+            {
+              label: '04 // CONTEXT-AWARE NAV & USER PRESETS',
+              ja: '絞込条件を維持したまま◀ ▶で連続試聴。★お気に入り登録や.ambpreset形式での保存・共有に対応。',
+              en: 'Context-aware ◀ ▶ buttons cycle within active filters; supports ★ favorites and shareable .ambpreset files.'
+            }
+          ]
+        }
+      };
+
+      const buttons = document.querySelectorAll('.gui-tab-btn');
+      const imgEl = document.getElementById('gui-preview-img');
+      const subtitleEl = document.getElementById('deck-tab-subtitle');
+      const capRightEl = document.getElementById('gui-caption-right');
+      const badgeEl = document.getElementById('panel-badge');
+      const tagEl = document.getElementById('panel-tag');
+      const titleEl = document.getElementById('panel-title');
+      const descEl = document.getElementById('panel-desc');
+      const bulletsEl = document.getElementById('panel-bullets');
+
+      function getActiveLang() {
+        return (window.OTODESK_I18N && window.OTODESK_I18N.getLang()) || document.documentElement.getAttribute('data-lang') || 'ja';
+      }
+
+      function renderTab(key, shouldScroll) {
+        const d = TAB_DATA[key];
+        if (!d) return;
+        currentTabKey = key;
+        const lang = getActiveLang() === 'en' ? 'en' : 'ja';
+
+        if (imgEl && imgEl.getAttribute('src') !== d.img) imgEl.src = d.img;
+        if (subtitleEl) subtitleEl.textContent = d.subtitle;
+        if (capRightEl) capRightEl.textContent = d.captionRight;
+        if (badgeEl) badgeEl.textContent = d.badge;
+        if (tagEl) tagEl.textContent = d.tag;
+        if (titleEl) titleEl.textContent = d.title[lang];
+        if (descEl) descEl.textContent = d.desc[lang];
+
+        if (bulletsEl) {
+          bulletsEl.innerHTML = d.bullets.map(b => `
+            <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+              <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
+              <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b[lang]}</span>
+            </div>
+          `).join('');
+        }
+
+        if (shouldScroll) {
+          const rackFrame = document.getElementById('rack-deck-frame');
+          if (rackFrame) {
+            const rect = rackFrame.getBoundingClientRect();
+            const headerOffset = 116;
+            if (rect.top < headerOffset || rect.bottom > window.innerHeight) {
+              const targetY = window.scrollY + rect.top - headerOffset - 8;
+              window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+            }
+          }
+        }
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-tab');
+          if (!TAB_DATA[key]) return;
+
+          buttons.forEach(b => {
+            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
+          });
+          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+
+          renderTab(key, true);
+        });
+      });
+
+      window.addEventListener('otodesk:langchange', () => {
+        renderTab(currentTabKey, false);
+      });
+
+      renderTab('main', false);
+    })();
+  </script>
 </body>
 </html>
