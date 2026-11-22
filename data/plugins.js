@@ -222,13 +222,13 @@ window.PLUGINS = [
     category: { en: "Algorithmic Reverb — 16-Channel FDN & SDN Hybrid", jp: "アルゴリズミック・リバーブ — 16ch FDN & SDN ハイブリッド" },
     type: "Effect",
     year: "2026",
-    version: "3.0.0",
+    version: "3.1.0",
     status: "Released",
     comingSoon: false,
     featured: false,
     featureUrl: "ambience.html",
-    screenshot: "screenshots/ambience-main.jpg?v=3.0.0",
-    screenshotPro: "screenshots/ambience-pro.jpg?v=3.0.0",
+    screenshot: "screenshots/ambience-main.jpg?v=3.1.0",
+    screenshotPro: "screenshots/ambience-pro.jpg?v=3.1.0",
     tagline: {
       en: "Warmth Meets Transparency. The Art of Spatial Aesthetics.",
       jp: "温もりのある、透明。空間の美学を極める。"
