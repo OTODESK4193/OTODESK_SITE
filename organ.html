@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>ORGAN-B3 // Physical Modeling Tonewheel Organ &amp; Rotary Synthesizer | OTODESK</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "tertiary": "#5c5c5c",
+            "on-surface": "#1a1c1c",
+            "background": "#f9f9f9",
+            "on-secondary-fixed": "#1c1b1b",
+            "surface-container": "#eeeeee",
+            "primary": "#a63500",
+            "primary-container": "#d04400",
+            "surface-container-highest": "#e2e2e2",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#aa3600",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#e8e8e8",
+            "on-primary-fixed-variant": "#822700",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#656464",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#f1f1f1",
+            "on-tertiary-fixed-variant": "#464747",
+            "on-tertiary-container": "#fefcfc",
+            "on-tertiary-fixed": "#1b1c1c",
+            "surface": "#f9f9f9",
+            "tertiary-fixed": "#e4e2e2",
+            "surface-bright": "#f9f9f9",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#390c00",
+            "outline-variant": "#e5beb2",
+            "secondary-fixed-dim": "#c8c6c5",
+            "secondary-container": "#e5e2e1",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#907065",
+            "inverse-surface": "#2f3131",
+            "secondary": "#5f5e5e",
+            "primary-fixed-dim": "#ffb59c",
+            "tertiary-container": "#757474",
+            "on-surface-variant": "#5c4037",
+            "on-secondary-fixed-variant": "#474646",
+            "primary-fixed": "#ffdbcf",
+            "error": "#ba1a1a",
+            "surface-variant": "#e2e2e2",
+            "surface-dim": "#dadada",
+            "on-background": "#1a1c1c",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f3f3f3",
+            "inverse-primary": "#ffb59c",
+            "secondary-fixed": "#e5e2e1",
+            "tertiary-fixed-dim": "#c7c6c6"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "margin-lg": "2.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "gutter-sm": "0.5rem"
+          },
+          fontFamily: {
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "headline-xl-mobile": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "body-lg": ["15px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-lg": ["12px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }],
+            "headline-xl-mobile": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-sm": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-xl": ["56px", { lineHeight: "60px", letterSpacing: "-0.03em", fontWeight: "700" }],
+            "headline-md": ["24px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "label-md": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "500" }],
+            "headline-lg": ["40px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "label-sm": ["9px", { lineHeight: "10px", letterSpacing: "0.08em", fontWeight: "500" }],
+            "headline-lg-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "body-md": ["13px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+            "body-sm": ["11px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- ===================================================================== -->
+  <!-- TWO-TIER PRECISION HEADER (OTODESK GLOBAL NAV + ORGAN-B3 SUB-NAV)    -->
+  <!-- ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-surface-container-highest">
+    <div class="h-28 w-full">
+      <!-- Top Bar: Global Site Navigation -->
+      <div class="h-16 border-b border-surface-container-highest px-gutter lg:px-margin-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-lg">
+          <a class="flex items-center gap-space-sm group" href="index.html">
+            <img alt="OTODESK Logo" class="h-8 w-8 object-contain transition-transform duration-300 group-hover:rotate-45" src="assets/circle-logo-white.png" />
+            <span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold">OTODESK</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-space-md ml-space-md">
+            <a class="font-label-lg text-label-lg uppercase text-primary font-bold transition-colors" href="index.html#plugins">Plugins</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="sound.html">Sound</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="legacy.html">Legacy</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">Blog</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="about.html">About</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-space-sm sm:gap-space-md">
+          <!-- JP / EN Language Switcher -->
+          <div class="otodesk-lang-switcher inline-flex items-center border border-surface-container-highest bg-surface-container-low p-0.5 text-xs font-label-md select-none" role="group" aria-label="Language Switcher">
+            <button type="button" data-set-lang="ja" class="otodesk-lang-btn px-2.5 py-1 bg-on-surface text-surface font-bold transition-colors cursor-pointer">JP</button>
+            <button type="button" data-set-lang="en" class="otodesk-lang-btn px-2.5 py-1 text-secondary hover:text-on-surface transition-colors cursor-pointer">EN</button>
+          </div>
+          <a class="hidden sm:flex font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors items-center gap-1.5" href="index.html#plugin-11">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+            <span data-i18n-ja="プラグイン一覧" data-i18n-en="ALL PLUGINS">プラグイン一覧</span>
+          </a>
+          <span class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container-high text-secondary flex items-center gap-space-xs font-bold cursor-not-allowed select-none">
+            <span class="material-symbols-outlined text-[15px]">schedule</span>
+            <span>COMING SOON...</span>
+            <span class="bg-primary text-on-primary px-1 py-0.5 text-[9px] font-bold">FREE</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Bottom Sub-Navigation Bar: Section Anchors -->
+      <div class="h-12 bg-surface-container-low px-gutter lg:px-margin-lg flex items-center justify-between overflow-x-auto no-scrollbar">
+        <nav class="flex items-center gap-space-lg h-full whitespace-nowrap">
+          <a class="font-label-md text-label-md uppercase text-primary font-bold border-b-2 border-primary h-full flex items-center transition-colors" href="#overview">01 // Overview</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#chassis-simulator">02 // 2-Tab GUI Deck</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#feature-highlights">03 // Feature Highlights</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#dsp-architecture">04 // DSP Architecture</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#video-showcase">05 // Video Demo</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#specs">06 // System Specs</a>
+        </nav>
+        <div class="hidden lg:flex items-center gap-space-sm pl-space-md shrink-0">
+          <span class="font-label-sm text-label-sm uppercase text-tertiary">BUILD TARGET:</span>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">WINDOWS 10/11 64-BIT // VST3</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT                                                          -->
+  <!-- ===================================================================== -->
+  <main class="w-full pt-28 bg-surface" id="overview">
+    <div class="flex flex-col w-full selection:bg-primary selection:text-on-primary font-body-md text-on-surface">
+
+      <!-- 01. TELEMETRY & HARDWARE STRIP -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-sm border-b border-surface-container-high">
+        <div class="flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm uppercase">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-bold text-on-surface">ORGAN-B3 V1.0.0 (BUILD B029)</span>
+            <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // COMING SOON</span>
+          </div>
+          <div class="flex items-center gap-space-md text-tertiary overflow-x-auto no-scrollbar whitespace-nowrap">
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> ZERO SAMPLES / ZERO LATENCY</span>
+            <span>91 SYNCHRONOUS TONEWHEELS</span>
+            <span>AO-28 TUBE + 122 / 147 / PR-40 ROTARY</span>
+            <span class="text-on-surface font-bold bg-surface-container px-space-xs py-0.5">WINDOWS 10/11 // ABLETON LIVE</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. HERO DISPLAY SECTION -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pt-space-lg pb-space-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-margin items-start">
+
+          <!-- Left Column: Brutal Typography & Japanese Collision -->
+          <div class="lg:col-span-8 flex flex-col gap-space-md">
+            <div class="flex flex-wrap items-center gap-space-xs font-label-md text-label-md uppercase">
+              <span class="bg-on-surface text-on-primary px-space-sm py-1 font-bold">100% FREE // AGPLv3</span>
+              <span class="bg-primary text-on-primary px-space-sm py-1 font-bold">PHYSICAL MODELING TONEWHEEL</span>
+              <span class="bg-surface-container px-space-sm py-1 text-on-surface-variant font-bold">ZERO SAMPLES // WINDOWS ONLY</span>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ULTIMATE PHYSICAL MODELING TONEWHEEL ORGAN &amp; ROTARY SYNTHESIZER</span>
+              <h1 class="font-headline-xl text-4xl sm:text-headline-xl uppercase tracking-tighter text-on-surface mt-space-xs leading-none font-extrabold">
+                ORGAN-B3
+              </h1>
+            </div>
+
+            <!-- Japanese Raw Contrast Bar -->
+            <div class="bg-surface-container p-space-lg flex flex-col gap-space-md border-l-4 border-primary">
+              <div class="font-headline-lg text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface leading-tight font-extrabold">
+                <span data-i18n-ja="ヒリヒリしたあの音が蘇る！" data-i18n-en="That Searing, Electric Growl Returns!">ヒリヒリしたあの音が蘇る！</span><br />
+                <span class="bg-primary text-on-primary px-space-sm py-1 font-extrabold inline-block mt-1.5"
+                      data-i18n-ja="至高のレスリーサウンド"
+                      data-i18n-en="Ultimate Rotary Cabinet Sound.">至高のレスリーサウンド</span>
+              </div>
+              <p class="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-3xl"
+                 data-i18n-ja="サンプル容量ゼロ。91個の機械式トーンホイール、9接点キークリック、AO-28真空管歪み、そして慣性加速するデュアルローター・レスリーをリアルタイム物理演算で完全再現。鍵盤に触れた瞬間、ヴィンテージの咆哮が解き放たれます。"
+                 data-i18n-en="Zero samples, zero latency. 91 synchronous mechanical tonewheels, 9-contact key click, AO-28 tube overdrive, and an inertial dual-rotor rotary cabinet simulated entirely in real-time numerical physics.">
+                サンプル容量ゼロ。91個の機械式トーンホイール、9接点キークリック、AO-28真空管歪み、そして慣性加速するデュアルローター・レスリーをリアルタイム物理演算で完全再現。鍵盤に触れた瞬間、ヴィンテージの咆哮が解き放たれます。
+              </p>
+            </div>
+
+            <!-- Feature Micro-Metrics Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs font-label-md text-label-md uppercase">
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">GENERATOR</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">91 Wheels</span>
+                <span class="text-primary text-label-sm block font-bold">ZERO SAMPLES PHYSICS</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">ROTARY CAB</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">122 / 147 / PR40</span>
+                <span class="text-tertiary text-label-sm block">DUAL ROTOR + 2D MIC</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">TUBE &amp; VIBRATO</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">AO-28 + 18-LC</span>
+                <span class="text-primary text-label-sm block font-bold">ADAA + 2X OS</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">PRESETS / STATUS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">12 Rigs</span>
+                <span class="text-primary text-label-sm block font-bold">COMING SOON...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: FREE Acquisition Module (Coming Soon) -->
+          <div class="lg:col-span-4 flex flex-col bg-surface-container-lowest p-space-md shadow-md border border-surface-container-highest">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-low p-space-sm">
+              <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">DIRECT DISTRIBUTION</span>
+              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-xs py-0.5 font-bold">OPEN SOURCE // AGPLv3</span>
+            </div>
+
+            <div class="py-space-md flex flex-col gap-space-xs">
+              <div class="flex items-baseline gap-space-sm">
+                <span class="font-headline-xl text-headline-xl text-primary tracking-tighter leading-none font-extrabold">FREE</span>
+                <span class="font-label-lg text-label-lg uppercase text-on-surface font-bold"
+                      data-i18n-ja="¥0 // 完全無料配布予定"
+                      data-i18n-en="$0 // 100% FREE RELEASE">¥0 // 完全無料配布予定</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wide"
+                    data-i18n-ja="WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE"
+                    data-i18n-en="WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE">
+                WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-space-xs">
+              <button disabled class="w-full bg-surface-container-highest text-secondary py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider flex items-center justify-center gap-space-sm cursor-not-allowed select-none border border-outline-variant/40">
+                <span class="material-symbols-outlined text-lg">schedule</span>
+                COMING SOON... // FREE RELEASE
+              </button>
+              <a href="index.html#plugins" class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase font-bold tracking-wide flex items-center justify-center gap-space-xs transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">apps</span>
+                <span data-i18n-ja="他の公開中プラグインを見る" data-i18n-en="BROWSE ALL RELEASED PLUGINS">他の公開中プラグインを見る</span>
+              </a>
+            </div>
+
+            <!-- System Specs Checklist -->
+            <div class="mt-space-md pt-space-md bg-surface-container-low p-space-sm flex flex-col gap-space-xs font-label-sm text-label-sm uppercase text-tertiary border border-surface-container-high">
+              <div class="flex items-center justify-between">
+                <span>PRICE / LICENSE:</span>
+                <span class="text-primary font-bold">FREE (AGPLv3)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>ARCHITECTURE:</span>
+                <span class="text-on-surface font-bold">100% PHYSICAL MODELING</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>OS PLATFORM:</span>
+                <span class="text-on-surface font-bold" data-i18n-ja="WINDOWS 10 / 11 (64-BIT)" data-i18n-en="WINDOWS 10 / 11 (64-BIT)">WINDOWS 10 / 11 (64-BIT)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>FORMAT / CPU:</span>
+                <span class="text-on-surface font-bold">VST3 / STANDALONE (AVX2)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>STATUS / BUILD:</span>
+                <span class="text-primary font-bold">COMING SOON (B029)</span>
+              </div>
+            </div>
+
+            <!-- Editorial Stamp -->
+            <div class="mt-space-sm p-space-xs bg-surface text-center font-label-sm text-label-sm uppercase text-tertiary tracking-widest border border-surface-container">
+              +++ 91 TONEWHEELS · ZERO SAMPLES · PURE ROTARY ROAR +++
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03. INTERACTIVE 2-TAB HARDWARE RACK INSPECTOR -->
+      <section class="w-full bg-surface-container-lowest px-gutter lg:px-margin-lg py-space-md border-t border-b border-surface-container-high scroll-mt-28" id="chassis-simulator">
+        <!-- Rack Shell Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-xs">
+          <div class="flex items-baseline gap-space-sm">
+            <span class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span class="w-2 h-2 bg-primary"></span> INTERACTIVE DECK
+            </span>
+            <h2 class="font-headline-md text-xl sm:text-2xl uppercase tracking-tight text-on-surface font-bold">
+              ORGAN-B3 2-TAB CONSOLE &amp; ROTARY DECK
+            </h2>
+          </div>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase">
+            <span class="bg-surface-container px-space-sm py-0.5 font-bold">CONSOLE &amp; 2D MIC PLACEMENT</span>
+            <span class="bg-surface-container-high px-space-sm py-0.5 text-primary font-bold">CLICK TABS TO SWITCH VIEW</span>
+          </div>
+        </div>
+
+        <!-- MAIN HARDWARE RACK FRAME -->
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-sm sm:p-space-md shadow-xl border border-on-surface" id="rack-deck-frame">
+          <!-- Top Metal Frame Ribbon + Interactive Tab Selector -->
+          <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-highest/10 px-space-sm py-1.5 mb-space-sm font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+            <div class="flex items-center gap-space-sm">
+              <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">ORGAN-B3 v1.0.0</span>
+              <span class="text-inverse-on-surface font-bold hidden sm:inline" id="deck-tab-subtitle">TAB 01 // MAIN CONSOLE: 9 DRAWBARS, PERCUSSION &amp; SCANNER VIBRATO</span>
+            </div>
+            <!-- 2 Tab Buttons -->
+            <div class="flex flex-wrap items-center gap-1" id="gui-tab-buttons">
+              <button type="button" data-tab="main" class="gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer">01 MAIN ORGAN</button>
+              <button type="button" data-tab="leslie" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">02 LESLIE ROTARY</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-stretch">
+            <!-- Left 7 Cols: Actual High-Res Plugin Screenshot + Bottom Tab Overview Banner -->
+            <div class="lg:col-span-7 bg-[#0d0d12] p-space-xs sm:p-space-sm border border-white/10 flex flex-col justify-between gap-space-xs">
+              <div class="relative w-full overflow-hidden flex items-center justify-center bg-black border border-white/5">
+                <img id="gui-preview-img" src="screenshots/organ-main.jpg" alt="ORGAN-B3 Interface Preview" class="w-full max-h-[400px] xl:max-h-[430px] object-contain transition-opacity duration-200" />
+              </div>
+
+              <!-- Bottom Tab Title & Description Banner -->
+              <div class="bg-[#151722] px-space-md py-space-sm border-l-4 border-primary flex flex-col gap-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="font-headline-sm text-base sm:text-lg text-inverse-on-surface font-extrabold uppercase tracking-tight" id="panel-title">
+                    MAIN コンソール：9ドローバー＆トーンホイール制御
+                  </h3>
+                  <span class="font-label-sm text-[9px] text-primary uppercase font-bold tracking-widest bg-primary/15 px-1.5 py-0.5" id="gui-caption-right">
+                    88-KEY SPLITTABLE MANUALS // 12 FACTORY PRESETS
+                  </span>
+                </div>
+                <p class="font-body-md text-xs sm:text-sm text-inverse-on-surface/90 leading-snug" id="panel-desc">
+                  アッパー／ロアー独立ドローバー、2nd/3rdハーモニック・タッチパーカッション、18段LCスキャナー・ビブラート/コーラス（V1-3 / C1-3）、AO-28真空管ドライブと4バンドTone EQを一画面で自在に操作できます。
+                </p>
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: 4 Parameter Cards + Quick Guide -->
+            <div class="lg:col-span-5 bg-surface-container-lowest/5 p-space-sm flex flex-col justify-between gap-space-xs border border-white/10">
+              <div class="flex items-center justify-between pb-1 font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+                <span class="font-bold text-inverse-on-surface text-[11px]" id="panel-badge">MODULE // 01 MAIN ORGAN</span>
+                <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold" id="panel-tag">91 TONEWHEELS</span>
+              </div>
+
+              <!-- Dynamic Key Points List -->
+              <div class="flex-1 flex flex-col justify-between gap-1.5 py-0.5" id="panel-bullets">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Quick Header Button Guide -->
+              <div class="pt-1.5 border-t border-white/10 flex flex-col gap-1 font-label-sm text-label-sm uppercase">
+                <div class="flex items-center justify-between text-tertiary-fixed">
+                  <span>PERFORMANCE &amp; PRESET TOOLS:</span>
+                  <span class="text-primary font-bold">INSTANT ACCESS</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1 text-[10px]">
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>88-KEY SPLIT:</strong> ドラッグで上下鍵盤を自由分割"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>88-KEY SPLIT:</strong> Draggable Upper/Lower Split"><strong class="text-primary">88-KEY SPLIT:</strong> ドラッグで上下鍵盤を自由分割</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>ROTARY SPEED:</strong> Slow / Fast / Brake 慣性切替"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>ROTARY SPEED:</strong> Inertial Slow / Fast / Brake"><strong class="text-primary">ROTARY SPEED:</strong> Slow / Fast / Brake 慣性切替</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>12 PRESETS:</strong> Jazz / Rock / Gospel 即戦力登録"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>12 PRESETS:</strong> Classic Jazz / Rock / Gospel"><strong class="text-primary">12 PRESETS:</strong> Jazz / Rock / Gospel 即戦力登録</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>2D MIC PAD:</strong> 距離0.2–2.0m・角度0–180°操作"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>2D MIC PAD:</strong> Drag Distance &amp; Stereo Angle"><strong class="text-primary">2D MIC PAD:</strong> 距離0.2–2.0m・角度0–180°操作</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. FEATURE HIGHLIGHTS (8 ESSENTIALS) -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl scroll-mt-28" id="feature-highlights">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// PHYSICAL MODELING HIGHLIGHTS</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="8 FEATURE HIGHLIGHTS // 機能ハイライト"
+                data-i18n-en="8 FEATURE HIGHLIGHTS // KEY CAPABILITIES">
+              8 FEATURE HIGHLIGHTS // 機能ハイライト
+            </h2>
+          </div>
+          <p class="font-body-md text-body-md text-tertiary max-w-md"
+             data-i18n-ja="1950〜60年代トーンホイール・オルガンとロータリーキャビネットの電気機械的メカニズムを完全に数値物理化した8つの核心。"
+             data-i18n-en="Eight core electromechanical breakthroughs faithfully modeled from first-principles physics and vintage circuit topology.">
+            1950〜60年代トーンホイール・オルガンとロータリーキャビネットの電気機械的メカニズムを完全に数値物理化した8つの核心。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+          <!-- Highlight 01 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 01 // TWG</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">91 WHEELS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="91同期トーンホイール＆クロストーク"
+                  data-i18n-en="91 Synchronous Tonewheels">
+                91同期トーンホイール＆クロストーク
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="60Hz同期モーター歯車比を厳密再現した<strong>91個のトーンホイール</strong>を搭載。隣接ホイールの磁気漏れ（-40〜-12dB）や経年チューニングドリフト（±50ct）までシミュレートします。"
+                 data-i18n-html-en="Models <strong>91 mechanical tonewheels</strong> driven by strict 60 Hz synchronous gear ratios, complete with adjacent magnetic leakage crosstalk (-40 to -12 dB) and thermal aging drift (±50 cents).">
+                60Hz同期モーター歯車比を厳密再現した<strong>91個のトーンホイール</strong>を搭載。隣接ホイールの磁気漏れ（-40〜-12dB）や経年チューニングドリフト（±50ct）までシミュレートします。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">60HZ GEAR RATIOS</span>
+              <span class="text-primary font-bold">MAGNETIC LEAKAGE</span>
+            </div>
+          </div>
+
+          <!-- Highlight 02 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 02 // CONTACTS</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">9-BUSBAR</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="9接点バウンス＆位相依存キークリック"
+                  data-i18n-en="9-Contact Bounce &amp; Key Click">
+                9接点バウンス＆位相依存キークリック
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="1鍵ごとに独立した<strong>9つの機械的接点</strong>と微細バウンス（0.5〜3.0ms）を演算。打鍵瞬間のトーンホイール位相に応じた生々しい本物のキークリックを生みます。"
+                 data-i18n-html-en="Each key triggers <strong>9 independent mechanical contacts</strong> with micro-bounce (0.5–3.0 ms), generating authentic phase-arbitrary key click transients at the exact instant of contact.">
+                1鍵ごとに独立した<strong>9つの機械的接点</strong>と微細バウンス（0.5〜3.0ms）を演算。打鍵瞬間のトーンホイール位相に応じた生々しい本物のキークリックを生みます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">0.5 – 3.0 MS BOUNCE</span>
+              <span class="text-primary font-bold">AUTHENTIC CHIFF</span>
+            </div>
+          </div>
+
+          <!-- Highlight 03 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 03 // TUBE AMP</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">AO-28 + 6550</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="AO-28＆6550真空管ADAAオーバードライブ"
+                  data-i18n-en="AO-28 &amp; 6550 Tube ADAA Drive">
+                AO-28＆6550真空管ADAAオーバードライブ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="12AX7/12AU7による<strong>AO-28プリアンプ</strong>と<strong>6550パワーアンプ</strong>をカソードバイアス・電源サグ込みで回路モデリング。1次ADAA＋2倍オーバーサンプリングでヒリヒリとした極上の歪みを実現。"
+                 data-i18n-html-en="Models the <strong>AO-28 tube preamp</strong> (12AX7/12AU7) and <strong>6550 power stage</strong> with cathode bias, power sag, 1st-order ADAA, and 2x oversampling for searing, alias-free growl.">
+                12AX7/12AU7による<strong>AO-28プリアンプ</strong>と<strong>6550パワーアンプ</strong>をカソードバイアス・電源サグ込みで回路モデリング。1次ADAA＋2倍オーバーサンプリングでヒリヒリとした極上の歪みを実現。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">POWER SUPPLY SAG</span>
+              <span class="text-primary font-bold">ADAA + 2X OS</span>
+            </div>
+          </div>
+
+          <!-- Highlight 04 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 04 // ROTARY</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">3 CABINETS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="デュアルローター＆3種キャビネット"
+                  data-i18n-en="Dual-Rotor &amp; 3 Vintage Cabinets">
+                デュアルローター＆3種キャビネット
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="<strong>122 Gentle / 147 Vintage / PR-40 Stationary</strong>の3種を搭載。ホーン（0.8秒）とドラム（4.5秒）の独立した慣性加速・空気抵抗・ドップラー周波数偏移を精密に再現します。"
+                 data-i18n-html-en="Choose from <strong>122 Gentle, 147 Vintage, and PR-40 Stationary</strong> cabinets with independent Horn (0.8 s) and Drum (4.5 s) inertial acceleration, air drag, and physical Doppler shifts.">
+                <strong>122 Gentle / 147 Vintage / PR-40 Stationary</strong>の3種を搭載。ホーン（0.8秒）とドラム（4.5秒）の独立した慣性加速・空気抵抗・ドップラー周波数偏移を精密に再現します。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">HORN 0.8S / DRUM 4.5S</span>
+              <span class="text-primary font-bold">DOPPLER PHYSICS</span>
+            </div>
+          </div>
+
+          <!-- Highlight 05 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 05 // 2D MIC</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">SM57 / U87</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="デュアルマイク＆2D平面ドラッグ配置"
+                  data-i18n-en="Dual Mic Modeling &amp; 2D Placement">
+                デュアルマイク＆2D平面ドラッグ配置
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="中域にパンチのあるダイナミック（SM57系）と広帯域コンデンサー（U87系）を選択可能。俯瞰2Dビュー上でマイク距離（0.2〜2.0m）と開き角（0°〜180°）をリアルタイムにドラッグ配置できます。"
+                 data-i18n-html-en="Switch between punchy Dynamic (SM57-style) and wide Condenser (U87-style) mics, and drag physical stereo distance (0.2–2.0 m) and spread angle (0°–180°) on a live bird's-eye pad.">
+                中域にパンチのあるダイナミック（SM57系）と広帯域コンデンサー（U87系）を選択可能。俯瞰2Dビュー上でマイク距離（0.2〜2.0m）と開き角（0°〜180°）をリアルタイムにドラッグ配置できます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">0.2M – 2.0M / 180°</span>
+              <span class="text-primary font-bold">BIRD'S-EYE PAD</span>
+            </div>
+          </div>
+
+          <!-- Highlight 06 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 06 // SCANNER</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">18-SECTION LC</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="18段LCスキャナー・ビブラート/コーラス"
+                  data-i18n-en="18-Stage LC Scanner Vibrato/Chorus">
+                18段LCスキャナー・ビブラート/コーラス
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="18段LCラダー遅延線と約6.87Hz（412 RPM）で回転する16プレート静電容量スキャナーを再現。<strong>V-1〜V-3 / C-1〜C-3</strong>をアッパー／ロアー独立でルーティング可能です。"
+                 data-i18n-html-en="Replicates the 18-section LC ladder line box and 16-plate capacitive rotor spinning at ~6.87 Hz (412 RPM), offering classic <strong>V-1–V-3 &amp; C-1–C-3</strong> with independent Upper/Lower routing.">
+                18段LCラダー遅延線と約6.87Hz（412 RPM）で回転する16プレート静電容量スキャナーを再現。<strong>V-1〜V-3 / C-1〜C-3</strong>をアッパー／ロアー独立でルーティング可能です。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">V1-3 / C1-3 MODES</span>
+              <span class="text-primary font-bold">412 RPM ROTOR</span>
+            </div>
+          </div>
+
+          <!-- Highlight 07 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 07 // PERCUSSION</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">2ND &amp; 3RD</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="タッチパーカッション＆4バンドEQ"
+                  data-i18n-en="Touch Percussion &amp; 4-Band EQ">
+                タッチパーカッション＆4バンドEQ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="RCコンデンサ放電（Fast 120ms / Slow 650ms）とシングルトリガー・レガート特性を持つ<strong>2nd/3rdパーカッション</strong>に加え、パッシブ設計の4バンドTone EQを統合。"
+                 data-i18n-html-en="Authentic RC capacitor discharge envelopes (Fast 120 ms / Slow 650 ms) with single-trigger legato behavior for <strong>2nd &amp; 3rd harmonics</strong>, paired with a passive 4-band Tone EQ.">
+                RCコンデンサ放電（Fast 120ms / Slow 650ms）とシングルトリガー・レガート特性を持つ<strong>2nd/3rdパーカッション</strong>に加え、パッシブ設計の4バンドTone EQを統合。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">SINGLE-TRIGGER RC</span>
+              <span class="text-primary font-bold">PASSIVE 4-BAND EQ</span>
+            </div>
+          </div>
+
+          <!-- Highlight 08 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 08 // PRESETS</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">12 CLASSICS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="12種レジェンド・レジストレーション"
+                  data-i18n-en="12 Iconic Factory Registrations">
+                12種レジェンド・レジストレーション
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="ビバップ・ジャズ（<code>88 8000 000</code>）からハードロック咆哮（<code>88 8800 008</code>）、ゴスペル、ソウル、大聖堂パイプオルガン風まで12種の即戦力プリセットと無制限ユーザー保存（<code>.b3preset</code>）を搭載。"
+                 data-i18n-html-en="Ships with 12 iconic presets covering Bebop Jazz, Hard Rock growl, Gospel shout, Memphis Soul, and Cathedral pipe tones, plus unlimited XML user presets (<code>.b3preset</code>).">
+                ビバップ・ジャズ（<code>88 8000 000</code>）からハードロック咆哮（<code>88 8800 008</code>）、ゴスペル、ソウル、大聖堂パイプオルガン風まで12種の即戦力プリセットと無制限ユーザー保存（<code>.b3preset</code>）を搭載。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">JAZZ / ROCK / GOSPEL</span>
+              <span class="text-primary font-bold">.B3PRESET XML</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. DEEP-DIVE DSP ARCHITECTURE BREAKDOWN -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="dsp-architecture">
+        <div class="flex flex-col gap-space-xs mb-space-lg">
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+            <span>DSP ARCHITECTURE // NUMERICAL PHYSICS</span>
+          </div>
+          <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface font-bold"
+              data-i18n-ja="ZERO-SAMPLE ELECTROMECHANICAL SIMULATION // 内部DSPアーキテクチャ"
+              data-i18n-en="ZERO-SAMPLE ELECTROMECHANICAL SIMULATION // INTERNAL DSP ARCHITECTURE">
+            ZERO-SAMPLE ELECTROMECHANICAL SIMULATION // 内部DSPアーキテクチャ
+          </h2>
+          <p class="font-body-md text-body-md text-tertiary max-w-3xl"
+             data-i18n-ja="大容量サンプルを再生するのではなく、歯車回転・接点バウンス・LC遅延線・真空管非線形特性・空気力学ドップラー効果までをすべてC++20リアルタイム数値物理で統合演算しています。"
+             data-i18n-en="Instead of playing static multi-gigabyte samples, ORGAN-B3 solves gear acoustics, contact bounce matrices, LC dispersion ladders, tube nonlinearities, and aerodynamic Doppler physics live in C++20.">
+            大容量サンプルを再生するのではなく、歯車回転・接点バウンス・LC遅延線・真空管非線形特性・空気力学ドップラー効果までをすべてC++20リアルタイム数値物理で統合演算しています。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-margin">
+          <!-- Kernel 01 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 01 // TWG + CONTACTS</span>
+                <span class="text-primary font-bold">91 WHEELS × 9 BUS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="同期トーンホイール＆マルチバス接点行列"
+                  data-i18n-en="Synchronous TWG &amp; Contact Bounce Matrix">
+                同期トーンホイール＆マルチバス接点行列
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="91個のトーンホイールが常に回り続け、打鍵の瞬間に9接点それぞれが微小な時間差とバウンスを伴って導通。波形位相に完全に依存した生きたアタックと磁気クロストークが重なり合います。"
+                 data-i18n-html-en="All 91 tonewheels spin continuously while 9 contacts per key close with micro-staggered bounce intervals, yielding live phase-dependent key clicks and organic magnetic leakage.">
+                91個のトーンホイールが常に回り続け、打鍵の瞬間に9接点それぞれが微小な時間差とバウンスを伴って導通。波形位相に完全に依存した生きたアタックと磁気クロストークが重なり合います。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">SAMPLE STORAGE:</span>
+                <span class="font-bold text-primary">0 BYTES (100% DSP)</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">KEY CONTACTS:</span>
+                <span class="font-bold">9 BUSBARS + MICRO-BOUNCE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 02 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 02 // TUBE &amp; SCANNER</span>
+                <span class="text-primary font-bold">ADAA + 2X IIR OS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="LCスキャナー＆ADAA真空管アンプ"
+                  data-i18n-en="18-Stage LC Scanner &amp; ADAA Tubes">
+                LCスキャナー＆ADAA真空管アンプ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="18段LCラダーによる位相分散コーラスを経由し、AO-28プリアンプと6550パワー段へ入力。反微分アンチエイリアシング（ADAA）＋ポリフェーズ2倍オーバーサンプリングにより折り返し雑音のない鋭い歪みを得ます。"
+                 data-i18n-html-en="Signals flow through an 18-section LC dispersion ladder into AO-28 and 6550 vacuum tube stages protected by 1st-order ADAA and polyphase 2x IIR oversampling.">
+                18段LCラダーによる位相分散コーラスを経由し、AO-28プリアンプと6550パワー段へ入力。反微分アンチエイリアシング（ADAA）＋ポリフェーズ2倍オーバーサンプリングにより折り返し雑音のない鋭い歪みを得ます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">NONLINEAR STAGE:</span>
+                <span class="font-bold text-primary">1ST-ORDER ADAA + 2X OS</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">VIBRATO / CHORUS:</span>
+                <span class="font-bold">18-STAGE LC + 16-PLATE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 03 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 03 // AERODYNAMICS</span>
+                <span class="text-primary font-bold">DUAL ROTOR + 2D MIC</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="ドップラー流体ロータリー＆ゼロ確保設計"
+                  data-i18n-en="Aerodynamic Rotary &amp; Zero-Alloc Safety">
+                ドップラー流体ロータリー＆ゼロ確保設計
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="ホーンとドラムの慣性モーメント、キャビネット空洞共鳴、2Dマイク座標までの伝搬遅延（ドップラー効果）をリアルタイム演算。オーディオスレッド内のヒープ確保・ロックゼロを徹底しています。"
+                 data-i18n-html-en="Computes horn/drum rotational inertia, wooden cavity resonance, and Doppler propagation delays to arbitrary 2D stereo microphone coordinates — with zero heap allocations on the audio thread.">
+                ホーンとドラムの慣性モーメント、キャビネット空洞共鳴、2Dマイク座標までの伝搬遅延（ドップラー効果）をリアルタイム演算。オーディオスレッド内のヒープ確保・ロックゼロを徹底しています。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">AUDIO THREAD:</span>
+                <span class="font-bold text-primary">0 ALLOCATIONS / LOCK-FREE</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">CABINET MODELS:</span>
+                <span class="font-bold">122 / 147 / PR-40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. YOUTUBE VIDEO SHOWCASE PLACEHOLDER -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="video-showcase">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-md">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// VISUAL &amp; SOUND WALKTHROUGH</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="YOUTUBE SHOWCASE // 映像デモンストレーション"
+                data-i18n-en="YOUTUBE SHOWCASE // VIDEO WALKTHROUGH">
+              YOUTUBE SHOWCASE // 映像デモンストレーション
+            </h2>
+          </div>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-sm py-1 text-secondary font-bold">
+            EMBED SLOT READY (16:9 HD)
+          </span>
+        </div>
+
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-md shadow-md border border-surface-container-highest">
+          <div class="relative w-full aspect-video bg-[#0c0d12] border border-white/15 flex flex-col items-center justify-center p-space-lg text-center overflow-hidden">
+            <img src="screenshots/organ-main.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-sm pointer-events-none" />
+            <div class="relative z-10 flex flex-col items-center gap-space-sm max-w-lg">
+              <div class="w-16 h-16 bg-primary/90 text-on-primary flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-3xl">smart_display</span>
+              </div>
+              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-0.5 font-bold tracking-widest">
+                YOUTUBE EMBED STANDBY
+              </span>
+              <h3 class="font-headline-md text-xl sm:text-2xl uppercase font-bold text-inverse-on-surface">
+                ORGAN-B3 // OFFICIAL DEMO &amp; ROTARY SOUND VIDEO
+              </h3>
+              <p class="font-body-sm text-body-sm text-tertiary-fixed"
+                 data-i18n-ja="現在デモンストレーション動画を準備中です。リリースと同時にYouTubeプレイヤーが公開されます。"
+                 data-i18n-en="Official sound demonstration video is in preparation and will be embedded here upon release.">
+                現在デモンストレーション動画を準備中です。リリースと同時にYouTubeプレイヤーが公開されます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07. SYSTEM COMPATIBILITY MATRIX & CLOSING BANNER -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pb-space-xl scroll-mt-28" id="specs">
+        <div class="bg-surface-container p-space-lg border border-surface-container-high">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+            <div class="flex flex-col gap-space-xs max-w-xl">
+              <span class="font-label-sm text-label-sm uppercase text-primary font-bold">SYSTEM SPECIFICATIONS &amp; HOST REQUIREMENT</span>
+              <h3 class="font-headline-md text-headline-md uppercase text-on-surface font-bold"
+                  data-i18n-ja="動作環境・システム要件（Windows 64-bit / VST3）"
+                  data-i18n-en="System Requirements (Windows 64-bit / VST3)">
+                動作環境・システム要件（Windows 64-bit / VST3）
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed"
+                 data-i18n-html-ja="本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2推奨)</strong> のVST3ホスト（Ableton Live等）およびStandaloneに対応。<code>ORGAN-B3.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> へコピーするだけで即座に動作します。"
+                 data-i18n-html-en="Supports <strong>Windows 10 / 11 (64-bit / AVX2 recommended)</strong> VST3 hosts (Ableton Live, etc.) and Standalone. Simply copy <code>ORGAN-B3.vst3</code> into <code>C:\Program Files\Common Files\VST3\</code>.">
+                本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2推奨)</strong> のVST3ホスト（Ableton Live等）およびStandaloneに対応。<code>ORGAN-B3.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> へコピーするだけで即座に動作します。
+              </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm font-label-sm text-label-sm uppercase text-on-surface w-full lg:w-auto">
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">OS / CPU</span>
+                <span class="font-bold text-on-surface">WIN 10/11 (AVX2)</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">HOST DAW</span>
+                <span class="font-bold text-primary">ABLETON LIVE / VST3</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PLUGIN FORMAT</span>
+                <span class="font-bold text-on-surface">VST3 / STANDALONE</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PRICE &amp; LICENSE</span>
+                <span class="font-bold text-primary">FREE (AGPLv3)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colossal Closing Banner -->
+        <div class="mt-space-md bg-on-surface text-on-primary p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+          <div class="flex flex-col gap-space-xs text-left w-full md:w-auto">
+            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">FREE PHYSICAL INSTRUMENT // COMING SOON</span>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tighter text-on-primary font-extrabold">
+              UNLEASH PURE TONEWHEEL &amp; ROTARY PHYSICS. 100% FREE.
+            </h2>
+            <span class="font-body-sm text-body-sm text-tertiary-fixed"
+                  data-i18n-ja="サンプル不要・ゼロレイテンシ・12種クラシックレジストレーション同梱。完全無料で近日公開予定。"
+                  data-i18n-en="Zero samples, zero latency, 12 classic registrations included — releasing soon completely free.">
+              サンプル不要・ゼロレイテンシ・12種クラシックレジストレーション同梱。完全無料で近日公開予定。
+            </span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full md:w-auto shrink-0">
+            <button disabled class="bg-surface-container-highest/25 text-tertiary-fixed px-space-xl py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider cursor-not-allowed select-none text-center flex items-center justify-center gap-2 border border-white/15">
+              <span class="material-symbols-outlined text-lg">schedule</span>
+              <span>COMING SOON... // FREE</span>
+            </button>
+            <a href="index.html#plugins" class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-space-md font-label-md text-label-md uppercase font-bold transition-colors cursor-pointer text-center flex items-center justify-center">
+              BACK TO ALL PLUGINS
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest border-t border-surface-container-highest mt-margin-lg">
+    <div class="w-full px-gutter lg:px-margin-lg py-margin-lg border-b border-surface-container-highest">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-margin">
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">OTODESK // DSP RESEARCH</span>
+          <p class="font-body-sm text-body-sm text-tertiary max-w-sm leading-relaxed"
+             data-i18n-ja="余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。"
+             data-i18n-en="Minimalist, high-precision creative DSP tools for Windows and Ableton Live — stripping away excess ornament to spark original sound.">
+            余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。
+          </p>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase">
+            <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            STATUS: ORGAN-B3 COMING SOON
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">ORGAN-B3 SPECS</span>
+          <div class="flex flex-wrap gap-space-xs">
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">VST3 64-BIT</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">WINDOWS 10/11</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">JUCE 8 / C++20</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">ZERO SAMPLES</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-primary font-bold">100% FREE (AGPLv3)</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">NAVIGATION</span>
+          <nav class="flex flex-col gap-space-xs">
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="index.html">Top // All Plugins</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="sound.html">Sound // Vinyl Player</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="legacy.html">Legacy Archive (12)</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="about.html">About Creator</a>
+          </nav>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">DISCLAIMER &amp; OPEN SOURCE</span>
+          <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Independent physical modeling synth built with <strong>JUCE 8</strong> (AGPLv3). Not affiliated with any hardware trademark owners.<br />
+            Developer: <a href="https://x.com/kijyoumusic" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">@kijyoumusic</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-gutter lg:px-margin-lg py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-tertiary uppercase">
+      <div>© 2026 OTODESK (@kijyoumusic). ALL RIGHTS RESERVED.</div>
+      <div class="flex items-center gap-space-md">
+        <span class="text-on-surface">DESIGNED FOR ABLETON LIVE</span>
+        <span class="text-tertiary">/</span>
+        <span class="text-primary font-bold">100% FREE &amp; 100% SELF-RESPONSIBILITY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SITE-WIDE I18N (JP/EN) -->
+  <script src="assets/i18n.js"></script>
+
+  <!-- INTERACTIVE 2-TAB SCREENSHOT DECK SCRIPT -->
+  <script>
+    (function () {
+      let currentTabKey = 'main';
+
+      const TAB_DATA = {
+        main: {
+          img: 'screenshots/organ-main.jpg',
+          subtitle: 'TAB 01 // MAIN CONSOLE: 9 DRAWBARS, PERCUSSION & SCANNER VIBRATO',
+          captionRight: '88-KEY SPLITTABLE MANUALS // 12 FACTORY PRESETS',
+          badge: 'MODULE // 01 MAIN ORGAN',
+          tag: '91 TONEWHEELS',
+          title: {
+            ja: 'MAIN コンソール：9ドローバー＆トーンホイール制御',
+            en: 'MAIN CONSOLE: 9 Drawbars, Percussion & Tonewheel Engine'
+          },
+          desc: {
+            ja: 'アッパー／ロアー独立ドローバー、2nd/3rdハーモニック・タッチパーカッション、18段LCスキャナー・ビブラート/コーラス（V1-3 / C1-3）、AO-28真空管ドライブと4バンドTone EQを一画面で自在に操作できます。',
+            en: 'Command independent Upper/Lower drawbars, 2nd & 3rd touch percussion, 18-section LC Scanner Vibrato/Chorus (V1–3 / C1–3), AO-28 tube overdrive, and a passive 4-band Tone EQ.'
+          },
+          bullets: [
+            {
+              label: '01 // 91 SYNCHRONOUS TONEWHEELS',
+              ja: '60Hz同期モーター歯車比＋隣接クロストーク（-40〜-12dB）＋経年ドリフト（±50ct）を完全物理演算。',
+              en: 'Strict 60 Hz synchronous gear ratios with variable magnetic crosstalk (-40 to -12 dB) and aging drift (±50 ct).'
+            },
+            {
+              label: '02 // 9-CONTACT KEY CLICK & PERCUSSION',
+              ja: '鍵盤ごとの9接点マイクロバウンスによる本物のキークリックと、RC放電特性の2nd/3rdパーカッション。',
+              en: '9 mechanical contacts per key with micro-bounce phase-arbitrary clicks plus RC-discharge 2nd/3rd percussion.'
+            },
+            {
+              label: '03 // 18-SECTION LC SCANNER VIBRATO',
+              ja: '412 RPM回転静電スキャナーによるV-1〜V-3 / C-1〜C-3を上下鍵盤それぞれ独立ON/OFF可能。',
+              en: '412 RPM rotating 16-plate capacitive scanner offering V-1–3 / C-1–3 independently for Upper & Lower manuals.'
+            },
+            {
+              label: '04 // AO-28 TUBE PREAMP & 4-BAND EQ',
+              ja: '12AX7/12AU7のカソードバイアス＆電源サグを再現したADAA真空管ドライブ＋パッシブ4バンドEQ。',
+              en: '12AX7/12AU7 AO-28 preamp simulation with cathode bias, power sag, 1st-order ADAA, and passive 4-band Tone EQ.'
+            }
+          ]
+        },
+        leslie: {
+          img: 'screenshots/organ-leslie.png',
+          subtitle: 'TAB 02 // LESLIE ROTARY: 3 CABINETS, DUAL ROTORS & 2D MIC PAD',
+          captionRight: '122 GENTLE / 147 VINTAGE / PR-40 STATIONARY',
+          badge: 'MODULE // 02 LESLIE ROTARY',
+          tag: 'DUAL ROTOR',
+          title: {
+            ja: 'LESLIE ビュー：3種キャビネット＆2Dマイク配置パッド',
+            en: 'LESLIE VIEW: 3 Vintage Cabinets & 2D Physical Mic Placement'
+          },
+          desc: {
+            ja: 'ホーンとドラムの慣性モーメント、ドップラー周波数偏移、キャビネット空洞共鳴を忠実にモデリング。俯瞰2Dビュー上でステレオマイクの距離（0.2〜2.0m）と角度（0°〜180°）を直感的にドラッグ配置できます。',
+            en: 'Faithfully models horn & drum inertial momentum, Doppler frequency shifts, and cabinet cavity resonances — with a bird\'s-eye 2D pad to drag stereo mic distance (0.2–2.0 m) and angle (0°–180°).'
+          },
+          bullets: [
+            {
+              label: '01 // 3 VINTAGE CABINET MODELS',
+              ja: '温厚な木箱の122 Gentle、凶暴なロック向けの147 Vintage、荘厳な静止型PR-40 Stationaryを瞬時切替。',
+              en: 'Switch instantly between warm 122 Gentle, aggressive rock 147 Vintage, and stately PR-40 Stationary cabinets.'
+            },
+            {
+              label: '02 // INDEPENDENT INERTIAL ROTORS',
+              ja: 'ホーン（加速0.8秒）とドラム（加速4.5秒）の異なる慣性・空気抵抗が織りなすリアルな速度変化を再現。',
+              en: 'Independent Horn (0.8 s) and Drum (4.5 s) acceleration inertia with aerodynamic drag during speed switches.'
+            },
+            {
+              label: '03 // DUAL MIC MODELING (SM57 / U87)',
+              ja: 'タイトな中域パンチのダイナミック（SM57系）とフラット広帯域なコンデンサー（U87系）を選択可能。',
+              en: 'Select Dynamic (SM57-style midrange punch) or Condenser (U87-style wide flat response) microphone models.'
+            },
+            {
+              label: '04 // 6550 POWER TUBE & 2D MIC PAD',
+              ja: '2倍オーバーサンプリングADAAによる6550パワー管の咆哮と、リアルタイム2D平面ステレオマイキング。',
+              en: '2x oversampled ADAA 6550 power amp growl paired with interactive real-time 2D stereo microphone dragging.'
+            }
+          ]
+        }
+      };
+
+      const buttons = document.querySelectorAll('.gui-tab-btn');
+      const imgEl = document.getElementById('gui-preview-img');
+      const subtitleEl = document.getElementById('deck-tab-subtitle');
+      const capRightEl = document.getElementById('gui-caption-right');
+      const badgeEl = document.getElementById('panel-badge');
+      const tagEl = document.getElementById('panel-tag');
+      const titleEl = document.getElementById('panel-title');
+      const descEl = document.getElementById('panel-desc');
+      const bulletsEl = document.getElementById('panel-bullets');
+
+      function getActiveLang() {
+        return (window.OTODESK_I18N && window.OTODESK_I18N.getLang()) || document.documentElement.getAttribute('data-lang') || 'ja';
+      }
+
+      function renderTab(key, shouldScroll) {
+        const d = TAB_DATA[key];
+        if (!d) return;
+        currentTabKey = key;
+        const lang = getActiveLang() === 'en' ? 'en' : 'ja';
+
+        if (imgEl && imgEl.getAttribute('src') !== d.img) imgEl.src = d.img;
+        if (subtitleEl) subtitleEl.textContent = d.subtitle;
+        if (capRightEl) capRightEl.textContent = d.captionRight;
+        if (badgeEl) badgeEl.textContent = d.badge;
+        if (tagEl) tagEl.textContent = d.tag;
+        if (titleEl) titleEl.textContent = d.title[lang];
+        if (descEl) descEl.textContent = d.desc[lang];
+
+        if (bulletsEl) {
+          bulletsEl.innerHTML = d.bullets.map(b => `
+            <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+              <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
+              <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b[lang]}</span>
+            </div>
+          `).join('');
+        }
+
+        if (shouldScroll) {
+          const rackFrame = document.getElementById('rack-deck-frame');
+          if (rackFrame) {
+            const rect = rackFrame.getBoundingClientRect();
+            const headerOffset = 116;
+            if (rect.top < headerOffset || rect.bottom > window.innerHeight) {
+              const targetY = window.scrollY + rect.top - headerOffset - 8;
+              window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+            }
+          }
+        }
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-tab');
+          if (!TAB_DATA[key]) return;
+          buttons.forEach(b => {
+            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
+          });
+          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+          renderTab(key, true);
+        });
+      });
+
+      window.addEventListener('otodesk:langchange', () => {
+        renderTab(currentTabKey, false);
+      });
+
+      renderTab('main', false);
+    })();
+  </script>
+</body>
+</html>

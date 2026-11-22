@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_standard" name="shell-type" />
+  <title>EP-ONE // Physical Modeling Electromechanical Keyboard Synthesizer | OTODESK</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f3f3f3; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a63500; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "tertiary": "#5c5c5c",
+            "on-surface": "#1a1c1c",
+            "background": "#f9f9f9",
+            "on-secondary-fixed": "#1c1b1b",
+            "surface-container": "#eeeeee",
+            "primary": "#a63500",
+            "primary-container": "#d04400",
+            "surface-container-highest": "#e2e2e2",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#aa3600",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#e8e8e8",
+            "on-primary-fixed-variant": "#822700",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#656464",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#f1f1f1",
+            "on-tertiary-fixed-variant": "#464747",
+            "on-tertiary-container": "#fefcfc",
+            "on-tertiary-fixed": "#1b1c1c",
+            "surface": "#f9f9f9",
+            "tertiary-fixed": "#e4e2e2",
+            "surface-bright": "#f9f9f9",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#390c00",
+            "outline-variant": "#e5beb2",
+            "secondary-fixed-dim": "#c8c6c5",
+            "secondary-container": "#e5e2e1",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#907065",
+            "inverse-surface": "#2f3131",
+            "secondary": "#5f5e5e",
+            "primary-fixed-dim": "#ffb59c",
+            "tertiary-container": "#757474",
+            "on-surface-variant": "#5c4037",
+            "on-secondary-fixed-variant": "#474646",
+            "primary-fixed": "#ffdbcf",
+            "error": "#ba1a1a",
+            "surface-variant": "#e2e2e2",
+            "surface-dim": "#dadada",
+            "on-background": "#1a1c1c",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f3f3f3",
+            "inverse-primary": "#ffb59c",
+            "secondary-fixed": "#e5e2e1",
+            "tertiary-fixed-dim": "#c7c6c6"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "margin-lg": "2.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "gutter-sm": "0.5rem"
+          },
+          fontFamily: {
+            "body-lg": ["JetBrains Mono", "monospace"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "headline-xl-mobile": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "body-lg": ["15px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-lg": ["12px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }],
+            "headline-xl-mobile": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-sm": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-xl": ["56px", { lineHeight: "60px", letterSpacing: "-0.03em", fontWeight: "700" }],
+            "headline-md": ["24px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "label-md": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "500" }],
+            "headline-lg": ["40px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "label-sm": ["9px", { lineHeight: "10px", letterSpacing: "0.08em", fontWeight: "500" }],
+            "headline-lg-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "body-md": ["13px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+            "body-sm": ["11px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- ===================================================================== -->
+  <!-- TWO-TIER PRECISION HEADER (OTODESK GLOBAL NAV + EP-ONE SUB-NAV)      -->
+  <!-- ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-surface-container-highest">
+    <div class="h-28 w-full">
+      <!-- Top Bar: Global Site Navigation -->
+      <div class="h-16 border-b border-surface-container-highest px-gutter lg:px-margin-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-lg">
+          <a class="flex items-center gap-space-sm group" href="index.html">
+            <img alt="OTODESK Logo" class="h-8 w-8 object-contain transition-transform duration-300 group-hover:rotate-45" src="assets/circle-logo-white.png" />
+            <span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold">OTODESK</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-space-md ml-space-md">
+            <a class="font-label-lg text-label-lg uppercase text-primary font-bold transition-colors" href="index.html#plugins">Plugins</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="sound.html">Sound</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="legacy.html">Legacy</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="https://note.com/pain_modulation" target="_blank" rel="noopener noreferrer">Blog</a>
+            <a class="font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors" href="about.html">About</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-space-sm sm:gap-space-md">
+          <!-- JP / EN Language Switcher -->
+          <div class="otodesk-lang-switcher inline-flex items-center border border-surface-container-highest bg-surface-container-low p-0.5 text-xs font-label-md select-none" role="group" aria-label="Language Switcher">
+            <button type="button" data-set-lang="ja" class="otodesk-lang-btn px-2.5 py-1 bg-on-surface text-surface font-bold transition-colors cursor-pointer">JP</button>
+            <button type="button" data-set-lang="en" class="otodesk-lang-btn px-2.5 py-1 text-secondary hover:text-on-surface transition-colors cursor-pointer">EN</button>
+          </div>
+          <a class="hidden sm:flex font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors items-center gap-1.5" href="index.html#plugin-12">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+            <span data-i18n-ja="プラグイン一覧" data-i18n-en="ALL PLUGINS">プラグイン一覧</span>
+          </a>
+          <span class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container-high text-secondary flex items-center gap-space-xs font-bold cursor-not-allowed select-none">
+            <span class="material-symbols-outlined text-[15px]">schedule</span>
+            <span>COMING SOON...</span>
+            <span class="bg-primary text-on-primary px-1 py-0.5 text-[9px] font-bold">FREE</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Bottom Sub-Navigation Bar: Section Anchors -->
+      <div class="h-12 bg-surface-container-low px-gutter lg:px-margin-lg flex items-center justify-between overflow-x-auto no-scrollbar">
+        <nav class="flex items-center gap-space-lg h-full whitespace-nowrap">
+          <a class="font-label-md text-label-md uppercase text-primary font-bold border-b-2 border-primary h-full flex items-center transition-colors" href="#overview">01 // Overview</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#chassis-simulator">02 // 4-Model GUI Deck</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#feature-highlights">03 // Feature Highlights</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#dsp-architecture">04 // DSP Architecture</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#video-showcase">05 // Video Demo</a>
+          <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface h-full flex items-center transition-colors" href="#specs">06 // System Specs</a>
+        </nav>
+        <div class="hidden lg:flex items-center gap-space-sm pl-space-md shrink-0">
+          <span class="font-label-sm text-label-sm uppercase text-tertiary">BUILD TARGET:</span>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">WINDOWS 10/11 64-BIT // VST3</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT                                                          -->
+  <!-- ===================================================================== -->
+  <main class="w-full pt-28 bg-surface" id="overview">
+    <div class="flex flex-col w-full selection:bg-primary selection:text-on-primary font-body-md text-on-surface">
+
+      <!-- 01. TELEMETRY & HARDWARE STRIP -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-sm border-b border-surface-container-high">
+        <div class="flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm uppercase">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-bold text-on-surface">EP-ONE V1.0.0 (BUILD B057)</span>
+            <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // COMING SOON</span>
+          </div>
+          <div class="flex items-center gap-space-md text-tertiary overflow-x-auto no-scrollbar whitespace-nowrap">
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> ZERO SAMPLES / ZERO LATENCY</span>
+            <span>4 MODELS: R (TINE) · W (REED) · Y (GRAND) · H (CLAV)</span>
+            <span>PLUGINVAL LEVEL 10 + ADAA 2X OS</span>
+            <span class="text-on-surface font-bold bg-surface-container px-space-xs py-0.5">WINDOWS 10/11 // ABLETON LIVE</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. HERO DISPLAY SECTION -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pt-space-lg pb-space-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-margin items-start">
+
+          <!-- Left Column: Brutal Typography & Japanese Collision -->
+          <div class="lg:col-span-8 flex flex-col gap-space-md">
+            <div class="flex flex-wrap items-center gap-space-xs font-label-md text-label-md uppercase">
+              <span class="bg-on-surface text-on-primary px-space-sm py-1 font-bold">100% FREE // AGPLv3</span>
+              <span class="bg-primary text-on-primary px-space-sm py-1 font-bold">4-IN-1 PHYSICAL MODELING EP</span>
+              <span class="bg-surface-container px-space-sm py-1 text-on-surface-variant font-bold">ZERO SAMPLES // WINDOWS ONLY</span>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-tertiary uppercase">ULTIMATE PHYSICAL MODELING ELECTROMECHANICAL KEYBOARD SYNTHESIZER</span>
+              <h1 class="font-headline-xl text-4xl sm:text-headline-xl uppercase tracking-tighter text-on-surface mt-space-xs leading-none font-extrabold">
+                EP-ONE
+              </h1>
+            </div>
+
+            <!-- Japanese Raw Contrast Bar -->
+            <div class="bg-surface-container p-space-lg flex flex-col gap-space-md border-l-4 border-primary">
+              <div class="font-headline-lg text-2xl sm:text-3xl md:text-4xl tracking-tight text-on-surface leading-tight font-extrabold">
+                <span class="bg-primary text-on-primary px-space-sm py-1 font-extrabold inline-block"
+                      data-i18n-ja="弾きたくなる音がココにある"
+                      data-i18n-en="The Sound That Makes You Want to Play Lives Here.">弾きたくなる音がココにある</span>
+              </div>
+              <p class="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-3xl"
+                 data-i18n-ja="静止した録音サンプルは一切なし。ハンマーの打撃からタイン、リード、剛性弦、真空管、光学トレモロまで毎サンプル物理演算で鳴り響く4モデル統合エレピ。指先のニュアンスに無限に応える、生きた弾き心地を。"
+                 data-i18n-en="Zero static audio snapshots. Every hammer strike, cantilever tine, reed, stiff string, tube stage, and optical tremolo is solved in real-time physics across 4 iconic models — delivering infinite touch response.">
+                静止した録音サンプルは一切なし。ハンマーの打撃からタイン、リード、剛性弦、真空管、光学トレモロまで毎サンプル物理演算で鳴り響く4モデル統合エレピ。指先のニュアンスに無限に応える、生きた弾き心地を。
+              </p>
+            </div>
+
+            <!-- Feature Micro-Metrics Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs font-label-md text-label-md uppercase">
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">MODELS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">4 Physical</span>
+                <span class="text-primary text-label-sm block font-bold">R · W · Y · H</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">SYNTHESIS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">Zero Sample</span>
+                <span class="text-tertiary text-label-sm block">REAL-TIME PHYSICS</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">FACTORY RIGS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">23 Presets</span>
+                <span class="text-primary text-label-sm block font-bold">ADAA + 2X OS</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm border border-surface-container-high">
+                <span class="text-tertiary block font-label-sm text-label-sm">STATUS</span>
+                <span class="text-on-surface font-bold text-headline-sm font-headline-sm">Coming Soon</span>
+                <span class="text-primary text-label-sm block font-bold">88-KEY RAILSBACK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: FREE Acquisition Module (Coming Soon) -->
+          <div class="lg:col-span-4 flex flex-col bg-surface-container-lowest p-space-md shadow-md border border-surface-container-highest">
+            <div class="flex items-center justify-between pb-space-sm bg-surface-container-low p-space-sm">
+              <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">DIRECT DISTRIBUTION</span>
+              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-xs py-0.5 font-bold">OPEN SOURCE // AGPLv3</span>
+            </div>
+
+            <div class="py-space-md flex flex-col gap-space-xs">
+              <div class="flex items-baseline gap-space-sm">
+                <span class="font-headline-xl text-headline-xl text-primary tracking-tighter leading-none font-extrabold">FREE</span>
+                <span class="font-label-lg text-label-lg uppercase text-on-surface font-bold"
+                      data-i18n-ja="¥0 // 完全無料配布予定"
+                      data-i18n-en="$0 // 100% FREE RELEASE">¥0 // 完全無料配布予定</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wide"
+                    data-i18n-ja="WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE"
+                    data-i18n-en="WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE">
+                WINDOWS 10/11 64-BIT // VST3 &amp; STANDALONE
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-space-xs">
+              <button disabled class="w-full bg-surface-container-highest text-secondary py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider flex items-center justify-center gap-space-sm cursor-not-allowed select-none border border-outline-variant/40">
+                <span class="material-symbols-outlined text-lg">schedule</span>
+                COMING SOON... // FREE RELEASE
+              </button>
+              <a href="index.html#plugins" class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase font-bold tracking-wide flex items-center justify-center gap-space-xs transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">apps</span>
+                <span data-i18n-ja="他の公開中プラグインを見る" data-i18n-en="BROWSE ALL RELEASED PLUGINS">他の公開中プラグインを見る</span>
+              </a>
+            </div>
+
+            <!-- System Specs Checklist -->
+            <div class="mt-space-md pt-space-md bg-surface-container-low p-space-sm flex flex-col gap-space-xs font-label-sm text-label-sm uppercase text-tertiary border border-surface-container-high">
+              <div class="flex items-center justify-between">
+                <span>PRICE / LICENSE:</span>
+                <span class="text-primary font-bold">FREE (AGPLv3)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>ENGINES:</span>
+                <span class="text-on-surface font-bold">TINE / REED / GRAND / CLAV</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>OS PLATFORM:</span>
+                <span class="text-on-surface font-bold">WINDOWS 10 / 11 (64-BIT)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>FORMAT / VALIDATION:</span>
+                <span class="text-on-surface font-bold">VST3 / PLUGINVAL LV10</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>STATUS / BUILD:</span>
+                <span class="text-primary font-bold">COMING SOON (B057)</span>
+              </div>
+            </div>
+
+            <!-- Editorial Stamp -->
+            <div class="mt-space-sm p-space-xs bg-surface text-center font-label-sm text-label-sm uppercase text-tertiary tracking-widest border border-surface-container">
+              +++ 4 ERAS OF ELECTROMECHANICAL PHYSICS IN ONE ENGINE +++
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03. INTERACTIVE 4-MODEL HARDWARE RACK INSPECTOR -->
+      <section class="w-full bg-surface-container-lowest px-gutter lg:px-margin-lg py-space-md border-t border-b border-surface-container-high scroll-mt-28" id="chassis-simulator">
+        <!-- Rack Shell Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-xs">
+          <div class="flex items-baseline gap-space-sm">
+            <span class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span class="w-2 h-2 bg-primary"></span> INTERACTIVE DECK
+            </span>
+            <h2 class="font-headline-md text-xl sm:text-2xl uppercase tracking-tight text-on-surface font-bold">
+              EP-ONE 4-MODEL PHYSICAL WORKSTATION DECK
+            </h2>
+          </div>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase">
+            <span class="bg-surface-container px-space-sm py-0.5 font-bold">MODEL R · W · Y · H</span>
+            <span class="bg-surface-container-high px-space-sm py-0.5 text-primary font-bold">CLICK TABS TO SWITCH MODEL</span>
+          </div>
+        </div>
+
+        <!-- MAIN HARDWARE RACK FRAME -->
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-sm sm:p-space-md shadow-xl border border-on-surface" id="rack-deck-frame">
+          <!-- Top Metal Frame Ribbon + Interactive Tab Selector -->
+          <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-highest/10 px-space-sm py-1.5 mb-space-sm font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+            <div class="flex items-center gap-space-sm">
+              <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">EP-ONE v1.0.0</span>
+              <span class="text-inverse-on-surface font-bold hidden sm:inline" id="deck-tab-subtitle">MODEL R // ELECTROMECHANICAL TINE PIANO</span>
+            </div>
+            <!-- 4 Model Tab Buttons -->
+            <div class="flex flex-wrap items-center gap-1" id="gui-tab-buttons">
+              <button type="button" data-tab="modelR" class="gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer">01 MODEL R (TINE)</button>
+              <button type="button" data-tab="modelW" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">02 MODEL W (REED)</button>
+              <button type="button" data-tab="modelY" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">03 MODEL Y (GRAND)</button>
+              <button type="button" data-tab="modelH" class="gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer">04 MODEL H (CLAV)</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-stretch">
+            <!-- Left 7 Cols: Actual High-Res Plugin Screenshot + Bottom Tab Overview Banner -->
+            <div class="lg:col-span-7 bg-[#0d0d12] p-space-xs sm:p-space-sm border border-white/10 flex flex-col justify-between gap-space-xs">
+              <div class="relative w-full overflow-hidden flex items-center justify-center bg-black border border-white/5">
+                <img id="gui-preview-img" src="screenshots/ep-one-r.jpg" alt="EP-ONE Interface Preview" class="w-full max-h-[400px] xl:max-h-[430px] object-contain transition-opacity duration-200" />
+              </div>
+
+              <!-- Bottom Tab Title & Description Banner -->
+              <div class="bg-[#151722] px-space-md py-space-sm border-l-4 border-primary flex flex-col gap-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="font-headline-sm text-base sm:text-lg text-inverse-on-surface font-extrabold uppercase tracking-tight" id="panel-title">
+                    MODEL R：タイン＆トーンバー・エレクトリックピアノ
+                  </h3>
+                  <span class="font-label-sm text-[9px] text-primary uppercase font-bold tracking-widest bg-primary/15 px-1.5 py-0.5" id="gui-caption-right">
+                    NEOPRENE HAMMER + EULER-BERNOULLI TINE + CDS TREMOLO
+                  </span>
+                </div>
+                <p class="font-body-md text-xs sm:text-sm text-inverse-on-surface/90 leading-snug" id="panel-desc">
+                  ネオプレンハンマーの粘弾性衝突モデルと、片持ちタイン×非対称トーンバーの双方向結合を物理演算。深いベルアタック、甘いバーク歪み、温かな2段階サスティンとCdS光学トレモロを完全再現します。
+                </p>
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: 4 Parameter Cards + Quick Guide -->
+            <div class="lg:col-span-5 bg-surface-container-lowest/5 p-space-sm flex flex-col justify-between gap-space-xs border border-white/10">
+              <div class="flex items-center justify-between pb-1 font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
+                <span class="font-bold text-inverse-on-surface text-[11px]" id="panel-badge">MODEL // 01 TINE EP</span>
+                <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold" id="panel-tag">MODEL R</span>
+              </div>
+
+              <!-- Dynamic Key Points List -->
+              <div class="flex-1 flex flex-col justify-between gap-1.5 py-0.5" id="panel-bullets">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Quick Feature Strip -->
+              <div class="pt-1.5 border-t border-white/10 flex flex-col gap-1 font-label-sm text-label-sm uppercase">
+                <div class="flex items-center justify-between text-tertiary-fixed">
+                  <span>CORE ENGINE GUARANTEES:</span>
+                  <span class="text-primary font-bold">ZERO SAMPLES</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1 text-[10px]">
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>23 PRESETS:</strong> 全4モデル即戦力ファクトリー"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>23 PRESETS:</strong> Studio-Ready Across 4 Models"><strong class="text-primary">23 PRESETS:</strong> 全4モデル即戦力ファクトリー</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>RAILSBACK:</strong> 88鍵ストレッチチューニング"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>RAILSBACK:</strong> 88-Key Stretch Tuning"><strong class="text-primary">RAILSBACK:</strong> 88鍵ストレッチチューニング</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>SCALABLE UI:</strong> 656×360〜1640×900自動保存"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>SCALABLE UI:</strong> Persistent Resizable Window"><strong class="text-primary">SCALABLE UI:</strong> 656×360〜1640×900自動保存</div>
+                  <div class="bg-black/45 px-2 py-1.5 text-inverse-on-surface border border-white/5"
+                       data-i18n-html-ja="<strong class=&quot;text-primary&quot;>ADAA + 2X OS:</strong> エイリアシングレス真空管歪み"
+                       data-i18n-html-en="<strong class=&quot;text-primary&quot;>ADAA + 2X OS:</strong> Alias-Free Analog Overdrive"><strong class="text-primary">ADAA + 2X OS:</strong> エイリアシングレス真空管歪み</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. FEATURE HIGHLIGHTS (8 ESSENTIALS) -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl scroll-mt-28" id="feature-highlights">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// PHYSICAL MODELING HIGHLIGHTS</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="8 FEATURE HIGHLIGHTS // 機能ハイライト"
+                data-i18n-en="8 FEATURE HIGHLIGHTS // KEY CAPABILITIES">
+              8 FEATURE HIGHLIGHTS // 機能ハイライト
+            </h2>
+          </div>
+          <p class="font-body-md text-body-md text-tertiary max-w-md"
+             data-i18n-ja="4つの名機エレクトロメカニカル・キーボードの物理法則と電気回路を1台に凝縮した8つの革新。"
+             data-i18n-en="Eight physical modeling breakthroughs uniting four distinct eras of electromechanical keyboard engineering.">
+            4つの名機エレクトロメカニカル・キーボードの物理法則と電気回路を1台に凝縮した8つの革新。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+          <!-- Highlight 01 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 01 // MODEL R</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">TINE EP</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="Model R：タイン＆光学トレモロ"
+                  data-i18n-en="Model R: Tine &amp; Optical Tremolo">
+                Model R：タイン＆光学トレモロ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="Hunt-Crossley粘弾性ハンマーと<strong>オイラー・ベルヌーイ梁タイン</strong>＋非対称トーンバー結合。3D電磁ピックアップの甘いバーク歪みとCdSフォトカプラ光学トレモロを搭載。"
+                 data-i18n-html-en="Hunt-Crossley viscoelastic hammer strikes coupled to an <strong>Euler-Bernoulli tine</strong> &amp; tonebar, 3D electromagnetic bark pickup, and Peterson-style CdS optical tremolo.">
+                Hunt-Crossley粘弾性ハンマーと<strong>オイラー・ベルヌーイ梁タイン</strong>＋非対称トーンバー結合。3D電磁ピックアップの甘いバーク歪みとCdSフォトカプラ光学トレモロを搭載。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">TWO-STAGE DECAY</span>
+              <span class="text-primary font-bold">CDS OPTO-TREMOLO</span>
+            </div>
+          </div>
+
+          <!-- Highlight 02 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 02 // MODEL W</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">REED EP</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="Model W：静電リード＆Class-AB"
+                  data-i18n-en="Model W: Capacitive Reed &amp; Class-AB">
+                Model W：静電リード＆Class-AB
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="鍵域ごとのハンダ質量スケーリングを施した<strong>振動リード</strong>と高電圧静電容量スロットピックアップを再現。Class-ABプッシュプル歪み＋8段楕円スピーカー回折でウッディなパンチを生みます。"
+                 data-i18n-html-en="Weighted <strong>capacitive reeds</strong> with solder-pyramid mass scaling, conformal-mapped electrostatic slot pickup, Class-AB push-pull sag, and elliptical open-back speaker diffraction.">
+                鍵域ごとのハンダ質量スケーリングを施した<strong>振動リード</strong>と高電圧静電容量スロットピックアップを再現。Class-ABプッシュプル歪み＋8段楕円スピーカー回折でウッディなパンチを生みます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">WOODY MID BARK</span>
+              <span class="text-primary font-bold">ELLIPTICAL CAB</span>
+            </div>
+          </div>
+
+          <!-- Highlight 03 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 03 // MODEL Y</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">GRAND EP</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="Model Y：剛性弦DWGエレクトリックグランド"
+                  data-i18n-en="Model Y: Stiff-String Electric Grand">
+                Model Y：剛性弦DWGエレクトリックグランド
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="ユニゾンデチューン付き<strong>デュアルDWG剛性弦</strong>と2次オールパス分散フィルタによる固有の非調和性を再現。ピエゾブリッジ、JFET ADAA歪み、3バンドBaxandall EQ＆AutoPanを統合。"
+                 data-i18n-html-en="True <strong>dual digital waveguide stiff strings</strong> with 2nd-order allpass dispersion inharmonicity, piezo bridge transducer, JFET ADAA saturation, 3-band Baxandall EQ, and stereo AutoPan.">
+                ユニゾンデチューン付き<strong>デュアルDWG剛性弦</strong>と2次オールパス分散フィルタによる固有の非調和性を再現。ピエゾブリッジ、JFET ADAA歪み、3バンドBaxandall EQ＆AutoPanを統合。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">VAN WALSTIJN DWG</span>
+              <span class="text-primary font-bold">PIEZO + JFET</span>
+            </div>
+          </div>
+
+          <!-- Highlight 04 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 04 // MODEL H</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">CLAV EP</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="Model H：2領域DWG＆リリーススナップ"
+                  data-i18n-en="Model H: 2-Domain Clav &amp; Release Snap">
+                Model H：2領域DWG＆リリーススナップ
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="真鍮タンジェント打鍵と<strong>粘着リリーススナップ＆フェルトサンプ音（105/210Hz）</strong>をDWG波伝搬へ直接注入。4スイッチ・デュアルコイルマトリクス、12AX7真空管、光学フェイザー＆インダクタワウを搭載。"
+                 data-i18n-html-en="Brass tangent strikes with sticky <strong>release snap &amp; rest-rail felt thump</strong> injected into 2-domain DWG waves, 4-switch pickup matrix, 12AX7 preamp, optical phaser, and inductor wah.">
+                真鍮タンジェント打鍵と<strong>粘着リリーススナップ＆フェルトサンプ音（105/210Hz）</strong>をDWG波伝搬へ直接注入。4スイッチ・デュアルコイルマトリクス、12AX7真空管、光学フェイザー＆インダクタワウを搭載。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">4-SWITCH QUACK</span>
+              <span class="text-primary font-bold">WAH + PHASER</span>
+            </div>
+          </div>
+
+          <!-- Highlight 05 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 05 // TOUCH</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">CONTINUOUS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="無限ダイナミクス＆リアル再打鍵"
+                  data-i18n-en="Infinite Dynamics &amp; True Restrike">
+                無限ダイナミクス＆リアル再打鍵
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="ベロシティレイヤーの段差が一切存在せず、鳴っているタインや弦への<strong>連続再打鍵（Restrike）</strong>の位相干渉も実機そのままに振る舞います。"
+                 data-i18n-html-en="Zero velocity-layer stepping — continuous hammer energy and real physical interaction when restriking an already vibrating tine, reed, or string.">
+                ベロシティレイヤーの段差が一切存在せず、鳴っているタインや弦への<strong>連続再打鍵（Restrike）</strong>の位相干渉も実機そのままに振る舞います。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">NO VELOCITY STEPS</span>
+              <span class="text-primary font-bold">LIVE RESTRIKE</span>
+            </div>
+          </div>
+
+          <!-- Highlight 06 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 06 // OVERDRIVE</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">ADAA + 2X OS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="ADAA非線形歪み＆2倍オーバーサンプリング"
+                  data-i18n-en="ADAA Overdrive &amp; 2x Oversampling">
+                ADAA非線形歪み＆2倍オーバーサンプリング
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="全プリアンプ・JFET・12AX7真空管段に<strong>ADAA（反微分アンチエイリアシング）</strong>を適用。さらにオプションの2倍ポリフェーズIIRオーバーサンプリングで高域まで澄み切った倍音を実現。"
+                 data-i18n-html-en="Applies continuous-time <strong>ADAA</strong> across every preamp, JFET, and vacuum tube stage, plus optional 2x polyphase IIR oversampling for pristine upper harmonics.">
+                全プリアンプ・JFET・12AX7真空管段に<strong>ADAA（反微分アンチエイリアシング）</strong>を適用。さらにオプションの2倍ポリフェーズIIRオーバーサンプリングで高域まで澄み切った倍音を実現。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">LINEAR-PHASE DECIM</span>
+              <span class="text-primary font-bold">ZERO ALIASING</span>
+            </div>
+          </div>
+
+          <!-- Highlight 07 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 07 // TUNING</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">88 KEYS</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="Railsbackストレッチ＆88鍵バランス"
+                  data-i18n-en="Railsback Stretch &amp; 88-Key Balance">
+                Railsbackストレッチ＆88鍵バランス
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="実機ピアノと同じ<strong>Railsbackストレッチチューニング曲線</strong>と等ラウドネス補正を全88鍵へ適用。低音から最高音域まで淀みのない美しい響きを保ちます。"
+                 data-i18n-html-en="Applies authentic <strong>Railsback stretch-tuning curves</strong> and equal-loudness compensation across all 88 keys for flawless harmonic balance from sub-bass to top chimes.">
+                実機ピアノと同じ<strong>Railsbackストレッチチューニング曲線</strong>と等ラウドネス補正を全88鍵へ適用。低音から最高音域まで淀みのない美しい響きを保ちます。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">EQUAL LOUDNESS</span>
+              <span class="text-primary font-bold">FULL 88-KEY</span>
+            </div>
+          </div>
+
+          <!-- Highlight 08 -->
+          <div class="bg-surface-container-low p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-surface-container-high group">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm font-label-sm text-label-sm uppercase">
+                <span class="text-primary font-bold">HIGHLIGHT 08 // PRESETS</span>
+                <span class="bg-surface-container px-space-xs py-0.5 text-on-surface font-bold">23 PATCHES</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold mt-space-xs"
+                  data-i18n-ja="23種即戦力プリセット＆Pluginval Lv10"
+                  data-i18n-en="23 Factory Presets &amp; Pluginval Lv10">
+                23種即戦力プリセット＆Pluginval Lv10
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed"
+                 data-i18n-html-ja="Classic Suitcase、70s Reed、80s Ballad Grand、1973 Stevie Funkなど<strong>23種の即戦力プリセット</strong>を収録。Tracktion Pluginval Level 10をクリアした鉄壁の安定性を誇ります。"
+                 data-i18n-html-en="Includes <strong>23 production-ready presets</strong> (Suitcase, 70s Reed, Stage Grand, 1973 Funk Clav) and passes Tracktion Pluginval Level 10 strict real-time safety tests.">
+                Classic Suitcase、70s Reed、80s Ballad Grand、1973 Stevie Funkなど<strong>23種の即戦力プリセット</strong>を収録。Tracktion Pluginval Level 10をクリアした鉄壁の安定性を誇ります。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-xs border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm uppercase">
+              <span class="text-tertiary">ZERO ALLOCATIONS</span>
+              <span class="text-primary font-bold">PLUGINVAL LV10</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. DEEP-DIVE DSP ARCHITECTURE BREAKDOWN -->
+      <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="dsp-architecture">
+        <div class="flex flex-col gap-space-xs mb-space-lg">
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+            <span>DSP ARCHITECTURE // FIRST-PRINCIPLES PHYSICS</span>
+          </div>
+          <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface font-bold"
+              data-i18n-ja="EVERY SAMPLE SOLVED BY DIFFERENTIAL EQUATIONS // 内部DSPアーキテクチャ"
+              data-i18n-en="EVERY SAMPLE SOLVED BY DIFFERENTIAL EQUATIONS // INTERNAL DSP ARCHITECTURE">
+            EVERY SAMPLE SOLVED BY DIFFERENTIAL EQUATIONS // 内部DSPアーキテクチャ
+          </h2>
+          <p class="font-body-md text-body-md text-tertiary max-w-3xl"
+             data-i18n-ja="静的オーディオのスナップショットではなく、衝突力学・梁振動・デジタル導波管（DWG）・電磁/静電誘導・真空管非線形回路を毎サンプルリアルタイムに解く物理モデリング・アーキテクチャ。"
+             data-i18n-en="Solves contact mechanics, beam modal resonators, digital waveguides, electromagnetic/electrostatic pickup fields, and nonlinear analog circuits on every sample.">
+            静的オーディオのスナップショットではなく、衝突力学・梁振動・デジタル導波管（DWG）・電磁/静電誘導・真空管非線形回路を毎サンプルリアルタイムに解く物理モデリング・アーキテクチャ。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-margin">
+          <!-- Kernel 01 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 01 // EXCITATION &amp; BEAMS</span>
+                <span class="text-primary font-bold">HUNT-CROSSLEY</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="粘弾性ハンマー衝突＆梁モード共振"
+                  data-i18n-en="Viscoelastic Contact &amp; Beam Resonators">
+                粘弾性ハンマー衝突＆梁モード共振
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="ネオプレン／フェルトの硬さに応じた<strong>Hunt-Crossley非線形粘弾性接触</strong>でオイラー・ベルヌーイ片持ち梁（タイン／リード）を励振。弱打のベル音から強打の唸るバークまでシームレスに変化します。"
+                 data-i18n-html-en="Excites Euler-Bernoulli cantilever tines and weighted reeds via nonlinear <strong>Hunt-Crossley viscoelastic hammer contact</strong>, morphing seamlessly from gentle bell chimes to biting fortissimo bark.">
+                ネオプレン／フェルトの硬さに応じた<strong>Hunt-Crossley非線形粘弾性接触</strong>でオイラー・ベルヌーイ片持ち梁（タイン／リード）を励振。弱打のベル音から強打の唸るバークまでシームレスに変化します。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">CONTACT LAW:</span>
+                <span class="font-bold text-primary">HUNT-CROSSLEY NONLINEAR</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">MODAL BEAMS:</span>
+                <span class="font-bold">EULER-BERNOULLI + TONEBAR</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 02 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 02 // DIGITAL WAVEGUIDE</span>
+                <span class="text-primary font-bold">STIFF DWG + 2-DOMAIN</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="分散型剛性弦＆2領域クラビDWG"
+                  data-i18n-en="Dispersive Stiff Strings &amp; 2-Domain DWG">
+                分散型剛性弦＆2領域クラビDWG
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="Model Yではvan Walstijn 2次オールパス分散フィルタ付きデュアルDWG弦、Model Hでは真鍮タンジェントによる<strong>2領域散乱接合DWG</strong>＋リリーススナップ注入で圧倒的な実在感を実現。"
+                 data-i18n-html-en="Model Y runs dual DWG strings with closed-form 2nd-order dispersion filters, while Model H solves a <strong>2-domain scattering junction DWG</strong> with sticky release snap injection.">
+                Model Yではvan Walstijn 2次オールパス分散フィルタ付きデュアルDWG弦、Model Hでは真鍮タンジェントによる<strong>2領域散乱接合DWG</strong>＋リリーススナップ注入で圧倒的な実在感を実現。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">INHARMONICITY:</span>
+                <span class="font-bold text-primary">2ND-ORDER ALLPASS DISP</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">CLAV RELEASE:</span>
+                <span class="font-bold">STICKY SNAP + FELT THUMP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kernel 03 -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-sm border border-surface-container-high flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-label-sm text-label-sm uppercase text-tertiary mb-space-sm">
+                <span>KERNEL 03 // CIRCUIT &amp; SAFETY</span>
+                <span class="text-primary font-bold">PLUGINVAL LV10</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold"
+                  data-i18n-ja="仮想アナログ回路＆ゼロ確保リアルタイム設計"
+                  data-i18n-en="Virtual Analog Circuits &amp; Level-10 Safety">
+                仮想アナログ回路＆ゼロ確保リアルタイム設計
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed"
+                 data-i18n-html-ja="CdS光導電セルの記憶応答トレモロ、4段光学フェイザー、インダクタ飽和ワウ、ADAA真空管＆JFET段を統合。<code>processBlock</code>内のメモリ確保・ロック完全ゼロでPluginval Level 10を突破しています。"
+                 data-i18n-html-en="Integrates CdS photo-coupler tremolo, 4-stage optical phaser, inductor-saturated wah, and ADAA tube/JFET stages — verified zero-allocation against Tracktion Pluginval Level 10.">
+                CdS光導電セルの記憶応答トレモロ、4段光学フェイザー、インダクタ飽和ワウ、ADAA真空管＆JFET段を統合。<code>processBlock</code>内のメモリ確保・ロック完全ゼロでPluginval Level 10を突破しています。
+              </p>
+            </div>
+            <div class="mt-space-md pt-space-sm bg-surface-container p-space-sm font-label-sm text-label-sm uppercase text-on-surface">
+              <div class="flex justify-between">
+                <span class="text-tertiary">SAFETY TEST:</span>
+                <span class="font-bold text-primary">PLUGINVAL LEVEL 10 PASS</span>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-tertiary">ANALOG FX:</span>
+                <span class="font-bold">OPTO TREM / PHASER / WAH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. YOUTUBE VIDEO SHOWCASE PLACEHOLDER -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg py-space-xl border-t border-surface-container-high scroll-mt-28" id="video-showcase">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-md">
+          <div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase text-primary font-bold">
+              <span>// VISUAL &amp; SOUND WALKTHROUGH</span>
+            </div>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tight text-on-surface mt-1 font-bold"
+                data-i18n-ja="YOUTUBE SHOWCASE // 映像デモンストレーション"
+                data-i18n-en="YOUTUBE SHOWCASE // VIDEO WALKTHROUGH">
+              YOUTUBE SHOWCASE // 映像デモンストレーション
+            </h2>
+          </div>
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-sm py-1 text-secondary font-bold">
+            EMBED SLOT READY (16:9 HD)
+          </span>
+        </div>
+
+        <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-md shadow-md border border-surface-container-highest">
+          <div class="relative w-full aspect-video bg-[#0c0d12] border border-white/15 flex flex-col items-center justify-center p-space-lg text-center overflow-hidden">
+            <img src="screenshots/ep-one-r.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-sm pointer-events-none" />
+            <div class="relative z-10 flex flex-col items-center gap-space-sm max-w-lg">
+              <div class="w-16 h-16 bg-primary/90 text-on-primary flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-3xl">smart_display</span>
+              </div>
+              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-0.5 font-bold tracking-widest">
+                YOUTUBE EMBED STANDBY
+              </span>
+              <h3 class="font-headline-md text-xl sm:text-2xl uppercase font-bold text-inverse-on-surface">
+                EP-ONE // OFFICIAL 4-MODEL DEMO VIDEO
+              </h3>
+              <p class="font-body-sm text-body-sm text-tertiary-fixed"
+                 data-i18n-ja="現在デモンストレーション動画を準備中です。リリースと同時にYouTubeプレイヤーが公開されます。"
+                 data-i18n-en="Official 4-model sound demonstration video is in preparation and will be embedded here upon release.">
+                現在デモンストレーション動画を準備中です。リリースと同時にYouTubeプレイヤーが公開されます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07. SYSTEM COMPATIBILITY MATRIX & CLOSING BANNER -->
+      <section class="w-full bg-surface px-gutter lg:px-margin-lg pb-space-xl scroll-mt-28" id="specs">
+        <div class="bg-surface-container p-space-lg border border-surface-container-high">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+            <div class="flex flex-col gap-space-xs max-w-xl">
+              <span class="font-label-sm text-label-sm uppercase text-primary font-bold">SYSTEM SPECIFICATIONS &amp; HOST REQUIREMENT</span>
+              <h3 class="font-headline-md text-headline-md uppercase text-on-surface font-bold"
+                  data-i18n-ja="動作環境・システム要件（Windows 64-bit / VST3）"
+                  data-i18n-en="System Requirements (Windows 64-bit / VST3)">
+                動作環境・システム要件（Windows 64-bit / VST3）
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed"
+                 data-i18n-html-ja="本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2推奨)</strong> のVST3ホスト（Ableton Live等）およびStandaloneに対応。<code>EP-ONE.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> へコピーするだけで即座に動作します。"
+                 data-i18n-html-en="Supports <strong>Windows 10 / 11 (64-bit / AVX2 recommended)</strong> VST3 hosts (Ableton Live, etc.) and Standalone. Simply copy <code>EP-ONE.vst3</code> into <code>C:\Program Files\Common Files\VST3\</code>.">
+                本プラグインは <strong>Windows 10 / 11 (64-bit / AVX2推奨)</strong> のVST3ホスト（Ableton Live等）およびStandaloneに対応。<code>EP-ONE.vst3</code> を <code>C:\Program Files\Common Files\VST3\</code> へコピーするだけで即座に動作します。
+              </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm font-label-sm text-label-sm uppercase text-on-surface w-full lg:w-auto">
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">OS / CPU</span>
+                <span class="font-bold text-on-surface">WIN 10/11 (AVX2)</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">HOST DAW</span>
+                <span class="font-bold text-primary">ABLETON LIVE / VST3</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PLUGIN FORMAT</span>
+                <span class="font-bold text-on-surface">VST3 / STANDALONE</span>
+              </div>
+              <div class="bg-surface-container-lowest px-space-md py-space-sm border border-surface-container-high">
+                <span class="text-tertiary block">PRICE &amp; LICENSE</span>
+                <span class="font-bold text-primary">FREE (AGPLv3)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colossal Closing Banner -->
+        <div class="mt-space-md bg-on-surface text-on-primary p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+          <div class="flex flex-col gap-space-xs text-left w-full md:w-auto">
+            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">FREE PHYSICAL INSTRUMENT // COMING SOON</span>
+            <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tighter text-on-primary font-extrabold">
+              4 LEGENDARY ELECTRIC PIANOS. ZERO SAMPLES. 100% FREE.
+            </h2>
+            <span class="font-body-sm text-body-sm text-tertiary-fixed"
+                  data-i18n-ja="23種ファクトリープリセット同梱。サブスクリプション不要・完全無料で近日公開予定。"
+                  data-i18n-en="Includes 23 factory presets across 4 physical models. No subscriptions, no paywalls — releasing soon completely free.">
+              23種ファクトリープリセット同梱。サブスクリプション不要・完全無料で近日公開予定。
+            </span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full md:w-auto shrink-0">
+            <button disabled class="bg-surface-container-highest/25 text-tertiary-fixed px-space-xl py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider cursor-not-allowed select-none text-center flex items-center justify-center gap-2 border border-white/15">
+              <span class="material-symbols-outlined text-lg">schedule</span>
+              <span>COMING SOON... // FREE</span>
+            </button>
+            <a href="index.html#plugins" class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-space-md font-label-md text-label-md uppercase font-bold transition-colors cursor-pointer text-center flex items-center justify-center">
+              BACK TO ALL PLUGINS
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest border-t border-surface-container-highest mt-margin-lg">
+    <div class="w-full px-gutter lg:px-margin-lg py-margin-lg border-b border-surface-container-highest">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-margin">
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">OTODESK // DSP RESEARCH</span>
+          <p class="font-body-sm text-body-sm text-tertiary max-w-sm leading-relaxed"
+             data-i18n-ja="余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。"
+             data-i18n-en="Minimalist, high-precision creative DSP tools for Windows and Ableton Live — stripping away excess ornament to spark original sound.">
+            余計な装飾を削ぎ落とし、独創的な音を生み出すミニマルなツールを届けるWindows / Ableton Live特化型クリエイティブDSPコレクション。
+          </p>
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase">
+            <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            STATUS: EP-ONE COMING SOON
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-md">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">EP-ONE SPECS</span>
+          <div class="flex flex-wrap gap-space-xs">
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">VST3 64-BIT</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">WINDOWS 10/11</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">JUCE 8 / C++20</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-on-surface-variant">ZERO SAMPLES</span>
+            <span class="font-label-sm text-label-sm border border-surface-container-highest px-space-xs py-1 text-primary font-bold">100% FREE (AGPLv3)</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">NAVIGATION</span>
+          <nav class="flex flex-col gap-space-xs">
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="index.html">Top // All Plugins</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="sound.html">Sound // Vinyl Player</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="legacy.html">Legacy Archive (12)</a>
+            <a class="font-label-md text-label-md uppercase text-tertiary hover:text-on-surface transition-colors" href="about.html">About Creator</a>
+          </nav>
+        </div>
+
+        <div class="flex flex-col gap-space-sm">
+          <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">DISCLAIMER &amp; OPEN SOURCE</span>
+          <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Independent physical modeling synth built with <strong>JUCE 8</strong> (AGPLv3). Not affiliated with any hardware trademark owners.<br />
+            Developer: <a href="https://x.com/kijyoumusic" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">@kijyoumusic</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-gutter lg:px-margin-lg py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-tertiary uppercase">
+      <div>© 2026 OTODESK (@kijyoumusic). ALL RIGHTS RESERVED.</div>
+      <div class="flex items-center gap-space-md">
+        <span class="text-on-surface">DESIGNED FOR ABLETON LIVE</span>
+        <span class="text-tertiary">/</span>
+        <span class="text-primary font-bold">100% FREE &amp; 100% SELF-RESPONSIBILITY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SITE-WIDE I18N (JP/EN) -->
+  <script src="assets/i18n.js"></script>
+
+  <!-- INTERACTIVE 4-MODEL SCREENSHOT DECK SCRIPT -->
+  <script>
+    (function () {
+      let currentTabKey = 'modelR';
+
+      const TAB_DATA = {
+        modelR: {
+          img: 'screenshots/ep-one-r.jpg',
+          subtitle: 'MODEL R // ELECTROMECHANICAL TINE PIANO',
+          captionRight: 'NEOPRENE HAMMER + EULER-BERNOULLI TINE + CDS TREMOLO',
+          badge: 'MODEL // 01 TINE EP',
+          tag: 'MODEL R',
+          title: {
+            ja: 'MODEL R：タイン＆トーンバー・エレクトリックピアノ',
+            en: 'MODEL R: Electromechanical Tine & Tonebar Piano'
+          },
+          desc: {
+            ja: 'ネオプレンハンマーの粘弾性衝突モデルと、片持ちタイン×非対称トーンバーの双方向結合を物理演算。深いベルアタック、甘いバーク歪み、温かな2段階サスティンとCdS光学トレモロを完全再現します。',
+            en: 'Models a neoprene viscoelastic hammer striking a cantilever tine bilaterally coupled to an asymmetric tonebar — delivering deep bell chime, sweet bark, warm two-stage decay, and CdS optical tremolo.'
+          },
+          bullets: [
+            {
+              label: '01 // HUNT-CROSSLEY HAMMER',
+              ja: 'Shore Aデュロメータ特性を備えた非線形粘弾性ハンマー衝突により、弱打から強打まで無限に変化。',
+              en: 'Nonlinear viscoelastic hammer contact with Shore A durometer dynamics for continuous velocity expression.'
+            },
+            {
+              label: '02 // BILATERAL TINE & TONEBAR',
+              ja: 'タインと非対称トーンバーの相互結合により、実機特有の2段階ディケイと心地よい音響うなりを再現。',
+              en: 'Bilateral Euler-Bernoulli tine/tonebar coupling faithfully captures authentic two-stage decay and beating.'
+            },
+            {
+              label: '03 // 3D MAGNETIC PICKUP BARK',
+              ja: '非平行磁束とファラデー電磁誘導による2次非線形バーク歪み。強く弾くほど艶やかに吠えます。',
+              en: '3D geometric electromagnetic pickup with Faraday velocity induction and quadratic bark saturation.'
+            },
+            {
+              label: '04 // CDS SUITCASE OPTO-TREMOLO',
+              ja: 'クラシックRLCトーン回路、トランス飽和、そしてCdS光導電素子の記憶応答を持つステレオ光学トレモロ。',
+              en: 'Classic RLC tone network, transformer warmth, and Peterson-style 4/5-pin CdS optical suitcase tremolo.'
+            }
+          ]
+        },
+        modelW: {
+          img: 'screenshots/ep-one-w.jpg',
+          subtitle: 'MODEL W // CAPACITIVE REED ELECTRIC PIANO',
+          captionRight: 'WEIGHTED REED + ELECTROSTATIC PICKUP + CLASS-AB CAB',
+          badge: 'MODEL // 02 REED EP',
+          tag: 'MODEL W',
+          title: {
+            ja: 'MODEL W：静電容量リード・エレクトリックピアノ',
+            en: 'MODEL W: Capacitive Reed Electric Piano'
+          },
+          desc: {
+            ja: 'フェルトハンマーの空間フィルタリング衝突と、鍵域ごとのハンダ質量スケーリング付きリード共振を再現。高電圧静電容量ピックアップ、Class-ABプッシュプル歪み、楕円スピーカーがウッディなパンチを放ちます。',
+            en: 'Combines felt hammer dynamics, weighted reeds with key-dependent solder-pyramid scaling, high-voltage electrostatic slot pickup, Class-AB push-pull sag, and elliptical open-back speaker diffraction.'
+          },
+          bullets: [
+            {
+              label: '01 // WEIGHTED SOLDER-PYRAMID REEDS',
+              ja: '低域の重いウッディな基音から高域の澄んだ輝きまで、ハンダ質量比（R2≈5.45→6.27）を鍵域ごとに演算。',
+              en: 'Key-dependent solder-pyramid mass scaling captures heavy woody bass fundamentals and crystalline treble.'
+            },
+            {
+              label: '02 // ELECTROSTATIC SLOT PICKUP',
+              ja: '等角写像フリンジ電界と動的エアギャップ減衰を再現し、独特のホロウで抜けの良い中域バークを生成。',
+              en: 'High-voltage capacitive slot pickup with conformal fringing fields and dynamic air-gap squeeze damping.'
+            },
+            {
+              label: '03 // CLASS-AB PUSH-PULL & SAG',
+              ja: 'ソリッドステートClass-ABプッシュプル回路と電源サグが生み出す、70年代ロック／ポップの粘りある歪み。',
+              en: 'Solid-state Class-AB push-pull saturation with authentic power supply sag for 70s rock & pop bite.'
+            },
+            {
+              label: '04 // ELLIPTICAL OPEN-BACK CABINET',
+              ja: '8段楕円スピーカー＆オープンバックキャビネット回折と温かな光学トレモロを内蔵。',
+              en: '8-stage elliptical speaker & open-back cabinet diffraction paired with pulsing vintage opto-tremolo.'
+            }
+          ]
+        },
+        modelY: {
+          img: 'screenshots/ep-one-y.jpg',
+          subtitle: 'MODEL Y // STIFF-STRING ELECTRIC GRAND PIANO',
+          captionRight: 'DUAL DWG STRINGS + PIEZO BRIDGE + JFET ADAA + AUTOPAN',
+          badge: 'MODEL // 03 GRAND EP',
+          tag: 'MODEL Y',
+          title: {
+            ja: 'MODEL Y：剛性弦DWG・エレクトリックグランド',
+            en: 'MODEL Y: Stiff-String Electric Grand Piano'
+          },
+          desc: {
+            ja: 'ユニゾンペアのデュアル・デジタル導波管（DWG）と2次オールパス分散フィルタで剛性弦特有の輝かしい倍音ズレを再現。ピエゾブリッジ、JFET ADAA歪み、3バンドBaxandall EQ、アナログAutoPanを統合します。',
+            en: 'True physical dual DWG strings with van Walstijn 2nd-order allpass dispersion filters, piezo bridge crystal transducer, JFET ADAA saturation, 3-band active Baxandall EQ, and analog stereo AutoPan.'
+          },
+          bullets: [
+            {
+              label: '01 // DUAL DWG & DISPERSION FILTER',
+              ja: 'van Walstijn閉形式2次オールパス分散フィルタで剛性弦の非調和性（B）とユニゾンうなりを忠実再現。',
+              en: 'Dual unison DWG strings with closed-form 2nd-order allpass dispersion for authentic string stiffness.'
+            },
+            {
+              label: '02 // PIEZOELECTRIC BRIDGE CRYSTAL',
+              ja: '67.73Hzハイパス電気結合を持つピエゾブリッジ・トランスデューサーが鋭いパーカッシブな芯を描写。',
+              en: 'Piezoelectric bridge crystal model with 67.73 Hz high-pass coupling for crisp percussive attack bite.'
+            },
+            {
+              label: '03 // DISCRETE JFET ADAA PREAMP',
+              ja: '1次ADAA tanh飽和を備えたディスクリートJFETバッファで、ギターの壁を突き抜ける存在感を実現。',
+              en: 'Discrete JFET buffer with 1st-order ADAA tanh drive that punches cleanly through dense rock mixes.'
+            },
+            {
+              label: '04 // 3-BAND BAXANDALL EQ & AUTOPAN',
+              ja: '負帰還3バンドアクティブBaxandall/Bridged-T EQと、80年代バラードを彩る広大なアナログAutoPan。',
+              en: 'Negative-feedback 3-band active Baxandall/Bridged-T EQ paired with sweeping vintage stereo AutoPan.'
+            }
+          ]
+        },
+        modelH: {
+          img: 'screenshots/ep-one-h.jpg',
+          subtitle: 'MODEL H // PLUCKED STEEL STRING CLAV PIANO',
+          captionRight: 'BRASS TANGENT 2-DOMAIN DWG + 4-SWITCH QUACK + WAH/PHASER',
+          badge: 'MODEL // 04 CLAV EP',
+          tag: 'MODEL H',
+          title: {
+            ja: 'MODEL H：2領域DWG＆4スイッチ・ファンククラビ',
+            en: 'MODEL H: Plucked Steel String Clav Piano'
+          },
+          desc: {
+            ja: '真鍮タンジェントによる2領域散乱接合DWGと、離鍵時の粘着リリーススナップ＆フェルトサンプ音を物理注入。4スイッチ・デュアルコイル、12AX7真空管、4段光学フェイザー＆インダクタワウで究極のファンクグルーヴを。',
+            en: 'Brass tangent 2-domain DWG string physics with sticky release snaps & rest-rail felt thump, 4-switch dual-coil pickup matrix, 12AX7 tube preamp, 4-stage optical phaser, and inductor wah.'
+          },
+          bullets: [
+            {
+              label: '01 // BRASS TANGENT 2-DOMAIN DWG',
+              ja: '動的ピニングと2領域散乱接合の境界条件により、剃刀のように鋭いファンクアタックを物理生成。',
+              en: 'Dynamic pinning and 2-domain scattering junction DWG deliver razor-sharp funk pluck transients.'
+            },
+            {
+              label: '02 // STICKY RELEASE SNAP & FELT THUMP',
+              ja: '離鍵時の粘着スナップと105Hz/210Hzフェルトサンプ音を導波管へ直接注入し、本物のグルーヴを演出。',
+              en: 'Directly injects sticky release snaps and 105/210 Hz rest-rail felt thumps into the pickup wave line.'
+            },
+            {
+              label: '03 // 4-SWITCH DUAL COIL MATRIX',
+              ja: 'Single/Dual、Neck/Bridge、同相/逆相（Quack）を切り替える象徴的な4スイッチ・ピックアップマトリクス。',
+              en: 'Classic 4-switch pickup matrix (Single/Dual, Neck/Bridge, In-Phase/Anti-Phase vocal Quack).'
+            },
+            {
+              label: '04 // 12AX7 TUBE, PHASER & INDUCTOR WAH',
+              ja: '非対称バイアス12AX7真空管プリアンプ、4段光学フェイザー、ヴィンテージ・インダクタ飽和ワウを内蔵。',
+              en: 'Asymmetric 12AX7 triode preamp, passive filter switches, 4-stage optical phaser, and inductor wah pedal.'
+            }
+          ]
+        }
+      };
+
+      const buttons = document.querySelectorAll('.gui-tab-btn');
+      const imgEl = document.getElementById('gui-preview-img');
+      const subtitleEl = document.getElementById('deck-tab-subtitle');
+      const capRightEl = document.getElementById('gui-caption-right');
+      const badgeEl = document.getElementById('panel-badge');
+      const tagEl = document.getElementById('panel-tag');
+      const titleEl = document.getElementById('panel-title');
+      const descEl = document.getElementById('panel-desc');
+      const bulletsEl = document.getElementById('panel-bullets');
+
+      function getActiveLang() {
+        return (window.OTODESK_I18N && window.OTODESK_I18N.getLang()) || document.documentElement.getAttribute('data-lang') || 'ja';
+      }
+
+      function renderTab(key, shouldScroll) {
+        const d = TAB_DATA[key];
+        if (!d) return;
+        currentTabKey = key;
+        const lang = getActiveLang() === 'en' ? 'en' : 'ja';
+
+        if (imgEl && imgEl.getAttribute('src') !== d.img) imgEl.src = d.img;
+        if (subtitleEl) subtitleEl.textContent = d.subtitle;
+        if (capRightEl) capRightEl.textContent = d.captionRight;
+        if (badgeEl) badgeEl.textContent = d.badge;
+        if (tagEl) tagEl.textContent = d.tag;
+        if (titleEl) titleEl.textContent = d.title[lang];
+        if (descEl) descEl.textContent = d.desc[lang];
+
+        if (bulletsEl) {
+          bulletsEl.innerHTML = d.bullets.map(b => `
+            <div class="flex-1 flex flex-col justify-center px-space-sm py-2 bg-black/45 border-l-4 border-primary">
+              <span class="font-label-md text-xs text-primary uppercase font-bold block mb-0.5">${b.label}</span>
+              <span class="font-body-sm text-xs text-inverse-on-surface leading-snug block">${b[lang]}</span>
+            </div>
+          `).join('');
+        }
+
+        if (shouldScroll) {
+          const rackFrame = document.getElementById('rack-deck-frame');
+          if (rackFrame) {
+            const rect = rackFrame.getBoundingClientRect();
+            const headerOffset = 116;
+            if (rect.top < headerOffset || rect.bottom > window.innerHeight) {
+              const targetY = window.scrollY + rect.top - headerOffset - 8;
+              window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+            }
+          }
+        }
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-tab');
+          if (!TAB_DATA[key]) return;
+          buttons.forEach(b => {
+            b.className = 'gui-tab-btn px-2.5 py-1 bg-white/10 hover:bg-white/20 text-inverse-on-surface font-bold uppercase transition-colors cursor-pointer';
+          });
+          btn.className = 'gui-tab-btn px-2.5 py-1 bg-primary text-on-primary font-bold uppercase transition-colors cursor-pointer';
+          renderTab(key, true);
+        });
+      });
+
+      window.addEventListener('otodesk:langchange', () => {
+        renderTab(currentTabKey, false);
+      });
+
+      renderTab('modelR', false);
+    })();
+  </script>
+</body>
+</html>

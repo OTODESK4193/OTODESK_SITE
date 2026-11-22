@@ -497,7 +497,7 @@
     <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest border-t border-surface-container-high px-4 py-3 flex flex-col gap-1 shadow-lg">
       <a class="font-label-lg text-sm font-bold px-3 py-2.5 bg-primary text-on-primary flex items-center justify-between" href="#plugins" onclick="toggleMobileMenu()">
         <span>Plugins</span>
-        <span class="text-xs font-mono">10</span>
+        <span class="text-xs font-mono">12</span>
       </a>
       <a class="font-label-lg text-sm font-semibold px-3 py-2.5 text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between" href="sound.html">
         <span>Sound</span>
@@ -699,22 +699,22 @@
               <!-- Left 6 Cols: Dynamic Copy -->
               <div class="lg:col-span-6 flex flex-col items-start text-left gap-4" id="showcase-text-box">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span id="sc-badge" class="px-2.5 py-0.5 bg-primary text-white font-label-md text-xs font-bold uppercase">SYNTH &amp; FX</span>
-                  <span id="sc-status" class="px-2.5 py-0.5 bg-white/15 text-white font-label-md text-xs font-bold uppercase">100% FREE</span>
-                  <span id="sc-motion-badge" class="px-2.5 py-0.5 border border-[#ff6a2b]/50 text-[#ff9a5c] font-label-md text-[10px] tracking-wider uppercase">KINETIC // GRAIN SCATTER</span>
+                  <span id="sc-badge" class="px-2.5 py-0.5 bg-primary text-white font-label-md text-xs font-bold uppercase">HYBRID REVERB</span>
+                  <span id="sc-status" class="px-2.5 py-0.5 bg-white/15 text-white font-label-md text-xs font-bold uppercase">100% FREE // v3.1.0</span>
+                  <span id="sc-motion-badge" class="px-2.5 py-0.5 border border-[#ff6a2b]/50 text-[#ff9a5c] font-label-md text-[10px] tracking-wider uppercase">KINETIC // HARMONIC WAVE</span>
                 </div>
 
                 <h2 id="sc-title" class="font-headline-xl text-4xl sm:text-6xl md:text-7xl text-white font-black tracking-tight leading-none">
-                  Granular
+                  Ambience
                 </h2>
 
                 <!-- Interactive Orange Catchphrase (4 Distinct Kinetic Modes per Plugin) -->
-                <p id="sc-catch" data-motion-mode="grain-scatter" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-[#ff6a2b] font-extrabold leading-snug select-none" title="プラグインごとに異なる物理インタラクションが反応します（クリックで波動リプル）">
-                  音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。
+                <p id="sc-catch" data-motion-mode="harmonic-wave" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-[#ff6a2b] font-extrabold leading-snug select-none" title="プラグインごとに異なる物理インタラクションが反応します（クリックで波動リプル）">
+                  温もりのある、透明。空間の美学を極める。
                 </p>
 
                 <p id="sc-desc" class="font-body-md text-sm sm:text-base text-white/80 leading-relaxed max-w-xl line-clamp-3">
-                  例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。
+                  全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。
                 </p>
 
                 <!-- Progress Bar for Auto-Cycle -->
@@ -723,14 +723,14 @@
                 </div>
 
                 <div class="flex items-center gap-3 pt-2 flex-wrap">
-                  <a id="sc-detail-link" href="granular.html" class="px-6 py-3 bg-white text-on-surface hover:bg-primary hover:text-white transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <a id="sc-detail-link" href="ambience.html" class="px-6 py-3 bg-white text-on-surface hover:bg-primary hover:text-white transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
                     <span data-i18n-ja="このプラグインの詳細へ" data-i18n-en="Explore Plugin">このプラグインの詳細へ</span>
                     <span class="material-symbols-outlined text-base">arrow_forward</span>
                   </a>
                   <button
                     type="button"
                     id="sc-scroll-btn"
-                    onclick="jumpToPlugin('plugin-03')"
+                    onclick="jumpToPlugin('plugin-07')"
                     class="px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/25 transition-colors font-label-lg text-sm font-bold flex items-center gap-2 cursor-pointer"
                   >
                     <span data-i18n-ja="一覧で位置を見る" data-i18n-en="View in Suite List">一覧で位置を見る</span>
@@ -741,10 +741,10 @@
 
               <!-- Right 6 Cols: Dynamic 3D Screenshot -->
               <div class="lg:col-span-6 flex items-center justify-center">
-                <a id="sc-img-link" href="granular.html" class="block w-full max-w-[640px] bg-[#0c0d10] p-2 sm:p-3 border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.65)] group">
+                <a id="sc-img-link" href="ambience.html" class="block w-full max-w-[640px] bg-[#0c0d10] p-2 sm:p-3 border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.65)] group">
                   <img
                     id="sc-img"
-                    src="screenshots/granular-main.jpg?v=117"
+                    src="screenshots/ambience-main.jpg"
                     alt="Plugin Preview"
                     class="w-full h-auto max-h-[340px] sm:max-h-[410px] object-contain mx-auto showcase-animate-img"
                   />
@@ -754,9 +754,9 @@
 
             <!-- Bottom Hint: Continue Scrolling to Full List -->
             <div class="flex items-center justify-between text-white/60 font-label-md text-xs border-t border-white/10 pt-3">
-              <span data-i18n-ja="そのまま下にスクロールすると全10プラグイン一覧へ進みます" data-i18n-en="Continue scrolling down for the complete 10-plugin catalog">そのまま下にスクロールすると全10プラグイン一覧へ進みます</span>
+              <span data-i18n-ja="そのまま下にスクロールすると全12プラグイン一覧へ進みます" data-i18n-en="Continue scrolling down for the complete 12-plugin catalog">そのまま下にスクロールすると全12プラグイン一覧へ進みます</span>
               <a href="#suite-filter-bar" class="text-white hover:text-[#ff6a2b] font-bold flex items-center gap-1">
-                <span data-i18n-ja="全10プラグイン一覧へ ↓" data-i18n-en="All 10 Plugins ↓">全10プラグイン一覧へ ↓</span>
+                <span data-i18n-ja="全12プラグイン一覧へ ↓" data-i18n-en="All 12 Plugins ↓">全12プラグイン一覧へ ↓</span>
               </a>
             </div>
           </div>
@@ -775,18 +775,18 @@
             <button
               class="main-filter-btn active flex-shrink-0 bg-on-surface text-surface font-label-lg text-xs sm:text-sm px-3.5 py-1.5 font-bold transition-colors cursor-pointer"
               data-filter="all"
-              data-i18n-ja="すべて (10)"
-              data-i18n-en="All Plugins (10)"
+              data-i18n-ja="すべて (12)"
+              data-i18n-en="All Plugins (12)"
             >
-              すべて (10)
+              すべて (12)
             </button>
             <button
               class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-lg text-xs sm:text-sm px-3.5 py-1.5 font-medium hover:bg-surface-container-high transition-colors cursor-pointer"
               data-filter="synth"
-              data-i18n-ja="Synth &amp; Sampler (5)"
-              data-i18n-en="Synth &amp; Sampler (5)"
+              data-i18n-ja="Synth &amp; Sampler (7)"
+              data-i18n-en="Synth &amp; Sampler (7)"
             >
-              Synth &amp; Sampler (5)
+              Synth &amp; Sampler (7)
             </button>
             <button
               class="main-filter-btn flex-shrink-0 bg-surface-container text-on-surface font-label-lg text-xs sm:text-sm px-3.5 py-1.5 font-medium hover:bg-surface-container-high transition-colors cursor-pointer"
@@ -814,7 +814,7 @@
             </button>
           </div>
 
-          <!-- Quick Jump Selector (Without visible ID numbers) -->
+          <!-- Quick Jump Selector (Order: Ambience -> Granular -> ORGAN-B3 -> EP-ONE -> ...) -->
           <div class="flex items-center justify-end">
             <select
               id="plugin-jump-select"
@@ -822,13 +822,15 @@
               class="w-full md:w-auto bg-surface-container-low border border-surface-container-high px-3 py-1.5 font-label-lg text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary"
             >
               <option value="" data-i18n-ja="プラグインへ直接ジャンプ..." data-i18n-en="Jump to Plugin...">プラグインへ直接ジャンプ...</option>
+              <option value="plugin-07" data-category="fx">Ambience</option>
+              <option value="plugin-03" data-category="fx">Granular</option>
+              <option value="plugin-11" data-category="synth">ORGAN-B3 [COMING SOON]</option>
+              <option value="plugin-12" data-category="synth">EP-ONE [COMING SOON]</option>
               <option value="plugin-01" data-category="synth">PicoSampler</option>
               <option value="plugin-02" data-category="fx">SPECTRA8</option>
-              <option value="plugin-03" data-category="fx">Granular</option>
               <option value="plugin-04" data-category="synth">LIFT-X</option>
               <option value="plugin-05" data-category="synth">Wavetable [COMING SOON]</option>
               <option value="plugin-06" data-category="synth">NEXT GEN KICK 2</option>
-              <option value="plugin-07" data-category="fx">Ambience</option>
               <option value="plugin-08" data-category="fx">Quad Morph Filter</option>
               <option value="plugin-09" data-category="synth">ANATOMY</option>
               <option value="plugin-10" data-category="dynamics">MULTI-OTO</option>
@@ -839,7 +841,8 @@
       </div>
 
       <!-- ========================================================================= -->
-      <!-- 10 PLUGINS CATALOG WITH ABLETON-STYLE FULL-BLEED COLOR BLOCKS (PROPOSAL 1)-->
+      <!-- 12 PLUGINS CATALOG WITH ABLETON-STYLE FULL-BLEED COLOR BLOCKS (PROPOSAL 1)-->
+      <!-- Order: Ambience -> Granular -> ORGAN-B3 -> EP-ONE -> Suite                -->
       <!-- ========================================================================= -->
       <div class="w-full flex flex-col" id="plugins">
 
@@ -861,7 +864,263 @@
         </div>
 
         <!-- ==================================================== -->
-        <!-- PLUGIN 01: PicoSampler (Color Block: Pure Studio White) -->
+        <!-- 01. Ambience (Color Block: Cool Acoustic Mist)       -->
+        <!-- ==================================================== -->
+        <section class="plugin-section reveal-section w-full bg-[#edf1f5] border-b border-black/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-07" data-category="fx">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <!-- 1. Title & Catchphrase -->
+            <div class="order-1 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
+              <div class="flex items-center gap-3 flex-wrap">
+                <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-on-surface font-black">Ambience</h2>
+                <span class="px-3 py-1 bg-primary text-on-primary font-label-md text-xs font-bold">FREE // v3.1.0 OUT NOW</span>
+              </div>
+              <p class="font-headline-sm text-lg sm:text-2xl text-primary font-extrabold leading-snug"
+                 data-i18n-ja="温もりのある、透明。空間の美学を極める。"
+                 data-i18n-en="Warmth Meets Transparency. The Art of Spatial Aesthetics.">
+                温もりのある、透明。空間の美学を極める。
+              </p>
+            </div>
+
+            <!-- 2. Screenshot Image -->
+            <div class="order-2 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-2 lg:self-center">
+              <a href="ambience.html" class="block bg-[#121316] p-2 sm:p-3 shadow-xl border border-black/10 overflow-hidden group">
+                <img src="screenshots/ambience-main.jpg" alt="Ambience" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
+              </a>
+            </div>
+
+            <!-- 3. Description, Specs & Action Buttons -->
+            <div class="order-3 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start flex flex-col gap-5">
+              <p class="font-body-md text-on-surface-variant leading-relaxed"
+                 data-i18n-ja="全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。"
+                 data-i18n-en="Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN &amp; SDN hybrid, 104 presets, up to 200s decay.">
+                全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-black/15 text-left font-label-md">
+                <div>
+                  <span class="text-[10px] text-secondary block">ALGORITHMS</span>
+                  <span class="text-xs font-bold text-on-surface">8 Recalibrated</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">LATE FIELD</span>
+                  <span class="text-xs font-bold text-on-surface">True Stereo L/R</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">PRESETS</span>
+                  <span class="text-xs font-bold text-on-surface">104 Master Rigs</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">DECAY</span>
+                  <span class="text-xs font-bold text-primary">Log Up to 200s</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <a href="ambience.html" class="px-6 py-3 bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/Ambience/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
+                  <span class="material-symbols-outlined text-base">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- 02. Granular (Color Block: ABLETON FEATURED CHARCOAL DARK BLOCK)          -->
+        <!-- ========================================================================= -->
+        <section class="plugin-section reveal-section w-full bg-[#141519] text-[#f5f5f5] border-b border-white/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-03" data-category="fx">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <!-- 1. Title & Catchphrase -->
+            <div class="order-1 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
+              <div class="flex items-center gap-3 flex-wrap">
+                <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-white font-black">Granular</h2>
+                <span class="px-3 py-1 bg-primary text-on-primary font-label-md text-xs font-bold">FREE // v1.2.1 OUT NOW</span>
+              </div>
+              <p class="font-headline-sm text-lg sm:text-2xl text-[#ff6a2b] font-extrabold leading-snug"
+                 data-i18n-ja="音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。"
+                 data-i18n-en="Shatter Sound into Particles. No matter how wild the modulation, it never leaves the scale.">
+                音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。
+              </p>
+            </div>
+
+            <!-- 2. Screenshot Image -->
+            <div class="order-2 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-center">
+              <a href="granular.html" class="block bg-black p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/15 overflow-hidden group">
+                <img src="screenshots/granular-main.jpg?v=117" alt="Granular" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
+              </a>
+            </div>
+
+            <!-- 3. Description, Specs & Action Buttons -->
+            <div class="order-3 lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:self-start flex flex-col gap-5">
+              <p class="font-body-md text-white/80 leading-relaxed"
+                 data-i18n-ja="例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。"
+                 data-i18n-en="Even pure noise is deconstructed into 1,200 grains to play lush musical chords. An 82-scale post-modulation quantizer locks every grain into harmonic key.">
+                例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-white/15 text-left font-label-md">
+                <div>
+                  <span class="text-[10px] text-white/50 block">QUANTIZER</span>
+                  <span class="text-xs font-bold text-white">Post-Mod 82 Scales</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">ENGINES</span>
+                  <span class="text-xs font-bold text-white">Granular/WSOLA/PSOLA</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">LIBRARY</span>
+                  <span class="text-xs font-bold text-white">150 Presets + RND</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">VERSION</span>
+                  <span class="text-xs font-bold text-[#ff6a2b]">v1.2.1 OUT NOW</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <a href="granular.html" class="px-6 py-3 bg-white text-on-surface hover:bg-primary hover:text-white transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+                <a href="https://github.com/OTODESK4193/Granular/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
+                  <span class="material-symbols-outlined text-base">download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 03. ORGAN-B3 (Color Block: Warm Vintage Sand)        -->
+        <!-- ==================================================== -->
+        <section class="plugin-section reveal-section w-full bg-[#f1eee7] border-b border-black/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-11" data-category="synth">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <!-- 1. Title & Catchphrase -->
+            <div class="order-1 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
+              <div class="flex items-center gap-3 flex-wrap">
+                <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-on-surface font-black">ORGAN-B3</h2>
+                <span class="px-3 py-1 bg-primary text-on-primary font-label-md text-xs font-bold">FREE // COMING SOON</span>
+              </div>
+              <p class="font-headline-sm text-lg sm:text-2xl text-primary font-extrabold leading-snug"
+                 data-i18n-ja="ヒリヒリしたあの音が蘇る！至高のレスリーサウンド"
+                 data-i18n-en="That Searing, Electric Growl Returns — Ultimate Rotary Cabinet Sound.">
+                ヒリヒリしたあの音が蘇る！至高のレスリーサウンド
+              </p>
+            </div>
+
+            <!-- 2. Screenshot Image -->
+            <div class="order-2 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-2 lg:self-center">
+              <a href="organ.html" class="block bg-[#121316] p-2 sm:p-3 shadow-xl border border-black/10 overflow-hidden group">
+                <img src="screenshots/organ-main.jpg" alt="ORGAN-B3" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
+              </a>
+            </div>
+
+            <!-- 3. Description, Specs & Action Buttons -->
+            <div class="order-3 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start flex flex-col gap-5">
+              <p class="font-body-md text-on-surface-variant leading-relaxed"
+                 data-i18n-ja="サンプル容量ゼロ。91個の機械式トーンホイール、9接点キークリック、AO-28真空管歪み、そして慣性加速するデュアルローター・レスリーをリアルタイム物理演算で完全再現。鍵盤に触れた瞬間、ヴィンテージの咆哮が解き放たれます。"
+                 data-i18n-en="Zero samples, zero latency. 91 synchronous mechanical tonewheels, 9-contact key click, AO-28 tube overdrive, and an inertial dual-rotor rotary cabinet simulated entirely in real-time physics.">
+                サンプル容量ゼロ。91個の機械式トーンホイール、9接点キークリック、AO-28真空管歪み、そして慣性加速するデュアルローター・レスリーをリアルタイム物理演算で完全再現。鍵盤に触れた瞬間、ヴィンテージの咆哮が解き放たれます。
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-black/15 text-left font-label-md">
+                <div>
+                  <span class="text-[10px] text-secondary block">GENERATOR</span>
+                  <span class="text-xs font-bold text-on-surface">91 Tonewheels</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">ROTARY</span>
+                  <span class="text-xs font-bold text-on-surface">122 / 147 / PR-40</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">TUBE STAGE</span>
+                  <span class="text-xs font-bold text-on-surface">AO-28 + 6550 ADAA</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-secondary block">STATUS</span>
+                  <span class="text-xs font-bold text-primary">COMING SOON</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <a href="organ.html" class="px-6 py-3 bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+                <button disabled class="px-6 py-3 bg-black/10 text-secondary border border-black/15 cursor-not-allowed font-label-lg text-sm font-bold flex items-center gap-2 select-none">
+                  <span>COMING SOON...</span>
+                  <span class="material-symbols-outlined text-base">schedule</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- 04. EP-ONE (Color Block: Deep Slate Architectural Block)                  -->
+        <!-- ========================================================================= -->
+        <section class="plugin-section reveal-section w-full bg-[#181c24] text-[#f5f5f5] border-b border-white/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-12" data-category="synth">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <!-- 1. Title & Catchphrase -->
+            <div class="order-1 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
+              <div class="flex items-center gap-3 flex-wrap">
+                <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-white font-black">EP-ONE</h2>
+                <span class="px-3 py-1 bg-primary text-on-primary font-label-md text-xs font-bold">FREE // COMING SOON</span>
+              </div>
+              <p class="font-headline-sm text-lg sm:text-2xl text-[#ff6a2b] font-extrabold leading-snug"
+                 data-i18n-ja="弾きたくなる音がココにある"
+                 data-i18n-en="The Sound That Makes You Want to Play Lives Here.">
+                弾きたくなる音がココにある
+              </p>
+            </div>
+
+            <!-- 2. Screenshot Image -->
+            <div class="order-2 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-center">
+              <a href="ep-one.html" class="block bg-black p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/15 overflow-hidden group">
+                <img src="screenshots/ep-one-r.jpg" alt="EP-ONE" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
+              </a>
+            </div>
+
+            <!-- 3. Description, Specs & Action Buttons -->
+            <div class="order-3 lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:self-start flex flex-col gap-5">
+              <p class="font-body-md text-white/80 leading-relaxed"
+                 data-i18n-ja="静止した録音サンプルは一切なし。ハンマーの打撃からタイン、リード、剛性弦、真空管、光学トレモロまで毎サンプル物理演算で鳴り響く4モデル統合エレピ。指先のニュアンスに無限に応える、生きた弾き心地を。"
+                 data-i18n-en="Zero static audio snapshots. Every hammer strike, cantilever tine, reed, stiff string, tube stage, and optical tremolo is solved in real-time physics across 4 iconic models — delivering infinite touch response.">
+                静止した録音サンプルは一切なし。ハンマーの打撃からタイン、リード、剛性弦、真空管、光学トレモロまで毎サンプル物理演算で鳴り響く4モデル統合エレピ。指先のニュアンスに無限に応える、生きた弾き心地を。
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-white/15 text-left font-label-md">
+                <div>
+                  <span class="text-[10px] text-white/50 block">MODELS</span>
+                  <span class="text-xs font-bold text-white">4 Cores (R/W/Y/H)</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">SYNTHESIS</span>
+                  <span class="text-xs font-bold text-white">Zero-Sample Physics</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">PRESETS</span>
+                  <span class="text-xs font-bold text-white">23 Factory Rigs</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-white/50 block">STATUS</span>
+                  <span class="text-xs font-bold text-[#ff6a2b]">COMING SOON</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <a href="ep-one.html" class="px-6 py-3 bg-white text-on-surface hover:bg-primary hover:text-white transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
+                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+                <button disabled class="px-6 py-3 bg-white/10 text-white/50 border border-white/15 cursor-not-allowed font-label-lg text-sm font-bold flex items-center gap-2 select-none">
+                  <span>COMING SOON...</span>
+                  <span class="material-symbols-outlined text-base">schedule</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 05. PicoSampler (Color Block: Pure Studio White)     -->
         <!-- ==================================================== -->
         <section class="plugin-section reveal-section w-full bg-[#ffffff] border-b border-black/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-01" data-category="synth">
           <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
@@ -922,7 +1181,7 @@
         </section>
 
         <!-- ==================================================== -->
-        <!-- PLUGIN 02: SPECTRA8 (Color Block: Ableton Warm Sand) -->
+        <!-- 06. SPECTRA8 (Color Block: Ableton Warm Sand)        -->
         <!-- ==================================================== -->
         <section class="plugin-section reveal-section w-full bg-[#f1eee7] border-b border-black/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-02" data-category="fx">
           <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
@@ -974,70 +1233,6 @@
                   <span class="material-symbols-outlined text-base">arrow_forward</span>
                 </a>
                 <a href="https://github.com/OTODESK4193/SPECTRA8/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
-                  <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
-                  <span class="material-symbols-outlined text-base">download</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================================================================= -->
-        <!-- PLUGIN 03: Granular (Color Block: ABLETON FEATURED CHARCOAL DARK BLOCK)   -->
-        <!-- ========================================================================= -->
-        <section class="plugin-section reveal-section w-full bg-[#141519] text-[#f5f5f5] border-b border-white/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-03" data-category="fx">
-          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            <!-- 1. Title & Catchphrase -->
-            <div class="order-1 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
-              <div class="flex items-center gap-3 flex-wrap">
-                <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-white font-black">Granular</h2>
-                <span class="px-3 py-1 bg-primary text-on-primary font-label-md text-xs font-bold">FREE // v1.2.1 OUT NOW</span>
-              </div>
-              <p class="font-headline-sm text-lg sm:text-2xl text-[#ff6a2b] font-extrabold leading-snug"
-                 data-i18n-ja="音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。"
-                 data-i18n-en="Shatter Sound into Particles. No matter how wild the modulation, it never leaves the scale.">
-                音を微塵に砕け。どれほど狂わせても、音階からは逃がさない。
-              </p>
-            </div>
-
-            <!-- 2. Screenshot Image -->
-            <div class="order-2 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-2 lg:self-center">
-              <a href="granular.html" class="block bg-black p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/15 overflow-hidden group">
-                <img src="screenshots/granular-main.jpg?v=117" alt="Granular" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
-              </a>
-            </div>
-
-            <!-- 3. Description, Specs & Action Buttons -->
-            <div class="order-3 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start flex flex-col gap-5">
-              <p class="font-body-md text-white/80 leading-relaxed"
-                 data-i18n-ja="例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。"
-                 data-i18n-en="Even pure noise is deconstructed into 1,200 grains to play lush musical chords. An 82-scale post-modulation quantizer locks every grain into harmonic key.">
-                例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。
-              </p>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-white/15 text-left font-label-md">
-                <div>
-                  <span class="text-[10px] text-white/50 block">QUANTIZER</span>
-                  <span class="text-xs font-bold text-white">Post-Mod 82 Scales</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-white/50 block">ENGINES</span>
-                  <span class="text-xs font-bold text-white">Granular/WSOLA/PSOLA</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-white/50 block">LIBRARY</span>
-                  <span class="text-xs font-bold text-white">150 Presets + RND</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-white/50 block">VERSION</span>
-                  <span class="text-xs font-bold text-[#ff6a2b]">v1.2.1 OUT NOW</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 flex-wrap">
-                <a href="granular.html" class="px-6 py-3 bg-white text-on-surface hover:bg-primary hover:text-white transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
-                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
-                  <span class="material-symbols-outlined text-base">arrow_forward</span>
-                </a>
-                <a href="https://github.com/OTODESK4193/Granular/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
                   <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
                   <span class="material-symbols-outlined text-base">download</span>
                 </a>
@@ -1224,67 +1419,6 @@
                   <span class="material-symbols-outlined text-base">arrow_forward</span>
                 </a>
                 <a href="https://github.com/OTODESK4193/NEXT-GEN-KICK-2/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
-                  <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
-                  <span class="material-symbols-outlined text-base">download</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ==================================================== -->
-        <!-- PLUGIN 07: Ambience (Color Block: Cool Acoustic Mist)-->
-        <!-- ==================================================== -->
-        <section class="plugin-section reveal-section w-full bg-[#edf1f5] border-b border-black/10 scroll-mt-28 py-16 md:py-24 px-4 sm:px-gutter-lg" id="plugin-07" data-category="fx">
-          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            <!-- 1. Title & Catchphrase -->
-            <div class="order-1 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-end flex flex-col gap-2.5">
-              <h2 class="font-headline-lg text-3xl sm:text-5xl tracking-tight text-on-surface font-black">Ambience</h2>
-              <p class="font-headline-sm text-lg sm:text-2xl text-primary font-extrabold leading-snug"
-                 data-i18n-ja="温もりのある、透明。空間の美学を極める。"
-                 data-i18n-en="Warmth Meets Transparency. The Art of Spatial Aesthetics.">
-                温もりのある、透明。空間の美学を極める。
-              </p>
-            </div>
-
-            <!-- 2. Screenshot Image -->
-            <div class="order-2 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-2 lg:self-center">
-              <a href="ambience.html" class="block bg-[#121316] p-2 sm:p-3 shadow-xl border border-black/10 overflow-hidden group">
-                <img src="screenshots/ambience-main.jpg" alt="Ambience" class="w-full h-auto object-contain max-h-[390px] mx-auto transition-transform duration-500 group-hover:scale-[1.02]" />
-              </a>
-            </div>
-
-            <!-- 3. Description, Specs & Action Buttons -->
-            <div class="order-3 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start flex flex-col gap-5">
-              <p class="font-body-md text-on-surface-variant leading-relaxed"
-                 data-i18n-ja="全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。"
-                 data-i18n-en="Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN &amp; SDN hybrid, 104 presets, up to 200s decay.">
-                全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN &amp; SDN ハイブリッド、104プリセット、最大200秒。
-              </p>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3.5 border-t border-b border-black/15 text-left font-label-md">
-                <div>
-                  <span class="text-[10px] text-secondary block">ALGORITHMS</span>
-                  <span class="text-xs font-bold text-on-surface">8 Recalibrated</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-secondary block">LATE FIELD</span>
-                  <span class="text-xs font-bold text-on-surface">True Stereo L/R</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-secondary block">PRESETS</span>
-                  <span class="text-xs font-bold text-on-surface">104 Master Rigs</span>
-                </div>
-                <div>
-                  <span class="text-[10px] text-secondary block">DECAY</span>
-                  <span class="text-xs font-bold text-primary">Log Up to 200s</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 flex-wrap">
-                <a href="ambience.html" class="px-6 py-3 bg-on-surface text-surface hover:bg-primary transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
-                  <span data-i18n-ja="詳細を見る" data-i18n-en="Learn More">詳細を見る</span>
-                  <span class="material-symbols-outlined text-base">arrow_forward</span>
-                </a>
-                <a href="https://github.com/OTODESK4193/Ambience/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-lg text-sm font-bold flex items-center gap-2">
                   <span data-i18n-ja="無料ダウンロード" data-i18n-en="Free Download">無料ダウンロード</span>
                   <span class="material-symbols-outlined text-base">download</span>
                 </a>
@@ -1526,13 +1660,15 @@
               </p>
               <!-- Clean Plugin Names Without Numbers -->
               <div class="flex flex-wrap gap-1.5 pt-2 text-xs font-label-md text-surface-dim">
+                <span class="px-2.5 py-1 bg-surface/10">Ambience</span>
+                <span class="px-2.5 py-1 bg-surface/10">Granular</span>
+                <span class="px-2.5 py-1 bg-surface/10">ORGAN-B3</span>
+                <span class="px-2.5 py-1 bg-surface/10">EP-ONE</span>
                 <span class="px-2.5 py-1 bg-surface/10">PicoSampler</span>
                 <span class="px-2.5 py-1 bg-surface/10">SPECTRA8</span>
-                <span class="px-2.5 py-1 bg-surface/10">Granular</span>
                 <span class="px-2.5 py-1 bg-surface/10">LIFT-X</span>
                 <span class="px-2.5 py-1 bg-surface/10">Wavetable</span>
                 <span class="px-2.5 py-1 bg-surface/10">NEXT GEN KICK 2</span>
-                <span class="px-2.5 py-1 bg-surface/10">Ambience</span>
                 <span class="px-2.5 py-1 bg-surface/10">Quad Morph Filter</span>
                 <span class="px-2.5 py-1 bg-surface/10">ANATOMY</span>
                 <span class="px-2.5 py-1 bg-surface/10">MULTI-OTO</span>
@@ -2023,8 +2159,22 @@
 
       window.addEventListener('scroll', handleHeroScroll, { passive: true });
 
-      // 4. Dynamic Plugins Showcase Reel (Each Plugin Assigned one of 4 Distinct Kinetic Modes)
+      // 4. Dynamic Plugins Showcase Reel (Order: Ambience -> Granular -> ORGAN-B3 -> EP-ONE -> ...)
       const SHOWCASE_PLUGINS = [
+        {
+          id: 'plugin-07',
+          name: 'Ambience',
+          badge: 'HYBRID REVERB',
+          status: '100% FREE // v3.1.0',
+          motionMode: 'harmonic-wave',
+          motionLabel: 'KINETIC // HARMONIC WAVE',
+          url: 'ambience.html',
+          img: 'screenshots/ambience-main.jpg',
+          catchJa: '温もりのある、透明。空間の美学を極める。',
+          catchEn: 'Warmth Meets Transparency. The Art of Spatial Aesthetics.',
+          descJa: '全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN & SDN ハイブリッド、104プリセット、最大200秒。',
+          descEn: 'Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN & SDN hybrid, 104 presets, up to 200s decay.'
+        },
         {
           id: 'plugin-03',
           name: 'Granular',
@@ -2038,6 +2188,34 @@
           catchEn: 'Shatter Sound into Particles. No matter how wild the modulation, it never leaves the scale.',
           descJa: '例えノイズであっても、1200個の粒子に分解して美しい和音を奏でる魔法のプラグイン。82種のスケールクオンタイザーがすべての粒子を音楽的なキーへと強制収束させます。',
           descEn: 'Even pure noise is deconstructed into 1,200 grains to play lush musical chords. An 82-scale post-modulation quantizer locks every grain into harmonic key.'
+        },
+        {
+          id: 'plugin-11',
+          name: 'ORGAN-B3',
+          badge: 'PHYSICAL ORGAN',
+          status: 'FREE // COMING SOON',
+          motionMode: 'envelope-stroke',
+          motionLabel: 'KINETIC // ENVELOPE STROKE',
+          url: 'organ.html',
+          img: 'screenshots/organ-main.jpg',
+          catchJa: 'ヒリヒリしたあの音が蘇る！至高のレスリーサウンド',
+          catchEn: 'That Searing, Electric Growl Returns — Ultimate Rotary Cabinet Sound.',
+          descJa: 'サンプル容量ゼロ。91個の機械式トーンホイール、9接点キークリック、AO-28真空管歪み、そして慣性加速するデュアルローター・レスリーをリアルタイム物理演算で完全再現。鍵盤に触れた瞬間、ヴィンテージの咆哮が解き放たれます。',
+          descEn: 'Zero samples, zero latency. 91 synchronous mechanical tonewheels, 9-contact key click, AO-28 tube overdrive, and an inertial dual-rotor rotary cabinet simulated entirely in real-time physics.'
+        },
+        {
+          id: 'plugin-12',
+          name: 'EP-ONE',
+          badge: 'PHYSICAL EP (4 MODELS)',
+          status: 'FREE // COMING SOON',
+          motionMode: 'step-decode',
+          motionLabel: 'KINETIC // STEP DECODE',
+          url: 'ep-one.html',
+          img: 'screenshots/ep-one-r.jpg',
+          catchJa: '弾きたくなる音がココにある',
+          catchEn: 'The Sound That Makes You Want to Play Lives Here.',
+          descJa: '静止した録音サンプルは一切なし。ハンマーの打撃からタイン、リード、剛性弦、真空管、光学トレモロまで毎サンプル物理演算で鳴り響く4モデル統合エレピ。指先のニュアンスに無限に応える、生きた弾き心地を。',
+          descEn: 'Zero static audio snapshots. Every hammer strike, cantilever tine, reed, stiff string, tube stage, and optical tremolo is solved in real-time physics across 4 iconic models — delivering infinite touch response.'
         },
         {
           id: 'plugin-01',
@@ -2094,20 +2272,6 @@
           catchEn: 'The Ultimate Kick Synthesizer — Distilling 7 Months of Intensive DSP Engineering.',
           descJa: 'Attack / Body / Subの3層レイヤー構造、多点ベジェエンベロープ、10種のADAAサチュレーション、480バンド基音ピッチHUDを搭載。',
           descEn: '3-layer architecture (Attack / Body / Sub), multi-point Bezier curves, 10 ADAA drive models, and a 480-band pitch HUD.'
-        },
-        {
-          id: 'plugin-07',
-          name: 'Ambience',
-          badge: 'HYBRID REVERB',
-          status: '100% FREE',
-          motionMode: 'harmonic-wave',
-          motionLabel: 'KINETIC // HARMONIC WAVE',
-          url: 'ambience.html',
-          img: 'screenshots/ambience-main.jpg',
-          catchJa: '温もりのある、透明。空間の美学を極める。',
-          catchEn: 'Warmth Meets Transparency. The Art of Spatial Aesthetics.',
-          descJa: '全8アルゴリズムを帯域ごとに再校正し、後期残響はトゥルーステレオに。金属的な共鳴を抑え、ピッチの揺れない変調へ。16ch FDN & SDN ハイブリッド、104プリセット、最大200秒。',
-          descEn: 'Every one of the 8 algorithms recalibrated band by band, with a true-stereo late field. Metallic ringing tamed and modulation freed from pitch wobble. 16-ch FDN & SDN hybrid, 104 presets, up to 200s decay.'
         },
         {
           id: 'plugin-08',
