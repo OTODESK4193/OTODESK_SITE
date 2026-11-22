@@ -162,10 +162,12 @@
             <span class="material-symbols-outlined text-[15px]">arrow_back</span>
             <span data-i18n-ja="プラグイン一覧" data-i18n-en="ALL PLUGINS">プラグイン一覧</span>
           </a>
-          <span class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-surface-container-high text-secondary flex items-center gap-space-xs font-bold cursor-not-allowed select-none">
-            <span class="material-symbols-outlined text-[15px]">schedule</span>
-            <span>COMING SOON...</span>
-            <span class="bg-primary text-on-primary px-1 py-0.5 text-[9px] font-bold">FREE</span>
+          <span class="font-label-md text-label-md uppercase px-space-sm py-1.5 bg-primary hover:bg-primary-container text-on-primary flex items-center gap-space-xs font-bold transition-colors">
+            <a href="https://github.com/OTODESK4193/Granular/releases" target="_blank" rel="noopener noreferrer" class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-[15px]">download</span>
+              <span>GITHUB DL</span>
+              <span class="bg-on-surface text-surface px-1 py-0.5 text-[9px] font-bold">FREE</span>
+            </a>
           </span>
         </div>
       </div>
@@ -198,8 +200,8 @@
       <section class="w-full bg-surface-container-low px-gutter lg:px-margin-lg py-space-sm border-b border-surface-container-high">
         <div class="flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm uppercase">
           <div class="flex items-center gap-space-sm">
-            <span class="font-bold text-on-surface">GRANULAR V1.1.0 (BUILD 017)</span>
-            <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // COMING SOON</span>
+            <span class="font-bold text-on-surface">GRANULAR V1.2.1</span>
+            <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">FREE // OUT NOW</span>
           </div>
           <div class="flex items-center gap-space-md text-tertiary overflow-x-auto no-scrollbar whitespace-nowrap">
             <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> QUANTIZER: POST-MOD 82 SCALES</span>
@@ -291,13 +293,15 @@
             </div>
 
             <div class="flex flex-col gap-space-xs">
-              <button disabled class="w-full bg-surface-container-highest text-secondary py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider flex items-center justify-center gap-space-sm cursor-not-allowed select-none border border-outline-variant/40">
-                <span class="material-symbols-outlined text-lg">schedule</span>
-                COMING SOON... // FREE RELEASE
-              </button>
-              <a href="index.html#plugins" class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase font-bold tracking-wide flex items-center justify-center gap-space-xs transition-colors cursor-pointer">
-                <span class="material-symbols-outlined text-sm">apps</span>
-                <span data-i18n-ja="他の公開中プラグインを見る" data-i18n-en="BROWSE ALL RELEASED PLUGINS">他の公開中プラグインを見る</span>
+              <a href="https://github.com/OTODESK4193/Granular/releases" target="_blank" rel="noopener noreferrer"
+                 class="w-full bg-primary hover:bg-primary-container text-on-primary py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider flex items-center justify-center gap-space-sm transition-colors">
+                <span class="material-symbols-outlined text-lg">download</span>
+                <span data-i18n-ja="無料ダウンロード (GITHUB)" data-i18n-en="FREE DOWNLOAD (GITHUB)">無料ダウンロード (GITHUB)</span>
+              </a>
+              <a href="https://github.com/OTODESK4193/Granular" target="_blank" rel="noopener noreferrer"
+                 class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase font-bold tracking-wide flex items-center justify-center gap-space-xs transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">code</span>
+                <span data-i18n-ja="GITHUB ソース・ドキュメントを見る" data-i18n-en="VIEW GITHUB SOURCE &amp; DOCS">GITHUB ソース・ドキュメントを見る</span>
               </a>
             </div>
 
@@ -320,8 +324,8 @@
                 <span class="text-on-surface font-bold">VST3 / STANDALONE</span>
               </div>
               <div class="flex items-center justify-between">
-                <span>UI SCALING:</span>
-                <span class="text-primary font-bold">75% – 200% + 10 THEMES</span>
+                <span>VERSION / SCALING:</span>
+                <span class="text-primary font-bold">v1.2.1 // 75% – 200% + 10 THEMES</span>
               </div>
             </div>
 
@@ -357,7 +361,7 @@
           <!-- Top Metal Frame Ribbon + Interactive Tab Selector -->
           <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-highest/10 px-space-sm py-1.5 mb-space-sm font-label-sm text-label-sm uppercase text-tertiary-fixed border-b border-white/10">
             <div class="flex items-center gap-space-sm">
-              <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">GRANULAR v1.1.0</span>
+              <span class="bg-primary text-on-primary px-space-xs py-0.5 font-bold">GRANULAR v1.2.1</span>
               <span class="text-inverse-on-surface font-bold hidden sm:inline" id="deck-tab-subtitle">TAB 01 // MAIN: GRAIN &amp; DOT-MATRIX WAVEFORM</span>
             </div>
             <!-- 6 Tab Buttons -->
@@ -818,32 +822,22 @@
               YOUTUBE SHOWCASE // 映像デモンストレーション
             </h2>
           </div>
-          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-sm py-1 text-secondary font-bold">
-            EMBED SLOT READY (16:9 HD)
+          <span class="font-label-sm text-label-sm uppercase bg-surface-container px-space-sm py-1 text-primary font-bold">
+            OFFICIAL DEMO (16:9 HD)
           </span>
         </div>
 
-        <!-- 16:9 YouTube Embed Frame Placeholder -->
+        <!-- 16:9 YouTube Embed Frame -->
         <div class="w-full bg-inverse-surface text-inverse-on-surface p-space-md shadow-md border border-surface-container-highest">
-          <div class="relative w-full aspect-video bg-[#0c0d12] border border-white/15 flex flex-col items-center justify-center p-space-lg text-center overflow-hidden">
-            <!-- Subtle Background Screenshot Blur -->
-            <img src="screenshots/granular-main.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-sm pointer-events-none" />
-            <div class="relative z-10 flex flex-col items-center gap-space-sm max-w-lg">
-              <div class="w-16 h-16 bg-primary/90 text-on-primary flex items-center justify-center shadow-lg">
-                <span class="material-symbols-outlined text-3xl">smart_display</span>
-              </div>
-              <span class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-0.5 font-bold tracking-widest">
-                YOUTUBE EMBED STANDBY
-              </span>
-              <h3 class="font-headline-md text-xl sm:text-2xl uppercase font-bold text-inverse-on-surface">
-                GRANULAR v1.1.0 // OFFICIAL DEMO &amp; WORKFLOW VIDEO
-              </h3>
-              <p class="font-body-sm text-body-sm text-tertiary-fixed"
-                 data-i18n-ja="現在デモンストレーション動画を準備中です。公開次第、このフレームにYouTubeプレイヤーが埋め込まれます。"
-                 data-i18n-en="Official video walkthrough and sound demonstration is currently in production and will be embedded here upon release.">
-                現在デモンストレーション動画を準備中です。公開次第、このフレームにYouTubeプレイヤーが埋め込まれます。
-              </p>
-            </div>
+          <div class="relative w-full aspect-video bg-black border border-white/15 overflow-hidden">
+            <iframe
+              class="w-full h-full"
+              src="https://www.youtube.com/embed/Tjz-bFFL0Xk?rel=0&amp;modestbranding=1"
+              title="GRANULAR v1.2.1 — Official Demo &amp; Sound Walkthrough"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </section>
@@ -889,22 +883,23 @@
         <!-- Colossal Avant-Garde Closing Banner -->
         <div class="mt-space-md bg-on-surface text-on-primary p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
           <div class="flex flex-col gap-space-xs text-left w-full md:w-auto">
-            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">FREE INSTRUMENT // COMING SOON</span>
+            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">FREE INSTRUMENT // v1.2.1 OUT NOW</span>
             <h2 class="font-headline-lg text-2xl sm:text-headline-lg uppercase tracking-tighter text-on-primary font-extrabold">
               UNLEASH 1,200 SCALE-LOCKED GRAINS. 100% FREE.
             </h2>
             <span class="font-body-sm text-body-sm text-tertiary-fixed"
-                  data-i18n-ja="150種のファクトリープリセット同梱。サブスクリプション不要・iLok不要・完全無料で近日公開予定。"
-                  data-i18n-en="Includes 150 factory presets. No subscriptions, no iLok, no paywalls — releasing soon completely free.">
-              150種のファクトリープリセット同梱。サブスクリプション不要・iLok不要・完全無料で近日公開予定。
+                  data-i18n-ja="150種のファクトリープリセット同梱。サブスクリプション不要・iLok不要・完全無料でGitHubから配布中。"
+                  data-i18n-en="Includes 150 factory presets. No subscriptions, no iLok, no paywalls — free on GitHub.">
+              150種のファクトリープリセット同梱。サブスクリプション不要・iLok不要・完全無料でGitHubから配布中。
             </span>
           </div>
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full md:w-auto shrink-0">
-            <button disabled class="bg-surface-container-highest/25 text-tertiary-fixed px-space-xl py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider cursor-not-allowed select-none text-center flex items-center justify-center gap-2 border border-white/15">
-              <span class="material-symbols-outlined text-lg">schedule</span>
-              <span>COMING SOON... // FREE</span>
-            </button>
-            <a href="index.html#plugins" class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-space-md font-label-md text-label-md uppercase font-bold transition-colors cursor-pointer text-center flex items-center justify-center">
+            <a href="https://github.com/OTODESK4193/Granular/releases" target="_blank" rel="noopener noreferrer"
+               class="bg-primary hover:bg-primary-container text-on-primary px-space-xl py-space-md font-label-lg text-label-lg uppercase font-bold tracking-wider transition-colors text-center flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">download</span>
+              <span data-i18n-ja="FREE DOWNLOAD (GITHUB)" data-i18n-en="FREE DOWNLOAD (GITHUB)">FREE DOWNLOAD (GITHUB)</span>
+            </a>
+            <a href="index.html#plugins" class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-on-primary px-space-lg py-space-md font-label-md text-label-md uppercase font-bold transition-colors cursor-pointer text-center flex items-center justify-center border border-white/15">
               BACK TO ALL PLUGINS
             </a>
           </div>
@@ -929,7 +924,7 @@
           </p>
           <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase">
             <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
-            STATUS: GRANULAR v1.1.0 ACTIVE
+            STATUS: GRANULAR v1.2.1 ACTIVE
           </div>
         </div>
 
